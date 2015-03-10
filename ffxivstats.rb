@@ -16,7 +16,7 @@ class FFXIVStats
         f.each_line { |line| page.push line }
       end
     rescue
-      puts "ERROR: #{player_id} does not exist"
+#      puts "ID: #{player_id} does not exist"
       return false
     end
     return page
@@ -30,6 +30,16 @@ class FFXIVStats
     name1 = name[0][35..-1]
     # Get just the name (the first two words)
     name2 = name1.split[0..1].join(' ')
+  end
+
+  # Given a lodestone profile page, get the realm the player is on
+  def get_realm(page)
+    # Get the line that contains the player's realm
+    realm = page.grep(/<span> \(/)
+    # Get just the realm in brackets
+    realm1 = realm[0][/\(.*?\)/]
+    # Remove the brackets
+    realm2 = realm1[1..-2]
   end
 
   # Given a lodestone profile page, return the race of the player
@@ -67,30 +77,32 @@ class FFXIVStats
 
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
-    @db.execute("insert into 'players' (id, name, race, gender) values ('#{player.id}','#{player.player_name}','#{player.race}','#{player.gender}');")
+    @db.execute("insert into 'players' (id, name, realm, race, gender) values ('#{player.id}','#{player.player_name}','#{player.realm}','#{player.race}','#{player.gender}');")
   end
 
   def main
     @db = SQLite3::Database.new( "players.db" )
-    @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,race TEXT,gender TEXT);")    
+    @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,realm TEXT,race TEXT,gender TEXT);")    
 
     for i in 1..100
       if page = get_player_page(i)
         player_name = get_name(page)
+        realm = get_realm(page)
         race = get_race(page)
 	gender = get_gender(page)
 
         player = Player.new
         player.id = i
         player.player_name = player_name
+        player.realm = realm
         player.race = race
         player.gender = gender
 
-        puts "ID: #{i} | Name: #{player.player_name} | Race: #{player.race} | Gender: #{player.gender}"
+        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender}"
 	write_to_db(player)
 
-        # DEBUG
-#        info.each { |x| puts x }
+#         DEBUG
+#        page.each { |x| puts x }
       end
     end
   end

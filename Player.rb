@@ -2,6 +2,7 @@ class Player
 
   attr_accessor *%i[
     id
+    realm
     player_name
     race
     gender
