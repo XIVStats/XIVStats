@@ -16,7 +16,7 @@ class FFXIVStats
         f.each_line { |line| page.push line }
       end
     rescue
-#      puts "ID: #{player_id} does not exist"
+      #puts "ID: #{player_id} does not exist"
       return false
     end
     return page
@@ -112,8 +112,10 @@ class FFXIVStats
     # Get just the numbers
     levels.each_with_index { |val, index| levels[index] = val[5..6] }
 
-    # Replace any non-numbers (i.e not trained) to nil
-    levels.each_with_index { |val, index| levels[index] = Integer(val) rescue nil }
+    # If the number is a single digit, or non-existant, strip the extra character(s)
+    levels.each_with_index do |val,index|
+      levels[index] = val.gsub(/\D/, "")
+    end
 
     levels
   end
@@ -142,20 +144,14 @@ class FFXIVStats
 
     for i in 1..100
       if page = get_player_page(i)
-        player_name = get_name(page)
-        realm = get_realm(page)
-        race = get_race(page)
-	gender = get_gender(page)
-        levels = get_levels(page)
-        gc = get_grand_company(page)
-
         player = Player.new
         player.id = i
-        player.player_name = player_name
-        player.realm = realm
-        player.race = race
-        player.gender = gender
-        player.grand_company = gc        
+        player.player_name = get_name(page)
+        player.realm = get_realm(page)
+        player.race = get_race(page)
+        player.gender = get_gender(page)
+        player.grand_company = get_grand_company(page) 
+        levels = get_levels(page)
 
         player.level_gladiator = levels[0]
         player.level_pugilist = levels[1]
@@ -181,8 +177,8 @@ class FFXIVStats
         puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | GC: #{player.grand_company}"
 	write_to_db(player)
 
-#         DEBUG
-#        page.each { |x| puts x }
+        # DEBUG
+        # page.each { |x| puts x }
       end
     end
   end
