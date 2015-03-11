@@ -72,6 +72,24 @@ class FFXIVStats
     return gender
   end
 
+  # Given a lodestone profile page, return the grand company the player
+  # belongs to (if none, returns nil)
+  def get_grand_company(page)
+    gc = nil
+    lines = page.grep(/txt_name/)
+    # 4 things in grep txt_name if not in a grand company
+    # 5 things in grep txt_name if in a grand company
+    if lines.length != 5
+      return gc
+    else
+      # Make name of grand company the beginning of the line
+      line = lines[3][25..-1]
+      # Get the name on it's own
+      line = line.split('/')
+      gc = line[0]
+    end
+  end
+
   # Given a lodestone profile page, return all skill levels of the player
   # as an array
   def get_levels(page)
@@ -102,11 +120,11 @@ class FFXIVStats
 
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
-    @db.execute("insert into 'players' (id, name, realm, race, gender, level_gladiator, level_pugilist, level_marauder
+    @db.execute("insert into 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
       , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
       , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}','#{player.player_name}'
-      ,'#{player.realm}','#{player.race}','#{player.gender}','#{player.level_gladiator}','#{player.level_pugilist}'
+      ,'#{player.realm}','#{player.race}','#{player.gender}','#{player.grand_company}','#{player.level_gladiator}','#{player.level_pugilist}'
       ,'#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}','#{player.level_rogue}'
       ,'#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_carpenter}'
       ,'#{player.level_blacksmith}','#{player.level_armorer}','#{player.level_goldsmith}','#{player.level_leatherworker}'
@@ -116,19 +134,20 @@ class FFXIVStats
 
   def main
     @db = SQLite3::Database.new( "players.db" )
-    @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,realm TEXT,race TEXT,gender TEXT
+    @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
       ,level_gladiator INTEGER,level_pugilist INTEGER,level_marauder INTEGER,level_lancer INTEGER,level_archer INTEGER
       ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_carpenter INTEGER
       ,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER,level_leatherworker INTEGER,level_weaver INTEGER
       ,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER,level_botanist INTEGER,level_fisher INTEGER);")    
 
-    for i in 1..1
+    for i in 1..100
       if page = get_player_page(i)
         player_name = get_name(page)
         realm = get_realm(page)
         race = get_race(page)
 	gender = get_gender(page)
         levels = get_levels(page)
+        gc = get_grand_company(page)
 
         player = Player.new
         player.id = i
@@ -136,7 +155,8 @@ class FFXIVStats
         player.realm = realm
         player.race = race
         player.gender = gender
-        
+        player.grand_company = gc        
+
         player.level_gladiator = levels[0]
         player.level_pugilist = levels[1]
         player.level_marauder = levels[2]
@@ -158,7 +178,7 @@ class FFXIVStats
         player.level_botanist = levels[18]
         player.level_fisher = levels[19]
 
-        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender}"
+        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | GC: #{player.grand_company}"
 	write_to_db(player)
 
 #         DEBUG
