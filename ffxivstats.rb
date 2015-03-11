@@ -67,7 +67,7 @@ class FFXIVStats
     elsif gender1[0] == "♀"
       gender = "female"
     else
-      gender = "unknown"
+      gender = nil
     end
     return gender
   end
