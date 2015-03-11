@@ -134,6 +134,8 @@ class FFXIVStats
       ,'#{player.level_botanist}','#{player.level_fisher}');")
   end
 
+  # Main function. Creates the database, cycles through character profiles and 
+  # records the information
   def main
     @db = SQLite3::Database.new( "players.db" )
     @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
@@ -142,7 +144,7 @@ class FFXIVStats
       ,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER,level_leatherworker INTEGER,level_weaver INTEGER
       ,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER,level_botanist INTEGER,level_fisher INTEGER);")    
 
-    for i in 1..100
+    for i in 1..10500000
       if page = get_player_page(i)
         player = Player.new
         player.id = i
