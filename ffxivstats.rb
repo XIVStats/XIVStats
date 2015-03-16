@@ -147,12 +147,13 @@ class FFXIVStats
   # records the information
   def main
     @db = SQLite3::Database.new( "players.db" )
-    @db.execute("create table if not exists 'players' (id INTEGER PRIMARY KEY,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
+    @db.execute("CREATE TABLE IF NOT EXISTS 'players' (id INTEGER PRIMARY KEY,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
       ,level_gladiator INTEGER,level_pugilist INTEGER,level_marauder INTEGER,level_lancer INTEGER,level_archer INTEGER
       ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_carpenter INTEGER
       ,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER,level_leatherworker INTEGER,level_weaver INTEGER
       ,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER,level_botanist INTEGER,level_fisher INTEGER);")    
 
+    # Do the player IDs in the range specified at the command-line
     for i in @lowest_id..@highest_id
       if page = get_player_page(i)
         player = Player.new
