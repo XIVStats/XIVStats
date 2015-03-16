@@ -6,6 +6,15 @@ class FFXIVStats
     require 'open-uri'
     require 'sqlite3'
     require_relative 'Player'
+    if ARGV.empty?
+      puts "Usage: ffxivstats.rb <lowest_id> <highest_id>"
+      exit 1
+    end
+    @lowest_id = ARGV[0].to_i
+    @highest_id = ARGV[1].to_i
+    if @highest_id < @lowest_id
+      puts "Error: The second argument needs to be greater than the first argument"
+    end
   end
 
   # Fetches a lodestone profile page, and returns it as an array of strings
@@ -122,7 +131,7 @@ class FFXIVStats
 
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
-    @db.execute("insert into 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
+    @db.execute("INSERT OR IGNORE INTO 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
       , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
       , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}','#{player.player_name}'
@@ -138,13 +147,13 @@ class FFXIVStats
   # records the information
   def main
     @db = SQLite3::Database.new( "players.db" )
-    @db.execute("create table if not exists 'players' (id INTEGER,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
+    @db.execute("create table if not exists 'players' (id INTEGER PRIMARY KEY,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
       ,level_gladiator INTEGER,level_pugilist INTEGER,level_marauder INTEGER,level_lancer INTEGER,level_archer INTEGER
       ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_carpenter INTEGER
       ,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER,level_leatherworker INTEGER,level_weaver INTEGER
       ,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER,level_botanist INTEGER,level_fisher INTEGER);")    
 
-    for i in 1..10500000
+    for i in @lowest_id..@highest_id
       if page = get_player_page(i)
         player = Player.new
         player.id = i
