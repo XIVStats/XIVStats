@@ -147,6 +147,9 @@ class FFXIVStats
   # records the information
   def main
     @db = SQLite3::Database.new( "players.db" )
+    # Allows the program to wait up to 10 seconds for writing
+    # So that the database can be read while this program is executing
+    @db.busy_timeout=10000
     @db.execute("CREATE TABLE IF NOT EXISTS 'players' (id INTEGER PRIMARY KEY,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
       ,level_gladiator INTEGER,level_pugilist INTEGER,level_marauder INTEGER,level_lancer INTEGER,level_archer INTEGER
       ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_carpenter INTEGER
