@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
 
-class FFXIVStats
+class XIVStats
 
   def initialize
+    # Set to the desired path for the database to be written to
+    # If no directory specified, pwd is used
+    @db_path = "players.db"
+
     require 'open-uri'
     require 'sqlite3'
-    require_relative 'Player'
+    require_relative 'player'
     if ARGV.empty?
-      puts "Usage: ffxivstats.rb <lowest_id> <highest_id>"
+      puts "Usage: xiv_stats.rb <lowest_id> <highest_id>"
       exit 1
     end
     @lowest_id = ARGV[0].to_i
@@ -148,7 +152,7 @@ class FFXIVStats
   # Main function. Creates the database, cycles through character profiles and 
   # records the information
   def main
-    @db = SQLite3::Database.new( "players.db" )
+    @db = SQLite3::Database.new(@db_path)
     # Allows the program to wait up to 10 seconds for writing
     # So that the database can be read while this program is executing
     @db.busy_timeout=10000
@@ -202,5 +206,5 @@ class FFXIVStats
 
 end
 
-stats = FFXIVStats.new
+stats = XIVStats.new
 stats.main
