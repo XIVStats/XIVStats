@@ -2,7 +2,6 @@
 
 $db = new SQLite3('players.db');
 
-
 // Gets total number of players in database
 $player_count = array();
 $player_count_results = $db->query('SELECT count() FROM players');
@@ -157,7 +156,7 @@ $(function () {
             categories: [
                 <?php
                         foreach ($race_gender_male as $key => $value) {
-                                echo "'$key',\n";
+                                echo "\"$key\",\n";
                         }
                 ?>
              ],
@@ -206,11 +205,3 @@ $(function () {
  </body>
 
 </html>
-
-<?php
-//select grand_company,count() from players group by grand_company; (get the number of people in each grand company
-//SELECT race,gender,count() FROM players GROUP BY race,gender; (get the number of males and females in each race)
-//SELECT * FROM players WHERE name LIKE '%%'; (get stats by name)
-//AND realm = ''; // Do one of the other searches, but for a specific realm
-//SELECT count(NULLIF(level_gladiator, '')) FROM players;
-?>
