@@ -33,10 +33,3 @@ performance is quite slow. If you were planning to embed data from the
 database in a web page, it would be recommended to gather the data seperately
 and hard-code it in, and then only update the data if you re-run a scan of the
 lodestone.
-
-The complete database provided was compiled using an early version of the
-script, which did not properly handle apostrophes. Due to this, players with
-apostrophes in there name will instead have the string "&#39;". There is an
-included script "apostrophe_cleanup.rb", which works similarly to xiv_stats.rb,
-and will go through the range specified and fix all apostrophes. I am currently
-investigating a faster way of achieving this.
