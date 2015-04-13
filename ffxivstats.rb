@@ -39,6 +39,8 @@ class FFXIVStats
     name1 = name[0][35..-1]
     # Get just the name (the first two words)
     name2 = name1.split[0..1].join(' ')
+    # Replace the HTML escape for ' with '
+    name2.sub('&#39;',"'")
   end
 
   # Given a lodestone profile page, get the realm the player is on
@@ -59,8 +61,8 @@ class FFXIVStats
     race1 = race[0][36..-1]
     # Get just the race (the first word)
     race2 = race1.split[0]
-    # The ' in Miqo'te is a pain, easier to just remove it
-    race2.sub('&#39;','')
+    # Un-escape the ' in Miqo'te
+    race2.sub('&#39;',"'")
   end
 
   # Given a lodestone profile page, return the gender of the player
@@ -134,8 +136,8 @@ class FFXIVStats
     @db.execute("INSERT OR IGNORE INTO 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
       , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
-      , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}','#{player.player_name}'
-      ,'#{player.realm}','#{player.race}','#{player.gender}','#{player.grand_company}','#{player.level_gladiator}','#{player.level_pugilist}'
+      , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}',\"#{player.player_name}\"
+      ,'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}','#{player.level_gladiator}','#{player.level_pugilist}'
       ,'#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}','#{player.level_rogue}'
       ,'#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_carpenter}'
       ,'#{player.level_blacksmith}','#{player.level_armorer}','#{player.level_goldsmith}','#{player.level_leatherworker}'
