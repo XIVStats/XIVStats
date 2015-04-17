@@ -30,6 +30,8 @@ A simple example PHP web page has been included. This web page draws data
 directly from the database and uses it to draw a few charts. Due to the
 large amount of data that has to be compiled to produce the charts,
 performance is quite slow. If you were planning to embed data from the
-database in a web page, it would be recommended to gather the data seperately
-and hard-code it in, and then only update the data if you re-run a scan of the
-lodestone.
+database in a web page, it would be recommended to compile a static copy of
+the page, and re-compile it if you re-scan the lodestone. A simple way to
+compile the page is shown below:
+
+    php index.php > index.html
