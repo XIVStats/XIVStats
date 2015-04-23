@@ -11,7 +11,7 @@ using this data. For example, creating a website to compare players.
 If you would rather download a pre-populated database containing every
 player (as of 2015-04-23), please see the "Notes" section below.
 
-The project is inspired by xivsoul.com.
+The project is inspired by [xivsoul.com](https://xivsoul.com).
 
 # Configuration #
 
