@@ -430,7 +430,7 @@ $(function () {
 </script>
 
     <p>
-      The statistics collector is open source! View it at: <a href="https://mygitlab.org/pricetx/ffxiv_player_stats/tree/master">https://mygitlab.org/pricetx/ffxiv_player_stats/tree/master </a>
+      The statistics collector is open source! View it at: <a href="https://github.com/Pricetx/XIVStats">https://github.com/Pricetx/XIVStats</a>
     </p>
 
  </body>
