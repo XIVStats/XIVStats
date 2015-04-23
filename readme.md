@@ -11,6 +11,8 @@ using this data. For example, creating a website to compare players.
 If you would rather download a pre-populated database containing every
 player (as of 2015-04-23), please see the "Notes" section below.
 
+The project is inspired by xivsoul.com.
+
 # Configuration #
 
 The path for the database to be used is specified on the line beginning
@@ -43,3 +45,35 @@ it if you re-scan the lodestone. A simple way to compile the page is shown
 below:
 
     php index.php > index.html
+
+# Data Structure #
+
+All information is stored in a single table called "players".
+
+This table contain the following columns:
+- id (derived from the player's lodestone profile URL)
+- realm
+- player_name
+- race
+- gender
+- grand_company
+- level_gladiator
+- level_pugilist
+- level_marauder
+- level_lancer
+- level_archer
+- level_rogue
+- level_conjurer
+- level_thaumaturge
+- level_arcanist
+- level_carpenter
+- level_blacksmith
+- level_armorer
+- level_goldsmith
+- level_leatherworker
+- level_weaver
+- level_alchemist
+- level_culinarian
+- level_miner
+- level_botanist
+- level_fisher
