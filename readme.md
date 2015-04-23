@@ -2,7 +2,14 @@
 
 XIV Stats is primarily a script to produce a database of player
 information for FFXIV. The information is pulled from directly from the
-lodestone.
+lodestone. An example PHP file has been included to demonstrate
+visualising the statistics.
+
+The aim of this project is to allow people to build their own projects
+using this data. For example, creating a website to compare players.
+
+If you would rather download a pre-populated database containing every
+player (as of 2015-04-23), please see the "Notes" section below.
 
 # Configuration #
 
