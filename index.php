@@ -2,15 +2,37 @@
 
 $db = new SQLite3('players.db');
 
-// Get highest ID in database
-$highest_id = array();
-$highest_id_results = $db->query('SELECT MAX(id) FROM players');
-$highest_id = $highest_id_results->fetchArray();
-
 // Gets total number of players in database
 $player_count = array();
 $player_count_results = $db->query('SELECT count() FROM players');
 $player_count = $player_count_results->fetchArray();
+
+// Get total number of players in each region
+
+// Japan
+$japanese_total = array();
+$japanese_total_results = $db->query("SELECT count() FROM players WHERE realm = 'Alexander' OR realm = 'Bahamut' OR realm = 'Durandal'
+	OR realm = 'Fenrir' OR realm = 'Ifrit' OR realm = 'Ridill' OR realm = 'Tiamat' OR realm = 'Ultima' OR realm = 'Valefor' OR
+	realm = 'Yojimbo'  OR realm = 'Zeromus' OR realm = 'Anima' OR realm = 'Asura' OR realm = 'Belias' OR realm = 'Chocobo' OR
+	realm = 'Hades' OR realm = 'Ixion' OR realm = 'Mandragora' OR realm = 'Masamune' OR realm = 'Pandaemonium' OR realm = 'Shinryu'
+	OR realm = 'Titan' OR realm = 'Aegis' OR realm = 'Atomis' OR realm = 'Carbuncle' OR realm = 'Garuda' OR realm = 'Gungnir'
+	OR realm = 'Kujata' OR realm = 'Ramuh' OR realm = 'Tonberry' OR realm = 'Typhon' OR realm = 'Unicorn';");
+$japanese_total = $japanese_total_results->fetchArray();
+
+// America
+$american_total = array();
+$american_total_results = $db->query("SELECT count() FROM players WHERE realm = 'Behemoth' OR realm = 'Brynhildr' OR realm = 'Diabolos'
+	OR realm = 'Excalibur' OR realm = 'Exodus' OR realm = 'Famfrit' OR realm = 'Hyperion' OR realm = 'Lamia' OR realm = 'Leviathan'
+	OR realm = 'Malboro' OR realm = 'Ultros' OR realm = 'Adamantoise' OR realm = 'Balmung' OR realm = 'Cactuar' OR realm = 'Coeurl'
+	OR realm = 'Faerie' OR realm = 'Gilgamesh' OR realm = 'Goblin' OR realm = 'Jenova' OR realm = 'Mateus' OR realm = 'Midgardsormr'
+	OR realm = 'Sargatanas' OR realm = 'Siren' OR realm = 'Zalera';");
+$american_total = $american_total_results->fetchArray();
+
+// Europe
+$european_total = array();
+$european_total_results = $db->query("SELECT count() FROM players WHERE realm = 'Cerberus' OR realm = 'Lich' OR realm = 'Moogle' OR
+	realm = 'Odin' OR realm = 'Phoenix' OR realm = 'Ragnarok' OR realm = 'Shiva' OR realm = 'Zodiark';");
+$european_total = $european_total_results->fetchArray();
 
 // Get statistics on realm population
 $realm_pop = array();
@@ -187,16 +209,25 @@ $classes_50["Fisher"] = $class_results->fetchArray()[0];
 </head>
 <body>
   <table>
-    <tr/>
-      <td>IDs scanned:</td>
-      <td><?php
-        echo $highest_id[0];
-      ?></td>
-    </tr>
     <tr>
-      <td>Players in database:</td>
+      <td>Total players:</td>
       <td><?php
         echo $player_count[0];
+      ?></td>
+    </tr><tr>
+      <td>Japanese Servers:</td>
+      <td><?php
+	echo $japanese_total[0];
+      ?></td>
+    </tr><tr>
+      <td>American Servers:</td>
+      <td><?php
+        echo $american_total[0];
+      ?></td>
+    </tr><tr>
+      <td>European Servers:</td>
+      <td><?php
+	echo $european_total[0];
       ?></td>
     </tr>
   </table>
