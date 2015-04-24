@@ -34,7 +34,7 @@ profile page of a given player.
 The script deliberately only retrieves between 1-2 players per second. This
 is to avoid excessive load on the lodestone's servers. Due to the slow
 execution, a complete copy of the database has been compiled and is avaiable
-from the following URL: [link to database]
+from the following URL: [Download](https://drive.google.com/open?id=0B0fcj30RKMSYcmZXZEp0MXBQTW8&authuser=0)
 
 A simple example PHP web page has been included. This web page draws data
 directly from the database and uses it to draw a few charts. Due to the
