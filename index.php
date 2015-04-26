@@ -44,6 +44,21 @@ while ($row = $realm_pop_results->fetchArray()) {
 	$realm_pop[$row[0]] = $row[1];
 }
 
+// Get statistics on level 50 realm population
+$realm_50_pop = array();
+$realm_50_pop_results = $db->query("SELECT realm,count() FROM players WHERE level_gladiator = '50' OR level_pugilist = '50' OR level_marauder = '50'
+	OR level_lancer = '50' OR level_archer = '50' OR level_rogue = '50' OR level_conjurer = '50' OR level_thaumaturge = '50'
+	OR level_arcanist = '50' OR level_carpenter = '50' OR level_blacksmith = '50' OR level_armorer = '50' OR level_goldsmith = '50'
+	OR level_leatherworker = '50' OR level_weaver = '50' OR level_alchemist = '50' OR level_culinarian = '50' OR level_miner = '50'
+	OR level_botanist = '50' OR level_fisher = '50' GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $realm_50_pop_results->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $realm_50_pop[$row[0]] = $row[1];
+}
+
+
 // Get statistics on Grand Company population
 $gc_pop = array();
 $gc_pop_results = $db->query('select grand_company,count() from players group by grand_company');
@@ -253,6 +268,7 @@ $(function () {
              ],
 
         },
+
         yAxis: {
             title: {
                 text: '# of Characters'
@@ -265,10 +281,19 @@ $(function () {
             enabled: false
         },
         series: [{
-            name: '# of Characters',
+            name: 'All Characters',
             data: [
                 <?php
-                        foreach ($realm_pop as $key => $value) {
+                        foreach ($realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'At least one level 50 class',
+            data: [
+                <?php
+                        foreach ($realm_50_pop as $value) {
                                 echo "$value,";
                         }
                 ?>
@@ -276,7 +301,9 @@ $(function () {
         }]
     });
 });
+
 </script>
+
   <div id="gc_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
 <script>
