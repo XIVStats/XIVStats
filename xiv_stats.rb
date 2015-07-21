@@ -123,6 +123,7 @@ class XIVStats
     levels.delete_at(0)
     levels.delete_at(0)
     levels.delete_at(9)
+    levels.delete_at(12)
 
     # Get just the numbers
     levels.each_with_index { |val, index| levels[index] = val[5..6] }
@@ -138,15 +139,14 @@ class XIVStats
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
     @db.execute("INSERT OR IGNORE INTO 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
-      , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_carpenter
+      , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_astrologian, level_darkknight, level_machinist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
       , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}',\"#{player.player_name}\"
       ,'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}','#{player.level_gladiator}','#{player.level_pugilist}'
-      ,'#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}','#{player.level_rogue}'
-      ,'#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_carpenter}'
-      ,'#{player.level_blacksmith}','#{player.level_armorer}','#{player.level_goldsmith}','#{player.level_leatherworker}'
-      ,'#{player.level_weaver}','#{player.level_alchemist}','#{player.level_culinarian}','#{player.level_miner}'
-      ,'#{player.level_botanist}','#{player.level_fisher}');")
+      ,'#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}','#{player.level_rogue}','#{player.level_conjurer}'
+      ,'#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_darkknight}','#{player.level_machinist}','#{player.level_astrologian}'
+      ,'#{player.level_carpenter}','#{player.level_blacksmith}','#{player.level_armorer}','#{player.level_goldsmith}','#{player.level_leatherworker}'
+      ,'#{player.level_weaver}','#{player.level_alchemist}','#{player.level_culinarian}','#{player.level_miner}','#{player.level_botanist}','#{player.level_fisher}');")
   end
 
   # Main function. Creates the database, cycles through character profiles and 
@@ -158,9 +158,10 @@ class XIVStats
     @db.busy_timeout=10000
     @db.execute("CREATE TABLE IF NOT EXISTS 'players' (id INTEGER PRIMARY KEY,name TEXT,realm TEXT,race TEXT,gender TEXT,grand_company TEXT
       ,level_gladiator INTEGER,level_pugilist INTEGER,level_marauder INTEGER,level_lancer INTEGER,level_archer INTEGER
-      ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_carpenter INTEGER
-      ,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER,level_leatherworker INTEGER,level_weaver INTEGER
-      ,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER,level_botanist INTEGER,level_fisher INTEGER);")    
+      ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_darkknight INTEGER, level_machinist INTEGER
+      ,level_astrologian INTEGER,level_carpenter INTEGER,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER
+      ,level_leatherworker INTEGER,level_weaver INTEGER,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER
+      ,level_botanist INTEGER,level_fisher INTEGER);")    
 
     # Do the player IDs in the range specified at the command-line
     for i in @lowest_id..@highest_id
@@ -183,19 +184,28 @@ class XIVStats
         player.level_conjurer = levels[6]
         player.level_thaumaturge = levels[7]
         player.level_arcanist = levels[8]
-        player.level_carpenter = levels[9]
-        player.level_blacksmith = levels[10]
-        player.level_armorer = levels[11]
-        player.level_goldsmith = levels[12]
-        player.level_leatherworker = levels[13]
-        player.level_weaver = levels[14]
-        player.level_alchemist = levels[15]
-        player.level_culinarian = levels[16]
-        player.level_miner = levels[17]
-        player.level_botanist = levels[18]
-        player.level_fisher = levels[19]
+        player.level_darkknight = levels[9]
+        player.level_machinist = levels[10]
+        player.level_astrologian = levels[11]
+        player.level_carpenter = levels[12]
+        player.level_blacksmith = levels[13]
+        player.level_armorer = levels[14]
+        player.level_goldsmith = levels[15]
+        player.level_leatherworker = levels[16]
+        player.level_weaver = levels[17]
+        player.level_alchemist = levels[18]
+        player.level_culinarian = levels[19]
+        player.level_miner = levels[20]
+        player.level_botanist = levels[21]
+        player.level_fisher = levels[22]
 
         puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | GC: #{player.grand_company}"
+#	puts "GLA: #{player.level_gladiator} | PUG: #{player.level_pugilist} | MAR: #{player.level_marauder} | LNC: #{player.level_lancer} | ARC: #{player.level_archer}"
+#	puts "ROG: #{player.level_rogue} | CNJ: #{player.level_conjurer} | THM: #{player.level_thaumaturge} | ARC: #{player.level_arcanist}"
+#	puts "AST: #{player.level_astrologian} | DRK: #{player.level_darkknight} | MCN: #{player.level_machinist} | CRP: #{player.level_carpenter}"
+#	puts "BSM: #{player.level_blacksmith} | ARM: #{player.level_armorer} | GSM: #{player.level_goldsmith} | LTW: #{player.level_leatherworker}"
+#	puts "WVR: #{player.level_weaver} | ALC: #{player.level_alchemist} | CUL: #{player.level_culinarian} | MIN: #{player.level_miner}"
+#	puts "BTN: #{player.level_botanist} | FSH: #{player.level_fisher}"
 	write_to_db(player)
 
         # DEBUG

@@ -16,6 +16,9 @@ class Player
     level_conjurer
     level_thaumaturge
     level_arcanist
+    level_darkknight
+    level_machinist
+    level_astrologian
     level_carpenter
     level_blacksmith
     level_armorer
