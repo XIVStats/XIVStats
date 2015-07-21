@@ -44,7 +44,7 @@ class XIVStats
     # Get just the name (the first two words)
     name2 = name1.split[0..1].join(' ')
     # Replace the HTML escape for ' with '
-    name2.sub('&#39;',"'")
+    name2.gsub('&#39;',"'")
   end
 
   # Given a lodestone profile page, get the realm the player is on
