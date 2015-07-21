@@ -92,9 +92,14 @@ class XIVStats
   def get_grand_company(page)
     gc = nil
     lines = page.grep(/txt_name/)
-    # 4 things in grep txt_name if not in a grand company
-    # 5 things in grep txt_name if in a grand company
-    if lines.length != 5
+
+    # checks to see if the optional free company line has been added
+    fc = lines.grep(/a href=/)
+
+    # GOOD CONDITIONS
+    # 5 lines, guarentees they're in a GC
+    # 4 lines if they're NOT in an FC, otherwise the 4th line is FC
+    if lines.length < 4 || (lines.length == 4 && ! fc.empty?)
       return gc
     else
       # Make name of grand company the beginning of the line
