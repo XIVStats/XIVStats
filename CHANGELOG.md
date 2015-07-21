@@ -7,3 +7,9 @@ v1.0.1
 =======
 
 * Added region statistics to the example php page
+
+v1.1.0
+=======
+
+* Added support for 3.0 lodestone
+* Added support for DRK, MCN and AST
