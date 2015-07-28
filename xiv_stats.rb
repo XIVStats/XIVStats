@@ -65,6 +65,10 @@ class XIVStats
     race1 = race[0][36..-1]
     # Get just the race (the first word)
     race2 = race1.split[0]
+    # If race is Au Ra, it has a space in it, re-add Ra back
+    if race2 == 'Au'
+      race2 = 'Au Ra'
+    end
     # Un-escape the ' in Miqo'te
     race2.sub('&#39;',"'")
   end
