@@ -33,3 +33,7 @@
 .heavensward-color{
     color:#03a9f4;
 }
+footer.page-footer {
+  margin-top: 0px;
+  padding-top: 0px;
+}
