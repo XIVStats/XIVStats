@@ -1,263 +1,954 @@
-
 <!-- saved from url=(0043)https://jonathanprice.org/xiv/compare7.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>XIVStats - Heavensward Comparison</title>
-    <script src="./staticHTML_files/jquery.min.js"></script><style type="text/css"></style>
+    <script src="./staticHTML_files/jquery.min.js"></script>
+    <style type="text/css"></style>
     <script src="./staticHTML_files/highcharts.js"></script>
-  </head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
-  <body>
-    <h1>XIVStats - Comparison of A Realm Reborn to Heavensward</h1>
 
-    <p>(Any reference to "EXP" players, refers to players with at least one skill at level 50)</p>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <p>The left side shows statistics from April 2015, the right side shows statistics from the end of July 2015</p>
-    <p>NOTE: Unfortunately, due to a bug in the old statistics, the Grand Company population figures were incorrect, so have not been included</p>
+<body>
+    <div class="container box-element">
+        <div class="row" id="pageTitleBox">
+            <div class="col s12 m6" style="width:100%;">
+                <div class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title black-text" style="font-size:28pt;">XIVStats - Comparison of A Realm Reborn to Heavensward</span>
+                        <p>(Any reference to "EXP" players, refers to players with at least one skill at level 50)</p>
+                        <p>The left side shows statistics from April 2015, the right side shows statistics from the end of July 2015</p>
+                        <p>NOTE: Unfortunately, due to a bug in the old statistics, the Grand Company population figures were incorrect, so have not been included</p>
 
-    <p>How many players are there?</p>
-
-    <p>World:</p>
-    <p>6468099  -&gt; 7185438 (+717339)</p>
-    <p>(EXP) 1055157 -&gt; 1169673 (+114516)</p>
-
-    <p>America:</p>
-    <p>3211604 -&gt; 3595831 (+384227)</p>
-    <p>(EXP) 438778 -&gt; 493263 (+54485)</p>
-
-    <p>Japan:</p>
-    <p>1761520 -&gt; 1900826 (+139306)</p>
-    <p>(EXP) 430638 -&gt; 465648 (+35010)</p>
-
-    <p>Europe:</p>
-    <p>1444665 -&gt; 1632419 (+187754)</p>
-    <p>(EXP) 173390 -&gt; 197506 (+24116)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6" style="width:100%;">
+                <div class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title black-text light">HOW MANY PLAYERS ARE THERE?</span>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <!--World-->
+                        <div class="black-text light region-title">WORLD</div>
+                        <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>6,468,099</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>7,185,438 </div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+717,339)</div>
+                            </div>
+                        </div>
+                        <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>1,055,157</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>1,169,673 </div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+114,516)</div>
+                            </div>
+                        </div>
+                        <!-- America -->
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <div class="black-text light region-title">AMERICA</div>
+                        <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>3,211,604</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>3,595,831</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+384,227)</div>
+                            </div>
+                        </div>
+                        <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>438,778</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>493,263</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+54,485)</div>
+                            </div>
+                        </div>
+                        <!--Japan-->
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <div class="black-text light region-title">JAPAN</div>
+                        <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>1,761,520</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>1,900,826</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+139,306)</div>
+                            </div>
+                        </div>
+                        <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>430,638</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>465,648</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+35,010)</div>
+                            </div>
+                        </div>
+                        <!--Europe-->
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <div class="black-text light region-title">EUROPE</div>
+                        <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>1,444,665</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>1,632,419</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+187,754)</div>
+                            </div>
+                        </div>
+                        <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                        <div class="row">
+                            <div class="col s12 m6 l6 arr-color region-stat"><div>173,390</div>
+                                <div class="region-stat-label light">A REALM REBORN</div>
+                            </div>
+                            <div class="col s12 m6 l6 heavensward-color region-stat"><div>197,506</div>
+                                <div class="region-stat-label light">HEAVENSWARD</div>
+                                <div class="region-stat-diff">(+24,116)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <p>Grand Company Distribution:</p>
-    <div id="gc_new_distribution" style="min-width: 300px; height: 300px; margin: 0 auto" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow: hidden; width: 1887px; height: 300px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="300"><desc>Created with Highcharts 4.1.7</desc><defs><clippath id="highcharts-1"><rect x="0" y="0" width="1867" height="232"></rect></clippath></defs><rect x="0" y="0" width="1887" height="300" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)" style=""><path fill="#7cb5ec" d="M 933.48126206526 38.00000190820762 A 92 92 0 1 1 842.3075332106621 142.16281221081314 L 933.5 130 A 0 0 0 1 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#434348" d="M 842.295415996708 142.07161367781694 A 92 92 0 0 1 851.2439805438146 88.79384435277129 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#90ed7d" d="M 851.2852278206003 88.71160895010055 A 92 92 0 0 1 880.1654625693603 55.03716175957787 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#f7a35c" d="M 880.2404520623735 54.9838647124523 A 92 92 0 0 1 933.3722138456974 38.00008874624514 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)"></g></g><text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24"><tspan>HW Grand Company Population Distribution</tspan></text><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(10,53) scale(1 1)" opacity="1" style=""><path fill="none" d="M 1030.2665026391646 210.39221973161443 C 1025.2665026391646 210.39221973161443 1019.2490270562687 205.12059876560693 1010.9749981297866 197.8721199373466 L 1002.7009692033046 190.6236411090863" stroke="#7cb5ec" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 808.189478853063 109.76689590417676 C 813.189478853063 109.76689590417676 821.0786933545015 111.09365682849304 831.9263632939794 112.91795309942792 L 842.7740332334573 114.7422493703628" stroke="#434348" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 835.9406732243249 50.521883346207915 C 840.9406732243249 50.521883346207915 847.0101372751888 55.733563126784446 855.3556503451267 62.899622825077174 L 863.7011634150647 70.0656825233699" stroke="#90ed7d" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 891.4596530175555 13.758816698124946 C 896.4596530175555 13.758816698124946 898.8885282295191 21.381189373657733 902.228231645969 31.86195180251532 L 905.5679350624189 42.34271423137291" stroke="#f7a35c" stroke-width="1" visibility="inherit"></path><g zIndex="1" style="" transform="translate(1035,200)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>None</tspan></text></g><g zIndex="1" style="" transform="translate(706,100)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Immortal Flames</tspan></text></g><g zIndex="1" style="" transform="translate(768,41)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Maelstrom</tspan></text></g><g zIndex="1" style="" transform="translate(747,4)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Order of the Twin Adder</tspan></text></g></g><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+    <div id="gc_new_distribution" style="min-width: 300px; height: 300px; margin: 0 auto" data-highcharts-chart="0">
+        <div class="highcharts-container" id="highcharts-0" style="position: relative; overflow: hidden; width: 1887px; height: 300px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="300">
+                <desc>Created with Highcharts 4.1.7</desc>
+                <defs>
+                    <clippath id="highcharts-1">
+                        <rect x="0" y="0" width="1867" height="232"></rect>
+                    </clippath>
+                </defs>
+                <rect x="0" y="0" width="1887" height="300" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect>
+                <g class="highcharts-series-group" zIndex="3">
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)" style="">
+                        <path fill="#7cb5ec" d="M 933.48126206526 38.00000190820762 A 92 92 0 1 1 842.3075332106621 142.16281221081314 L 933.5 130 A 0 0 0 1 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#434348" d="M 842.295415996708 142.07161367781694 A 92 92 0 0 1 851.2439805438146 88.79384435277129 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#90ed7d" d="M 851.2852278206003 88.71160895010055 A 92 92 0 0 1 880.1654625693603 55.03716175957787 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#f7a35c" d="M 880.2404520623735 54.9838647124523 A 92 92 0 0 1 933.3722138456974 38.00008874624514 L 933.5 130 A 0 0 0 0 0 933.5 130 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)"></g>
+                </g>
+                <text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24">
+                    <tspan>HW Grand Company Population Distribution</tspan>
+                </text>
+                <g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(10,53) scale(1 1)" opacity="1" style="">
+                    <path fill="none" d="M 1030.2665026391646 210.39221973161443 C 1025.2665026391646 210.39221973161443 1019.2490270562687 205.12059876560693 1010.9749981297866 197.8721199373466 L 1002.7009692033046 190.6236411090863" stroke="#7cb5ec" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 808.189478853063 109.76689590417676 C 813.189478853063 109.76689590417676 821.0786933545015 111.09365682849304 831.9263632939794 112.91795309942792 L 842.7740332334573 114.7422493703628" stroke="#434348" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 835.9406732243249 50.521883346207915 C 840.9406732243249 50.521883346207915 847.0101372751888 55.733563126784446 855.3556503451267 62.899622825077174 L 863.7011634150647 70.0656825233699" stroke="#90ed7d" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 891.4596530175555 13.758816698124946 C 896.4596530175555 13.758816698124946 898.8885282295191 21.381189373657733 902.228231645969 31.86195180251532 L 905.5679350624189 42.34271423137291" stroke="#f7a35c" stroke-width="1" visibility="inherit"></path>
+                    <g zIndex="1" style="" transform="translate(1035,200)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>None</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(706,100)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Immortal Flames</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(768,41)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Maelstrom</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(747,4)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Order of the Twin Adder</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g class="highcharts-legend" zIndex="7">
+                    <g zIndex="1">
+                        <g></g>
+                    </g>
+                </g>
+                <g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)">
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path>
+                    <path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path>
+                    <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text>
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <p>Grand Company Distribution (experienced):</p>
-    <div id="gc_new_exp_distribution" style="min-width: 300px; height: 300px; margin: 0 auto" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow: hidden; width: 1887px; height: 300px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="300"><desc>Created with Highcharts 4.1.7</desc><defs><clippath id="highcharts-3"><rect x="0" y="0" width="1867" height="232"></rect></clippath></defs><rect x="0" y="0" width="1887" height="300" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)" style=""><path fill="#7cb5ec" d="M 933.4850300195284 42.00000152449195 A 73.5 73.5 0 0 1 955.6273700544571 45.409847378728614 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#434348" d="M 955.6974491317126 45.43200979016855 A 73.5 73.5 0 0 1 986.2664342164044 166.66594003911072 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#90ed7d" d="M 986.2152419016779 166.7186808815648 A 73.5 73.5 0 0 1 871.9633685595893 155.69319582923288 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path><path fill="#f7a35c" d="M 871.9232061387721 155.63163911145233 A 73.5 73.5 0 0 1 933.3979099745517 42.000070900532805 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)"></g></g><text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24"><tspan>(EXP) HW Grand Company Population Distribution</tspan></text><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(10,53) scale(1 1)" opacity="1" style=""><path fill="none" d="M 954.3153494780486 13.215471742363754 C 949.3153494780486 13.215471742363754 948.0929070063154 21.121522235707616 946.4120486076822 31.99234166405543 L 944.731190209049 42.863161092403246" stroke="#7cb5ec" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 1038.8711723371655 90.24375792674161 C 1033.8711723371655 90.24375792674161 1026.1130140888822 92.19593122709007 1015.4455464974926 94.88016951506923 L 1004.778078906103 97.56440780304838" stroke="#434348" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 918.5011080503083 218.51588304615163 C 923.5011080503083 218.51588304615163 924.2739692638111 210.55330271408195 925.3366534323774 199.60475475748612 L 926.3993376009437 188.6562068008903" stroke="#90ed7d" stroke-width="1" visibility="inherit"></path><path fill="none" d="M 837.505747966589 66.18168598907631 C 842.505747966589 66.18168598907631 849.5391201044372 69.99372958412356 859.2100067939784 75.23528952731351 L 868.8808934835197 80.47684947050347" stroke="#f7a35c" stroke-width="1" visibility="inherit"></path><g zIndex="1" style="" transform="translate(959,3)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>None</tspan></text></g><g zIndex="1" style="" transform="translate(1044,80)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Immortal Flames</tspan></text></g><g zIndex="1" style="" transform="translate(850,209)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Maelstrom</tspan></text></g><g zIndex="1" style="" transform="translate(693,56)" visibility="inherit"><text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16"><tspan>Order of the Twin Adder</tspan></text></g></g><g class="highcharts-legend" zIndex="7"><g zIndex="1"><g></g></g></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+    <div id="gc_new_exp_distribution" style="min-width: 300px; height: 300px; margin: 0 auto" data-highcharts-chart="1">
+        <div class="highcharts-container" id="highcharts-2" style="position: relative; overflow: hidden; width: 1887px; height: 300px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="300">
+                <desc>Created with Highcharts 4.1.7</desc>
+                <defs>
+                    <clippath id="highcharts-3">
+                        <rect x="0" y="0" width="1867" height="232"></rect>
+                    </clippath>
+                </defs>
+                <rect x="0" y="0" width="1887" height="300" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect>
+                <g class="highcharts-series-group" zIndex="3">
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)" style="">
+                        <path fill="#7cb5ec" d="M 933.4850300195284 42.00000152449195 A 73.5 73.5 0 0 1 955.6273700544571 45.409847378728614 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#434348" d="M 955.6974491317126 45.43200979016855 A 73.5 73.5 0 0 1 986.2664342164044 166.66594003911072 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#90ed7d" d="M 986.2152419016779 166.7186808815648 A 73.5 73.5 0 0 1 871.9633685595893 155.69319582923288 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                        <path fill="#f7a35c" d="M 871.9232061387721 155.63163911145233 A 73.5 73.5 0 0 1 933.3979099745517 42.000070900532805 L 933.5 115.5 A 0 0 0 0 0 933.5 115.5 Z" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" transform="translate(0,0)"></path>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(10,53) scale(1 1)"></g>
+                </g>
+                <text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24">
+                    <tspan>(EXP) HW Grand Company Population Distribution</tspan>
+                </text>
+                <g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(10,53) scale(1 1)" opacity="1" style="">
+                    <path fill="none" d="M 954.3153494780486 13.215471742363754 C 949.3153494780486 13.215471742363754 948.0929070063154 21.121522235707616 946.4120486076822 31.99234166405543 L 944.731190209049 42.863161092403246" stroke="#7cb5ec" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 1038.8711723371655 90.24375792674161 C 1033.8711723371655 90.24375792674161 1026.1130140888822 92.19593122709007 1015.4455464974926 94.88016951506923 L 1004.778078906103 97.56440780304838" stroke="#434348" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 918.5011080503083 218.51588304615163 C 923.5011080503083 218.51588304615163 924.2739692638111 210.55330271408195 925.3366534323774 199.60475475748612 L 926.3993376009437 188.6562068008903" stroke="#90ed7d" stroke-width="1" visibility="inherit"></path>
+                    <path fill="none" d="M 837.505747966589 66.18168598907631 C 842.505747966589 66.18168598907631 849.5391201044372 69.99372958412356 859.2100067939784 75.23528952731351 L 868.8808934835197 80.47684947050347" stroke="#f7a35c" stroke-width="1" visibility="inherit"></path>
+                    <g zIndex="1" style="" transform="translate(959,3)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>None</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(1044,80)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Immortal Flames</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(850,209)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Maelstrom</tspan>
+                        </text>
+                    </g>
+                    <g zIndex="1" style="" transform="translate(693,56)" visibility="inherit">
+                        <text x="5" zIndex="1" style="font-size: 11px; font-weight: bold; color: rgb(0, 0, 0); fill: rgb(0, 0, 0); text-shadow: rgb(255, 255, 255) 0px 0px 6px, rgb(255, 255, 255) 0px 0px 3px; text-rendering: geometricPrecision;" y="16">
+                            <tspan>Order of the Twin Adder</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g class="highcharts-legend" zIndex="7">
+                    <g zIndex="1">
+                        <g></g>
+                    </g>
+                </g>
+                <g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)">
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path>
+                    <path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path>
+                    <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text>
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <p>Race / Gender Distribution:</p>
-    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="2"><div class="highcharts-container" id="highcharts-4" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clippath id="highcharts-5"><rect x="0" y="0" width="1786" height="266"></rect></clippath></defs><rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 253.5 L 1877 253.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 186.5 L 1877 186.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 120.5 L 1877 120.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 388.5 319 L 388.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 685.5 319 L 685.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 983.5 319 L 983.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1281.5 319 L 1281.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1578.5 319 L 1578.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1877.5 319 L 1877.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 90.5 319 L 90.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="28.265625" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.265625 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186"><tspan># of Characters</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)"><rect x="63.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="361.5" y="229.5" width="36" height="37" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="658.5" y="165.5" width="36" height="101" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="956.5" y="213.5" width="36" height="53" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1254.5" y="102.5" width="36" height="164" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1551.5" y="255.5" width="36" height="11" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)"><rect x="108.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="405.5" y="204.5" width="36" height="62" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="703.5" y="77.5" width="36" height="189" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1001.5" y="189.5" width="36" height="77" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1298.5" y="147.5" width="36" height="119" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1596.5" y="218.5" width="36" height="48" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)"><rect x="152.5" y="246.5" width="36" height="20" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="450.5" y="226.5" width="36" height="40" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="748.5" y="160.5" width="36" height="106" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1045.5" y="210.5" width="36" height="56" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1343.5" y="92.5" width="36" height="174" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1641.5" y="254.5" width="36" height="12" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)"><rect x="197.5" y="254.5" width="36" height="12" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="495.5" y="200.5" width="36" height="66" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="792.5" y="57.5" width="36" height="209" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1090.5" y="183.5" width="36" height="83" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1388.5" y="138.5" width="36" height="128" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1685.5" y="214.5" width="36" height="52" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g></g><text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24"><tspan>Race / Gender Distribution</tspan></text><g class="highcharts-legend" zIndex="7" transform="translate(725,356)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15"><tspan>Female (ARR)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(127.8125,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Male (ARR)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(233.15625,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Female (HW)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#90ed7d"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(348.359375,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Male (HW)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#f7a35c"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="239.83333333333334" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Au</text><text x="537.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Elezen</text><text x="835.1666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Hyur</text><text x="1132.8333333333335" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lalafell</text><text x="1430.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miqo'te</text><text x="1728.1666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Roegadyn</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="255" opacity="1">500k</text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="189" opacity="1"><tspan>1 000k</tspan></text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="122" opacity="1"><tspan>1 500k</tspan></text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1"><tspan>2 000k</tspan></text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text></g></svg></div></div>
+    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="2">
+        <div class="highcharts-container" id="highcharts-4" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400">
+                <desc>Created with Highcharts 4.1.7</desc>
+                <defs>
+                    <clippath id="highcharts-5">
+                        <rect x="0" y="0" width="1786" height="266"></rect>
+                    </clippath>
+                </defs>
+                <rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect>
+                <g class="highcharts-grid" zIndex="1"></g>
+                <g class="highcharts-grid" zIndex="1">
+                    <path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 253.5 L 1877 253.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 186.5 L 1877 186.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 120.5 L 1877 120.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <path fill="none" d="M 388.5 319 L 388.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 685.5 319 L 685.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 983.5 319 L 983.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1281.5 319 L 1281.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1578.5 319 L 1578.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1877.5 319 L 1877.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 90.5 319 L 90.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <text x="28.265625" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.265625 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186">
+                        <tspan># of Characters</tspan>
+                    </text>
+                </g>
+                <g class="highcharts-series-group" zIndex="3">
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)">
+                        <rect x="63.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="361.5" y="229.5" width="36" height="37" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="658.5" y="165.5" width="36" height="101" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="956.5" y="213.5" width="36" height="53" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1254.5" y="102.5" width="36" height="164" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1551.5" y="255.5" width="36" height="11" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)">
+                        <rect x="108.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="405.5" y="204.5" width="36" height="62" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="703.5" y="77.5" width="36" height="189" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1001.5" y="189.5" width="36" height="77" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1298.5" y="147.5" width="36" height="119" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1596.5" y="218.5" width="36" height="48" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)">
+                        <rect x="152.5" y="246.5" width="36" height="20" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="450.5" y="226.5" width="36" height="40" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="748.5" y="160.5" width="36" height="106" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1045.5" y="210.5" width="36" height="56" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1343.5" y="92.5" width="36" height="174" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1641.5" y="254.5" width="36" height="12" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-5)">
+                        <rect x="197.5" y="254.5" width="36" height="12" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="495.5" y="200.5" width="36" height="66" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="792.5" y="57.5" width="36" height="209" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1090.5" y="183.5" width="36" height="83" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1388.5" y="138.5" width="36" height="128" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1685.5" y="214.5" width="36" height="52" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                </g>
+                <text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24">
+                    <tspan>Race / Gender Distribution</tspan>
+                </text>
+                <g class="highcharts-legend" zIndex="7" transform="translate(725,356)">
+                    <g zIndex="1">
+                        <g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)">
+                                <text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">
+                                    <tspan>Female (ARR)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(127.8125,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Male (ARR)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(233.15625,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Female (HW)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#90ed7d"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(348.359375,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Male (HW)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#f7a35c"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7">
+                    <text x="239.83333333333334" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Au</text>
+                    <text x="537.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Elezen</text>
+                    <text x="835.1666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Hyur</text>
+                    <text x="1132.8333333333335" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lalafell</text>
+                    <text x="1430.5" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miqo'te</text>
+                    <text x="1728.1666666666667" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Roegadyn</text>
+                </g>
+                <g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7">
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="255" opacity="1">500k</text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="189" opacity="1">
+                        <tspan>1 000k</tspan>
+                    </text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="122" opacity="1">
+                        <tspan>1 500k</tspan>
+                    </text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1">
+                        <tspan>2 000k</tspan>
+                    </text>
+                </g>
+                <g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)">
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path>
+                    <path fill="none" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path>
+                    <path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 13.5 0.5 C 16.5 0.5 16.5 0.5 16.5 3.5 L 16.5 13.5 C 16.5 16.5 16.5 16.5 13.5 16.5 L 3.5 16.5 C 0.5 16.5 0.5 16.5 0.5 13.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"></path>
+                    <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"></text>
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <p>Race / Gender Distribution (experienced):</p>
-    <div id="exp_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="3"><div class="highcharts-container" id="highcharts-6" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clippath id="highcharts-7"><rect x="0" y="0" width="1797" height="266"></rect></clippath></defs><rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 80 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 275.5 L 1877 275.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 230.5 L 1877 230.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 186.5 L 1877 186.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 142.5 L 1877 142.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 97.5 L 1877 97.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 80 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 379.5 319 L 379.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 678.5 319 L 678.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 978.5 319 L 978.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1277.5 319 L 1277.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1577.5 319 L 1577.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1877.5 319 L 1877.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 79.5 319 L 79.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 80 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="27.703125" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 27.703125 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186"><tspan># of Characters</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)"><rect x="63.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="363.5" y="234.5" width="36" height="32" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="662.5" y="150.5" width="36" height="116" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="962.5" y="189.5" width="36" height="77" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1261.5" y="55.5" width="36" height="211" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1561.5" y="253.5" width="36" height="13" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)"><rect x="108.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="408.5" y="211.5" width="36" height="55" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="707.5" y="94.5" width="36" height="172" stroke="#FFFFFF" stroke-width="1" fill="rgba(92,92,97,1)" rx="0" ry="0"></rect><rect x="1007.5" y="164.5" width="36" height="102" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1306.5" y="149.5" width="36" height="117" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1606.5" y="225.5" width="36" height="41" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)"><rect x="153.5" y="194.5" width="36" height="72" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="453.5" y="235.5" width="36" height="31" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="752.5" y="156.5" width="36" height="110" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1052.5" y="190.5" width="36" height="76" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1351.5" y="69.5" width="36" height="197" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect><rect x="1651.5" y="253.5" width="36" height="13" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)"><rect x="198.5" y="223.5" width="36" height="43" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="498.5" y="211.5" width="36" height="55" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="797.5" y="88.5" width="36" height="178" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1097.5" y="158.5" width="36" height="108" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1396.5" y="153.5" width="36" height="113" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect><rect x="1696.5" y="224.5" width="36" height="42" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g></g><text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24"><tspan>(EXP) Race / Gender Distribution</tspan></text><g class="highcharts-legend" zIndex="7" transform="translate(725,356)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15"><tspan>Female (ARR)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(127.8125,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Male (ARR)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(233.15625,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Female (HW)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#90ed7d"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(348.359375,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>Male (HW)</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#f7a35c"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="229.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Au</text><text x="529.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Elezen</text><text x="828.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Hyur</text><text x="1128.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lalafell</text><text x="1427.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miqo'te</text><text x="1727.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Roegadyn</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="277" opacity="1">50k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="233" opacity="1">100k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="189" opacity="1">150k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="144" opacity="1">200k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="100" opacity="1">250k</text><text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1">300k</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(773,94)" opacity="1" visibility="visible"><path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)" width="65" height="47"></path><path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)" width="65" height="47"></path><path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)" width="65" height="47"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#434348" stroke-width="1"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"><tspan style="font-size: 10px">Hyur</tspan><tspan x="8" dy="15">193 460</tspan></text></g></svg></div></div>
+    <div id="exp_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="3">
+        <div class="highcharts-container" id="highcharts-6" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400">
+                <desc>Created with Highcharts 4.1.7</desc>
+                <defs>
+                    <clippath id="highcharts-7">
+                        <rect x="0" y="0" width="1797" height="266"></rect>
+                    </clippath>
+                </defs>
+                <rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect>
+                <g class="highcharts-grid" zIndex="1"></g>
+                <g class="highcharts-grid" zIndex="1">
+                    <path fill="none" d="M 80 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 275.5 L 1877 275.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 230.5 L 1877 230.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 186.5 L 1877 186.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 142.5 L 1877 142.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 97.5 L 1877 97.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 80 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <path fill="none" d="M 379.5 319 L 379.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 678.5 319 L 678.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 978.5 319 L 978.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1277.5 319 L 1277.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1577.5 319 L 1577.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1877.5 319 L 1877.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 79.5 319 L 79.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 80 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <text x="27.703125" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 27.703125 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186">
+                        <tspan># of Characters</tspan>
+                    </text>
+                </g>
+                <g class="highcharts-series-group" zIndex="3">
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)">
+                        <rect x="63.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="363.5" y="234.5" width="36" height="32" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="662.5" y="150.5" width="36" height="116" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="962.5" y="189.5" width="36" height="77" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1261.5" y="55.5" width="36" height="211" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1561.5" y="253.5" width="36" height="13" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)">
+                        <rect x="108.5" y="266.5" width="36" height="0" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="408.5" y="211.5" width="36" height="55" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="707.5" y="94.5" width="36" height="172" stroke="#FFFFFF" stroke-width="1" fill="rgba(92,92,97,1)" rx="0" ry="0"></rect>
+                        <rect x="1007.5" y="164.5" width="36" height="102" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1306.5" y="149.5" width="36" height="117" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1606.5" y="225.5" width="36" height="41" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)">
+                        <rect x="153.5" y="194.5" width="36" height="72" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="453.5" y="235.5" width="36" height="31" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="752.5" y="156.5" width="36" height="110" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1052.5" y="190.5" width="36" height="76" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1351.5" y="69.5" width="36" height="197" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                        <rect x="1651.5" y="253.5" width="36" height="13" stroke="#FFFFFF" stroke-width="1" fill="#90ed7d" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" style="" clip-path="url(#highcharts-7)">
+                        <rect x="198.5" y="223.5" width="36" height="43" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="498.5" y="211.5" width="36" height="55" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="797.5" y="88.5" width="36" height="178" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1097.5" y="158.5" width="36" height="108" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1396.5" y="153.5" width="36" height="113" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                        <rect x="1696.5" y="224.5" width="36" height="42" stroke="#FFFFFF" stroke-width="1" fill="#f7a35c" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(80,53) scale(1 1)" clip-path="none"></g>
+                </g>
+                <text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24">
+                    <tspan>(EXP) Race / Gender Distribution</tspan>
+                </text>
+                <g class="highcharts-legend" zIndex="7" transform="translate(725,356)">
+                    <g zIndex="1">
+                        <g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)">
+                                <text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">
+                                    <tspan>Female (ARR)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(127.8125,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Male (ARR)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(233.15625,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Female (HW)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#90ed7d"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(348.359375,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">
+                                    <tspan>Male (HW)</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#f7a35c"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7">
+                    <text x="229.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Au</text>
+                    <text x="529.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Elezen</text>
+                    <text x="828.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Hyur</text>
+                    <text x="1128.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lalafell</text>
+                    <text x="1427.75" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miqo'te</text>
+                    <text x="1727.25" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:301px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Roegadyn</text>
+                </g>
+                <g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7">
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="277" opacity="1">50k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="233" opacity="1">100k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="189" opacity="1">150k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="144" opacity="1">200k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="100" opacity="1">250k</text>
+                    <text x="65" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1">300k</text>
+                </g>
+                <g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(773,94)" opacity="1" visibility="visible">
+                    <path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)" width="65" height="47"></path>
+                    <path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)" width="65" height="47"></path>
+                    <path fill="none" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)" width="65" height="47"></path>
+                    <path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 62.5 0.5 C 65.5 0.5 65.5 0.5 65.5 3.5 L 65.5 44.5 C 65.5 47.5 65.5 47.5 62.5 47.5 L 38.5 47.5 32.5 53.5 26.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#434348" stroke-width="1"></path>
+                    <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20">
+                        <tspan style="font-size: 10px">Hyur</tspan>
+                        <tspan x="8" dy="15">193 460</tspan>
+                    </text>
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <p>Class Distribution:</p>
-    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="4"><div class="highcharts-container" id="highcharts-8" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400"><desc>Created with Highcharts 4.1.7</desc><defs><clippath id="highcharts-9"><rect x="0" y="0" width="1786" height="266"></rect></clippath></defs><rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 266.5 L 1877 266.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 213.5 L 1877 213.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 159.5 L 1877 159.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 106.5 L 1877 106.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 91 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 168.5 319 L 168.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 245.5 319 L 245.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 323.5 319 L 323.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 401.5 319 L 401.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 478.5 319 L 478.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 556.5 319 L 556.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 634.5 319 L 634.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 711.5 319 L 711.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 789.5 319 L 789.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 867.5 319 L 867.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 944.5 319 L 944.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1022.5 319 L 1022.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1099.5 319 L 1099.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1177.5 319 L 1177.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1255.5 319 L 1255.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1332.5 319 L 1332.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1410.5 319 L 1410.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1488.5 319 L 1488.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1565.5 319 L 1565.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1643.5 319 L 1643.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1721.5 319 L 1721.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1798.5 319 L 1798.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 1876.5 319 L 1876.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 90.5 319 L 90.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="28.265625" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.265625 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186"><tspan># of Characters</tspan></text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-9)"><rect x="17.5" y="39.5" width="19" height="227" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="95.5" y="87.5" width="19" height="179" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="172.5" y="94.5" width="19" height="172" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="250.5" y="87.5" width="19" height="179" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="327.5" y="58.5" width="19" height="208" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="405.5" y="209.5" width="19" height="57" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="483.5" y="57.5" width="19" height="209" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="560.5" y="66.5" width="19" height="200" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="638.5" y="77.5" width="19" height="189" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="716.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="793.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="871.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="949.5" y="158.5" width="19" height="108" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1026.5" y="167.5" width="19" height="99" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1104.5" y="167.5" width="19" height="99" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1182.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1259.5" y="164.5" width="19" height="102" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1337.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1415.5" y="169.5" width="19" height="97" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1492.5" y="166.5" width="19" height="100" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1570.5" y="141.5" width="19" height="125" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1648.5" y="155.5" width="19" height="111" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect><rect x="1725.5" y="162.5" width="19" height="104" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g><g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-9)"><rect x="40.5" y="14.5" width="19" height="252" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="118.5" y="69.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="195.5" y="77.5" width="19" height="189" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="273.5" y="68.5" width="19" height="198" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="351.5" y="37.5" width="19" height="229" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="428.5" y="194.5" width="19" height="72" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="506.5" y="39.5" width="19" height="227" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="584.5" y="47.5" width="19" height="219" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="661.5" y="59.5" width="19" height="207" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="739.5" y="241.5" width="19" height="25" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="817.5" y="244.5" width="19" height="22" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="894.5" y="237.5" width="19" height="29" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="972.5" y="150.5" width="19" height="116" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1050.5" y="159.5" width="19" height="107" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1127.5" y="159.5" width="19" height="107" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1205.5" y="148.5" width="19" height="118" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1283.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1360.5" y="148.5" width="19" height="118" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1438.5" y="161.5" width="19" height="105" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1516.5" y="158.5" width="19" height="108" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1593.5" y="131.5" width="19" height="135" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1671.5" y="146.5" width="19" height="120" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect><rect x="1749.5" y="155.5" width="19" height="111" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect></g><g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g></g><text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24"><tspan>Class Distribution</tspan></text><g class="highcharts-legend" zIndex="7" transform="translate(817,356)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15"><tspan>A Realm Reborn</tspan></text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect></g><g class="highcharts-legend-item" zIndex="1" transform="translate(144.890625,3)"><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Heavensward</text><rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="129.82608695652175" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Gladiator</text><text x="207.47826086956522" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Pugilist</text><text x="285.13043478260875" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Marauder</text><text x="362.7826086956522" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lancer</text><text x="440.4347826086957" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Archer</text><text x="518.0869565217392" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Rogue</text><text x="595.7391304347826" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Conjurer</text><text x="673.3913043478261" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Thaumaturge</text><text x="751.0434782608696" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Arcanist</text><text x="828.6956521739131" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1"><tspan>Dark Knight</tspan></text><text x="906.3478260869566" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Machinist</text><text x="984.0000000000001" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Astrologian</text><text x="1061.6521739130435" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Carpenter</text><text x="1139.304347826087" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Blacksmith</text><text x="1216.9565217391305" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Armorer</text><text x="1294.608695652174" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Goldsmith</text><text x="1372.2608695652175" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Leatherworker</text><text x="1449.913043478261" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Weaver</text><text x="1527.5652173913045" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Alchemist</text><text x="1605.217391304348" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Culinarian</text><text x="1682.8695652173915" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miner</text><text x="1760.521739130435" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Botanist</text><text x="1838.1739130434785" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Fisher</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="268" opacity="1">500k</text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="215" opacity="1"><tspan>1 000k</tspan></text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="162" opacity="1"><tspan>1 500k</tspan></text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="109" opacity="1"><tspan>2 000k</tspan></text><text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1"><tspan>2 500k</tspan></text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(336,-9999)" opacity="0" visibility="visible"><path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)" width="77" height="47"></path><path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)" width="77" height="47"></path><path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)" width="77" height="47"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#434348" stroke-width="1"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20"><tspan style="font-size: 10px">Lancer</tspan><tspan x="8" dy="15">1 857 175</tspan></text></g></svg></div></div>
+    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto" data-highcharts-chart="4">
+        <div class="highcharts-container" id="highcharts-8" style="position: relative; overflow: hidden; width: 1887px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1887" height="400">
+                <desc>Created with Highcharts 4.1.7</desc>
+                <defs>
+                    <clippath id="highcharts-9">
+                        <rect x="0" y="0" width="1786" height="266"></rect>
+                    </clippath>
+                </defs>
+                <rect x="0" y="0" width="1887" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect>
+                <g class="highcharts-grid" zIndex="1"></g>
+                <g class="highcharts-grid" zIndex="1">
+                    <path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 266.5 L 1877 266.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 213.5 L 1877 213.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 159.5 L 1877 159.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 106.5 L 1877 106.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                    <path fill="none" d="M 91 52.5 L 1877 52.5" stroke="#D8D8D8" stroke-width="1" zIndex="1" opacity="1"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <path fill="none" d="M 168.5 319 L 168.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 245.5 319 L 245.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 323.5 319 L 323.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 401.5 319 L 401.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 478.5 319 L 478.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 556.5 319 L 556.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 634.5 319 L 634.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 711.5 319 L 711.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 789.5 319 L 789.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 867.5 319 L 867.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 944.5 319 L 944.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1022.5 319 L 1022.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1099.5 319 L 1099.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1177.5 319 L 1177.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1255.5 319 L 1255.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1332.5 319 L 1332.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1410.5 319 L 1410.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1488.5 319 L 1488.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1565.5 319 L 1565.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1643.5 319 L 1643.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1721.5 319 L 1721.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1798.5 319 L 1798.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 1876.5 319 L 1876.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 90.5 319 L 90.5 329" stroke="#C0D0E0" stroke-width="1" opacity="1"></path>
+                    <path fill="none" d="M 91 319.5 L 1877 319.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path>
+                </g>
+                <g class="highcharts-axis" zIndex="2">
+                    <text x="28.265625" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.265625 186)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="186">
+                        <tspan># of Characters</tspan>
+                    </text>
+                </g>
+                <g class="highcharts-series-group" zIndex="3">
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-9)">
+                        <rect x="17.5" y="39.5" width="19" height="227" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="95.5" y="87.5" width="19" height="179" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="172.5" y="94.5" width="19" height="172" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="250.5" y="87.5" width="19" height="179" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="327.5" y="58.5" width="19" height="208" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="405.5" y="209.5" width="19" height="57" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="483.5" y="57.5" width="19" height="209" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="560.5" y="66.5" width="19" height="200" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="638.5" y="77.5" width="19" height="189" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="716.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="793.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="871.5" y="266.5" width="19" height="0" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="949.5" y="158.5" width="19" height="108" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1026.5" y="167.5" width="19" height="99" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1104.5" y="167.5" width="19" height="99" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1182.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1259.5" y="164.5" width="19" height="102" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1337.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1415.5" y="169.5" width="19" height="97" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1492.5" y="166.5" width="19" height="100" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1570.5" y="141.5" width="19" height="125" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1648.5" y="155.5" width="19" height="111" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                        <rect x="1725.5" y="162.5" width="19" height="104" stroke="#FFFFFF" stroke-width="1" fill="#7cb5ec" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                    <g class="highcharts-series highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" style="" clip-path="url(#highcharts-9)">
+                        <rect x="40.5" y="14.5" width="19" height="252" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="118.5" y="69.5" width="19" height="197" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="195.5" y="77.5" width="19" height="189" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="273.5" y="68.5" width="19" height="198" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="351.5" y="37.5" width="19" height="229" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="428.5" y="194.5" width="19" height="72" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="506.5" y="39.5" width="19" height="227" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="584.5" y="47.5" width="19" height="219" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="661.5" y="59.5" width="19" height="207" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="739.5" y="241.5" width="19" height="25" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="817.5" y="244.5" width="19" height="22" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="894.5" y="237.5" width="19" height="29" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="972.5" y="150.5" width="19" height="116" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1050.5" y="159.5" width="19" height="107" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1127.5" y="159.5" width="19" height="107" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1205.5" y="148.5" width="19" height="118" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1283.5" y="156.5" width="19" height="110" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1360.5" y="148.5" width="19" height="118" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1438.5" y="161.5" width="19" height="105" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1516.5" y="158.5" width="19" height="108" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1593.5" y="131.5" width="19" height="135" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1671.5" y="146.5" width="19" height="120" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                        <rect x="1749.5" y="155.5" width="19" height="111" stroke="#FFFFFF" stroke-width="1" fill="#434348" rx="0" ry="0"></rect>
+                    </g>
+                    <g class="highcharts-markers" visibility="visible" zIndex="0.1" transform="translate(91,53) scale(1 1)" clip-path="none"></g>
+                </g>
+                <text x="944" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:1823px;" y="24">
+                    <tspan>Class Distribution</tspan>
+                </text>
+                <g class="highcharts-legend" zIndex="7" transform="translate(817,356)">
+                    <g zIndex="1">
+                        <g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)">
+                                <text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">
+                                    <tspan>A Realm Reborn</tspan>
+                                </text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#7cb5ec"></rect>
+                            </g>
+                            <g class="highcharts-legend-item" zIndex="1" transform="translate(144.890625,3)">
+                                <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">Heavensward</text>
+                                <rect x="0" y="4" width="16" height="12" zIndex="3" fill="#434348"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7">
+                    <text x="129.82608695652175" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Gladiator</text>
+                    <text x="207.47826086956522" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Pugilist</text>
+                    <text x="285.13043478260875" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Marauder</text>
+                    <text x="362.7826086956522" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Lancer</text>
+                    <text x="440.4347826086957" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Archer</text>
+                    <text x="518.0869565217392" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Rogue</text>
+                    <text x="595.7391304347826" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Conjurer</text>
+                    <text x="673.3913043478261" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Thaumaturge</text>
+                    <text x="751.0434782608696" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Arcanist</text>
+                    <text x="828.6956521739131" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">
+                        <tspan>Dark Knight</tspan>
+                    </text>
+                    <text x="906.3478260869566" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Machinist</text>
+                    <text x="984.0000000000001" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Astrologian</text>
+                    <text x="1061.6521739130435" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Carpenter</text>
+                    <text x="1139.304347826087" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Blacksmith</text>
+                    <text x="1216.9565217391305" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Armorer</text>
+                    <text x="1294.608695652174" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Goldsmith</text>
+                    <text x="1372.2608695652175" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Leatherworker</text>
+                    <text x="1449.913043478261" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Weaver</text>
+                    <text x="1527.5652173913045" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Alchemist</text>
+                    <text x="1605.217391304348" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Culinarian</text>
+                    <text x="1682.8695652173915" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Miner</text>
+                    <text x="1760.521739130435" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Botanist</text>
+                    <text x="1838.1739130434785" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:71px;text-overflow:clip;" text-anchor="middle" transform="translate(0,0)" y="338" opacity="1">Fisher</text>
+                </g>
+                <g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7">
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="322" opacity="1">0k</text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="268" opacity="1">500k</text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="215" opacity="1">
+                        <tspan>1 000k</tspan>
+                    </text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="162" opacity="1">
+                        <tspan>1 500k</tspan>
+                    </text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="109" opacity="1">
+                        <tspan>2 000k</tspan>
+                    </text>
+                    <text x="76" style="color:#606060;cursor:default;font-size:11px;fill:#606060;width:613px;text-overflow:clip;" text-anchor="end" transform="translate(0,0)" y="56" opacity="1">
+                        <tspan>2 500k</tspan>
+                    </text>
+                </g>
+                <g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(336,-9999)" opacity="0" visibility="visible">
+                    <path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)" width="77" height="47"></path>
+                    <path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)" width="77" height="47"></path>
+                    <path fill="none" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)" width="77" height="47"></path>
+                    <path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 74.5 0.5 C 77.5 0.5 77.5 0.5 77.5 3.5 L 77.5 44.5 C 77.5 47.5 77.5 47.5 74.5 47.5 L 43.5 47.5 37.5 53.5 31.5 47.5 3.5 47.5 C 0.5 47.5 0.5 47.5 0.5 44.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#434348" stroke-width="1"></path>
+                    <text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="20">
+                        <tspan style="font-size: 10px">Lancer</tspan>
+                        <tspan x="8" dy="15">1 857 175</tspan>
+                    </text>
+                </g>
+            </svg>
+        </div>
+    </div>
 
     <p>Class Distribution (experienced):</p>
 
     <p>Have any ideas for further information? Let me know at <a href="https://github.com/Pricetx/XIVStats">https://github.com/Pricetx/XIVStats</a></p>
 
-<script>
-$(function () {
-    $('#gc_new_distribution').highcharts({
-        chart: {
-        },
-        title: {
-            text: 'HW Grand Company Population Distribution'
-        },
-        plotOptions: {
-            pie: {
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            type: 'pie',
-            name: '# of Characters',
-            data: [
-                ['None', 5238186,],
-['Immortal Flames', 682866,],
-['Maelstrom', 558835,],
-['Order of the Twin Adder', 705551,],
-            ]
-        }]
-    });
-});
-</script>
+    <script>
+        $(function() {
+            $('#gc_new_distribution').highcharts({
+                chart: {},
+                title: {
+                    text: 'HW Grand Company Population Distribution'
+                },
+                plotOptions: {
+                    pie: {}
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '# of Characters',
+                    data: [
+                        ['None', 5238186, ],
+                        ['Immortal Flames', 682866, ],
+                        ['Maelstrom', 558835, ],
+                        ['Order of the Twin Adder', 705551, ],
+                    ]
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#gc_new_exp_distribution').highcharts({
-        chart: {
-        },
-        title: {
-            text: '(EXP) HW Grand Company Population Distribution'
-        },
-        plotOptions: {
-            pie: {
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            type: 'pie',
-            name: '# of Characters',
-            data: [
-                ['None', 57116,],
-['Immortal Flames', 378824,],
-['Maelstrom', 333818,],
-['Order of the Twin Adder', 399915,],
-            ]
-        }]
-    });
-});
-</script>
+    <script>
+        $(function() {
+            $('#gc_new_exp_distribution').highcharts({
+                chart: {},
+                title: {
+                    text: '(EXP) HW Grand Company Population Distribution'
+                },
+                plotOptions: {
+                    pie: {}
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '# of Characters',
+                    data: [
+                        ['None', 57116, ],
+                        ['Immortal Flames', 378824, ],
+                        ['Maelstrom', 333818, ],
+                        ['Order of the Twin Adder', 399915, ],
+                    ]
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#race_gender_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Race / Gender Distribution'
-        },
-        xAxis: {
-            categories: [
-                "Au",
-"Elezen",
-"Hyur",
-"Lalafell",
-"Miqo'te",
-"Roegadyn",
-             ],
+    <script>
+        $(function() {
+            $('#race_gender_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Race / Gender Distribution'
+                },
+                xAxis: {
+                    categories: [
+                        "Au",
+                        "Elezen",
+                        "Hyur",
+                        "Lalafell",
+                        "Miqo'te",
+                        "Roegadyn",
+                    ],
 
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Female (ARR)',
-            data: [
-                0,279385,756619,396208,1233076,84304,            ]
-        }, {
-            name: 'Male (ARR)',
-            data: [
-                0,462732,1420200,576120,897226,362229,            ]
-	}, {
-            name: 'Female (HW)',
-            data: [
-                147164,300014,799311,417782,1304723,88341,            ]
-        }, {
-            name: 'Male (HW)',
-            data: [
-                90158,495770,1570880,620355,961176,389764,            ]
-        }]
-    });
-});
-</script>
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Female (ARR)',
+                    data: [
+                        0, 279385, 756619, 396208, 1233076, 84304,
+                    ]
+                }, {
+                    name: 'Male (ARR)',
+                    data: [
+                        0, 462732, 1420200, 576120, 897226, 362229,
+                    ]
+                }, {
+                    name: 'Female (HW)',
+                    data: [
+                        147164, 300014, 799311, 417782, 1304723, 88341,
+                    ]
+                }, {
+                    name: 'Male (HW)',
+                    data: [
+                        90158, 495770, 1570880, 620355, 961176, 389764,
+                    ]
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#exp_race_gender_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '(EXP) Race / Gender Distribution'
-        },
-        xAxis: {
-            categories: [
-                "Au",
-"Elezen",
-"Hyur",
-"Lalafell",
-"Miqo'te",
-"Roegadyn",
-             ],
+    <script>
+        $(function() {
+            $('#exp_race_gender_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '(EXP) Race / Gender Distribution'
+                },
+                xAxis: {
+                    categories: [
+                        "Au",
+                        "Elezen",
+                        "Hyur",
+                        "Lalafell",
+                        "Miqo'te",
+                        "Roegadyn",
+                    ],
 
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Female (ARR)',
-            data: [
-                0,35570,130884,87036,238166,14562,            ]
-        }, {
-            name: 'Male (ARR)',
-            data: [
-                0,62534,193460,114548,131640,46757,            ]
-        }, {
-            name: 'Female (HW)',
-            data: [
-                80772,34885,123774,85646,222213,14161,            ]
-        }, {
-            name: 'Male (HW)',
-            data: [
-                48064,62409,200606,122302,127576,47265,            ]
-        }]
-    });
-});
-</script>
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Female (ARR)',
+                    data: [
+                        0, 35570, 130884, 87036, 238166, 14562,
+                    ]
+                }, {
+                    name: 'Male (ARR)',
+                    data: [
+                        0, 62534, 193460, 114548, 131640, 46757,
+                    ]
+                }, {
+                    name: 'Female (HW)',
+                    data: [
+                        80772, 34885, 123774, 85646, 222213, 14161,
+                    ]
+                }, {
+                    name: 'Male (HW)',
+                    data: [
+                        48064, 62409, 200606, 122302, 127576, 47265,
+                    ]
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#class_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Class Distribution'
-        },
-        xAxis: {
-            categories: [
-                'Gladiator','Pugilist','Marauder','Lancer','Archer','Rogue','Conjurer','Thaumaturge','Arcanist','Dark Knight','Machinist','Astrologian','Carpenter','Blacksmith','Armorer','Goldsmith','Leatherworker','Weaver','Alchemist','Culinarian','Miner','Botanist','Fisher',             ],
+    <script>
+        $(function() {
+            $('#class_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Class Distribution'
+                },
+                xAxis: {
+                    categories: [
+                        'Gladiator', 'Pugilist', 'Marauder', 'Lancer', 'Archer', 'Rogue', 'Conjurer', 'Thaumaturge', 'Arcanist', 'Dark Knight', 'Machinist', 'Astrologian', 'Carpenter', 'Blacksmith', 'Armorer', 'Goldsmith', 'Leatherworker', 'Weaver', 'Alchemist', 'Culinarian', 'Miner', 'Botanist', 'Fisher',
+                    ],
 
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'A Realm Reborn',
-            data: [
-                2137862,1686004,1616594,1683251,1957426,535016,1963615,1878907,1779842,0,0,0,1012620,927633,928624,1030476,962100,1030995,914994,937728,1177654,1044183,974050,            ]
-        }, {
-            name: 'Heavensward',
-            data: [
-               2365352,1852388,1772240,1857175,2148966,673775,2137259,2056058,1949381,238275,209575,276504,1091148,1002445,1003215,1107921,1037457,1107843,984909,1013800,1265851,1123321,1046762,            ]
-        }]
-    });
-});
-</script>
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'A Realm Reborn',
+                    data: [
+                        2137862, 1686004, 1616594, 1683251, 1957426, 535016, 1963615, 1878907, 1779842, 0, 0, 0, 1012620, 927633, 928624, 1030476, 962100, 1030995, 914994, 937728, 1177654, 1044183, 974050,
+                    ]
+                }, {
+                    name: 'Heavensward',
+                    data: [
+                        2365352, 1852388, 1772240, 1857175, 2148966, 673775, 2137259, 2056058, 1949381, 238275, 209575, 276504, 1091148, 1002445, 1003215, 1107921, 1037457, 1107843, 984909, 1013800, 1265851, 1123321, 1046762,
+                    ]
+                }]
+            });
+        });
+    </script>
 
-  
 
 
-</body></html>
+
+</body>
+
+</html>
