@@ -486,6 +486,7 @@ $(function () {
             name: 'Female (ARR)',
             data: [
                 <?php
+			echo "0,";
                         foreach ($old_race_gender_female as $value) {
                                 echo "$value,";
                         }
@@ -495,6 +496,7 @@ $(function () {
             name: 'Male (ARR)',
             data: [
                 <?php
+			echo "0,";
                         foreach ($old_race_gender_male as $value) {
                                 echo "$value,";
                         }
