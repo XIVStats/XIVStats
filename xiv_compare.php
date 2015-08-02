@@ -220,6 +220,11 @@ $old_classes["Thaumaturge"] = $class_results->fetchArray()[0];
 $class_results = $olddb->query("SELECT count() FROM players WHERE level_arcanist != ''");
 $old_classes["Arcanist"] = $class_results->fetchArray()[0];
 
+// Set the new classes to 0 for the old stats, just so the columns line up correctly
+$old_classes["Dark Knight"] = "0";
+$old_classes["Machinist"] = "0";
+$old_classes["Astrologian"] = "0";
+
 $class_results = $olddb->query("SELECT count() FROM players WHERE level_carpenter != ''");
 $old_classes["Carpenter"] = $class_results->fetchArray()[0];
 
@@ -254,12 +259,6 @@ $class_results = $olddb->query("SELECT count() FROM players WHERE level_fisher !
 $old_classes["Fisher"] = $class_results->fetchArray()[0];
 
 
-// Set the new classes to 0 for the old stats, just so the columns line up correctly
-$old_classes["Dark Knight"] = "0";
-$old_classes["Machinist"] = "0";
-$old_classes["Astrologian"] = "0";
-
-
 // Get statistics on class adoption (HW)
 $new_classes = array();
 
@@ -290,13 +289,13 @@ $new_classes["Thaumaturge"] = $class_results->fetchArray()[0];
 $class_results = $newdb->query("SELECT count() FROM players WHERE level_arcanist != ''");
 $new_classes["Arcanist"] = $class_results->fetchArray()[0];
 
-$class_results = $db->query("SELECT count() FROM players WHERE level_darkknight != ''");
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_darkknight != ''");
 $new_classes["Dark Knight"] = $class_results->fetchArray()[0];
 
-$class_results = $db->query("SELECT count() FROM players WHERE level_machinist != ''");
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_machinist != ''");
 $new_classes["Machinist"] = $class_results->fetchArray()[0];
 
-$class_results = $db->query("SELECT count() FROM players WHERE level_astrologian != ''");
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_astrologian != ''");
 $new_classes["Astrologian"] = $class_results->fetchArray()[0];
 
 $class_results = $newdb->query("SELECT count() FROM players WHERE level_carpenter != ''");
@@ -385,7 +384,7 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
 
     <p>Class Distribution (experienced):</p>
 
-    <p>Have any ideas for further information? Let me know at GitHub</p>
+    <p>Have any ideas for further information? Let me know at <a href="https://github.com/Pricetx/XIVStats">https://github.com/Pricetx/XIVStats</a></p>
 
 <script>
 $(function () {
