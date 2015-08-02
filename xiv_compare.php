@@ -96,12 +96,250 @@ $old_europe_exp_player_count = $old_europe_exp_player_count_query->fetchArray()[
 $new_europe_exp_player_count_query = $newdb->query("SELECT count() FROM players WHERE " . $european_realms . " AND " . $new_experienced_check);
 $new_europe_exp_player_count = $new_europe_exp_player_count_query->fetchArray()[0];
 
+// Grand Company Distribution
+$gc_new_distribution = array();
+$gc_new_distribution_query = $newdb->query("SELECT grand_company,count() FROM players GROUP BY grand_company");
+
+while ($row = $gc_new_distribution_query->fetchArray()) {
+        //$row[0] = grand company name
+        //$row[1] = population
+
+        //If user is not in gc, mark gc as none rather than blank
+        if ($row[0] === '') { $row[0] = "None"; }
+        $gc_new_distribution[$row[0]] = $row[1];
+}
+
+$gc_new_exp_distribution = array();
+$gc_new_exp_distribution_query = $newdb->query("select grand_company,count() from players WHERE " . $new_experienced_check . " group by grand_company");
+
+while ($row = $gc_new_exp_distribution_query->fetchArray()) {
+        //$row[0] = grand company name
+        //$row[1] = population
+
+        //If user is not in gc, mark gc as none rather than blank
+        if ($row[0] === '') { $row[0] = "None"; }
+        $gc_new_exp_distribution[$row[0]] = $row[1];
+}
+
+
+// Race / Gender Distribution
+
+$old_race_gender_male = array();
+$old_race_gender_female = array();
+$old_race_gender_query = $olddb->query("SELECT race,gender,count() FROM players GROUP BY race,gender");
+$new_race_gender_male = array();
+$new_race_gender_female = array();
+$new_race_gender_query = $newdb->query("SELECT race,gender,count() FROM players GROUP BY race,gender");
+
+while ($row = $old_race_gender_query->fetchArray()) {
+        //$row[0] = race
+        //$row[1] = gender
+        //$row[2] = population
+
+        //Split males and females into seperate arrays
+        if ($row[1] === "male") {
+                $old_race_gender_male[$row[0]] = $row[2];
+        } else if ($row[1] === "female") {
+                $old_race_gender_female[$row[0]] = $row[2];
+        }
+}
+
+while ($row = $new_race_gender_query->fetchArray()) {
+        //$row[0] = race
+        //$row[1] = gender
+        //$row[2] = population
+
+        //Split males and females into seperate arrays
+        if ($row[1] === "male") {
+                $new_race_gender_male[$row[0]] = $row[2];
+        } else if ($row[1] === "female") {
+                $new_race_gender_female[$row[0]] = $row[2];
+        }
+}
+
+$old_exp_race_gender_male = array();
+$old_exp_race_gender_female = array();
+$old_exp_race_gender_query = $olddb->query("SELECT race,gender,count() FROM players WHERE " . $old_experienced_check . " GROUP BY race,gender");
+$new_exp_race_gender_male = array();
+$new_exp_race_gender_female = array();
+$new_exp_race_gender_query = $newdb->query("SELECT race,gender,count() FROM players WHERE " . $new_experienced_check . " GROUP BY race,gender");
+
+while ($row = $old_exp_race_gender_query->fetchArray()) {
+        //$row[0] = race
+        //$row[1] = gender
+        //$row[2] = population
+
+        //Split males and females into seperate arrays
+        if ($row[1] === "male") {
+                $old_exp_race_gender_male[$row[0]] = $row[2];
+        } else if ($row[1] === "female") {
+                $old_exp_race_gender_female[$row[0]] = $row[2];
+        }
+}
+
+while ($row = $new_exp_race_gender_query->fetchArray()) {
+        //$row[0] = race
+        //$row[1] = gender
+        //$row[2] = population
+
+        //Split males and females into seperate arrays
+        if ($row[1] === "male") {
+                $new_exp_race_gender_male[$row[0]] = $row[2];
+        } else if ($row[1] === "female") {
+                $new_exp_race_gender_female[$row[0]] = $row[2];
+        }
+}
+
+// Get statistics on class adoption
+$old_classes = array();
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_gladiator != ''");
+$old_classes["Gladiator"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_pugilist != ''");
+$old_classes["Pugilist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_marauder != ''");
+$old_classes["Marauder"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_lancer != ''");
+$old_classes["Lancer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_archer != ''");
+$old_classes["Archer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_rogue != ''");
+$old_classes["Rogue"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_conjurer != ''");
+$old_classes["Conjurer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_thaumaturge != ''");
+$old_classes["Thaumaturge"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_arcanist != ''");
+$old_classes["Arcanist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_carpenter != ''");
+$old_classes["Carpenter"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_blacksmith != ''");
+$old_classes["Blacksmith"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_armorer != ''");
+$old_classes["Armorer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_goldsmith != ''");
+$old_classes["Goldsmith"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_leatherworker != ''");
+$old_classes["Leatherworker"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_weaver != ''");
+$old_classes["Weaver"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_alchemist != ''");
+$old_classes["Alchemist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_culinarian != ''");
+$old_classes["Culinarian"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_miner != ''");
+$old_classes["Miner"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_botanist != ''");
+$old_classes["Botanist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("SELECT count() FROM players WHERE level_fisher != ''");
+$old_classes["Fisher"] = $class_results->fetchArray()[0];
+
+
+// Set the new classes to 0 for the old stats, just so the columns line up correctly
+$old_classes["Dark Knight"] = "0";
+$old_classes["Machinist"] = "0";
+$old_classes["Astrologian"] = "0";
+
+
+// Get statistics on class adoption (HW)
+$new_classes = array();
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_gladiator != ''");
+$new_classes["Gladiator"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_pugilist != ''");
+$new_classes["Pugilist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_marauder != ''");
+$new_classes["Marauder"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_lancer != ''");
+$new_classes["Lancer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_archer != ''");
+$new_classes["Archer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_rogue != ''");
+$new_classes["Rogue"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_conjurer != ''");
+$new_classes["Conjurer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_thaumaturge != ''");
+$new_classes["Thaumaturge"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_arcanist != ''");
+$new_classes["Arcanist"] = $class_results->fetchArray()[0];
+
+$class_results = $db->query("SELECT count() FROM players WHERE level_darkknight != ''");
+$new_classes["Dark Knight"] = $class_results->fetchArray()[0];
+
+$class_results = $db->query("SELECT count() FROM players WHERE level_machinist != ''");
+$new_classes["Machinist"] = $class_results->fetchArray()[0];
+
+$class_results = $db->query("SELECT count() FROM players WHERE level_astrologian != ''");
+$new_classes["Astrologian"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_carpenter != ''");
+$new_classes["Carpenter"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_blacksmith != ''");
+$new_classes["Blacksmith"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_armorer != ''");
+$new_classes["Armorer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_goldsmith != ''");
+$new_classes["Goldsmith"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_leatherworker != ''");
+$new_classes["Leatherworker"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_weaver != ''");
+$new_classes["Weaver"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_alchemist != ''");
+$new_classes["Alchemist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_culinarian != ''");
+$new_classes["Culinarian"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_miner != ''");
+$new_classes["Miner"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_botanist != ''");
+$new_classes["Botanist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("SELECT count() FROM players WHERE level_fisher != ''");
+$new_classes["Fisher"] = $class_results->fetchArray()[0];
+
 ?>
 
 <html>
 
   <head>
     <title>XIVStats - Heavensward Comparison</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
   </head>
 
   <body>
@@ -110,6 +348,7 @@ $new_europe_exp_player_count = $new_europe_exp_player_count_query->fetchArray()[
     <p>(Any reference to "EXP" players, refers to players with at least one skill at level 50)</p>
 
     <p>The left side shows statistics from April 2015, the right side shows statistics from the end of July 2015</p>
+    <p>NOTE: Unfortunately, due to a bug in the old statistics, the Grand Company population figures were incorrect, so have not been included</p>
 
     <p>How many players are there?</p>
 
@@ -130,18 +369,286 @@ $new_europe_exp_player_count = $new_europe_exp_player_count_query->fetchArray()[
     <p>(EXP) <?php echo $old_europe_exp_player_count; ?> -> <?php echo $new_europe_exp_player_count; ?> (+<?php echo $new_europe_exp_player_count - $old_europe_exp_player_count ?>)</p>
 
     <p>Grand Company Distribution:</p>
+    <div id="gc_new_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
 
     <p>Grand Company Distribution (experienced):</p>
+    <div id="gc_new_exp_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
 
     <p>Race / Gender Distribution:</p>
+    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
     <p>Race / Gender Distribution (experienced):</p>
+    <div id="exp_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
     <p>Class Distribution:</p>
+    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
     <p>Class Distribution (experienced):</p>
 
     <p>Have any ideas for further information? Let me know at GitHub</p>
+
+<script>
+$(function () {
+    $('#gc_new_distribution').highcharts({
+        chart: {
+        },
+        title: {
+            text: 'HW Grand Company Population Distribution'
+        },
+        plotOptions: {
+            pie: {
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'pie',
+            name: '# of Characters',
+            data: [
+                <?php
+                        foreach ($gc_new_distribution as $key => $value) {
+                                echo "['$key', $value,],\n";
+                        }
+                ?>
+            ]
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#gc_new_exp_distribution').highcharts({
+        chart: {
+        },
+        title: {
+            text: '(EXP) HW Grand Company Population Distribution'
+        },
+        plotOptions: {
+            pie: {
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'pie',
+            name: '# of Characters',
+            data: [
+                <?php
+                        foreach ($gc_new_exp_distribution as $key => $value) {
+                                echo "['$key', $value,],\n";
+                        }
+                ?>
+            ]
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#race_gender_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Race / Gender Distribution'
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_race_gender_male as $key => $value) {
+                                echo "\"$key\",\n";
+                        }
+                ?>
+             ],
+
+        },
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Female (ARR)',
+            data: [
+                <?php
+                        foreach ($old_race_gender_female as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Male (ARR)',
+            data: [
+                <?php
+                        foreach ($old_race_gender_male as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+	}, {
+            name: 'Female (HW)',
+            data: [
+                <?php
+                        foreach ($new_race_gender_female as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Male (HW)',
+            data: [
+                <?php
+                        foreach ($new_race_gender_male as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#exp_race_gender_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '(EXP) Race / Gender Distribution'
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_exp_race_gender_male as $key => $value) {
+                                echo "\"$key\",\n";
+                        }
+                ?>
+             ],
+
+        },
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Female (ARR)',
+            data: [
+                <?php
+			echo "0,";
+                        foreach ($old_exp_race_gender_female as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Male (ARR)',
+            data: [
+                <?php
+			echo "0,";
+                        foreach ($old_exp_race_gender_male as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Female (HW)',
+            data: [
+                <?php
+                        foreach ($new_exp_race_gender_female as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Male (HW)',
+            data: [
+                <?php
+                        foreach ($new_exp_race_gender_male as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#class_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Class Distribution'
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_classes as $key => $value) {
+                                echo "'$key',";
+                        }
+                ?>
+             ],
+
+        },
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'A Realm Reborn',
+            data: [
+                <?php
+                        foreach ($old_classes as $key => $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }, {
+            name: 'Heavensward',
+            data: [
+               <?php
+                        foreach ($new_classes as $key => $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ]
+        }]
+    });
+});
+</script>
 
   </body>
 
