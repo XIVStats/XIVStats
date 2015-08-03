@@ -34,9 +34,12 @@ profile page of a given player.
 The script deliberately only retrieves between 1-2 players per second. This
 is to avoid excessive load on the lodestone's servers. Due to the slow
 execution, a complete copy of the database has been compiled and is avaiable
-from the following URL: 
-[April 2015](https://jonathanprice.org/xiv/players.db)
-[July 2015](https://jonathanprice.org/xiv/player-20150801.db)
+from the following URLs. 
+
+| Release | Live Patch | Live Expansion | Download |
+|---------|------------|----------------|----------|
+| April 2015 | 2.5 | A Realm Reborn | [Link](https://jonathanprice.org/xiv/players.db)
+| July 2015 | 3.0 | Heavensward | [Link](https://jonathanprice.org/xiv/player-20150801.db) 
 
 A simple example PHP web page has been included. This web page draws data
 directly from the database and uses it to draw a few charts. Due to the
