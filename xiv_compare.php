@@ -339,317 +339,564 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
     <title>XIVStats - Heavensward Comparison</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+      <style>
+          .box-element {
+              width: 100%;
+          }
+
+          #pageTitleBox {
+              margin-top: 30px;
+              margin-bottom: 0;
+          }
+
+          .region-title {
+              text-align: center;
+              color: black;
+              font-size: 28pt;
+          }
+
+          .region-subtitle {
+              text-align: center;
+              color: #9e9e9e;
+              font-size: large;
+          }
+
+          .region-stat {
+              text-align: center;
+              font-size: 48pt;
+          }
+
+          .region-stat-diff {
+              font-size: medium;
+          }
+
+          .region-stat-label {
+              text-align: center;
+              font-size: large;
+          }
+
+          .arr-color {
+              color: #673ab7;
+          }
+
+          .heavensward-color {
+              color: #03a9f4;
+          }
+
+          footer.page-footer {
+              margin-top: 0px;
+              padding-top: 0px;
+          }
+      </style>
   </head>
 
   <body>
-    <h1>XIVStats - Comparison of A Realm Reborn to Heavensward</h1>
+  <div class="container box-element">
+      <div class="row" id="pageTitleBox">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text" style="font-size:28pt;">XIVStats - Comparison of A Realm Reborn to Heavensward</span>
+                      <p><b>* (Any reference to "Experienced" players, refers to players with at least one skill at level 50)</b></p>
+                      <p>The left side shows statistics from April 2015, the right side shows statistics from the end of July 2015</p>
+                      <p>NOTE: Unfortunately, due to a bug in the old statistics, the Grand Company population figures were incorrect, so have not been included</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">HOW MANY PLAYERS ARE THERE?</span>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <!--World-->
+                      <div class="black-text light region-title">WORLD</div>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_player_count - $old_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_exp_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_exp_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_exp_player_count - $old_exp_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <!-- America -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-title">AMERICA</div>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_america_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_america_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_america_player_count - $old_america_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_america_exp_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_america_exp_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_america_exp_player_count - $old_america_exp_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <!--Japan-->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-title">JAPAN</div>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_japan_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_japan_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_japan_player_count - $old_japan_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_japan_exp_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_japan_exp_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_japan_exp_player_count - $old_japan_exp_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <!--Europe-->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-title">EUROPE</div>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_europe_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_europe_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_europe_player_count - $old_europe_player_count ?>)</div>
+                          </div>
+                      </div>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <div class="row">
+                          <div class="col s12 m6 l6 arr-color region-stat">
+                              <div><?php echo $old_europe_exp_player_count; ?></div>
+                              <div class="region-stat-label light">A REALM REBORN</div>
+                          </div>
+                          <div class="col s12 m6 l6 heavensward-color region-stat">
+                              <div><?php echo $new_europe_exp_player_count; ?></div>
+                              <div class="region-stat-label light">HEAVENSWARD</div>
+                              <div class="region-stat-diff">(+<?php echo $new_europe_exp_player_count - $old_europe_exp_player_count ?>)</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">GRAND COMPANY DISTRIBUTION</span>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="gc_new_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="gc_new_exp_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">RACE AND GENDER DISTRIBUTION</span>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="exp_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">CLASS DISTRIBUTION</span>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
+                      <br/>
+                      <!-- Begin Chart -->
 
-    <p>(Any reference to "EXP" players, refers to players with at least one skill at level 50)</p>
+                      <!-- End Chart -->
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    <p>The left side shows statistics from April 2015, the right side shows statistics from the end of July 2015</p>
-    <p>NOTE: Unfortunately, due to a bug in the old statistics, the Grand Company population figures were incorrect, so have not been included</p>
 
-    <p>How many players are there?</p>
+      <!-- End Container -->
+  </div>
+  <footer class="page-footer light-blue lighten-2">
+      <div class="footer-copyright">
+          <div class="container">
+              Latest statistics on generated 2015-07-31
+              <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/Pricetx/XIVStats">Source Code avaiailable on GitHub</a> - Feel free to submit any ideas you may have!</div>
+          </div>
+      </div>
+  </footer>
 
-    <p>World:</p>
-    <p><?php echo $old_player_count; ?>  -> <?php echo $new_player_count; ?> (+<?php echo $new_player_count - $old_player_count ?>)</p>
-    <p>(EXP) <?php echo $old_exp_player_count; ?> -> <?php echo $new_exp_player_count; ?> (+<?php echo $new_exp_player_count - $old_exp_player_count ?>)</p>
+  <script>
+      $(function () {
+          $('#gc_new_distribution').highcharts({
+              chart: {
+              },
+              title: {
+                  text: ''
+              },
+              plotOptions: {
+                  pie: {
+                      colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  type: 'pie',
+                  name: '# of Characters',
+                  data: [
+                      <?php
+                              foreach ($gc_new_distribution as $key => $value) {
+                                      echo "['$key', $value,],\n";
+                              }
+                      ?>
+                  ]
+              }]
+          });
+      });
+  </script>
 
-    <p>America:</p>
-    <p><?php echo $old_america_player_count; ?> -> <?php echo $new_america_player_count; ?> (+<?php echo $new_america_player_count - $old_america_player_count ?>)</p>
-    <p>(EXP) <?php echo $old_america_exp_player_count; ?> -> <?php echo $new_america_exp_player_count; ?> (+<?php echo $new_america_exp_player_count - $old_america_exp_player_count ?>)</p>
+  <script>
+      $(function () {
+          $('#gc_new_exp_distribution').highcharts({
+              chart: {
+              },
+              title: {
+                  text: ''
+              },
+              plotOptions: {
+                  pie: {
+                      colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  type: 'pie',
+                  name: '# of Characters',
+                  data: [
+                      <?php
+                              foreach ($gc_new_exp_distribution as $key => $value) {
+                                      echo "['$key', $value,],\n";
+                              }
+                      ?>
+                  ]
+              }]
+          });
+      });
+  </script>
 
-    <p>Japan:</p>
-    <p><?php echo $old_japan_player_count; ?> -> <?php echo $new_japan_player_count; ?> (+<?php echo $new_japan_player_count - $old_japan_player_count ?>)</p>
-    <p>(EXP) <?php echo $old_japan_exp_player_count; ?> -> <?php echo $new_japan_exp_player_count; ?> (+<?php echo $new_japan_exp_player_count - $old_japan_exp_player_count ?>)</p>
+  <script>
+      $(function () {
+          $('#race_gender_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_race_gender_male as $key => $value) {
+                                      echo "\"$key\",\n";
+                              }
+                      ?>
+                  ],
 
-    <p>Europe:</p>
-    <p><?php echo $old_europe_player_count; ?> -> <?php echo $new_europe_player_count; ?> (+<?php echo $new_europe_player_count - $old_europe_player_count ?>)</p>
-    <p>(EXP) <?php echo $old_europe_exp_player_count; ?> -> <?php echo $new_europe_exp_player_count; ?> (+<?php echo $new_europe_exp_player_count - $old_europe_exp_player_count ?>)</p>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'Female (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#ce93d8'
+              }, {
+                  name: 'Male (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
+                  name: 'Male (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
-    <p>Grand Company Distribution:</p>
-    <div id="gc_new_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+  <script>
+      $(function () {
+          $('#exp_race_gender_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_exp_race_gender_male as $key => $value) {
+                                      echo "\"$key\",\n";
+                              }
+                      ?>
+                  ],
 
-    <p>Grand Company Distribution (experienced):</p>
-    <div id="gc_new_exp_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'Female (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_exp_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#ce93d8'
+              }, {
+                  name: 'Male (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_exp_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_exp_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
+                  name: 'Male (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_exp_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
-    <p>Race / Gender Distribution:</p>
-    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+  <script>
+      $(function () {
+          $('#class_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_classes as $key => $value) {
+                                      echo "'$key',";
+                              }
+                      ?>
+                  ],
 
-    <p>Race / Gender Distribution (experienced):</p>
-    <div id="exp_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-
-    <p>Class Distribution:</p>
-    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-
-    <p>Class Distribution (experienced):</p>
-
-    <p>Have any ideas for further information? Let me know at <a href="https://github.com/Pricetx/XIVStats">https://github.com/Pricetx/XIVStats</a></p>
-
-<script>
-$(function () {
-    $('#gc_new_distribution').highcharts({
-        chart: {
-        },
-        title: {
-            text: 'HW Grand Company Population Distribution'
-        },
-        plotOptions: {
-            pie: {
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            type: 'pie',
-            name: '# of Characters',
-            data: [
-                <?php
-                        foreach ($gc_new_distribution as $key => $value) {
-                                echo "['$key', $value,],\n";
-                        }
-                ?>
-            ]
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    $('#gc_new_exp_distribution').highcharts({
-        chart: {
-        },
-        title: {
-            text: '(EXP) HW Grand Company Population Distribution'
-        },
-        plotOptions: {
-            pie: {
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            type: 'pie',
-            name: '# of Characters',
-            data: [
-                <?php
-                        foreach ($gc_new_exp_distribution as $key => $value) {
-                                echo "['$key', $value,],\n";
-                        }
-                ?>
-            ]
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    $('#race_gender_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Race / Gender Distribution'
-        },
-        xAxis: {
-            categories: [
-                <?php
-                        foreach ($new_race_gender_male as $key => $value) {
-                                echo "\"$key\",\n";
-                        }
-                ?>
-             ],
-
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Female (ARR)',
-            data: [
-                <?php
-			echo "0,";
-                        foreach ($old_race_gender_female as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Male (ARR)',
-            data: [
-                <?php
-			echo "0,";
-                        foreach ($old_race_gender_male as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-	}, {
-            name: 'Female (HW)',
-            data: [
-                <?php
-                        foreach ($new_race_gender_female as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Male (HW)',
-            data: [
-                <?php
-                        foreach ($new_race_gender_male as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    $('#exp_race_gender_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '(EXP) Race / Gender Distribution'
-        },
-        xAxis: {
-            categories: [
-                <?php
-                        foreach ($new_exp_race_gender_male as $key => $value) {
-                                echo "\"$key\",\n";
-                        }
-                ?>
-             ],
-
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Female (ARR)',
-            data: [
-                <?php
-			echo "0,";
-                        foreach ($old_exp_race_gender_female as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Male (ARR)',
-            data: [
-                <?php
-			echo "0,";
-                        foreach ($old_exp_race_gender_male as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Female (HW)',
-            data: [
-                <?php
-                        foreach ($new_exp_race_gender_female as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Male (HW)',
-            data: [
-                <?php
-                        foreach ($new_exp_race_gender_male as $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }]
-    });
-});
-</script>
-
-<script>
-$(function () {
-    $('#class_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Class Distribution'
-        },
-        xAxis: {
-            categories: [
-                <?php
-                        foreach ($new_classes as $key => $value) {
-                                echo "'$key',";
-                        }
-                ?>
-             ],
-
-        },
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'A Realm Reborn',
-            data: [
-                <?php
-                        foreach ($old_classes as $key => $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }, {
-            name: 'Heavensward',
-            data: [
-               <?php
-                        foreach ($new_classes as $key => $value) {
-                                echo "$value,";
-                        }
-                ?>
-            ]
-        }]
-    });
-});
-</script>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'A Realm Reborn',
+                  data: [
+                      <?php
+                              foreach ($old_classes as $key => $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Heavensward',
+                  data: [
+                      <?php
+                               foreach ($new_classes as $key => $value) {
+                                       echo "$value,";
+                               }
+                       ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
   </body>
 
