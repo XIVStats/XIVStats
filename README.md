@@ -39,7 +39,7 @@ from the following URLs.
 | Release | Live Patch | Live Expansion | Download |
 |---------|------------|----------------|----------|
 | April 2015 | 2.5 | A Realm Reborn | [Link](https://jonathanprice.org/xiv/players.db)
-| July 2015 | 3.0 | Heavensward | [Link](https://jonathanprice.org/xiv/player-20150801.db) 
+| July 2015 | 3.0 | Heavensward | [Link](https://jonathanprice.org/xiv/players-20150801.db) 
 
 A simple example PHP web page has been included. This web page draws data
 directly from the database and uses it to draw a few charts. Due to the
