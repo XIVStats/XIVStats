@@ -621,232 +621,282 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
       </div>
   </footer>
 
-    <script>
-        $(function() {
-            $('#gc_new_distribution').highcharts({
-                chart: {},
-                title: {
-                    text: ''
-                },
-                plotOptions: {
-                    pie: {
-                        colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{point.y}'
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'pie',
-                    name: '# of Characters',
-                    data: [
-                        ['None', 5238186, ],
-                        ['Immortal Flames', 682866, ],
-                        ['Maelstrom', 558835, ],
-                        ['Order of the Twin Adder', 705551, ],
-                    ]
-                }]
-            });
-        });
-    </script>
+  <script>
+      $(function () {
+          $('#gc_new_distribution').highcharts({
+              chart: {
+              },
+              title: {
+                  text: ''
+              },
+              plotOptions: {
+                  pie: {
+                      colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  type: 'pie',
+                  name: '# of Characters',
+                  data: [
+                      <?php
+                              foreach ($gc_new_distribution as $key => $value) {
+                                      echo "['$key', $value,],\n";
+                              }
+                      ?>
+                  ]
+              }]
+          });
+      });
+  </script>
 
-    <script>
-        $(function() {
-            $('#gc_new_exp_distribution').highcharts({
-                chart: {},
-                title: {
-                    text: ''
-                },
-                plotOptions: {
-                    pie: {
-                        colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{point.y}'
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    type: 'pie',
-                    name: '# of Characters',
-                    data: [
-                        ['None', 57116, ],
-                        ['Immortal Flames', 378824, ],
-                        ['Maelstrom', 333818, ],
-                        ['Order of the Twin Adder', 399915, ],
-                    ]
-                }]
-            });
-        });
-    </script>
+  <script>
+      $(function () {
+          $('#gc_new_exp_distribution').highcharts({
+              chart: {
+              },
+              title: {
+                  text: ''
+              },
+              plotOptions: {
+                  pie: {
+                      colors: ['#9e9e9e', '#212121', '#b71c1c', '#ffc107']
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  type: 'pie',
+                  name: '# of Characters',
+                  data: [
+                      <?php
+                              foreach ($gc_new_exp_distribution as $key => $value) {
+                                      echo "['$key', $value,],\n";
+                              }
+                      ?>
+                  ]
+              }]
+          });
+      });
+  </script>
 
-    <script>
-        $(function() {
-            $('#race_gender_distribution').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        "Au",
-                        "Elezen",
-                        "Hyur",
-                        "Lalafell",
-                        "Miqo'te",
-                        "Roegadyn",
-                    ],
+  <script>
+      $(function () {
+          $('#race_gender_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_race_gender_male as $key => $value) {
+                                      echo "\"$key\",\n";
+                              }
+                      ?>
+                  ],
 
-                },
-                yAxis: {
-                    title: {
-                        text: '# of Characters'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{point.y}'
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    name: 'Female (ARR)',
-                    data: [
-                        0, 279385, 756619, 396208, 1233076, 84304,
-                    ],
-                    color: '#ce93d8'
-                }, {
-                    name: 'Male (ARR)',
-                    data: [
-                        0, 462732, 1420200, 576120, 897226, 362229,
-                    ],
-                    color: '#673ab7'
-                }, {
-                    name: 'Female (HW)',
-                    data: [
-                        147164, 300014, 799311, 417782, 1304723, 88341,
-                    ],
-                    color: '#81d4fa'
-                }, {
-                    name: 'Male (HW)',
-                    data: [
-                        90158, 495770, 1570880, 620355, 961176, 389764,
-                    ],
-                    color: '#03a9f4'
-                }]
-            });
-        });
-    </script>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'Female (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#ce93d8'
+              }, {
+                  name: 'Male (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
+                  name: 'Male (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
-    <script>
-        $(function() {
-            $('#exp_race_gender_distribution').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        "Au",
-                        "Elezen",
-                        "Hyur",
-                        "Lalafell",
-                        "Miqo'te",
-                        "Roegadyn",
-                    ],
+  <script>
+      $(function () {
+          $('#exp_race_gender_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_exp_race_gender_male as $key => $value) {
+                                      echo "\"$key\",\n";
+                              }
+                      ?>
+                  ],
 
-                },
-                yAxis: {
-                    title: {
-                        text: '# of Characters'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{point.y}'
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    name: 'Female (ARR)',
-                    data: [
-                        0, 35570, 130884, 87036, 238166, 14562,
-                    ],
-                    color: '#ce93d8'
-                }, {
-                    name: 'Male (ARR)',
-                    data: [
-                        0, 62534, 193460, 114548, 131640, 46757,
-                    ],
-                    color: '#673ab7'
-                }, {
-                    name: 'Female (HW)',
-                    data: [
-                        80772, 34885, 123774, 85646, 222213, 14161,
-                    ],
-                    color: '#81d4fa'
-                }, {
-                    name: 'Male (HW)',
-                    data: [
-                        48064, 62409, 200606, 122302, 127576, 47265,
-                    ],
-                    color: '#03a9f4'
-                }]
-            });
-        });
-    </script>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'Female (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_exp_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#ce93d8'
+              }, {
+                  name: 'Male (ARR)',
+                  data: [
+                      <?php
+                  echo "0,";
+                              foreach ($old_exp_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_exp_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
+                  name: 'Male (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_exp_race_gender_male as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
-    <script>
-        $(function() {
-            $('#class_distribution').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Gladiator', 'Pugilist', 'Marauder', 'Lancer', 'Archer', 'Rogue', 'Conjurer', 'Thaumaturge', 'Arcanist', 'Dark Knight', 'Machinist', 'Astrologian', 'Carpenter', 'Blacksmith', 'Armorer', 'Goldsmith', 'Leatherworker', 'Weaver', 'Alchemist', 'Culinarian', 'Miner', 'Botanist', 'Fisher',
-                    ],
+  <script>
+      $(function () {
+          $('#class_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_classes as $key => $value) {
+                                      echo "'$key',";
+                              }
+                      ?>
+                  ],
 
-                },
-                yAxis: {
-                    title: {
-                        text: '# of Characters'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{point.y}'
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    name: 'A Realm Reborn',
-                    data: [
-                        2137862, 1686004, 1616594, 1683251, 1957426, 535016, 1963615, 1878907, 1779842, 0, 0, 0, 1012620, 927633, 928624, 1030476, 962100, 1030995, 914994, 937728, 1177654, 1044183, 974050,
-                    ],
-                    color: '#673ab7'
-                }, {
-                    name: 'Heavensward',
-                    data: [
-                        2365352, 1852388, 1772240, 1857175, 2148966, 673775, 2137259, 2056058, 1949381, 238275, 209575, 276504, 1091148, 1002445, 1003215, 1107921, 1037457, 1107843, 984909, 1013800, 1265851, 1123321, 1046762,
-                    ],
-                    color: '#03a9f4'
-                }]
-            });
-        });
-    </script>
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'A Realm Reborn',
+                  data: [
+                      <?php
+                              foreach ($old_classes as $key => $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Heavensward',
+                  data: [
+                      <?php
+                               foreach ($new_classes as $key => $value) {
+                                       echo "$value,";
+                               }
+                       ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
 
   </body>
 
