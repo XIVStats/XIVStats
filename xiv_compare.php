@@ -421,25 +421,25 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>6,468,099</div>
+                              <div><?php echo $old_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>7,185,438 </div>
+                              <div><?php echo $new_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+717,339)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_player_count - $old_player_count ?>)</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>1,055,157</div>
+                              <div><?php echo $old_exp_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>1,169,673 </div>
+                              <div><?php echo $new_exp_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+114,516)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_exp_player_count - $old_exp_player_count ?>)</div>
                           </div>
                       </div>
                       <!-- America -->
@@ -450,25 +450,25 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>3,211,604</div>
+                              <div><?php echo $old_america_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>3,595,831</div>
+                              <div><?php echo $new_america_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+384,227)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_america_player_count - $old_america_player_count ?>)</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>438,778</div>
+                              <div><?php echo $old_america_exp_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>493,263</div>
+                              <div><?php echo $new_america_exp_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+54,485)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_america_exp_player_count - $old_america_exp_player_count ?>)</div>
                           </div>
                       </div>
                       <!--Japan-->
@@ -479,25 +479,25 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>1,761,520</div>
+                              <div><?php echo $old_japan_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>1,900,826</div>
+                              <div><?php echo $new_japan_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+139,306)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_japan_player_count - $old_japan_player_count ?>)</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>430,638</div>
+                              <div><?php echo $old_japan_exp_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>465,648</div>
+                              <div><?php echo $new_japan_exp_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+35,010)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_japan_exp_player_count - $old_japan_exp_player_count ?>)</div>
                           </div>
                       </div>
                       <!--Europe-->
@@ -508,25 +508,25 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>1,444,665</div>
+                              <div><?php echo $old_europe_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>1,632,419</div>
+                              <div><?php echo $new_europe_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+187,754)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_europe_player_count - $old_europe_player_count ?>)</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
                       <div class="row">
                           <div class="col s12 m6 l6 arr-color region-stat">
-                              <div>173,390</div>
+                              <div><?php echo $old_europe_exp_player_count; ?></div>
                               <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                           <div class="col s12 m6 l6 heavensward-color region-stat">
-                              <div>197,506</div>
+                              <div><?php echo $new_europe_exp_player_count; ?></div>
                               <div class="region-stat-label light">HEAVENSWARD</div>
-                              <div class="region-stat-diff">(+24,116)</div>
+                              <div class="region-stat-diff">(+<?php echo $new_europe_exp_player_count - $old_europe_exp_player_count ?>)</div>
                           </div>
                       </div>
                   </div>
