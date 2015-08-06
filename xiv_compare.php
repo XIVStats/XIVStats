@@ -363,6 +363,257 @@ $new_classes["Botanist"] = $class_results->fetchArray()[0];
 $class_results = $newdb->query("SELECT count() FROM players WHERE level_fisher != ''");
 $new_classes["Fisher"] = $class_results->fetchArray()[0];
 
+// Get statistics on experienced class adoption
+$old_exp_classes = array();
+
+$class_results = $olddb->query("select count() from players where level_gladiator >= '50' AND level_gladiator != ''");
+$old_exp_classes["Gladiator"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_pugilist >= '50' AND level_pugilist != ''");
+$old_exp_classes["Pugilist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_marauder >= '50' AND level_marauder != ''");
+$old_exp_classes["Marauder"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_lancer >= '50' AND level_lancer != ''");
+$old_exp_classes["Lancer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_archer >= '50' AND level_archer != ''");
+$old_exp_classes["Archer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_rogue >= '50' AND level_rogue != ''");
+$old_exp_classes["Rogue"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_conjurer >= '50' AND level_conjurer != ''");
+$old_exp_classes["Conjurer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_thaumaturge >= '50' AND level_thaumaturge != ''");
+$old_exp_classes["Thaumaturge"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_arcanist >= '50' AND level_arcanist != ''");
+$old_exp_classes["Arcanist"] = $class_results->fetchArray()[0];
+
+// Set the new classes to 0 for the old stats, just so the columns line up correctly
+$old_exp_classes["Dark Knight"] = "0";
+$old_exp_classes["Machinist"] = "0";
+$old_exp_classes["Astrologian"] = "0";
+
+$class_results = $olddb->query("select count() from players where level_carpenter >= '50' AND level_carpenter != ''");
+$old_exp_classes["Carpenter"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_blacksmith >= '50' AND level_blacksmith != ''");
+$old_exp_classes["Blacksmith"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_armorer >= '50' AND level_blacksmith != ''");
+$old_exp_classes["Armorer"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_goldsmith >= '50' AND level_goldsmith != ''");
+$old_exp_classes["Goldsmith"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_leatherworker >= '50' AND level_leatherworker != ''");
+$old_exp_classes["Leatherworker"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_weaver >= '50' AND level_weaver != ''");
+$old_exp_classes["Weaver"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_alchemist >= '50' AND level_alchemist != ''");
+$old_exp_classes["Alchemist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_culinarian >= '50' AND level_culinarian != ''");
+$old_exp_classes["Culinarian"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_miner >= '50' AND level_miner != ''");
+$old_exp_classes["Miner"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_botanist >= '50' AND level_botanist != ''");
+$old_exp_classes["Botanist"] = $class_results->fetchArray()[0];
+
+$class_results = $olddb->query("select count() from players where level_fisher >= '50' AND level_fisher != ''");
+$old_exp_classes["Fisher"] = $class_results->fetchArray()[0];
+
+// Get new experienced classes
+$new_exp_classes = array();
+
+$class_results = $newdb->query("select count() from players where level_gladiator >= '50' AND level_gladiator != ''");
+$new_exp_classes["Gladiator"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_pugilist >= '50' AND level_pugilist != ''");
+$new_exp_classes["Pugilist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_marauder >= '50' AND level_marauder != ''");
+$new_exp_classes["Marauder"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_lancer >= '50' AND level_lancer != ''");
+$new_exp_classes["Lancer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_archer >= '50' AND level_archer != ''");
+$new_exp_classes["Archer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_rogue >= '50' AND level_rogue != ''");
+$new_exp_classes["Rogue"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_conjurer >= '50' AND level_conjurer != ''");
+$new_exp_classes["Conjurer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_thaumaturge >= '50' AND level_thaumaturge != ''");
+$new_exp_classes["Thaumaturge"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_arcanist >= '50' AND level_arcanist != ''");
+$new_exp_classes["Arcanist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_darkknight >= '50' AND level_darkknight != ''");
+$new_exp_classes["Dark Knight"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_machinist >= '50' AND level_machinist != ''");
+$new_exp_classes["Machinist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_astrologian >= '50' AND level_astrologian != ''");
+$new_exp_classes["Astrologian"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_carpenter >= '50' AND level_carpenter != ''");
+$new_exp_classes["Carpenter"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_blacksmith >= '50' AND level_blacksmith != ''");
+$new_exp_classes["Blacksmith"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_armorer >= '50' AND level_blacksmith != ''");
+$new_exp_classes["Armorer"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_goldsmith >= '50' AND level_goldsmith != ''");
+$new_exp_classes["Goldsmith"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_leatherworker >= '50' AND level_leatherworker != ''");
+$new_exp_classes["Leatherworker"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_weaver >= '50' AND level_weaver != ''");
+$new_exp_classes["Weaver"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_alchemist >= '50' AND level_alchemist != ''");
+$new_exp_classes["Alchemist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_culinarian >= '50' AND level_culinarian != ''");
+$new_exp_classes["Culinarian"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_miner >= '50' AND level_miner != ''");
+$new_exp_classes["Miner"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_botanist >= '50' AND level_botanist != ''");
+$new_exp_classes["Botanist"] = $class_results->fetchArray()[0];
+
+$class_results = $newdb->query("select count() from players where level_fisher >= '50' AND level_fisher != ''");
+$new_exp_classes["Fisher"] = $class_results->fetchArray()[0];
+
+// Get statistics on realm population
+$old_america_realm_pop = array();
+$old_america_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_america_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_america_realm_pop[$row[0]] = $row[1];
+}
+
+$new_america_realm_pop = array();
+$new_america_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_america_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_america_realm_pop[$row[0]] = $row[1];
+}
+
+$old_exp_america_realm_pop = array();
+$old_exp_america_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $old_experienced_check . " AND " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_exp_america_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_exp_america_realm_pop[$row[0]] = $row[1];
+}
+
+$new_exp_america_realm_pop = array();
+$new_exp_america_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $new_experienced_check . " AND " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_exp_america_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_exp_america_realm_pop[$row[0]] = $row[1];
+}
+
+
+$old_japan_realm_pop = array();
+$old_japan_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_japan_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_japan_realm_pop[$row[0]] = $row[1];
+}
+
+$new_japan_realm_pop = array();
+$new_japan_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_japan_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_japan_realm_pop[$row[0]] = $row[1];
+}
+
+$old_exp_japan_realm_pop = array();
+$old_exp_japan_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $old_experienced_check . " AND " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_exp_japan_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_exp_japan_realm_pop[$row[0]] = $row[1];
+}
+
+$new_exp_japan_realm_pop = array();
+$new_exp_japan_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $new_experienced_check . " AND " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_exp_japan_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_exp_japan_realm_pop[$row[0]] = $row[1];
+}
+
+$old_europe_realm_pop = array();
+$old_europe_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_europe_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_europe_realm_pop[$row[0]] = $row[1];
+}
+
+$new_europe_realm_pop = array();
+$new_europe_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_europe_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_europe_realm_pop[$row[0]] = $row[1];
+}
+
+$old_exp_europe_realm_pop = array();
+$old_exp_europe_realm_pop_query = $olddb->query("SELECT realm,count() FROM players WHERE " . $old_experienced_check . " AND " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $old_exp_europe_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $old_exp_europe_realm_pop[$row[0]] = $row[1];
+}
+
+$new_exp_europe_realm_pop = array();
+$new_exp_europe_realm_pop_query = $newdb->query("SELECT realm,count() FROM players WHERE " . $new_experienced_check . " AND " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
+
+while ($row = $new_exp_europe_realm_pop_query->fetchArray()) {
+        //$row[0] = realm name
+        //$row[1] = population
+        $new_exp_europe_realm_pop[$row[0]] = $row[1];
+}
+
+
 ?>
 
 <html>
@@ -609,7 +860,46 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       <div class="black-text light region-subtitle">EXPERIENCED PLAYERS*</div>
                       <br/>
                       <!-- Begin Chart -->
+                      <div id="exp_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">REALM DISTRIBUTION</span>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">American Realms</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">Japanese Realms</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <div class="black-text light region-subtitle">European Realms</div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
 
+                      <div class="black-text light region-subtitle"></div>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="exp_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                       <!-- End Chart -->
                   </div>
               </div>
@@ -647,7 +937,7 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
   <footer class="page-footer light-blue lighten-2">
       <div class="footer-copyright">
           <div class="container">
-              Latest statistics on generated 2015-07-31
+              Latest statistics generated between 2015-07-20 and 2015-07-31
               <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/Pricetx/XIVStats">Source Code avaiailable on GitHub</a> - Feel free to submit any ideas you may have!</div>
           </div>
       </div>
@@ -763,6 +1053,16 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                   ],
                   color: '#ce93d8'
               }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
                   name: 'Male (ARR)',
                   data: [
                       <?php
@@ -773,16 +1073,6 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       ?>
                   ],
                   color: '#673ab7'
-              }, {
-                  name: 'Female (HW)',
-                  data: [
-                      <?php
-                              foreach ($new_race_gender_female as $value) {
-                                      echo "$value,";
-                              }
-                      ?>
-                  ],
-                  color: '#81d4fa'
               }, {
                   name: 'Male (HW)',
                   data: [
@@ -840,6 +1130,16 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                   ],
                   color: '#ce93d8'
               }, {
+                  name: 'Female (HW)',
+                  data: [
+                      <?php
+                              foreach ($new_exp_race_gender_female as $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#81d4fa'
+              }, {
                   name: 'Male (ARR)',
                   data: [
                       <?php
@@ -850,16 +1150,6 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
                       ?>
                   ],
                   color: '#673ab7'
-              }, {
-                  name: 'Female (HW)',
-                  data: [
-                      <?php
-                              foreach ($new_exp_race_gender_female as $value) {
-                                      echo "$value,";
-                              }
-                      ?>
-                  ],
-                  color: '#81d4fa'
               }, {
                   name: 'Male (HW)',
                   data: [
@@ -929,6 +1219,291 @@ $new_classes["Fisher"] = $class_results->fetchArray()[0];
           });
       });
   </script>
+
+  <script>
+      $(function () {
+          $('#exp_class_distribution').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ''
+              },
+              xAxis: {
+                  categories: [
+                      <?php
+                              foreach ($new_exp_classes as $key => $value) {
+                                      echo "'$key',";
+                              }
+                      ?>
+                  ],
+
+              },
+              yAxis: {
+                  title: {
+                      text: '# of Characters'
+                  }
+              },
+              tooltip: {
+                  pointFormat: '{point.y}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  name: 'A Realm Reborn',
+                  data: [
+                      <?php
+                              foreach ($old_exp_classes as $key => $value) {
+                                      echo "$value,";
+                              }
+                      ?>
+                  ],
+                  color: '#673ab7'
+              }, {
+                  name: 'Heavensward',
+                  data: [
+                      <?php
+                               foreach ($new_exp_classes as $key => $value) {
+                                       echo "$value,";
+                               }
+                       ?>
+                  ],
+                  color: '#03a9f4'
+              }]
+          });
+      });
+  </script>
+
+<script>
+$(function () {
+    $('#america_realm_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_america_realm_pop as $key => $value) {
+                                echo "'$key',";
+                        }
+                ?>
+             ],
+
+        },
+
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'All (ARR)',
+            data: [
+                <?php
+                        foreach ($old_america_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#ce93d8'
+        }, {
+            name: 'All (HW)',
+            data: [
+                <?php
+                        foreach ($new_america_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#81d4fa'
+        }, {
+            name: 'Experienced (ARR)',
+            data: [
+                <?php
+                        foreach ($old_exp_america_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#673ab7'
+        }, {
+            name: 'Experienced (HW)',
+            data: [
+                <?php
+                        foreach ($new_exp_america_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#03a9f4'
+        }]
+    });
+});
+</script>
+
+
+<script>
+$(function () {
+    $('#japan_realm_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_japan_realm_pop as $key => $value) {
+                                echo "'$key',";
+                        }
+                ?>
+             ],
+
+        },
+
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'All (ARR)',
+            data: [
+                <?php
+                        foreach ($old_japan_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#ce93d8'
+        }, {
+            name: 'All (HW)',
+            data: [
+                <?php
+                        foreach ($new_japan_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#81d4fa'
+        }, {
+            name: 'Experienced (ARR)',
+            data: [
+                <?php
+                        foreach ($old_exp_japan_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#673ab7'
+        }, {
+            name: 'Experienced (HW)',
+            data: [
+                <?php
+                        foreach ($new_exp_japan_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#03a9f4'
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#europe_realm_distribution').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                <?php
+                        foreach ($new_europe_realm_pop as $key => $value) {
+                                echo "'$key',";
+                        }
+                ?>
+             ],
+
+        },
+
+        yAxis: {
+            title: {
+                text: '# of Characters'
+            }
+        },
+        tooltip: {
+            pointFormat: '{point.y}'
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'All (ARR)',
+            data: [
+                <?php
+                        foreach ($old_europe_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#ce93d8'
+        }, {
+            name: 'All (HW)',
+            data: [
+                <?php
+                        foreach ($new_europe_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#81d4fa'
+        }, {
+            name: 'Experienced (ARR)',
+            data: [
+                <?php
+                        foreach ($old_exp_europe_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#673ab7'
+        }, {
+            name: 'Experienced (HW)',
+            data: [
+                <?php
+                        foreach ($new_exp_europe_realm_pop as $value) {
+                                echo "$value,";
+                        }
+                ?>
+            ],
+            color: '#03a9f4'
+        }]
+    });
+});
+</script>
+
 
   </body>
 
