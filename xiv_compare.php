@@ -62,7 +62,7 @@ $new_exp_player_count_query = $newdb->query("SELECT count() FROM players WHERE "
 $new_exp_player_count = $new_exp_player_count_query->fetchArray()[0];
 $fmt_new_exp_player_count = number_format($new_exp_player_count);
 
-$diff_exp_player_count = number_format($new_player_count - $old_player_count);
+$diff_exp_player_count = number_format($new_exp_player_count - $old_exp_player_count);
 
 // Fetch total number of players in each region
 // America
