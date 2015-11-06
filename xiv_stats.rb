@@ -148,8 +148,6 @@ class XIVStats
   # Given a lodestone profile page, return 1 if user has subscribed for 30 days,
   # else return 0
   def get_minion(page, minion)
-    p30days = nil
-
     minion_begin = page.index{|s| s.include?("<!-- Minion -->")}
     minion_end = page.index{|s| s.include?("<!-- //Minion -->")}
     
@@ -165,6 +163,25 @@ class XIVStats
     return 0
   end
 
+  # Given a lodestone profile page, return 1 if user has subscribed for 30 days,
+  # else return 0
+  def get_mount(page, mount)
+    mount_begin = page.index{|s| s.include?("<!-- Mount -->")}
+    mount_end = page.index{|s| s.include?("<!-- //Mount -->")}
+
+    mount_section = page[mount_begin..mount_end]
+
+
+    mount_section.each do |line|
+      if line.include?(mount)
+        return 1
+      end
+    end
+
+    return 0
+  end
+
+
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
     @db.execute("INSERT OR IGNORE INTO 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
@@ -172,7 +189,7 @@ class XIVStats
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
       , level_culinarian, level_miner, level_botanist, level_fisher, p30days, p60days, p90days, p180days, p270days, p360days, p450days, p630days
       , prearr, prehw, artbook, beforemeteor, beforethefall, soundtrack, saweternalbond, sightseeing, arr_25_complete, comm50, moogleplush
-      , hildibrand, ps4collectors) 
+      , hildibrand, ps4collectors, dideternalbond, arrcollector, kobold, sahagin, amaljaa, sylph) 
       values ('#{player.id}',\"#{player.player_name}\",'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}'
       ,'#{player.level_gladiator}','#{player.level_pugilist}','#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}'
       ,'#{player.level_rogue}','#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_darkknight}'
@@ -181,7 +198,8 @@ class XIVStats
       ,'#{player.level_miner}','#{player.level_botanist}','#{player.level_fisher}','#{player.p30days}','#{player.p60days}','#{player.p90days}','#{player.p180days}'
       ,'#{player.p270days}','#{player.p360days}','#{player.p450days}','#{player.p630days}','#{player.prearr}','#{player.prehw}','#{player.artbook}'
       ,'#{player.beforemeteor}','#{player.beforethefall}','#{player.soundtrack}','#{player.saweternalbond}','#{player.sightseeing}'
-      ,'#{player.arr_25_complete}','#{player.comm50}','#{player.moogleplush}','#{player.hildibrand}','#{player.ps4collectors}');")
+      ,'#{player.arr_25_complete}','#{player.comm50}','#{player.moogleplush}','#{player.hildibrand}','#{player.ps4collectors}'
+      ,'#{player.dideternalbond}','#{player.arrcollector}','#{player.kobold}','#{player.sahagin}','#{player.amaljaa}','#{player.sylph}');")
   end
 
   # Main function. Creates the database, cycles through character profiles and 
@@ -199,7 +217,7 @@ class XIVStats
       ,level_botanist INTEGER,level_fisher INTEGER,p30days INTEGER, p60days INTEGER, p90days INTEGER, p180days INTEGER, p270days INTEGER
       ,p360days INTEGER,p450days INTEGER,p630days INTEGER,prearr INTEGER,prehw INTEGER, artbook INTEGER, beforemeteor INTEGER, beforethefall INTEGER
       ,soundtrack INTEGER,saweternalbond INTEGER,sightseeing INTEGER,arr_25_complete INTEGER,comm50 INTEGER,moogleplush INTEGER
-      ,hildibrand INTEGER, ps4collectors INTEGER);")    
+      ,hildibrand INTEGER, ps4collectors INTEGER, dideternalbond INTEGER, arrcollector INTEGER, kobold INTEGER, sahagin INTEGER, amaljaa INTEGER, sylph INTEGER);")    
 
     # Do the player IDs in the range specified at the command-line
     for i in @lowest_id..@highest_id
@@ -232,6 +250,12 @@ class XIVStats
         player.moogleplush = get_minion(page, "Wind-up Delivery Moogle")
         player.hildibrand = get_minion(page, "Wind-up Gentleman")
         player.ps4collectors = get_minion(page, "Wind-up Moogle")
+        player.dideternalbond = get_mount(page, "Ceremony Chocobo")
+        player.arrcollector = get_mount(page, "Coeurl")
+        player.kobold = get_mount(page, "Bomb Palanquin")
+        player.sahagin = get_mount(page, "Cavalry Elbst")
+        player.amaljaa = get_mount(page, "Cavalry Drake")
+        player.sylph = get_mount(page, "Laurel Goobbue")
         levels = get_levels(page)
 
         player.level_gladiator = levels[0]
