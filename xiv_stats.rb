@@ -145,17 +145,41 @@ class XIVStats
     levels
   end
 
+  # Given a lodestone profile page, return 1 if user has subscribed for 30 days,
+  # else return 0
+  def get_minion(page, minion)
+    p30days = nil
+
+    minion_begin = page.index{|s| s.include?("<!-- Minion -->")}
+    minion_end = page.index{|s| s.include?("<!-- //Minion -->")}
+    
+    minion_section = page[minion_begin..minion_end]
+
+
+    minion_section.each do |line|
+      if line.include?(minion)
+        return 1
+      end
+    end
+
+    return 0
+  end
+
   # Given a player object, writes the player's details to the database
   def write_to_db(player)
     @db.execute("INSERT OR IGNORE INTO 'players' (id, name, realm, race, gender, grand_company, level_gladiator, level_pugilist, level_marauder
       , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_astrologian, level_darkknight, level_machinist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
-      , level_culinarian, level_miner, level_botanist, level_fisher) values ('#{player.id}',\"#{player.player_name}\"
-      ,'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}','#{player.level_gladiator}','#{player.level_pugilist}'
-      ,'#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}','#{player.level_rogue}','#{player.level_conjurer}'
-      ,'#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_darkknight}','#{player.level_machinist}','#{player.level_astrologian}'
-      ,'#{player.level_carpenter}','#{player.level_blacksmith}','#{player.level_armorer}','#{player.level_goldsmith}','#{player.level_leatherworker}'
-      ,'#{player.level_weaver}','#{player.level_alchemist}','#{player.level_culinarian}','#{player.level_miner}','#{player.level_botanist}','#{player.level_fisher}');")
+      , level_culinarian, level_miner, level_botanist, level_fisher, p30days, p60days, p90days, p180days, p270days, p360days, p450days, p630days
+      , prearr, prehw, artbook, beforemeteor, beforethefall) 
+      values ('#{player.id}',\"#{player.player_name}\",'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}'
+      ,'#{player.level_gladiator}','#{player.level_pugilist}','#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}'
+      ,'#{player.level_rogue}','#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_darkknight}'
+      ,'#{player.level_machinist}','#{player.level_astrologian}','#{player.level_carpenter}','#{player.level_blacksmith}','#{player.level_armorer}'
+      ,'#{player.level_goldsmith}','#{player.level_leatherworker}','#{player.level_weaver}','#{player.level_alchemist}','#{player.level_culinarian}'
+      ,'#{player.level_miner}','#{player.level_botanist}','#{player.level_fisher}','#{player.p30days}','#{player.p60days}','#{player.p90days}','#{player.p180days}'
+      ,'#{player.p270days}','#{player.p360days}','#{player.p450days}','#{player.p630days}','#{player.prearr}','#{player.prehw}','#{player.artbook}'
+      ,'#{player.beforemeteor}','#{player.beforethefall}');")
   end
 
   # Main function. Creates the database, cycles through character profiles and 
@@ -170,7 +194,8 @@ class XIVStats
       ,level_rogue INTEGER,level_conjurer INTEGER,level_thaumaturge INTEGER,level_arcanist INTEGER,level_darkknight INTEGER, level_machinist INTEGER
       ,level_astrologian INTEGER,level_carpenter INTEGER,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER
       ,level_leatherworker INTEGER,level_weaver INTEGER,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER
-      ,level_botanist INTEGER,level_fisher INTEGER);")    
+      ,level_botanist INTEGER,level_fisher INTEGER,p30days INTEGER, p60days INTEGER, p90days INTEGER, p180days INTEGER, p270days INTEGER
+      ,p360days INTEGER,p450days INTEGER,p630days INTEGER,prearr INTEGER,prehw INTEGER, artbook INTEGER, beforemeteor INTEGER, beforethefall INTEGER);")    
 
     # Do the player IDs in the range specified at the command-line
     for i in @lowest_id..@highest_id
@@ -182,6 +207,19 @@ class XIVStats
         player.race = get_race(page)
         player.gender = get_gender(page)
         player.grand_company = get_grand_company(page) 
+        player.p30days = get_minion(page, "Wind-up Cursor")
+        player.p60days = get_minion(page, "Black Chocobo Chick")
+        player.p90days = get_minion(page, "Beady Eye")
+        player.p180days = get_minion(page, "Minion Of Light")
+        player.p270days = get_minion(page, "Wind-up Leader")
+        player.p360days = get_minion(page, "Wind-up Odin")
+        player.p450days = get_minion(page, "Wind-up Goblin")
+        player.p630days = get_minion(page, "Wind-up Nanamo")
+        player.prearr = get_minion(page, "Cait Sith Doll")
+        player.prehw = get_minion(page, "Chocobo Chick Courier")
+        player.artbook = get_minion(page, "Model Enterprise")
+        player.beforemeteor = get_minion(page, "Wind-up Dalamud")
+        player.beforethefall = get_minion(page, "Set of Primogs")
         levels = get_levels(page)
 
         player.level_gladiator = levels[0]
@@ -208,13 +246,8 @@ class XIVStats
         player.level_botanist = levels[21]
         player.level_fisher = levels[22]
 
-        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | GC: #{player.grand_company}"
-#	puts "GLA: #{player.level_gladiator} | PUG: #{player.level_pugilist} | MAR: #{player.level_marauder} | LNC: #{player.level_lancer} | ARC: #{player.level_archer}"
-#	puts "ROG: #{player.level_rogue} | CNJ: #{player.level_conjurer} | THM: #{player.level_thaumaturge} | ARC: #{player.level_arcanist}"
-#	puts "AST: #{player.level_astrologian} | DRK: #{player.level_darkknight} | MCN: #{player.level_machinist} | CRP: #{player.level_carpenter}"
-#	puts "BSM: #{player.level_blacksmith} | ARM: #{player.level_armorer} | GSM: #{player.level_goldsmith} | LTW: #{player.level_leatherworker}"
-#	puts "WVR: #{player.level_weaver} | ALC: #{player.level_alchemist} | CUL: #{player.level_culinarian} | MIN: #{player.level_miner}"
-#	puts "BTN: #{player.level_botanist} | FSH: #{player.level_fisher}"
+#        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | GC: #{player.grand_company}"
+        puts "ID: #{i} | Name: #{player.player_name} | Realm: #{player.realm} | Race: #{player.race} | Gender: #{player.gender} | 30Days: #{player.p30days}"
 	write_to_db(player)
 
         # DEBUG
