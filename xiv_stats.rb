@@ -171,7 +171,8 @@ class XIVStats
       , level_lancer, level_archer, level_rogue, level_conjurer, level_thaumaturge, level_arcanist, level_astrologian, level_darkknight, level_machinist, level_carpenter
       , level_blacksmith, level_armorer, level_goldsmith, level_leatherworker, level_weaver, level_alchemist
       , level_culinarian, level_miner, level_botanist, level_fisher, p30days, p60days, p90days, p180days, p270days, p360days, p450days, p630days
-      , prearr, prehw, artbook, beforemeteor, beforethefall) 
+      , prearr, prehw, artbook, beforemeteor, beforethefall, soundtrack, saweternalbond, sightseeing, arr_25_complete, comm50, moogleplush
+      , hildibrand, ps4collectors) 
       values ('#{player.id}',\"#{player.player_name}\",'#{player.realm}',\"#{player.race}\",'#{player.gender}','#{player.grand_company}'
       ,'#{player.level_gladiator}','#{player.level_pugilist}','#{player.level_marauder}','#{player.level_lancer}','#{player.level_archer}'
       ,'#{player.level_rogue}','#{player.level_conjurer}','#{player.level_thaumaturge}','#{player.level_arcanist}','#{player.level_darkknight}'
@@ -179,7 +180,8 @@ class XIVStats
       ,'#{player.level_goldsmith}','#{player.level_leatherworker}','#{player.level_weaver}','#{player.level_alchemist}','#{player.level_culinarian}'
       ,'#{player.level_miner}','#{player.level_botanist}','#{player.level_fisher}','#{player.p30days}','#{player.p60days}','#{player.p90days}','#{player.p180days}'
       ,'#{player.p270days}','#{player.p360days}','#{player.p450days}','#{player.p630days}','#{player.prearr}','#{player.prehw}','#{player.artbook}'
-      ,'#{player.beforemeteor}','#{player.beforethefall}');")
+      ,'#{player.beforemeteor}','#{player.beforethefall}','#{player.soundtrack}','#{player.saweternalbond}','#{player.sightseeing}'
+      ,'#{player.arr_25_complete}','#{player.comm50}','#{player.moogleplush}','#{player.hildibrand}','#{player.ps4collectors}');")
   end
 
   # Main function. Creates the database, cycles through character profiles and 
@@ -195,7 +197,9 @@ class XIVStats
       ,level_astrologian INTEGER,level_carpenter INTEGER,level_blacksmith INTEGER,level_armorer INTEGER,level_goldsmith INTEGER
       ,level_leatherworker INTEGER,level_weaver INTEGER,level_alchemist INTEGER,level_culinarian INTEGER,level_miner INTEGER
       ,level_botanist INTEGER,level_fisher INTEGER,p30days INTEGER, p60days INTEGER, p90days INTEGER, p180days INTEGER, p270days INTEGER
-      ,p360days INTEGER,p450days INTEGER,p630days INTEGER,prearr INTEGER,prehw INTEGER, artbook INTEGER, beforemeteor INTEGER, beforethefall INTEGER);")    
+      ,p360days INTEGER,p450days INTEGER,p630days INTEGER,prearr INTEGER,prehw INTEGER, artbook INTEGER, beforemeteor INTEGER, beforethefall INTEGER
+      ,soundtrack INTEGER,saweternalbond INTEGER,sightseeing INTEGER,arr_25_complete INTEGER,comm50 INTEGER,moogleplush INTEGER
+      ,hildibrand INTEGER, ps4collectors INTEGER);")    
 
     # Do the player IDs in the range specified at the command-line
     for i in @lowest_id..@highest_id
@@ -220,6 +224,14 @@ class XIVStats
         player.artbook = get_minion(page, "Model Enterprise")
         player.beforemeteor = get_minion(page, "Wind-up Dalamud")
         player.beforethefall = get_minion(page, "Set of Primogs")
+        player.soundtrack = get_minion(page, "Wind-up Bahamut")
+        player.saweternalbond = get_minion(page, "Demon Box")
+        player.sightseeing = get_minion(page, "Fledgling Apkallu")
+        player.arr_25_complete = get_minion(page, "Midgardsormr")
+        player.comm50 = get_minion(page, "Princely Hatchling")
+        player.moogleplush = get_minion(page, "Wind-up Delivery Moogle")
+        player.hildibrand = get_minion(page, "Wind-up Gentleman")
+        player.ps4collectors = get_minion(page, "Wind-up Moogle")
         levels = get_levels(page)
 
         player.level_gladiator = levels[0]

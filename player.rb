@@ -43,6 +43,14 @@ class Player
     artbook
     beforemeteor
     beforethefall
+    soundtrack
+    saweternalbond
+    sightseeing
+    arr_25_complete
+    comm50
+    moogleplush
+    hildibrand
+    ps4collectors
   ]
 
   def initialize
