@@ -86,3 +86,24 @@ This table contain the following columns:
 - level_miner
 - level_botanist
 - level_fisher
+- 30days (subscription time)
+- 60days
+- 90days
+- 180days
+- 270days
+- 360days
+- 450days
+- 630days
+- prearr (pre-ordered A Realm Reborn)
+- prehw (pre-ordered Heavensward)
+- artbook (bought "The Art of Eorzea")
+- beforemeteor (bought "Before Meteor" soundtrack)
+- beforethefall (bought "Before The Fall" soundtrack)
+- soundtrack (bought "A Realm Reborn OST" soundtrack)
+- saweternalbond (guest at a ceremony of eternal bonding)
+- sightseeing (completed all 80 entries in the ARR sightseeing log)
+- arr_25_complete (completed patch 2.5)
+- comm50 (attained 50 player commendations)
+- moogleplush (bought a moogle plush)
+- hildibrand (Completed the 2.5 hildibrand quest line)
+- ps4collectors (Bought the PS4 collectors edition for A Realm Reborn)
