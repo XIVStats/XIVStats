@@ -51,6 +51,12 @@ class Player
     moogleplush
     hildibrand
     ps4collectors
+    dideternalbond
+    arrcollector
+    kobold
+    sahagin
+    amaljaa
+    sylph
   ]
 
   def initialize
