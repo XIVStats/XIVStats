@@ -256,6 +256,7 @@ class XIVStats
         player.sahagin = get_mount(page, "Cavalry Elbst")
         player.amaljaa = get_mount(page, "Cavalry Drake")
         player.sylph = get_mount(page, "Laurel Goobbue")
+        player.hw_complete = get_mount(page, "Migardsormr")
         levels = get_levels(page)
 
         player.level_gladiator = levels[0]

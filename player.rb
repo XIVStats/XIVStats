@@ -57,6 +57,7 @@ class Player
     sahagin
     amaljaa
     sylph
+    hw_complete
   ]
 
   def initialize
