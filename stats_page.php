@@ -104,7 +104,7 @@ while ($row = $race_gender_query->fetchArray()) {
 
 $active_race_gender_male = array();
 $active_race_gender_female = array();
-$active_race_gender_query = $olddb->query("SELECT race,gender,count() FROM players WHERE " . $old_experienced_check . " GROUP BY race,gender");
+$active_race_gender_query = $olddb->query("SELECT race,gender,count() FROM players WHERE " . $active_check . " GROUP BY race,gender");
 
 while ($row = $active_race_gender_query->fetchArray()) {
         //$row[0] = race
@@ -317,6 +317,38 @@ while ($row = $active_europe_realm_pop_query->fetchArray()) {
         //$row[1] = population
         $active_europe_realm_pop[$row[0]] = $row[1];
 }
+
+
+
+// Subscription figures
+
+$sub_30_days_query = $db->query("SELECT count() FROM players WHERE 30days == '1';");
+$sub_30_days = $player_sub_30_days_query->fetchArray()[0];
+$fmt_sub_30_days = number_format($sub_30_days);
+
+$sub_60_days_query = $db->query("SELECT count() FROM players WHERE 60days == '1';");
+$sub_60_days = $player_sub_60_days_query->fetchArray()[0];
+$fmt_sub_60_days = number_format($sub_60_days);
+
+$sub_90_days_query = $db->query("SELECT count() FROM players WHERE 90days == '1';");
+$sub_90_days = $player_sub_90_days_query->fetchArray()[0];
+$fmt_sub_90_days = number_format($sub_90_days);
+
+$sub_180_days_query = $db->query("SELECT count() FROM players WHERE 180days == '1';");
+$sub_180_days = $player_sub_180_days_query->fetchArray()[0];
+$fmt_sub_180_days = number_format($sub_180_days);
+
+$sub_270_days_query = $db->query("SELECT count() FROM players WHERE 270days == '1';");
+$sub_270_days = $player_sub_270_days_query->fetchArray()[0];
+$fmt_sub_270_days = number_format($sub_270_days);
+
+$sub_360_days_query = $db->query("SELECT count() FROM players WHERE 360days == '1';");
+$sub_360_days = $player_sub_360_days_query->fetchArray()[0];
+$fmt_sub_360_days = number_format($sub_360_days);
+
+$sub_450_days_query = $db->query("SELECT count() FROM players WHERE 450days == '1';");
+$sub_450_days = $player_sub_450_days_query->fetchArray()[0];
+$fmt_sub_450_days = number_format($sub_450_days);
 
 ?>
 
@@ -588,6 +620,71 @@ while ($row = $active_europe_realm_pop_query->fetchArray()) {
                       <!-- Begin Chart -->
                       <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
                       <!-- End Chart -->
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">SUBSCRIBED TIME</span>
+                      <div class="black-text light region-subtitle">30 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_30_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">60 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_60_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">90 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_90_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">180 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_180_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">270 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_270_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">360 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_360_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">450 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_450_days; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">630 DAYS</div>
+                      <div class="row">
+                        <div class="col s12 m6 l6 arr-color region-stat">
+                          <div><?php echo $fmt_sub_630_days; ?></div>
+                        </div>
+                      </div>
+
                   </div>
               </div>
           </div>
