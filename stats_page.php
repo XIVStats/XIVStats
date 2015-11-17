@@ -1,8 +1,8 @@
 <?php
 
-$db = new SQLite3('players_TEST.db');
+$db = new SQLite3('players.db');
 
-$active_check = "arr_25_complete == '1'";
+$active_check = "arr_25_complete == 1";
 
 $american_realms = "(realm = 'Behemoth' OR realm = 'Brynhildr' OR realm = 'Diabolos'
         OR realm = 'Excalibur' OR realm = 'Exodus' OR realm = 'Famfrit' OR realm = 'Hyperion' OR realm = 'Lamia' OR realm = 'Leviathan'
@@ -104,7 +104,7 @@ while ($row = $race_gender_query->fetchArray()) {
 
 $active_race_gender_male = array();
 $active_race_gender_female = array();
-$active_race_gender_query = $olddb->query("SELECT race,gender,count() FROM players WHERE " . $active_check . " GROUP BY race,gender");
+$active_race_gender_query = $db->query("SELECT race,gender,count() FROM players WHERE " . $active_check . " GROUP BY race,gender");
 
 while ($row = $active_race_gender_query->fetchArray()) {
         //$row[0] = race
@@ -322,32 +322,32 @@ while ($row = $active_europe_realm_pop_query->fetchArray()) {
 
 // Subscription figures
 
-$sub_30_days_query = $db->query("SELECT count() FROM players WHERE 30days == '1';");
-$sub_30_days = $player_sub_30_days_query->fetchArray()[0];
+$sub_30_days_query = $db->query("SELECT count() FROM players WHERE p30days == '1';");
+$sub_30_days = $sub_30_days_query->fetchArray()[0];
 $fmt_sub_30_days = number_format($sub_30_days);
 
-$sub_60_days_query = $db->query("SELECT count() FROM players WHERE 60days == '1';");
-$sub_60_days = $player_sub_60_days_query->fetchArray()[0];
+$sub_60_days_query = $db->query("SELECT count() FROM players WHERE p60days == '1';");
+$sub_60_days = $sub_60_days_query->fetchArray()[0];
 $fmt_sub_60_days = number_format($sub_60_days);
 
-$sub_90_days_query = $db->query("SELECT count() FROM players WHERE 90days == '1';");
-$sub_90_days = $player_sub_90_days_query->fetchArray()[0];
+$sub_90_days_query = $db->query("SELECT count() FROM players WHERE p90days == '1';");
+$sub_90_days = $sub_90_days_query->fetchArray()[0];
 $fmt_sub_90_days = number_format($sub_90_days);
 
-$sub_180_days_query = $db->query("SELECT count() FROM players WHERE 180days == '1';");
-$sub_180_days = $player_sub_180_days_query->fetchArray()[0];
+$sub_180_days_query = $db->query("SELECT count() FROM players WHERE p180days == '1';");
+$sub_180_days = $sub_180_days_query->fetchArray()[0];
 $fmt_sub_180_days = number_format($sub_180_days);
 
-$sub_270_days_query = $db->query("SELECT count() FROM players WHERE 270days == '1';");
-$sub_270_days = $player_sub_270_days_query->fetchArray()[0];
+$sub_270_days_query = $db->query("SELECT count() FROM players WHERE p270days == '1';");
+$sub_270_days = $sub_270_days_query->fetchArray()[0];
 $fmt_sub_270_days = number_format($sub_270_days);
 
-$sub_360_days_query = $db->query("SELECT count() FROM players WHERE 360days == '1';");
-$sub_360_days = $player_sub_360_days_query->fetchArray()[0];
+$sub_360_days_query = $db->query("SELECT count() FROM players WHERE p360days == '1';");
+$sub_360_days = $sub_360_days_query->fetchArray()[0];
 $fmt_sub_360_days = number_format($sub_360_days);
 
-$sub_450_days_query = $db->query("SELECT count() FROM players WHERE 450days == '1';");
-$sub_450_days = $player_sub_450_days_query->fetchArray()[0];
+$sub_450_days_query = $db->query("SELECT count() FROM players WHERE p450days == '1';");
+$sub_450_days = $sub_450_days_query->fetchArray()[0];
 $fmt_sub_450_days = number_format($sub_450_days);
 
 ?>
