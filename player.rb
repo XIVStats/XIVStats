@@ -58,6 +58,7 @@ class Player
     amaljaa
     sylph
     hw_complete
+    hw_31_complete
   ]
 
   def initialize
