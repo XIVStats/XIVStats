@@ -642,11 +642,6 @@ $fmt_sightseeing = number_format($sightseeing);
                       <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                       <!-- End Chart -->
 
-                      <div class="black-text light region-subtitle"></div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
                   </div>
               </div>
           </div>
