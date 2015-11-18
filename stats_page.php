@@ -827,6 +827,23 @@ $fmt_sightseeing = number_format($sightseeing);
           </div>
       </div>
 
+    <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light"></span>
+                      <!--World-->
+                      <div class="black-text light region-title">View Previous Censuses</div>
+                      <div class="black-text light region-subtitle"><a href="/old">I'M A BUTTON</a></div>
+                      <div class="row">
+                          <div class="s12 m6 l6   region-stat">
+                              <div><?php echo $fmt_player_count; ?></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <!-- End Container -->
   </div>
