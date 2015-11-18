@@ -350,6 +350,73 @@ $sub_450_days_query = $db->query("SELECT count() FROM players WHERE p450days == 
 $sub_450_days = $sub_450_days_query->fetchArray()[0];
 $fmt_sub_450_days = number_format($sub_450_days);
 
+$sub_630_days_query = $db->query("SELECT count() FROM players WHERE p630days == '1';");
+$sub_630_days = $sub_630_days_query->fetchArray()[0];
+$fmt_sub_630_days = number_format($sub_630_days);
+
+// Pre-orders
+
+$prearr_query = $db->query("SELECT count() FROM players WHERE prearr == '1';");
+$prearr = $prearr_query->fetchArray()[0];
+$fmt_prearr = number_format($prearr);
+
+$prehw_query = $db->query("SELECT count() FROM players WHERE prehw == '1';");
+$prehw = $prehw_query->fetchArray()[0];
+$fmt_prehw = number_format($prehw);
+
+// Collectors Edition
+
+$ps4_collectors_query = $db->query("SELECT count() FROM players WHERE ps4collectors == '1';");
+$ps4_collectors = $ps4_collectors_query->fetchArray()[0];
+$fmt_ps4_collectors = number_format($ps4_collectors);
+
+// Physical Items
+
+$artbook_query = $db->query("SELECT count() FROM players WHERE artbook == '1';");
+$artbook = $artbook_query->fetchArray()[0];
+$fmt_artbook = number_format($artbook);
+
+$beforemeteor_query = $db->query("SELECT count() FROM players WHERE beforemeteor == '1';");
+$beforemeteor = $beforemeteor_query->fetchArray()[0];
+$fmt_beforemeteor = number_format($beforemeteor);
+
+$beforethefall_query = $db->query("SELECT count() FROM players WHERE beforethefall == '1';");
+$beforethefall = $beforethefall_query->fetchArray()[0];
+$fmt_beforethefall = number_format($beforethefall);
+
+$soundtrack_query = $db->query("SELECT count() FROM players WHERE soundtrack == '1';");
+$soundtrack = $soundtrack_query->fetchArray()[0];
+$fmt_soundtrack = number_format($soundtrack);
+
+$moogleplush_query = $db->query("SELECT count() FROM players WHERE moogleplush == '1';");
+$moogleplush = $moogleplush_query->fetchArray()[0];
+$fmt_moogleplush = number_format($moogleplush);
+
+// Eternal Bond
+
+$saw_eternal_bond_query = $db->query("SELECT count() FROM players WHERE saweternalbond == '1';");
+$saw_eternal_bond = $saw_eternal_bond_query->fetchArray()[0];
+$fmt_saw_eternal_bond = number_format($saw_eternal_bond);
+
+// Player Commendations
+
+$comm50_query = $db->query("SELECT count() FROM players WHERE comm50 == '1';");
+$comm50 = $comm50_query->fetchArray()[0];
+$fmt_comm50 = number_format($comm50);
+
+// Hildibrand
+
+$hildibrand_query = $db->query("SELECT count() FROM players WHERE hildibrand == '1';");
+$hildibrand = $hildibrand_query->fetchArray()[0];
+$fmt_hildibrand = number_format($hildibrand);
+
+// ARR Sightseeing Log
+
+$sightseeing_query = $db->query("SELECT count() FROM players WHERE sightseeing == '1';");
+$sightseeing = $sightseeing_query->fetchArray()[0];
+$fmt_sightseeing = number_format($sightseeing);
+
+
 ?>
 
 <html>
@@ -398,14 +465,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
               font-size: large;
           }
 
-          .arr-color {
-              color: #673ab7;
-          }
-
-          .heavensward-color {
-              color: #03a9f4;
-          }
-
           footer.page-footer {
               margin-top: 0px;
               padding-top: 0px;
@@ -421,6 +480,7 @@ $fmt_sub_450_days = number_format($sub_450_days);
                   <div class="card-content black-text">
                       <span class="card-title black-text" style="font-size:28pt;">XIVCensus - Player statistics for FFXIV</span>
                       <p><b>* (Any reference to "Active" players, refers to players who have the midgardsormr pet from the 2.5 story)</b></p>
+                      <p>Please click <a href="/old">HERE</a> to see previous censuses</p>
                   </div>
               </div>
           </div>
@@ -437,16 +497,14 @@ $fmt_sub_450_days = number_format($sub_450_days);
                       <div class="black-text light region-title">WORLD</div>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_active_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <!-- America -->
@@ -456,16 +514,14 @@ $fmt_sub_450_days = number_format($sub_450_days);
                       <div class="black-text light region-title">AMERICA</div>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_america_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_america_active_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <!--Japan-->
@@ -475,16 +531,14 @@ $fmt_sub_450_days = number_format($sub_450_days);
                       <div class="black-text light region-title">JAPAN</div>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_japan_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_japan_active_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <!--Europe-->
@@ -494,16 +548,14 @@ $fmt_sub_450_days = number_format($sub_450_days);
                       <div class="black-text light region-title">EUROPE</div>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_europe_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
-                          <div class="col s12 m6 l6 arr-color region-stat">
+                          <div class="s12 m6 l6   region-stat">
                               <div><?php echo $fmt_europe_active_player_count; ?></div>
-                              <div class="region-stat-label light">A REALM REBORN</div>
                           </div>
                       </div>
                   </div>
@@ -631,61 +683,151 @@ $fmt_sub_450_days = number_format($sub_450_days);
                       <span class="card-title black-text light">SUBSCRIBED TIME</span>
                       <div class="black-text light region-subtitle">30 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_30_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">60 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_60_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">90 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_90_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">180 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_180_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">270 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_270_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">360 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_360_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">450 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_450_days; ?></div>
                         </div>
                       </div>
 
                       <div class="black-text light region-subtitle">630 DAYS</div>
                       <div class="row">
-                        <div class="col s12 m6 l6 arr-color region-stat">
+                        <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sub_630_days; ?></div>
                         </div>
                       </div>
 
                   </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">PRE-ORDERS</span>
+
+                      <div class="black-text light region-subtitle">PRE-ORDERED ARR</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_prearr; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">PRE-ORDERED HW</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_prehw; ?></div>
+                        </div>
+                      </div>
+
+                 </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">COLLECTORS EDITION</span>
+
+                      <div class="black-text light region-subtitle">PS4 COLLECTORS EDITION</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_ps4_collectors; ?></div>
+                        </div>
+                      </div>
+
+                 </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 m6" style="width:100%;">
+              <div class="card white">
+                  <div class="card-content black-text">
+                      <span class="card-title black-text light">PHYSICAL ITEMS</span>
+
+                      <div class="black-text light region-subtitle">ARR SOUNDTRACK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_soundtrack; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_beforemeteor; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">BEFORE THE FALL SOUNDTRACK (FIGURE COMING SOON!)</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_beforethefall; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">ARTBOOK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_artbook; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">MOOGLE PLUSH</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_moogleplush; ?></div>
+                        </div>
+                      </div>
+
+                 </div>
               </div>
           </div>
       </div>
@@ -810,7 +952,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#ce93d8'
               }, {
                   name: 'Male',
                   data: [
@@ -821,7 +962,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#673ab7'
               }]
           });
       });
@@ -867,7 +1007,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#ce93d8'
               }, {
                   name: 'Male',
                   data: [
@@ -878,7 +1017,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#673ab7'
               }]
           });
       });
@@ -923,7 +1061,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#673ab7'
               }]
           });
       });
@@ -968,7 +1105,6 @@ $fmt_sub_450_days = number_format($sub_450_days);
                               }
                       ?>
                   ],
-                  color: '#673ab7'
               }]
           });
       });
@@ -1014,7 +1150,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#ce93d8'
         }, {
             name: 'Active',
             data: [
@@ -1024,7 +1159,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#673ab7'
         }]
     });
 });
@@ -1071,7 +1205,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#ce93d8'
         }, {
             name: 'Active',
             data: [
@@ -1081,7 +1214,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#673ab7'
         }]
     });
 });
@@ -1127,7 +1259,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#ce93d8'
         }, {
             name: 'Active',
             data: [
@@ -1137,7 +1268,6 @@ $(function () {
                         }
                 ?>
             ],
-            color: '#673ab7'
         }]
     });
 });
