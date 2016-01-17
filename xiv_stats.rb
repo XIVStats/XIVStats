@@ -237,6 +237,7 @@ class XIVStats
         player.p360days = get_minion(page, "Wind-up Odin")
         player.p450days = get_minion(page, "Wind-up Goblin")
         player.p630days = get_minion(page, "Wind-up Nanamo")
+        player.p960days = get_minion(page, "Wind-up Firion")
         player.prearr = get_minion(page, "Cait Sith Doll")
         player.prehw = get_minion(page, "Chocobo Chick Courier")
         player.artbook = get_minion(page, "Model Enterprise")
@@ -250,7 +251,7 @@ class XIVStats
         player.moogleplush = get_minion(page, "Wind-up Delivery Moogle")
         player.hildibrand = get_minion(page, "Wind-up Gentleman")
         player.ps4collectors = get_minion(page, "Wind-up Moogle")
-        player.hw_31_complete = get_minion(page, "")
+        player.hw_31_complete = get_minion(page, "Wind-up Haurchefant")
         player.dideternalbond = get_mount(page, "Ceremony Chocobo")
         player.arrcollector = get_mount(page, "Coeurl")
         player.kobold = get_mount(page, "Bomb Palanquin")
@@ -258,6 +259,7 @@ class XIVStats
         player.amaljaa = get_mount(page, "Cavalry Drake")
         player.sylph = get_mount(page, "Laurel Goobbue")
         player.hw_complete = get_mount(page, "Migardsormr")
+	player.legacy = get_mount(page, "Legacy Chocobo")
         levels = get_levels(page)
 
         player.level_gladiator = levels[0]
