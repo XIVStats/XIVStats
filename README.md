@@ -8,6 +8,17 @@ You can view a live demo of this web page here: [ffxivcensus.com](http://ffxivce
 
 This project is inspired by [xivsoul.com](https://xivsoul.com).
 
+# I want to make my own copy of the Lodestone database, which repository should I use? #
+
+There are currently two applications which can produce a database from the lodestone, they are:
+
+- [https://github.com/XIVStats/XIVStats-Gatherer-Ruby](https://github.com/XIVStats/XIVStats-Gatherer-Ruby)
+- [https://github.com/XIVStats/XIVStats-Gatherer-Java](https://github.com/XIVStats/XIVStats-Gatherer-Java)
+
+If you only want to perform a scan of a small subset of the lodestone player list, so are not too fussed about the speed of the scan, or you don't have to / don't want to set up MySQL, then choose the Ruby gatherer.
+
+If you want to do a complete scan of the Lodestone, and require higher performance, and you have a MySQL server available, then choose the Java gatherer.
+
 # Configuration #
 
 The path for the database to be used is specified on the line beginning
