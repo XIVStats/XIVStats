@@ -388,9 +388,9 @@ $fmt_pc_collectors = number_format($pc_collectors);
 
 // Physical Items
 
-$artbook_query = $db->query("SELECT count(*) FROM tblplayers WHERE artbook = (1);");
-$artbook = $artbook_query->fetch_array()[0];
-$fmt_artbook = number_format($artbook);
+$arrartbook_query = $db->query("SELECT count(*) FROM tblplayers WHERE arrartbook = (1);");
+$arrartbook = $arrartbook_query->fetch_array()[0];
+$fmt_arrartbook = number_format($arrartbook);
 
 $beforemeteor_query = $db->query("SELECT count(*) FROM tblplayers WHERE beforemeteor = (1);");
 $beforemeteor = $beforemeteor_query->fetch_array()[0];
@@ -864,7 +864,7 @@ $db->close();
                       <div class="black-text light region-subtitle">ARTBOOK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_artbook; ?></div>
+                          <div><?php echo $fmt_arrartbook; ?></div>
                         </div>
                       </div>
 
