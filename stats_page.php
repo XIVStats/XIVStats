@@ -17,7 +17,7 @@ if (! $db->select_db($conn_info["database"])) {
         die("Couldn't find DB");
 }
 
-$active_check = "is_active = (1)";
+$active_check = "hw_33_complete = (1)";
 
 $american_realms = "(realm = 'Behemoth' OR realm = 'Brynhildr' OR realm = 'Diabolos'
         OR realm = 'Excalibur' OR realm = 'Exodus' OR realm = 'Famfrit' OR realm = 'Hyperion' OR realm = 'Lamia' OR realm = 'Leviathan'
