@@ -29,11 +29,11 @@ $japanese_realms = "(realm = 'Alexander' OR realm = 'Bahamut' OR realm = 'Durand
         OR realm = 'Fenrir' OR realm = 'Ifrit' OR realm = 'Ridill' OR realm = 'Tiamat' OR realm = 'Ultima' OR realm = 'Valefor' OR
         realm = 'Yojimbo'  OR realm = 'Zeromus' OR realm = 'Anima' OR realm = 'Asura' OR realm = 'Belias' OR realm = 'Chocobo' OR
         realm = 'Hades' OR realm = 'Ixion' OR realm = 'Mandragora' OR realm = 'Masamune' OR realm = 'Pandaemonium' OR realm = 'Shinryu'
-        OR realm = 'Titan' OR realm = 'Aegis' OR realm = 'Atomis' OR realm = 'Carbuncle' OR realm = 'Garuda' OR realm = 'Gungnir'
+        OR realm = 'Titan' OR realm = 'Aegis' OR realm = 'Atomos' OR realm = 'Carbuncle' OR realm = 'Garuda' OR realm = 'Gungnir'
         OR realm = 'Kujata' OR realm = 'Ramuh' OR realm = 'Tonberry' OR realm = 'Typhon' OR realm = 'Unicorn')";
 
 $european_realms = "(realm = 'Cerberus' OR realm = 'Lich' OR realm = 'Moogle' OR
-        realm = 'Odin' OR realm = 'Phoenix' OR realm = 'Ragnarok' OR realm = 'Shiva' OR realm = 'Zodiark')";
+        realm = 'Odin' OR realm = 'Phoenix' OR realm = 'Ragnarok' OR realm = 'Shiva' OR realm = 'Zodiark' OR realm = 'Louisoix' OR realm = 'Omega')";
 
 // Fetch total number of players in database
 $player_count_query = $db->query("SELECT count(*) FROM tblplayers;");
@@ -173,6 +173,12 @@ $classes["Machinist"] = $class_results->fetch_array()[0];
 $class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_astrologian != ''");
 $classes["Astrologian"] = $class_results->fetch_array()[0];
 
+$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_samurai != ''");
+$classes["Samurai"] = $class_results->fetch_array()[0];
+
+$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_redmage != ''");
+$classes["Red Mage"] = $class_results->fetch_array()[0];
+
 $class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_carpenter != ''");
 $classes["Carpenter"] = $class_results->fetch_array()[0];
 
@@ -244,6 +250,12 @@ $active_classes["Machinist"] = $class_results->fetch_array()[0];
 
 $class_results = $db->query("select count(*) from tblplayers where level_astrologian >= '60' AND level_astrologian != ''");
 $active_classes["Astrologian"] = $class_results->fetch_array()[0];
+
+$class_results = $db->query("select count(*) from tblplayers where level_samurai >= '60' AND level_samurai != ''");
+$active_classes["Samurai"] = $class_results->fetch_array()[0];
+
+$class_results = $db->query("select count(*) from tblplayers where level_redmage >= '60' AND level_redmage != ''");
+$active_classes["Red Mage"] = $class_results->fetch_array()[0];
 
 $class_results = $db->query("select count(*) from tblplayers where level_carpenter >= '60' AND level_carpenter != ''");
 $active_classes["Carpenter"] = $class_results->fetch_array()[0];
