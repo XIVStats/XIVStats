@@ -388,6 +388,10 @@ $prehw_query = $db->query("SELECT count(*) FROM tblplayers WHERE prehw = (1);");
 $prehw = $prehw_query->fetch_array()[0];
 $fmt_prehw = number_format($prehw);
 
+$presb_query = $db->query("SELECT count(*) FROM tblplayers WHERE presb = (1);");
+$presb = $presb_query->fetch_array()[0];
+$fmt_presb = number_format($presb);
+
 // Collectors Edition
 
 $ps4_collectors_query = $db->query("SELECT count(*) FROM tblplayers WHERE ps4collectors = (1);");
@@ -823,6 +827,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_prehw; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">PRE-ORDERED STORMBLOOD</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_presb; ?></div>
                         </div>
                       </div>
 
