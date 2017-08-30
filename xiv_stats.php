@@ -983,7 +983,7 @@ $db->close();
       <div class="footer-copyright">
           <div class="container">
               Statistics generated on <?php echo date("Y-m-d");  ?>
-              <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/XIVStats">Source Code avaiailable on GitHub</a> - Feel free to submit any ideas you may have!</div>
+              <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/XIVStats">Source Code available on GitHub</a> - Feel free to submit any ideas you may have!</div>
           </div>
       </div>
   </footer>
