@@ -17,121 +17,43 @@ if (! $db->select_db($conn_info["database"])) {
         die("Couldn't find DB");
 }
 
+$american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
+                              "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
+                              "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
+                              "Midgardsormr","Sargatanas","Siren","Zalera");
+sort($american_realm_array);
+
+$japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit","Ridill","Tiamat","Ultima",
+                              "Valefor","Yojimbo","Zeromus","Anima","Asura","Belias","Chocobo","Hades",
+                              "Ixion","Mandragora","Masamune","Pandaemonium","Shinryu","Titan","Aegis",
+                              "Atomos","Carbuncle","Garuda","Gungnir","Kujata","Ramuh","Tonberry","Typhon","Unicorn");
+sort($japanese_realm_array);
+
+$european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega");
+sort($european_realm_array);
+
 $active_check = "hw_33_complete = (1)";
 
-$american_realms = "(realm = 'Behemoth' OR realm = 'Brynhildr' OR realm = 'Diabolos'
-        OR realm = 'Excalibur' OR realm = 'Exodus' OR realm = 'Famfrit' OR realm = 'Hyperion' OR realm = 'Lamia' OR realm = 'Leviathan'
-        OR realm = 'Malboro' OR realm = 'Ultros' OR realm = 'Adamantoise' OR realm = 'Balmung' OR realm = 'Cactuar' OR realm = 'Coeurl'
-        OR realm = 'Faerie' OR realm = 'Gilgamesh' OR realm = 'Goblin' OR realm = 'Jenova' OR realm = 'Mateus' OR realm = 'Midgardsormr'
-        OR realm = 'Sargatanas' OR realm = 'Siren' OR realm = 'Zalera')";
+$player_overview_query = $db->query("SELECT realm, grand_company, race, gender, COUNT(*), SUM(CASE WHEN hw_33_complete = (1) THEN 1 ELSE 0 END) FROM tblplayers GROUP BY realm, grand_company, race, gender;");
+while($row = $player_overview_query->fetch_array()) {
+        // Fetch total number of players in database
+        $player_count += $row[4];
+        // Fetch total number of active players in database
+        $active_player_count += $row[5];
+        // Fetch realm player counts
+        $realm_count[$row[0]] += $row[4];
+        // Fetch realm active player count
+        $active_realm_count[$row[0]] += $row[5];
+        // Fetch grand company player count
+        $gc_count[$row[1]] += $row[4];
+        // Fetch granc company active player count
+        $active_gc_count[$row[1]] += $row[5];
 
-$japanese_realms = "(realm = 'Alexander' OR realm = 'Bahamut' OR realm = 'Durandal'
-        OR realm = 'Fenrir' OR realm = 'Ifrit' OR realm = 'Ridill' OR realm = 'Tiamat' OR realm = 'Ultima' OR realm = 'Valefor' OR
-        realm = 'Yojimbo'  OR realm = 'Zeromus' OR realm = 'Anima' OR realm = 'Asura' OR realm = 'Belias' OR realm = 'Chocobo' OR
-        realm = 'Hades' OR realm = 'Ixion' OR realm = 'Mandragora' OR realm = 'Masamune' OR realm = 'Pandaemonium' OR realm = 'Shinryu'
-        OR realm = 'Titan' OR realm = 'Aegis' OR realm = 'Atomos' OR realm = 'Carbuncle' OR realm = 'Garuda' OR realm = 'Gungnir'
-        OR realm = 'Kujata' OR realm = 'Ramuh' OR realm = 'Tonberry' OR realm = 'Typhon' OR realm = 'Unicorn')";
-
-$european_realms = "(realm = 'Cerberus' OR realm = 'Lich' OR realm = 'Moogle' OR
-        realm = 'Odin' OR realm = 'Phoenix' OR realm = 'Ragnarok' OR realm = 'Shiva' OR realm = 'Zodiark' OR realm = 'Louisoix' OR realm = 'Omega')";
-
-// Fetch total number of players in database
-$player_count_query = $db->query("SELECT count(*) FROM tblplayers;");
-$player_count = $player_count_query->fetch_array()[0];
-$fmt_player_count = number_format($player_count);
-
-$active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $active_check . ";");
-$active_player_count = $active_player_count_query->fetch_array()[0];
-$fmt_active_player_count = number_format($active_player_count);
-
-// Fetch total number of players in each region
-// America
-$america_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $american_realms);
-$america_player_count = $america_player_count_query->fetch_array()[0];
-$fmt_america_player_count = number_format($america_player_count);
-
-$america_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $american_realms . " AND " . $active_check);
-$america_active_player_count = $america_active_player_count_query->fetch_array()[0];
-$fmt_america_active_player_count = number_format($america_active_player_count);
-
-//Japan
-$japan_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $japanese_realms);
-$japan_player_count = $japan_player_count_query->fetch_array()[0];
-$fmt_japan_player_count = number_format($japan_player_count);
-
-$japan_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $japanese_realms . " AND " . $active_check);
-$japan_active_player_count = $japan_active_player_count_query->fetch_array()[0];
-$fmt_japan_active_player_count = number_format($japan_active_player_count);
-
-//Europe
-$europe_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $european_realms);
-$europe_player_count = $europe_player_count_query->fetch_array()[0];
-$fmt_europe_player_count = number_format($europe_player_count);
-
-$europe_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $european_realms . " AND " . $active_check);
-$europe_active_player_count = $europe_active_player_count_query->fetch_array()[0];
-$fmt_europe_active_player_count = number_format($europe_active_player_count);
-
-// Grand Company Distribution
-$gc_distribution = array();
-$gc_distribution_query = $db->query("SELECT grand_company,count(*) FROM tblplayers GROUP BY grand_company");
-
-while ($row = $gc_distribution_query->fetch_array()) {
-        //$row[0] = grand company name
-        //$row[1] = population
-
-        //If user is not in gc, mark gc as none rather than blank
-        if ($row[0] === '') { $row[0] = "None"; }
-        $gc_distribution[$row[0]] = $row[1];
-}
-
-$gc_active_distribution = array();
-$gc_active_distribution_query = $db->query("select grand_company,count(*) from tblplayers WHERE " . $active_check . " group by grand_company");
-
-while ($row = $gc_active_distribution_query->fetch_array()) {
-        //$row[0] = grand company name
-        //$row[1] = population
-
-        //If user is not in gc, mark gc as none rather than blank
-        if ($row[0] === '') { $row[0] = "None"; }
-        $gc_active_distribution[$row[0]] = $row[1];
-}
-
-
-// Race / Gender Distribution
-
-$race_gender_male = array();
-$race_gender_female = array();
-$race_gender_query = $db->query("SELECT race,gender,count(*) FROM tblplayers GROUP BY race,gender");
-
-while ($row = $race_gender_query->fetch_array()) {
-        //$row[0] = race
-        //$row[1] = gender
-        //$row[2] = population
-
-        //Split males and females into seperate arrays
-        if ($row[1] === "male") {
-                $race_gender_male[$row[0]] = $row[2];
-        } else if ($row[1] === "female") {
-                $race_gender_female[$row[0]] = $row[2];
-        }
-}
-
-$active_race_gender_male = array();
-$active_race_gender_female = array();
-$active_race_gender_query = $db->query("SELECT race,gender,count(*) FROM tblplayers WHERE " . $active_check . " GROUP BY race,gender");
-
-while ($row = $active_race_gender_query->fetch_array()) {
-        //$row[0] = race
-        //$row[1] = gender
-        //$row[2] = population
-
-        //Split males and females into seperate arrays
-        if ($row[1] === "male") {
-                $active_race_gender_male[$row[0]] = $row[2];
-        } else if ($row[1] === "female") {
-                $active_race_gender_female[$row[0]] = $row[2];
-        }
+        // Fetch race and gender player count
+        $race_gender_count[$row[2]][$row[3]] += $row[4];
+        // Fetch race and gender active player count
+        $active_race_gender_count[$row[2]][$row[3]] += $row[5];
+        
 }
 
 // Get statistics on class adoption
@@ -288,62 +210,6 @@ $class_results = $db->query("select count(*) from tblplayers where level_botanis
 $active_classes["Botanist"] = $class_results->fetch_array()[0];
 
 $class_results = $db->query("select count(*) from tblplayers where level_fisher >= '60' AND level_fisher != ''");
-$active_classes["Fisher"] = $class_results->fetch_array()[0];
-
-// Get statistics on realm population
-$america_realm_pop = array();
-$america_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $america_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $america_realm_pop[$row[0]] = $row[1];
-}
-
-$active_america_realm_pop = array();
-$active_america_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_america_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_america_realm_pop[$row[0]] = $row[1];
-}
-
-$japan_realm_pop = array();
-$japan_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $japan_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $japan_realm_pop[$row[0]] = $row[1];
-}
-
-$active_japan_realm_pop = array();
-$active_japan_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_japan_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_japan_realm_pop[$row[0]] = $row[1];
-}
-
-$europe_realm_pop = array();
-$europe_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $europe_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $europe_realm_pop[$row[0]] = $row[1];
-}
-
-$active_europe_realm_pop = array();
-$active_europe_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_europe_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_europe_realm_pop[$row[0]] = $row[1];
-}
 
 
 
@@ -564,13 +430,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_player_count; ?></div>
+                              <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_active_player_count; ?></div>
+                              <div><?php echo number_format($active_player_count) ?></div>
                           </div>
                       </div>
                       <!-- America -->
@@ -581,13 +447,14 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_america_player_count; ?></div>
+
+                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($american_realm_array)))) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_america_active_player_count; ?></div>
+                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($american_realm_array)))) ?></div>
                           </div>
                       </div>
                       <!--Japan-->
@@ -598,13 +465,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_japan_player_count; ?></div>
+                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($japanese_realm_array)))) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_japan_active_player_count; ?></div>
+                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($japanese_realm_array)))) ?></div>
                           </div>
                       </div>
                       <!--Europe-->
@@ -615,13 +482,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_europe_player_count; ?></div>
+                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($european_realm_array)))) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_europe_active_player_count; ?></div>
+                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($european_realm_array)))) ?></div>
                           </div>
                       </div>
                   </div>
@@ -1012,7 +879,7 @@ $db->close();
                   name: '# of Characters',
                   data: [
                       <?php
-                              foreach ($gc_distribution as $key => $value) {
+                              foreach ($gc_count as $key => $value) {
                                       echo "['$key', $value,],\n";
                               }
                       ?>
@@ -1046,8 +913,8 @@ $db->close();
                   name: '# of Characters',
                   data: [
                       <?php
-                              foreach ($gc_active_distribution as $key => $value) {
-                                      echo "['$key', $value,],\n";
+                              foreach ($active_gc_count as $key => $value) {
+                                      if($key != "none") echo "['$key', $value,],\n";
                               }
                       ?>
                   ]
@@ -1068,7 +935,7 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($race_gender_male as $key => $value) {
+                              foreach ($race_gender_count as $key => $value) {
                                       echo "\"$key\",\n";
                               }
                       ?>
@@ -1090,8 +957,8 @@ $db->close();
                   name: 'Female',
                   data: [
                       <?php
-                              foreach ($race_gender_female as $value) {
-                                      echo "$value,";
+                              foreach ($race_gender_count as $value) {
+                                      echo $value["female"] . ",";
                               }
                       ?>
                   ],
@@ -1099,8 +966,8 @@ $db->close();
                   name: 'Male',
                   data: [
                       <?php
-                              foreach ($race_gender_male as $value) {
-                                      echo "$value,";
+                              foreach ($race_gender_count as $value) {
+                                      echo $value["male"] . ",";
                               }
                       ?>
                   ],
@@ -1121,7 +988,7 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($active_race_gender_male as $key => $value) {
+                              foreach ($active_race_gender_count as $key => $value) {
                                       echo "\"$key\",\n";
                               }
                       ?>
@@ -1143,8 +1010,8 @@ $db->close();
                   name: 'Female',
                   data: [
                       <?php
-                              foreach ($active_race_gender_female as $value) {
-                                      echo "$value,";
+                              foreach ($active_race_gender_count as $value) {
+                                      echo $value["female"] . ",";
                               }
                       ?>
                   ],
@@ -1152,8 +1019,8 @@ $db->close();
                   name: 'Male',
                   data: [
                       <?php
-                              foreach ($active_race_gender_male as $value) {
-                                      echo "$value,";
+                              foreach ($active_race_gender_count as $value) {
+                                      echo $value["male"] . ",";
                               }
                       ?>
                   ],
@@ -1262,8 +1129,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($america_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($american_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1285,8 +1152,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($america_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($american_realm_array as $value) {
+                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
                         }
                 ?>
             ],
@@ -1307,8 +1174,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_america_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($american_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1330,8 +1197,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_america_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($american_realm_array as $value) {
+                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
                         }
                 ?>
             ],
@@ -1352,8 +1219,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($japan_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($japanese_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1375,8 +1242,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($japan_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($japanese_realm_array as $value) {
+                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
                         }
                 ?>
             ],
@@ -1397,8 +1264,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_japan_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($japanese_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1420,8 +1287,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_japan_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($japanese_realm_array as $value) {
+                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
                         }
                 ?>
             ],
@@ -1442,8 +1309,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($europe_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($european_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1465,8 +1332,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($europe_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($european_realm_array as $value) {
+                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
                         }
                 ?>
             ],
@@ -1487,8 +1354,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_europe_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($european_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1510,8 +1377,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_europe_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($european_realm_array as $value) {
+                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
                         }
                 ?>
             ],
