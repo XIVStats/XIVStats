@@ -1,5 +1,15 @@
 <?php
 
+// Helper function to fetch the sum of all values in the array, where the array key matches one of the specified realm names
+function sumInRegion($data, $regional_realms) {
+        return array_sum(array_intersect_key($data, array_flip($regional_realms)));
+}
+
+// Helper function to return the value of the requested key, or zero if one isn't available
+function getValueOrZero($data, $key) {
+        return is_null($data[$key]) ? 0 : $data[$key];
+}
+
 $conn_info = parse_ini_file("templateconfig.ini");
 
 $date = date("F Y");
@@ -374,14 +384,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-
-                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($american_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($american_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
                       <!--Japan-->
@@ -392,13 +401,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($japanese_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($japanese_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
                       <!--Europe-->
@@ -409,13 +418,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(array_sum(array_intersect_key($realm_count, array_flip($european_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(array_sum(array_intersect_key($active_realm_count, array_flip($european_realm_array)))) ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
                   </div>
@@ -1080,7 +1089,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($american_realm_array as $value) {
-                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1125,7 +1134,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($american_realm_array as $value) {
-                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1170,7 +1179,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($japanese_realm_array as $value) {
-                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1215,7 +1224,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($japanese_realm_array as $value) {
-                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1260,7 +1269,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($european_realm_array as $value) {
-                                echo (is_null($realm_count[$value]) ? 0 : $realm_count[$value]) . ",";
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1305,7 +1314,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($european_realm_array as $value) {
-                                echo (is_null($active_realm_count[$value]) ? 0 : $active_realm_count[$value]) . ",";
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
