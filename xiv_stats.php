@@ -20,7 +20,7 @@ if (! $db->select_db($conn_info["database"])) {
 $american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
                               "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
                               "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
-                              "Midgardsormr","Sargatanas","Siren","Zalera");
+                              "Midgardsormr","Sargatanas","Siren","Zalera","Excalibur");
 sort($american_realm_array);
 
 $japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit","Ridill","Tiamat","Ultima",
@@ -53,286 +53,213 @@ while($row = $player_overview_query->fetch_array()) {
         $race_gender_count[$row[2]][$row[3]] += $row[4];
         // Fetch race and gender active player count
         $active_race_gender_count[$row[2]][$row[3]] += $row[5];
-        
 }
 
 // Get statistics on class adoption
 $classes = array();
 
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_gladiator != ''");
-$classes["Gladiator"] = $class_results->fetch_array()[0];
+$class_achievements_results = $db->query(
+        "SELECT
+                SUM(CASE WHEN level_gladiator > 0 THEN 1 ELSE 0 END) AS 'gladiator',
+                SUM(CASE WHEN level_gladiator >= 60 THEN 1 ELSE 0 END) AS 'gladiator_active',
+                SUM(CASE WHEN level_pugilist > 0 THEN 1 ELSE 0 END) AS 'pugilist',
+                SUM(CASE WHEN level_pugilist >= 60 THEN 1 ELSE 0 END) AS 'pugilist_active',
+                SUM(CASE WHEN level_marauder > 0 THEN 1 ELSE 0 END) AS 'marauder',
+                SUM(CASE WHEN level_marauder >= 60 THEN 1 ELSE 0 END) AS 'marauder_active',
+                SUM(CASE WHEN level_lancer > 0 THEN 1 ELSE 0 END) AS 'lancer',
+                SUM(CASE WHEN level_lancer >= 60 THEN 1 ELSE 0 END) AS 'lancer_active',
+                SUM(CASE WHEN level_archer > 0 THEN 1 ELSE 0 END) AS 'archer',
+                SUM(CASE WHEN level_archer >= 60 THEN 1 ELSE 0 END) AS 'archer_active',
+                SUM(CASE WHEN level_rogue > 0 THEN 1 ELSE 0 END) AS 'rogue',
+                SUM(CASE WHEN level_rogue >= 60 THEN 1 ELSE 0 END) AS 'rogue_active',
+                SUM(CASE WHEN level_conjurer > 0 THEN 1 ELSE 0 END) AS 'conjurer',
+                SUM(CASE WHEN level_conjurer >= 60 THEN 1 ELSE 0 END) AS 'conjurer_active',
+                SUM(CASE WHEN level_thaumaturge > 0 THEN 1 ELSE 0 END) AS 'thaumaturge',
+                SUM(CASE WHEN level_thaumaturge >= 60 THEN 1 ELSE 0 END) AS 'thaumaturge_active',
+                SUM(CASE WHEN level_arcanist > 0 THEN 1 ELSE 0 END) AS 'arcanist',
+                SUM(CASE WHEN level_arcanist >= 60 THEN 1 ELSE 0 END) AS 'arcanist_active',
+                SUM(CASE WHEN level_scholar > 0 THEN 1 ELSE 0 END) AS 'scholar',
+                SUM(CASE WHEN level_scholar >= 60 THEN 1 ELSE 0 END) AS 'scholar_active',
+                SUM(CASE WHEN level_darkknight > 0 THEN 1 ELSE 0 END) AS 'darkknight',
+                SUM(CASE WHEN level_darkknight >= 60 THEN 1 ELSE 0 END) AS 'darkknight_active',
+                SUM(CASE WHEN level_machinist > 0 THEN 1 ELSE 0 END) AS 'machinist',
+                SUM(CASE WHEN level_machinist >= 60 THEN 1 ELSE 0 END) AS 'machinist_active',
+                SUM(CASE WHEN level_astrologian > 0 THEN 1 ELSE 0 END) AS 'astrologian',
+                SUM(CASE WHEN level_astrologian >= 60 THEN 1 ELSE 0 END) AS 'astrologian_active',
+                SUM(CASE WHEN level_samurai > 0 THEN 1 ELSE 0 END) AS 'samurai',
+                SUM(CASE WHEN level_samurai >= 60 THEN 1 ELSE 0 END) AS 'samurai_active',
+                SUM(CASE WHEN level_redmage > 0 THEN 1 ELSE 0 END) AS 'redmage',
+                SUM(CASE WHEN level_redmage >= 60 THEN 1 ELSE 0 END) AS 'redmage_active',
+                SUM(CASE WHEN level_carpenter > 0 THEN 1 ELSE 0 END) AS 'carpenter',
+                SUM(CASE WHEN level_carpenter >= 60 THEN 1 ELSE 0 END) AS 'carpenter_active',
+                SUM(CASE WHEN level_blacksmith > 0 THEN 1 ELSE 0 END) AS 'blacksmith',
+                SUM(CASE WHEN level_blacksmith >= 60 THEN 1 ELSE 0 END) AS 'blacksmith_active',
+                SUM(CASE WHEN level_armorer > 0 THEN 1 ELSE 0 END) AS 'armorer',
+                SUM(CASE WHEN level_armorer >= 60 THEN 1 ELSE 0 END) AS 'armorer_active',
+                SUM(CASE WHEN level_goldsmith > 0 THEN 1 ELSE 0 END) AS 'goldsmith',
+                SUM(CASE WHEN level_goldsmith >= 60 THEN 1 ELSE 0 END) AS 'goldsmith_active',
+                SUM(CASE WHEN level_leatherworker > 0 THEN 1 ELSE 0 END) AS 'leatherworker',
+                SUM(CASE WHEN level_leatherworker >= 60 THEN 1 ELSE 0 END) AS 'leatherworker_active',
+                SUM(CASE WHEN level_weaver > 0 THEN 1 ELSE 0 END) AS 'weaver',
+                SUM(CASE WHEN level_weaver >= 60 THEN 1 ELSE 0 END) AS 'weaver_active',
+                SUM(CASE WHEN level_alchemist > 0 THEN 1 ELSE 0 END) AS 'alchemist',
+                SUM(CASE WHEN level_alchemist >= 60 THEN 1 ELSE 0 END) AS 'alchemist_active',
+                SUM(CASE WHEN level_culinarian > 0 THEN 1 ELSE 0 END) AS 'culinarian',
+                SUM(CASE WHEN level_culinarian >= 60 THEN 1 ELSE 0 END) AS 'culinarian_active',
+                SUM(CASE WHEN level_miner > 0 THEN 1 ELSE 0 END) AS 'miner',
+                SUM(CASE WHEN level_miner >= 60 THEN 1 ELSE 0 END) AS 'miner_active',
+                SUM(CASE WHEN level_botanist > 0 THEN 1 ELSE 0 END) AS 'botanist',
+                SUM(CASE WHEN level_botanist >= 60 THEN 1 ELSE 0 END) AS 'botanist_active',
+                SUM(CASE WHEN level_fisher > 0 THEN 1 ELSE 0 END) AS 'fisher',
+                SUM(CASE WHEN level_fisher >= 60 THEN 1 ELSE 0 END) AS 'fisher_active',
+                SUM(p30days),
+                SUM(p60days),
+                SUM(p90days),
+                SUM(p180days),
+                SUM(p270days),
+                SUM(p360days),
+                SUM(p450days),
+                SUM(p630days),
+                SUM(p960days),
+                SUM(prearr),
+                SUM(prehw),
+                SUM(presb),
+                SUM(ps4collectors),
+                SUM(arrcollector),
+                SUM(arrartbook),
+                SUM(beforemeteor),
+                SUM(beforethefall),
+                SUM(soundtrack),
+                SUM(moogleplush),
+                SUM(saweternalbond),
+                SUM(dideternalbond),
+                SUM(comm50),
+                SUM(hildibrand),
+                SUM(sightseeing),
+                SUM(kobold),
+                SUM(sahagin),
+                SUM(amaljaa),
+                SUM(sylph)
+         FROM
+                tblplayers;");
 
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_pugilist != ''");
-$classes["Pugilist"] = $class_results->fetch_array()[0];
+$results = $class_achievements_results->fetch_array();
 
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_marauder != ''");
-$classes["Marauder"] = $class_results->fetch_array()[0];
+$classes["Gladiator"] = $results[0];
+$classes["Pugilist"] = $results[2];
+$classes["Marauder"] = $results[4];
+$classes["Lancer"] = $results[6];
+$classes["Archer"] = $results[8];
+$classes["Rogue"] = $results[10];
+$classes["Conjurer"] = $results[12];
+$classes["Thaumaturge"] = $results[14];
+$classes["Arcanist"] = $results[16];
+$classes["Scholar"] = $results[18];
+$classes["Dark Knight"] = $results[20];
+$classes["Machinist"] = $results[22];
+$classes["Astrologian"] = $results[24];
+$classes["Samurai"] = $results[26];
+$classes["Red Mage"] = $results[28];
+$classes["Carpenter"] = $results[30];
+$classes["Blacksmith"] = $results[32];
+$classes["Armorer"] = $results[34];
+$classes["Goldsmith"] = $results[36];
+$classes["Leatherworker"] = $results[38];
+$classes["Weaver"] = $results[40];
+$classes["Alchemist"] = $results[42];
+$classes["Culinarian"] = $results[44];
+$classes["Miner"] = $results[46];
+$classes["Botanist"] = $results[48];
+$classes["Fisher"] = $results[50];
 
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_lancer != ''");
-$classes["Lancer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_archer != ''");
-$classes["Archer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_rogue != ''");
-$classes["Rogue"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_conjurer != ''");
-$classes["Conjurer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_thaumaturge != ''");
-$classes["Thaumaturge"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_arcanist != ''");
-$classes["Arcanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_darkknight != ''");
-$classes["Dark Knight"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_machinist != ''");
-$classes["Machinist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_astrologian != ''");
-$classes["Astrologian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_samurai != ''");
-$classes["Samurai"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_redmage != ''");
-$classes["Red Mage"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_carpenter != ''");
-$classes["Carpenter"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_blacksmith != ''");
-$classes["Blacksmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_armorer != ''");
-$classes["Armorer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_goldsmith != ''");
-$classes["Goldsmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_leatherworker != ''");
-$classes["Leatherworker"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_weaver != ''");
-$classes["Weaver"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_alchemist != ''");
-$classes["Alchemist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_culinarian != ''");
-$classes["Culinarian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_miner != ''");
-$classes["Miner"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_botanist != ''");
-$classes["Botanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_fisher != ''");
-$classes["Fisher"] = $class_results->fetch_array()[0];
-
-// Get statistics on active class adoption
-$active_classes = array();
-
-$class_results = $db->query("select count(*) from tblplayers where level_gladiator >= '60' AND level_gladiator != ''");
-$active_classes["Gladiator"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_pugilist >= '60' AND level_pugilist != ''");
-$active_classes["Pugilist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_marauder >= '60' AND level_marauder != ''");
-$active_classes["Marauder"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_lancer >= '60' AND level_lancer != ''");
-$active_classes["Lancer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_archer >= '60' AND level_archer != ''");
-$active_classes["Archer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_rogue >= '60' AND level_rogue != ''");
-$active_classes["Rogue"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_conjurer >= '60' AND level_conjurer != ''");
-$active_classes["Conjurer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_thaumaturge >= '60' AND level_thaumaturge != ''");
-$active_classes["Thaumaturge"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_arcanist >= '60' AND level_arcanist != ''");
-$active_classes["Arcanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_darkknight >= '60' AND level_darkknight != ''");
-$active_classes["Dark Knight"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_machinist >= '60' AND level_machinist != ''");
-$active_classes["Machinist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_astrologian >= '60' AND level_astrologian != ''");
-$active_classes["Astrologian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_samurai >= '60' AND level_samurai != ''");
-$active_classes["Samurai"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_redmage >= '60' AND level_redmage != ''");
-$active_classes["Red Mage"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_carpenter >= '60' AND level_carpenter != ''");
-$active_classes["Carpenter"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_blacksmith >= '60' AND level_blacksmith != ''");
-$active_classes["Blacksmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_armorer >= '60' AND level_blacksmith != ''");
-$active_classes["Armorer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_goldsmith >= '60' AND level_goldsmith != ''");
-$active_classes["Goldsmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_leatherworker >= '60' AND level_leatherworker != ''");
-$active_classes["Leatherworker"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_weaver >= '60' AND level_weaver != ''");
-$active_classes["Weaver"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_alchemist >= '60' AND level_alchemist != ''");
-$active_classes["Alchemist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_culinarian >= '60' AND level_culinarian != ''");
-$active_classes["Culinarian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_miner >= '60' AND level_miner != ''");
-$active_classes["Miner"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_botanist >= '60' AND level_botanist != ''");
-$active_classes["Botanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_fisher >= '60' AND level_fisher != ''");
-
-
+$active_classes["Gladiator"] = $results[1];
+$active_classes["Pugilist"] = $results[3];
+$active_classes["Marauder"] = $results[5];
+$active_classes["Lancer"] = $results[7];
+$active_classes["Archer"] = $results[9];
+$active_classes["Rogue"] = $results[11];
+$active_classes["Conjurer"] = $results[13];
+$active_classes["Thaumaturge"] = $results[15];
+$active_classes["Arcanist"] = $results[17];
+$active_classes["Scholar"] = $results[19];
+$active_classes["Dark Knight"] = $results[21];
+$active_classes["Machinist"] = $results[23];
+$active_classes["Astrologian"] = $results[25];
+$active_classes["Samurai"] = $results[27];
+$active_classes["Red Mage"] = $results[29];
+$active_classes["Carpenter"] = $results[31];
+$active_classes["Blacksmith"] = $results[33];
+$active_classes["Armorer"] = $results[35];
+$active_classes["Goldsmith"] = $results[37];
+$active_classes["Leatherworker"] = $results[39];
+$active_classes["Weaver"] = $results[41];
+$active_classes["Alchemist"] = $results[43];
+$active_classes["Culinarian"] = $results[45];
+$active_classes["Miner"] = $results[47];
+$active_classes["Botanist"] = $results[49];
+$active_classes["Fisher"] = $results[51];
 
 // Subscription figures
-
-$sub_time = array();
-
-$sub_30_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p30days = (1);");
-$sub_time["30 Days"] = $sub_30_days_query->fetch_array()[0];
-
-$sub_60_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p60days = (1);");
-$sub_time["60 Days"] = $sub_60_days_query->fetch_array()[0];
-
-$sub_90_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p90days = (1);");
-$sub_time["90 Days"] = $sub_90_days_query->fetch_array()[0];
-
-$sub_180_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p180days = (1);");
-$sub_time["180 Days"] =  $sub_180_days_query->fetch_array()[0];
-
-$sub_270_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p270days = (1);");
-$sub_time["270 Days"] = $sub_270_days_query->fetch_array()[0];
-
-$sub_360_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p360days = (1);");
-$sub_time["360 Days"] = $sub_360_days_query->fetch_array()[0];
-
-$sub_450_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p450days = (1);");
-$sub_time["450 Days"] = $sub_450_days_query->fetch_array()[0];
-
-$sub_630_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p630days = (1);");
-$sub_time["630 Days"] = $sub_630_days_query->fetch_array()[0];
-
-$sub_960_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p960days = (1);");
-$sub_time["960 Days"] = $sub_960_days_query->fetch_array()[0];
+$sub_time["30 Days"] = $results[52];
+$sub_time["60 Days"] = $results[53];
+$sub_time["90 Days"] = $results[54];
+$sub_time["180 Days"] =  $results[55];
+$sub_time["270 Days"] = $results[56];
+$sub_time["360 Days"] = $results[57];
+$sub_time["450 Days"] = $results[58];
+$sub_time["630 Days"] = $results[59];
+$sub_time["960 Days"] = $results[60];
 
 // Pre-orders
-
-$prearr_query = $db->query("SELECT count(*) FROM tblplayers WHERE prearr = (1);");
-$prearr = $prearr_query->fetch_array()[0];
+$prearr = $results[61];
 $fmt_prearr = number_format($prearr);
-
-$prehw_query = $db->query("SELECT count(*) FROM tblplayers WHERE prehw = (1);");
-$prehw = $prehw_query->fetch_array()[0];
+$prehw = $results[62];
 $fmt_prehw = number_format($prehw);
-
-$presb_query = $db->query("SELECT count(*) FROM tblplayers WHERE presb = (1);");
-$presb = $presb_query->fetch_array()[0];
+$presb = $results[63];
 $fmt_presb = number_format($presb);
 
 // Collectors Edition
-
-$ps4_collectors_query = $db->query("SELECT count(*) FROM tblplayers WHERE ps4collectors = (1);");
-$ps4_collectors = $ps4_collectors_query->fetch_array()[0];
+$ps4_collectors = $results[64];
 $fmt_ps4_collectors = number_format($ps4_collectors);
-
-$pc_collectors_query = $db->query("SELECT count(*) FROM tblplayers WHERE arrcollector = (1);");
-$pc_collectors = $pc_collectors_query->fetch_array()[0];
+$pc_collectors = $results[65];
 $fmt_pc_collectors = number_format($pc_collectors);
 
 // Physical Items
-
-$arrartbook_query = $db->query("SELECT count(*) FROM tblplayers WHERE arrartbook = (1);");
-$arrartbook = $arrartbook_query->fetch_array()[0];
+$arrartbook = $results[66];
 $fmt_arrartbook = number_format($arrartbook);
-
-$beforemeteor_query = $db->query("SELECT count(*) FROM tblplayers WHERE beforemeteor = (1);");
-$beforemeteor = $beforemeteor_query->fetch_array()[0];
+$beforemeteor = $results[67];
 $fmt_beforemeteor = number_format($beforemeteor);
-
-$beforethefall_query = $db->query("SELECT count(*) FROM tblplayers WHERE beforethefall = (1);");
-$beforethefall = $beforethefall_query->fetch_array()[0];
+$beforethefall = $results[68];
 $fmt_beforethefall = number_format($beforethefall);
-
-$soundtrack_query = $db->query("SELECT count(*) FROM tblplayers WHERE soundtrack = (1);");
-$soundtrack = $soundtrack_query->fetch_array()[0];
+$soundtrack = $results[69];
 $fmt_soundtrack = number_format($soundtrack);
-
-$moogleplush_query = $db->query("SELECT count(*) FROM tblplayers WHERE moogleplush = (1);");
-$moogleplush = $moogleplush_query->fetch_array()[0];
+$moogleplush = $results[70];
 $fmt_moogleplush = number_format($moogleplush);
 
 // Eternal Bond
-
-$saw_eternal_bond_query = $db->query("SELECT count(*) FROM tblplayers WHERE saweternalbond = (1);");
-$saw_eternal_bond = $saw_eternal_bond_query->fetch_array()[0];
+$saw_eternal_bond = $results[71];
 $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-
-$did_eternal_bond_query = $db->query("SELECT count(*) FROM tblplayers WHERE dideternalbond = (1);");
-$did_eternal_bond = $did_eternal_bond_query->fetch_array()[0];
+$did_eternal_bond = $results[72];
 $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
 // Player Commendations
-
-$comm50_query = $db->query("SELECT count(*) FROM tblplayers WHERE comm50 = (1);");
-$comm50 = $comm50_query->fetch_array()[0];
+$comm50 = $results[73];
 $fmt_comm50 = number_format($comm50);
 
 // Hildibrand
-
-$hildibrand_query = $db->query("SELECT count(*) FROM tblplayers WHERE hildibrand = (1);");
-$hildibrand = $hildibrand_query->fetch_array()[0];
+$hildibrand = $results[74];
 $fmt_hildibrand = number_format($hildibrand);
 
 // ARR Sightseeing Log
-
-$sightseeing_query = $db->query("SELECT count(*) FROM tblplayers WHERE sightseeing = (1);");
-$sightseeing = $sightseeing_query->fetch_array()[0];
+$sightseeing = $results[75];
 $fmt_sightseeing = number_format($sightseeing);
 
 // Beast Tribes
 
-$beast_tribes = array();
-
-$kobold_query = $db->query("SELECT count(*) FROM tblplayers WHERE kobold = (1);");
-$beast_tribes["Kobold"] = $kobold_query->fetch_array()[0];
-
-$sahagin_query = $db->query("SELECT count(*) FROM tblplayers WHERE sahagin = (1);");
-$beast_tribes["Sahagin"] = $sahagin_query->fetch_array()[0];
-
-$amaljaa_query = $db->query("SELECT count(*) FROM tblplayers WHERE amaljaa = (1);");
-$beast_tribes["Amaljaa"] = $amaljaa_query->fetch_array()[0];
-
-$sylph_query = $db->query("SELECT count(*) FROM tblplayers WHERE sylph = (1);");
-$beast_tribes["Sylph"] = $sylph_query->fetch_array()[0];
+$beast_tribes["Kobold"] = $results[76];
+$beast_tribes["Sahagin"] = $results[77];
+$beast_tribes["Amaljaa"] = $results[78];
+$beast_tribes["Sylph"] = $results[79];
 
 // Close DB Connection
 $db->close();
