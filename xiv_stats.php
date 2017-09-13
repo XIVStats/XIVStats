@@ -7,7 +7,7 @@ function sumInRegion($data, $regional_realms) {
 
 // Helper function to return the value of the requested key, or zero if one isn't available
 function getValueOrZero($data, $key) {
-        return is_null($data[$key]) ? 0 : $data[$key];
+        return isset($data[$key]) ? $data[$key] : 0;
 }
 
 $conn_info = parse_ini_file("templateconfig.ini");
@@ -42,32 +42,84 @@ sort($japanese_realm_array);
 $european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega");
 sort($european_realm_array);
 
-$active_check = "hw_33_complete = (1)";
+// Variables
+$player_count = 0;
+$active_player_count = 0;
+$realm_count = array();
+$active_realm_count = array();
+$gc_count = array();
+$active_gc_count = array();
+$race_gender_count = array();
+$active_race_gender_count = array();
+$classes = array();
+$active_classes = array();
+$sub_time = array();
+$prearr = 0;
+$prehw = 0;
+$presb = 0;
+$ps4collectors = 0;
+$pc_collectors = 0;
+$arrartbook = 0;
+$beforemeteor = 0;
+$beforethefall = 0;
+$soundtrack = 0;
+$moogleplush = 0;
+$saw_eternal_bond = 0;
+$did_eternal_bond = 0;
+$comm50 = 0;
+$hildibrand = 0;
+$sightseeing = 0;
+$beast_tribes = array();
 
 $player_overview_query = $db->query("SELECT realm, grand_company, race, gender, COUNT(*), SUM(CASE WHEN hw_33_complete = (1) THEN 1 ELSE 0 END) FROM tblplayers GROUP BY realm, grand_company, race, gender;");
 while($row = $player_overview_query->fetch_array()) {
+        $realm = isset($row[0]) ? $row[0] : 'Unknown';
+        $grand_company = isset($row[1]) ?$row[1] : 'Unknown';
+        $race = isset($row[2]) ? $row[2] : 'Unknown';
+        $gender = isset($row[3]) ? $row[3] : 'Unknown';
         // Fetch total number of players in database
-        $player_count += $row[4];
+        $player_count += isset($row[4]) ? $row[4] : 0;
         // Fetch total number of active players in database
-        $active_player_count += $row[5];
+        $active_player_count += isset($row[5]) ? $row[5] : 0;
         // Fetch realm player counts
-        $realm_count[$row[0]] += $row[4];
+        if(!array_key_exists($realm, $realm_count)) {
+                $realm_count[$realm] = 0;
+        }
+        $realm_count[$realm] += isset($row[4]) ? $row[4] : 0;
         // Fetch realm active player count
-        $active_realm_count[$row[0]] += $row[5];
+        if(!array_key_exists($realm, $active_realm_count)) {
+                $active_realm_count[$realm] = 0;
+        }
+        $active_realm_count[$realm] += isset($row[5]) ? $row[5] : 0;
         // Fetch grand company player count
-        $gc_count[$row[1]] += $row[4];
+        if(!array_key_exists($grand_company, $gc_count)) {
+                $gc_count[$grand_company] = 0;
+        }
+        $gc_count[$grand_company] += isset($row[4]) ? $row[4] : 0;
         // Fetch granc company active player count
-        $active_gc_count[$row[1]] += $row[5];
-
+        if(!array_key_exists($grand_company, $active_gc_count)) {
+                $active_gc_count[$grand_company] = 0;
+        }
+        $active_gc_count[$grand_company] += isset($row[5]) ? $row[5] : 0;
         // Fetch race and gender player count
-        $race_gender_count[$row[2]][$row[3]] += $row[4];
+        if(!array_key_exists($race, $race_gender_count)) {
+                $race_gender_count[$race] = array();
+        }
+        if(!array_key_exists($gender, $race_gender_count[$race])) {
+                $race_gender_count[$race][$gender] = 0;
+        }
+        $race_gender_count[$race][$gender] += isset($row[4]) ? $row[4] : 0;
         // Fetch race and gender active player count
-        $active_race_gender_count[$row[2]][$row[3]] += $row[5];
+        if(!array_key_exists($race, $active_race_gender_count)) {
+                $active_race_gender_count[$race] = array();
+        }
+        if(!array_key_exists($gender, $active_race_gender_count[$race])) {
+                $active_race_gender_count[$race][$gender] = 0;
+        }
+        $active_race_gender_count[$race][$gender] += isset($row[5]) ? $row[5] : 0;
 }
 
 // Get statistics on class adoption
-$classes = array();
-
 $class_achievements_results = $db->query(
         "SELECT
                 SUM(CASE WHEN level_gladiator > 0 THEN 1 ELSE 0 END) AS 'gladiator',
@@ -155,121 +207,121 @@ $class_achievements_results = $db->query(
 
 $results = $class_achievements_results->fetch_array();
 
-$classes["Gladiator"] = $results[0];
-$classes["Pugilist"] = $results[2];
-$classes["Marauder"] = $results[4];
-$classes["Lancer"] = $results[6];
-$classes["Archer"] = $results[8];
-$classes["Rogue"] = $results[10];
-$classes["Conjurer"] = $results[12];
-$classes["Thaumaturge"] = $results[14];
-$classes["Arcanist"] = $results[16];
-$classes["Scholar"] = $results[18];
-$classes["Dark Knight"] = $results[20];
-$classes["Machinist"] = $results[22];
-$classes["Astrologian"] = $results[24];
-$classes["Samurai"] = $results[26];
-$classes["Red Mage"] = $results[28];
-$classes["Carpenter"] = $results[30];
-$classes["Blacksmith"] = $results[32];
-$classes["Armorer"] = $results[34];
-$classes["Goldsmith"] = $results[36];
-$classes["Leatherworker"] = $results[38];
-$classes["Weaver"] = $results[40];
-$classes["Alchemist"] = $results[42];
-$classes["Culinarian"] = $results[44];
-$classes["Miner"] = $results[46];
-$classes["Botanist"] = $results[48];
-$classes["Fisher"] = $results[50];
+$classes["Gladiator"] = isset($results[0]) ? $results[0] : 0;
+$classes["Pugilist"] = isset($results[2]) ? $results[2] : 0;
+$classes["Marauder"] = isset($results[4]) ? $results[4] : 0;
+$classes["Lancer"] = isset($results[6]) ? $results[6] : 0;
+$classes["Archer"] = isset($results[8]) ? $results[8] : 0;
+$classes["Rogue"] = isset($results[10]) ? $results[10] : 0;
+$classes["Conjurer"] = isset($results[12]) ? $results[12] : 0;
+$classes["Thaumaturge"] = isset($results[14]) ? $results[14] : 0;
+$classes["Arcanist"] = isset($results[16]) ? $results[16] : 0;
+$classes["Scholar"] = isset($results[18]) ? $results[18] : 0;
+$classes["Dark Knight"] = isset($results[20]) ? $results[20] : 0;
+$classes["Machinist"] = isset($results[22]) ? $results[22] : 0;
+$classes["Astrologian"] = isset($results[24]) ? $results[24] : 0;
+$classes["Samurai"] = isset($results[26]) ? $results[26] : 0;
+$classes["Red Mage"] = isset($results[28]) ? $results[28] : 0;
+$classes["Carpenter"] = isset($results[30]) ? $results[30] : 0;
+$classes["Blacksmith"] = isset($results[32]) ? $results[32] : 0;
+$classes["Armorer"] = isset($results[34]) ? $results[34] : 0;
+$classes["Goldsmith"] = isset($results[36]) ? $results[36] : 0;
+$classes["Leatherworker"] = isset($results[38]) ? $results[38] : 0;
+$classes["Weaver"] = isset($results[40]) ? $results[40] : 0;
+$classes["Alchemist"] = isset($results[42]) ? $results[42] : 0;
+$classes["Culinarian"] = isset($results[44]) ? $results[44] : 0;
+$classes["Miner"] = isset($results[46]) ? $results[46] : 0;
+$classes["Botanist"] = isset($results[48]) ? $results[48] : 0;
+$classes["Fisher"] = isset($results[50]) ? $results[50] : 0;
 
-$active_classes["Gladiator"] = $results[1];
-$active_classes["Pugilist"] = $results[3];
-$active_classes["Marauder"] = $results[5];
-$active_classes["Lancer"] = $results[7];
-$active_classes["Archer"] = $results[9];
-$active_classes["Rogue"] = $results[11];
-$active_classes["Conjurer"] = $results[13];
-$active_classes["Thaumaturge"] = $results[15];
-$active_classes["Arcanist"] = $results[17];
-$active_classes["Scholar"] = $results[19];
-$active_classes["Dark Knight"] = $results[21];
-$active_classes["Machinist"] = $results[23];
-$active_classes["Astrologian"] = $results[25];
-$active_classes["Samurai"] = $results[27];
-$active_classes["Red Mage"] = $results[29];
-$active_classes["Carpenter"] = $results[31];
-$active_classes["Blacksmith"] = $results[33];
-$active_classes["Armorer"] = $results[35];
-$active_classes["Goldsmith"] = $results[37];
-$active_classes["Leatherworker"] = $results[39];
-$active_classes["Weaver"] = $results[41];
-$active_classes["Alchemist"] = $results[43];
-$active_classes["Culinarian"] = $results[45];
-$active_classes["Miner"] = $results[47];
-$active_classes["Botanist"] = $results[49];
-$active_classes["Fisher"] = $results[51];
+$active_classes["Gladiator"] = isset($results[1]) ? $results[1] : 0;
+$active_classes["Pugilist"] = isset($results[3]) ? $results[3] : 0;
+$active_classes["Marauder"] = isset($results[5]) ? $results[5] : 0;
+$active_classes["Lancer"] = isset($results[7]) ? $results[7] : 0;
+$active_classes["Archer"] = isset($results[9]) ? $results[9] : 0;
+$active_classes["Rogue"] = isset($results[11]) ? $results[11] : 0;
+$active_classes["Conjurer"] = isset($results[13]) ? $results[13] : 0;
+$active_classes["Thaumaturge"] = isset($results[15]) ? $results[15] : 0;
+$active_classes["Arcanist"] = isset($results[17]) ? $results[17] : 0;
+$active_classes["Scholar"] = isset($results[19]) ? $results[19] : 0;
+$active_classes["Dark Knight"] = isset($results[21]) ? $results[21] : 0;
+$active_classes["Machinist"] = isset($results[23]) ? $results[23] : 0;
+$active_classes["Astrologian"] = isset($results[25]) ? $results[25] : 0;
+$active_classes["Samurai"] = isset($results[27]) ? $results[27] : 0;
+$active_classes["Red Mage"] = isset($results[29]) ? $results[29] : 0;
+$active_classes["Carpenter"] = isset($results[31]) ? $results[31] : 0;
+$active_classes["Blacksmith"] = isset($results[33]) ? $results[33] : 0;
+$active_classes["Armorer"] = isset($results[35]) ? $results[35] : 0;
+$active_classes["Goldsmith"] = isset($results[37]) ? $results[37] : 0;
+$active_classes["Leatherworker"] = isset($results[39]) ? $results[39] : 0;
+$active_classes["Weaver"] = isset($results[41]) ? $results[41] : 0;
+$active_classes["Alchemist"] = isset($results[43]) ? $results[43] : 0;
+$active_classes["Culinarian"] = isset($results[45]) ? $results[45] : 0;
+$active_classes["Miner"] = isset($results[47]) ? $results[47] : 0;
+$active_classes["Botanist"] = isset($results[49]) ? $results[49] : 0;
+$active_classes["Fisher"] = isset($results[51]) ? $results[51] : 0;
 
 // Subscription figures
-$sub_time["30 Days"] = $results[52];
-$sub_time["60 Days"] = $results[53];
-$sub_time["90 Days"] = $results[54];
-$sub_time["180 Days"] =  $results[55];
-$sub_time["270 Days"] = $results[56];
-$sub_time["360 Days"] = $results[57];
-$sub_time["450 Days"] = $results[58];
-$sub_time["630 Days"] = $results[59];
-$sub_time["960 Days"] = $results[60];
+$sub_time["30 Days"] = isset($results[52]) ? $results[52] : 0;
+$sub_time["60 Days"] = isset($results[53]) ? $results[53] : 0;
+$sub_time["90 Days"] = isset($results[54]) ? $results[54] : 0;
+$sub_time["180 Days"] = isset($results[55]) ? $results[55] : 0;
+$sub_time["270 Days"] = isset($results[56]) ? $results[56] : 0;
+$sub_time["360 Days"] = isset($results[57]) ? $results[57] : 0;
+$sub_time["450 Days"] = isset($results[58]) ? $results[58] : 0;
+$sub_time["630 Days"] = isset($results[59]) ? $results[59] : 0;
+$sub_time["960 Days"] = isset($results[60]) ? $results[60] : 0;
 
 // Pre-orders
-$prearr = $results[61];
+$prearr = isset($results[61]) ? $results[61] : 0;
 $fmt_prearr = number_format($prearr);
-$prehw = $results[62];
+$prehw = isset($results[62]) ? $results[62] : 0;
 $fmt_prehw = number_format($prehw);
-$presb = $results[63];
+$presb = isset($results[63]) ? $results[63] : 0;
 $fmt_presb = number_format($presb);
 
 // Collectors Edition
-$ps4_collectors = $results[64];
+$ps4_collectors = isset($results[64]) ? $results[64] : 0;
 $fmt_ps4_collectors = number_format($ps4_collectors);
-$pc_collectors = $results[65];
+$pc_collectors = isset($results[65]) ? $results[65] : 0;
 $fmt_pc_collectors = number_format($pc_collectors);
 
 // Physical Items
-$arrartbook = $results[66];
+$arrartbook = isset($results[66]) ? $results[66] : 0;
 $fmt_arrartbook = number_format($arrartbook);
-$beforemeteor = $results[67];
+$beforemeteor = isset($results[67]) ? $results[67] : 0;
 $fmt_beforemeteor = number_format($beforemeteor);
-$beforethefall = $results[68];
+$beforethefall = isset($results[68]) ? $results[68] : 0;
 $fmt_beforethefall = number_format($beforethefall);
-$soundtrack = $results[69];
+$soundtrack = isset($results[69]) ? $results[69] : 0;
 $fmt_soundtrack = number_format($soundtrack);
-$moogleplush = $results[70];
+$moogleplush = isset($results[70]) ? $results[70] : 0;
 $fmt_moogleplush = number_format($moogleplush);
 
 // Eternal Bond
-$saw_eternal_bond = $results[71];
+$saw_eternal_bond = isset($results[71]) ? $results[71] : 0;
 $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-$did_eternal_bond = $results[72];
+$did_eternal_bond = isset($results[72]) ? $results[72] : 0;
 $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
 // Player Commendations
-$comm50 = $results[73];
+$comm50 = isset($results[73]) ? $results[73] : 0;
 $fmt_comm50 = number_format($comm50);
 
 // Hildibrand
-$hildibrand = $results[74];
+$hildibrand = isset($results[74]) ? $results[74] : 0;
 $fmt_hildibrand = number_format($hildibrand);
 
 // ARR Sightseeing Log
-$sightseeing = $results[75];
+$sightseeing = isset($results[75]) ? $results[75] : 0;
 $fmt_sightseeing = number_format($sightseeing);
 
 // Beast Tribes
 
-$beast_tribes["Kobold"] = $results[76];
-$beast_tribes["Sahagin"] = $results[77];
-$beast_tribes["Amaljaa"] = $results[78];
-$beast_tribes["Sylph"] = $results[79];
+$beast_tribes["Kobold"] = isset($results[76]) ? $results[76] : 0;
+$beast_tribes["Sahagin"] = isset($results[77]) ? $results[77] : 0;
+$beast_tribes["Amaljaa"] = isset($results[78]) ? $results[78] : 0;
+$beast_tribes["Sylph"] = isset($results[79]) ? $results[79] : 0;
 
 // Close DB Connection
 $db->close();
