@@ -1,5 +1,15 @@
 <?php
 
+// Helper function to fetch the sum of all values in the array, where the array key matches one of the specified realm names
+function sumInRegion($data, $regional_realms) {
+        return array_sum(array_intersect_key($data, array_flip($regional_realms)));
+}
+
+// Helper function to return the value of the requested key, or zero if one isn't available
+function getValueOrZero($data, $key) {
+        return isset($data[$key]) ? $data[$key] : 0;
+}
+
 $conn_info = parse_ini_file("templateconfig.ini");
 
 $date = date("F Y");
@@ -17,456 +27,301 @@ if (! $db->select_db($conn_info["database"])) {
         die("Couldn't find DB");
 }
 
-$active_check = "hw_33_complete = (1)";
+$american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
+                              "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
+                              "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
+                              "Midgardsormr","Sargatanas","Siren","Zalera","Excalibur");
+sort($american_realm_array);
 
-$american_realms = "(realm = 'Behemoth' OR realm = 'Brynhildr' OR realm = 'Diabolos'
-        OR realm = 'Excalibur' OR realm = 'Exodus' OR realm = 'Famfrit' OR realm = 'Hyperion' OR realm = 'Lamia' OR realm = 'Leviathan'
-        OR realm = 'Malboro' OR realm = 'Ultros' OR realm = 'Adamantoise' OR realm = 'Balmung' OR realm = 'Cactuar' OR realm = 'Coeurl'
-        OR realm = 'Faerie' OR realm = 'Gilgamesh' OR realm = 'Goblin' OR realm = 'Jenova' OR realm = 'Mateus' OR realm = 'Midgardsormr'
-        OR realm = 'Sargatanas' OR realm = 'Siren' OR realm = 'Zalera')";
+$japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit","Ridill","Tiamat","Ultima",
+                              "Valefor","Yojimbo","Zeromus","Anima","Asura","Belias","Chocobo","Hades",
+                              "Ixion","Mandragora","Masamune","Pandaemonium","Shinryu","Titan","Aegis",
+                              "Atomos","Carbuncle","Garuda","Gungnir","Kujata","Ramuh","Tonberry","Typhon","Unicorn");
+sort($japanese_realm_array);
 
-$japanese_realms = "(realm = 'Alexander' OR realm = 'Bahamut' OR realm = 'Durandal'
-        OR realm = 'Fenrir' OR realm = 'Ifrit' OR realm = 'Ridill' OR realm = 'Tiamat' OR realm = 'Ultima' OR realm = 'Valefor' OR
-        realm = 'Yojimbo'  OR realm = 'Zeromus' OR realm = 'Anima' OR realm = 'Asura' OR realm = 'Belias' OR realm = 'Chocobo' OR
-        realm = 'Hades' OR realm = 'Ixion' OR realm = 'Mandragora' OR realm = 'Masamune' OR realm = 'Pandaemonium' OR realm = 'Shinryu'
-        OR realm = 'Titan' OR realm = 'Aegis' OR realm = 'Atomos' OR realm = 'Carbuncle' OR realm = 'Garuda' OR realm = 'Gungnir'
-        OR realm = 'Kujata' OR realm = 'Ramuh' OR realm = 'Tonberry' OR realm = 'Typhon' OR realm = 'Unicorn')";
+$european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega");
+sort($european_realm_array);
 
-$european_realms = "(realm = 'Cerberus' OR realm = 'Lich' OR realm = 'Moogle' OR
-        realm = 'Odin' OR realm = 'Phoenix' OR realm = 'Ragnarok' OR realm = 'Shiva' OR realm = 'Zodiark' OR realm = 'Louisoix' OR realm = 'Omega')";
+// Variables
+$player_count = 0;
+$active_player_count = 0;
+$realm_count = array();
+$active_realm_count = array();
+$gc_count = array();
+$active_gc_count = array();
+$race_gender_count = array();
+$active_race_gender_count = array();
+$classes = array();
+$active_classes = array();
+$sub_time = array();
+$prearr = 0;
+$prehw = 0;
+$presb = 0;
+$ps4collectors = 0;
+$pc_collectors = 0;
+$arrartbook = 0;
+$beforemeteor = 0;
+$beforethefall = 0;
+$soundtrack = 0;
+$moogleplush = 0;
+$saw_eternal_bond = 0;
+$did_eternal_bond = 0;
+$comm50 = 0;
+$hildibrand = 0;
+$sightseeing = 0;
+$beast_tribes = array();
 
-// Fetch total number of players in database
-$player_count_query = $db->query("SELECT count(*) FROM tblplayers;");
-$player_count = $player_count_query->fetch_array()[0];
-$fmt_player_count = number_format($player_count);
-
-$active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $active_check . ";");
-$active_player_count = $active_player_count_query->fetch_array()[0];
-$fmt_active_player_count = number_format($active_player_count);
-
-// Fetch total number of players in each region
-// America
-$america_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $american_realms);
-$america_player_count = $america_player_count_query->fetch_array()[0];
-$fmt_america_player_count = number_format($america_player_count);
-
-$america_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $american_realms . " AND " . $active_check);
-$america_active_player_count = $america_active_player_count_query->fetch_array()[0];
-$fmt_america_active_player_count = number_format($america_active_player_count);
-
-//Japan
-$japan_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $japanese_realms);
-$japan_player_count = $japan_player_count_query->fetch_array()[0];
-$fmt_japan_player_count = number_format($japan_player_count);
-
-$japan_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $japanese_realms . " AND " . $active_check);
-$japan_active_player_count = $japan_active_player_count_query->fetch_array()[0];
-$fmt_japan_active_player_count = number_format($japan_active_player_count);
-
-//Europe
-$europe_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $european_realms);
-$europe_player_count = $europe_player_count_query->fetch_array()[0];
-$fmt_europe_player_count = number_format($europe_player_count);
-
-$europe_active_player_count_query = $db->query("SELECT count(*) FROM tblplayers WHERE " . $european_realms . " AND " . $active_check);
-$europe_active_player_count = $europe_active_player_count_query->fetch_array()[0];
-$fmt_europe_active_player_count = number_format($europe_active_player_count);
-
-// Grand Company Distribution
-$gc_distribution = array();
-$gc_distribution_query = $db->query("SELECT grand_company,count(*) FROM tblplayers GROUP BY grand_company");
-
-while ($row = $gc_distribution_query->fetch_array()) {
-        //$row[0] = grand company name
-        //$row[1] = population
-
-        //If user is not in gc, mark gc as none rather than blank
-        if ($row[0] === '') { $row[0] = "None"; }
-        $gc_distribution[$row[0]] = $row[1];
-}
-
-$gc_active_distribution = array();
-$gc_active_distribution_query = $db->query("select grand_company,count(*) from tblplayers WHERE " . $active_check . " group by grand_company");
-
-while ($row = $gc_active_distribution_query->fetch_array()) {
-        //$row[0] = grand company name
-        //$row[1] = population
-
-        //If user is not in gc, mark gc as none rather than blank
-        if ($row[0] === '') { $row[0] = "None"; }
-        $gc_active_distribution[$row[0]] = $row[1];
-}
-
-
-// Race / Gender Distribution
-
-$race_gender_male = array();
-$race_gender_female = array();
-$race_gender_query = $db->query("SELECT race,gender,count(*) FROM tblplayers GROUP BY race,gender");
-
-while ($row = $race_gender_query->fetch_array()) {
-        //$row[0] = race
-        //$row[1] = gender
-        //$row[2] = population
-
-        //Split males and females into seperate arrays
-        if ($row[1] === "male") {
-                $race_gender_male[$row[0]] = $row[2];
-        } else if ($row[1] === "female") {
-                $race_gender_female[$row[0]] = $row[2];
+$player_overview_query = $db->query("SELECT realm, grand_company, race, gender, COUNT(*), SUM(CASE WHEN hw_33_complete = (1) THEN 1 ELSE 0 END) FROM tblplayers GROUP BY realm, grand_company, race, gender;");
+while($row = $player_overview_query->fetch_array()) {
+        $realm = isset($row[0]) ? $row[0] : 'Unknown';
+        $grand_company = isset($row[1]) ?$row[1] : 'Unknown';
+        $race = isset($row[2]) ? $row[2] : 'Unknown';
+        $gender = isset($row[3]) ? $row[3] : 'Unknown';
+        // Fetch total number of players in database
+        $player_count += isset($row[4]) ? $row[4] : 0;
+        // Fetch total number of active players in database
+        $active_player_count += isset($row[5]) ? $row[5] : 0;
+        // Fetch realm player counts
+        if(!array_key_exists($realm, $realm_count)) {
+                $realm_count[$realm] = 0;
         }
-}
-
-$active_race_gender_male = array();
-$active_race_gender_female = array();
-$active_race_gender_query = $db->query("SELECT race,gender,count(*) FROM tblplayers WHERE " . $active_check . " GROUP BY race,gender");
-
-while ($row = $active_race_gender_query->fetch_array()) {
-        //$row[0] = race
-        //$row[1] = gender
-        //$row[2] = population
-
-        //Split males and females into seperate arrays
-        if ($row[1] === "male") {
-                $active_race_gender_male[$row[0]] = $row[2];
-        } else if ($row[1] === "female") {
-                $active_race_gender_female[$row[0]] = $row[2];
+        $realm_count[$realm] += isset($row[4]) ? $row[4] : 0;
+        // Fetch realm active player count
+        if(!array_key_exists($realm, $active_realm_count)) {
+                $active_realm_count[$realm] = 0;
         }
+        $active_realm_count[$realm] += isset($row[5]) ? $row[5] : 0;
+        // Fetch grand company player count
+        if(!array_key_exists($grand_company, $gc_count)) {
+                $gc_count[$grand_company] = 0;
+        }
+        $gc_count[$grand_company] += isset($row[4]) ? $row[4] : 0;
+        // Fetch granc company active player count
+        if(!array_key_exists($grand_company, $active_gc_count)) {
+                $active_gc_count[$grand_company] = 0;
+        }
+        $active_gc_count[$grand_company] += isset($row[5]) ? $row[5] : 0;
+        // Fetch race and gender player count
+        if(!array_key_exists($race, $race_gender_count)) {
+                $race_gender_count[$race] = array();
+        }
+        if(!array_key_exists($gender, $race_gender_count[$race])) {
+                $race_gender_count[$race][$gender] = 0;
+        }
+        $race_gender_count[$race][$gender] += isset($row[4]) ? $row[4] : 0;
+        // Fetch race and gender active player count
+        if(!array_key_exists($race, $active_race_gender_count)) {
+                $active_race_gender_count[$race] = array();
+        }
+        if(!array_key_exists($gender, $active_race_gender_count[$race])) {
+                $active_race_gender_count[$race][$gender] = 0;
+        }
+        $active_race_gender_count[$race][$gender] += isset($row[5]) ? $row[5] : 0;
 }
 
 // Get statistics on class adoption
-$classes = array();
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_gladiator != ''");
-$classes["Gladiator"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_pugilist != ''");
-$classes["Pugilist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_marauder != ''");
-$classes["Marauder"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_lancer != ''");
-$classes["Lancer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_archer != ''");
-$classes["Archer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_rogue != ''");
-$classes["Rogue"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_conjurer != ''");
-$classes["Conjurer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_thaumaturge != ''");
-$classes["Thaumaturge"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_arcanist != ''");
-$classes["Arcanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_darkknight != ''");
-$classes["Dark Knight"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_machinist != ''");
-$classes["Machinist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_astrologian != ''");
-$classes["Astrologian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_samurai != ''");
-$classes["Samurai"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_redmage != ''");
-$classes["Red Mage"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_carpenter != ''");
-$classes["Carpenter"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_blacksmith != ''");
-$classes["Blacksmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_armorer != ''");
-$classes["Armorer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_goldsmith != ''");
-$classes["Goldsmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_leatherworker != ''");
-$classes["Leatherworker"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_weaver != ''");
-$classes["Weaver"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_alchemist != ''");
-$classes["Alchemist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_culinarian != ''");
-$classes["Culinarian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_miner != ''");
-$classes["Miner"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_botanist != ''");
-$classes["Botanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("SELECT count(*) FROM tblplayers WHERE level_fisher != ''");
-$classes["Fisher"] = $class_results->fetch_array()[0];
-
-// Get statistics on active class adoption
-$active_classes = array();
-
-$class_results = $db->query("select count(*) from tblplayers where level_gladiator >= '60' AND level_gladiator != ''");
-$active_classes["Gladiator"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_pugilist >= '60' AND level_pugilist != ''");
-$active_classes["Pugilist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_marauder >= '60' AND level_marauder != ''");
-$active_classes["Marauder"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_lancer >= '60' AND level_lancer != ''");
-$active_classes["Lancer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_archer >= '60' AND level_archer != ''");
-$active_classes["Archer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_rogue >= '60' AND level_rogue != ''");
-$active_classes["Rogue"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_conjurer >= '60' AND level_conjurer != ''");
-$active_classes["Conjurer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_thaumaturge >= '60' AND level_thaumaturge != ''");
-$active_classes["Thaumaturge"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_arcanist >= '60' AND level_arcanist != ''");
-$active_classes["Arcanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_darkknight >= '60' AND level_darkknight != ''");
-$active_classes["Dark Knight"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_machinist >= '60' AND level_machinist != ''");
-$active_classes["Machinist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_astrologian >= '60' AND level_astrologian != ''");
-$active_classes["Astrologian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_samurai >= '60' AND level_samurai != ''");
-$active_classes["Samurai"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_redmage >= '60' AND level_redmage != ''");
-$active_classes["Red Mage"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_carpenter >= '60' AND level_carpenter != ''");
-$active_classes["Carpenter"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_blacksmith >= '60' AND level_blacksmith != ''");
-$active_classes["Blacksmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_armorer >= '60' AND level_blacksmith != ''");
-$active_classes["Armorer"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_goldsmith >= '60' AND level_goldsmith != ''");
-$active_classes["Goldsmith"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_leatherworker >= '60' AND level_leatherworker != ''");
-$active_classes["Leatherworker"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_weaver >= '60' AND level_weaver != ''");
-$active_classes["Weaver"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_alchemist >= '60' AND level_alchemist != ''");
-$active_classes["Alchemist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_culinarian >= '60' AND level_culinarian != ''");
-$active_classes["Culinarian"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_miner >= '60' AND level_miner != ''");
-$active_classes["Miner"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_botanist >= '60' AND level_botanist != ''");
-$active_classes["Botanist"] = $class_results->fetch_array()[0];
-
-$class_results = $db->query("select count(*) from tblplayers where level_fisher >= '60' AND level_fisher != ''");
-$active_classes["Fisher"] = $class_results->fetch_array()[0];
-
-// Get statistics on realm population
-$america_realm_pop = array();
-$america_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $america_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $america_realm_pop[$row[0]] = $row[1];
-}
-
-$active_america_realm_pop = array();
-$active_america_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $american_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_america_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_america_realm_pop[$row[0]] = $row[1];
-}
-
-$japan_realm_pop = array();
-$japan_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $japan_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $japan_realm_pop[$row[0]] = $row[1];
-}
-
-$active_japan_realm_pop = array();
-$active_japan_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $japanese_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_japan_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_japan_realm_pop[$row[0]] = $row[1];
-}
-
-$europe_realm_pop = array();
-$europe_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $europe_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $europe_realm_pop[$row[0]] = $row[1];
-}
-
-$active_europe_realm_pop = array();
-$active_europe_realm_pop_query = $db->query("SELECT realm,count(*) FROM tblplayers WHERE " . $active_check . " AND " . $european_realms . " GROUP BY realm ORDER BY realm ASC");
-
-while ($row = $active_europe_realm_pop_query->fetch_array()) {
-        //$row[0] = realm name
-        //$row[1] = population
-        $active_europe_realm_pop[$row[0]] = $row[1];
-}
-
-
+$class_achievements_results = $db->query(
+        "SELECT
+                SUM(CASE WHEN level_gladiator > 0 THEN 1 ELSE 0 END) AS 'gladiator',
+                SUM(CASE WHEN level_gladiator >= 60 THEN 1 ELSE 0 END) AS 'gladiator_active',
+                SUM(CASE WHEN level_pugilist > 0 THEN 1 ELSE 0 END) AS 'pugilist',
+                SUM(CASE WHEN level_pugilist >= 60 THEN 1 ELSE 0 END) AS 'pugilist_active',
+                SUM(CASE WHEN level_marauder > 0 THEN 1 ELSE 0 END) AS 'marauder',
+                SUM(CASE WHEN level_marauder >= 60 THEN 1 ELSE 0 END) AS 'marauder_active',
+                SUM(CASE WHEN level_lancer > 0 THEN 1 ELSE 0 END) AS 'lancer',
+                SUM(CASE WHEN level_lancer >= 60 THEN 1 ELSE 0 END) AS 'lancer_active',
+                SUM(CASE WHEN level_archer > 0 THEN 1 ELSE 0 END) AS 'archer',
+                SUM(CASE WHEN level_archer >= 60 THEN 1 ELSE 0 END) AS 'archer_active',
+                SUM(CASE WHEN level_rogue > 0 THEN 1 ELSE 0 END) AS 'rogue',
+                SUM(CASE WHEN level_rogue >= 60 THEN 1 ELSE 0 END) AS 'rogue_active',
+                SUM(CASE WHEN level_conjurer > 0 THEN 1 ELSE 0 END) AS 'conjurer',
+                SUM(CASE WHEN level_conjurer >= 60 THEN 1 ELSE 0 END) AS 'conjurer_active',
+                SUM(CASE WHEN level_thaumaturge > 0 THEN 1 ELSE 0 END) AS 'thaumaturge',
+                SUM(CASE WHEN level_thaumaturge >= 60 THEN 1 ELSE 0 END) AS 'thaumaturge_active',
+                SUM(CASE WHEN level_arcanist > 0 THEN 1 ELSE 0 END) AS 'arcanist',
+                SUM(CASE WHEN level_arcanist >= 60 THEN 1 ELSE 0 END) AS 'arcanist_active',
+                SUM(CASE WHEN level_scholar > 0 THEN 1 ELSE 0 END) AS 'scholar',
+                SUM(CASE WHEN level_scholar >= 60 THEN 1 ELSE 0 END) AS 'scholar_active',
+                SUM(CASE WHEN level_darkknight > 0 THEN 1 ELSE 0 END) AS 'darkknight',
+                SUM(CASE WHEN level_darkknight >= 60 THEN 1 ELSE 0 END) AS 'darkknight_active',
+                SUM(CASE WHEN level_machinist > 0 THEN 1 ELSE 0 END) AS 'machinist',
+                SUM(CASE WHEN level_machinist >= 60 THEN 1 ELSE 0 END) AS 'machinist_active',
+                SUM(CASE WHEN level_astrologian > 0 THEN 1 ELSE 0 END) AS 'astrologian',
+                SUM(CASE WHEN level_astrologian >= 60 THEN 1 ELSE 0 END) AS 'astrologian_active',
+                SUM(CASE WHEN level_samurai > 0 THEN 1 ELSE 0 END) AS 'samurai',
+                SUM(CASE WHEN level_samurai >= 60 THEN 1 ELSE 0 END) AS 'samurai_active',
+                SUM(CASE WHEN level_redmage > 0 THEN 1 ELSE 0 END) AS 'redmage',
+                SUM(CASE WHEN level_redmage >= 60 THEN 1 ELSE 0 END) AS 'redmage_active',
+                SUM(CASE WHEN level_carpenter > 0 THEN 1 ELSE 0 END) AS 'carpenter',
+                SUM(CASE WHEN level_carpenter >= 60 THEN 1 ELSE 0 END) AS 'carpenter_active',
+                SUM(CASE WHEN level_blacksmith > 0 THEN 1 ELSE 0 END) AS 'blacksmith',
+                SUM(CASE WHEN level_blacksmith >= 60 THEN 1 ELSE 0 END) AS 'blacksmith_active',
+                SUM(CASE WHEN level_armorer > 0 THEN 1 ELSE 0 END) AS 'armorer',
+                SUM(CASE WHEN level_armorer >= 60 THEN 1 ELSE 0 END) AS 'armorer_active',
+                SUM(CASE WHEN level_goldsmith > 0 THEN 1 ELSE 0 END) AS 'goldsmith',
+                SUM(CASE WHEN level_goldsmith >= 60 THEN 1 ELSE 0 END) AS 'goldsmith_active',
+                SUM(CASE WHEN level_leatherworker > 0 THEN 1 ELSE 0 END) AS 'leatherworker',
+                SUM(CASE WHEN level_leatherworker >= 60 THEN 1 ELSE 0 END) AS 'leatherworker_active',
+                SUM(CASE WHEN level_weaver > 0 THEN 1 ELSE 0 END) AS 'weaver',
+                SUM(CASE WHEN level_weaver >= 60 THEN 1 ELSE 0 END) AS 'weaver_active',
+                SUM(CASE WHEN level_alchemist > 0 THEN 1 ELSE 0 END) AS 'alchemist',
+                SUM(CASE WHEN level_alchemist >= 60 THEN 1 ELSE 0 END) AS 'alchemist_active',
+                SUM(CASE WHEN level_culinarian > 0 THEN 1 ELSE 0 END) AS 'culinarian',
+                SUM(CASE WHEN level_culinarian >= 60 THEN 1 ELSE 0 END) AS 'culinarian_active',
+                SUM(CASE WHEN level_miner > 0 THEN 1 ELSE 0 END) AS 'miner',
+                SUM(CASE WHEN level_miner >= 60 THEN 1 ELSE 0 END) AS 'miner_active',
+                SUM(CASE WHEN level_botanist > 0 THEN 1 ELSE 0 END) AS 'botanist',
+                SUM(CASE WHEN level_botanist >= 60 THEN 1 ELSE 0 END) AS 'botanist_active',
+                SUM(CASE WHEN level_fisher > 0 THEN 1 ELSE 0 END) AS 'fisher',
+                SUM(CASE WHEN level_fisher >= 60 THEN 1 ELSE 0 END) AS 'fisher_active',
+                SUM(p30days),
+                SUM(p60days),
+                SUM(p90days),
+                SUM(p180days),
+                SUM(p270days),
+                SUM(p360days),
+                SUM(p450days),
+                SUM(p630days),
+                SUM(p960days),
+                SUM(prearr),
+                SUM(prehw),
+                SUM(presb),
+                SUM(ps4collectors),
+                SUM(arrcollector),
+                SUM(arrartbook),
+                SUM(beforemeteor),
+                SUM(beforethefall),
+                SUM(soundtrack),
+                SUM(moogleplush),
+                SUM(saweternalbond),
+                SUM(dideternalbond),
+                SUM(comm50),
+                SUM(hildibrand),
+                SUM(sightseeing),
+                SUM(kobold),
+                SUM(sahagin),
+                SUM(amaljaa),
+                SUM(sylph)
+         FROM
+                tblplayers;");
+
+$results = $class_achievements_results->fetch_array();
+
+$classes["Gladiator"] = isset($results[0]) ? $results[0] : 0;
+$classes["Pugilist"] = isset($results[2]) ? $results[2] : 0;
+$classes["Marauder"] = isset($results[4]) ? $results[4] : 0;
+$classes["Lancer"] = isset($results[6]) ? $results[6] : 0;
+$classes["Archer"] = isset($results[8]) ? $results[8] : 0;
+$classes["Rogue"] = isset($results[10]) ? $results[10] : 0;
+$classes["Conjurer"] = isset($results[12]) ? $results[12] : 0;
+$classes["Thaumaturge"] = isset($results[14]) ? $results[14] : 0;
+$classes["Arcanist"] = isset($results[16]) ? $results[16] : 0;
+$classes["Scholar"] = isset($results[18]) ? $results[18] : 0;
+$classes["Dark Knight"] = isset($results[20]) ? $results[20] : 0;
+$classes["Machinist"] = isset($results[22]) ? $results[22] : 0;
+$classes["Astrologian"] = isset($results[24]) ? $results[24] : 0;
+$classes["Samurai"] = isset($results[26]) ? $results[26] : 0;
+$classes["Red Mage"] = isset($results[28]) ? $results[28] : 0;
+$classes["Carpenter"] = isset($results[30]) ? $results[30] : 0;
+$classes["Blacksmith"] = isset($results[32]) ? $results[32] : 0;
+$classes["Armorer"] = isset($results[34]) ? $results[34] : 0;
+$classes["Goldsmith"] = isset($results[36]) ? $results[36] : 0;
+$classes["Leatherworker"] = isset($results[38]) ? $results[38] : 0;
+$classes["Weaver"] = isset($results[40]) ? $results[40] : 0;
+$classes["Alchemist"] = isset($results[42]) ? $results[42] : 0;
+$classes["Culinarian"] = isset($results[44]) ? $results[44] : 0;
+$classes["Miner"] = isset($results[46]) ? $results[46] : 0;
+$classes["Botanist"] = isset($results[48]) ? $results[48] : 0;
+$classes["Fisher"] = isset($results[50]) ? $results[50] : 0;
+
+$active_classes["Gladiator"] = isset($results[1]) ? $results[1] : 0;
+$active_classes["Pugilist"] = isset($results[3]) ? $results[3] : 0;
+$active_classes["Marauder"] = isset($results[5]) ? $results[5] : 0;
+$active_classes["Lancer"] = isset($results[7]) ? $results[7] : 0;
+$active_classes["Archer"] = isset($results[9]) ? $results[9] : 0;
+$active_classes["Rogue"] = isset($results[11]) ? $results[11] : 0;
+$active_classes["Conjurer"] = isset($results[13]) ? $results[13] : 0;
+$active_classes["Thaumaturge"] = isset($results[15]) ? $results[15] : 0;
+$active_classes["Arcanist"] = isset($results[17]) ? $results[17] : 0;
+$active_classes["Scholar"] = isset($results[19]) ? $results[19] : 0;
+$active_classes["Dark Knight"] = isset($results[21]) ? $results[21] : 0;
+$active_classes["Machinist"] = isset($results[23]) ? $results[23] : 0;
+$active_classes["Astrologian"] = isset($results[25]) ? $results[25] : 0;
+$active_classes["Samurai"] = isset($results[27]) ? $results[27] : 0;
+$active_classes["Red Mage"] = isset($results[29]) ? $results[29] : 0;
+$active_classes["Carpenter"] = isset($results[31]) ? $results[31] : 0;
+$active_classes["Blacksmith"] = isset($results[33]) ? $results[33] : 0;
+$active_classes["Armorer"] = isset($results[35]) ? $results[35] : 0;
+$active_classes["Goldsmith"] = isset($results[37]) ? $results[37] : 0;
+$active_classes["Leatherworker"] = isset($results[39]) ? $results[39] : 0;
+$active_classes["Weaver"] = isset($results[41]) ? $results[41] : 0;
+$active_classes["Alchemist"] = isset($results[43]) ? $results[43] : 0;
+$active_classes["Culinarian"] = isset($results[45]) ? $results[45] : 0;
+$active_classes["Miner"] = isset($results[47]) ? $results[47] : 0;
+$active_classes["Botanist"] = isset($results[49]) ? $results[49] : 0;
+$active_classes["Fisher"] = isset($results[51]) ? $results[51] : 0;
 
 // Subscription figures
-
-$sub_time = array();
-
-$sub_30_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p30days = (1);");
-$sub_time["30 Days"] = $sub_30_days_query->fetch_array()[0];
-
-$sub_60_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p60days = (1);");
-$sub_time["60 Days"] = $sub_60_days_query->fetch_array()[0];
-
-$sub_90_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p90days = (1);");
-$sub_time["90 Days"] = $sub_90_days_query->fetch_array()[0];
-
-$sub_180_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p180days = (1);");
-$sub_time["180 Days"] =  $sub_180_days_query->fetch_array()[0];
-
-$sub_270_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p270days = (1);");
-$sub_time["270 Days"] = $sub_270_days_query->fetch_array()[0];
-
-$sub_360_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p360days = (1);");
-$sub_time["360 Days"] = $sub_360_days_query->fetch_array()[0];
-
-$sub_450_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p450days = (1);");
-$sub_time["450 Days"] = $sub_450_days_query->fetch_array()[0];
-
-$sub_630_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p630days = (1);");
-$sub_time["630 Days"] = $sub_630_days_query->fetch_array()[0];
-
-$sub_960_days_query = $db->query("SELECT count(*) FROM tblplayers WHERE p960days = (1);");
-$sub_time["960 Days"] = $sub_960_days_query->fetch_array()[0];
+$sub_time["30 Days"] = isset($results[52]) ? $results[52] : 0;
+$sub_time["60 Days"] = isset($results[53]) ? $results[53] : 0;
+$sub_time["90 Days"] = isset($results[54]) ? $results[54] : 0;
+$sub_time["180 Days"] = isset($results[55]) ? $results[55] : 0;
+$sub_time["270 Days"] = isset($results[56]) ? $results[56] : 0;
+$sub_time["360 Days"] = isset($results[57]) ? $results[57] : 0;
+$sub_time["450 Days"] = isset($results[58]) ? $results[58] : 0;
+$sub_time["630 Days"] = isset($results[59]) ? $results[59] : 0;
+$sub_time["960 Days"] = isset($results[60]) ? $results[60] : 0;
 
 // Pre-orders
-
-$prearr_query = $db->query("SELECT count(*) FROM tblplayers WHERE prearr = (1);");
-$prearr = $prearr_query->fetch_array()[0];
+$prearr = isset($results[61]) ? $results[61] : 0;
 $fmt_prearr = number_format($prearr);
-
-$prehw_query = $db->query("SELECT count(*) FROM tblplayers WHERE prehw = (1);");
-$prehw = $prehw_query->fetch_array()[0];
+$prehw = isset($results[62]) ? $results[62] : 0;
 $fmt_prehw = number_format($prehw);
-
-$presb_query = $db->query("SELECT count(*) FROM tblplayers WHERE presb = (1);");
-$presb = $presb_query->fetch_array()[0];
+$presb = isset($results[63]) ? $results[63] : 0;
 $fmt_presb = number_format($presb);
 
 // Collectors Edition
-
-$ps4_collectors_query = $db->query("SELECT count(*) FROM tblplayers WHERE ps4collectors = (1);");
-$ps4_collectors = $ps4_collectors_query->fetch_array()[0];
+$ps4_collectors = isset($results[64]) ? $results[64] : 0;
 $fmt_ps4_collectors = number_format($ps4_collectors);
-
-$pc_collectors_query = $db->query("SELECT count(*) FROM tblplayers WHERE arrcollector = (1);");
-$pc_collectors = $pc_collectors_query->fetch_array()[0];
+$pc_collectors = isset($results[65]) ? $results[65] : 0;
 $fmt_pc_collectors = number_format($pc_collectors);
 
 // Physical Items
-
-$arrartbook_query = $db->query("SELECT count(*) FROM tblplayers WHERE arrartbook = (1);");
-$arrartbook = $arrartbook_query->fetch_array()[0];
+$arrartbook = isset($results[66]) ? $results[66] : 0;
 $fmt_arrartbook = number_format($arrartbook);
-
-$beforemeteor_query = $db->query("SELECT count(*) FROM tblplayers WHERE beforemeteor = (1);");
-$beforemeteor = $beforemeteor_query->fetch_array()[0];
+$beforemeteor = isset($results[67]) ? $results[67] : 0;
 $fmt_beforemeteor = number_format($beforemeteor);
-
-$beforethefall_query = $db->query("SELECT count(*) FROM tblplayers WHERE beforethefall = (1);");
-$beforethefall = $beforethefall_query->fetch_array()[0];
+$beforethefall = isset($results[68]) ? $results[68] : 0;
 $fmt_beforethefall = number_format($beforethefall);
-
-$soundtrack_query = $db->query("SELECT count(*) FROM tblplayers WHERE soundtrack = (1);");
-$soundtrack = $soundtrack_query->fetch_array()[0];
+$soundtrack = isset($results[69]) ? $results[69] : 0;
 $fmt_soundtrack = number_format($soundtrack);
-
-$moogleplush_query = $db->query("SELECT count(*) FROM tblplayers WHERE moogleplush = (1);");
-$moogleplush = $moogleplush_query->fetch_array()[0];
+$moogleplush = isset($results[70]) ? $results[70] : 0;
 $fmt_moogleplush = number_format($moogleplush);
 
 // Eternal Bond
-
-$saw_eternal_bond_query = $db->query("SELECT count(*) FROM tblplayers WHERE saweternalbond = (1);");
-$saw_eternal_bond = $saw_eternal_bond_query->fetch_array()[0];
+$saw_eternal_bond = isset($results[71]) ? $results[71] : 0;
 $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-
-$did_eternal_bond_query = $db->query("SELECT count(*) FROM tblplayers WHERE dideternalbond = (1);");
-$did_eternal_bond = $did_eternal_bond_query->fetch_array()[0];
+$did_eternal_bond = isset($results[72]) ? $results[72] : 0;
 $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
 // Player Commendations
-
-$comm50_query = $db->query("SELECT count(*) FROM tblplayers WHERE comm50 = (1);");
-$comm50 = $comm50_query->fetch_array()[0];
+$comm50 = isset($results[73]) ? $results[73] : 0;
 $fmt_comm50 = number_format($comm50);
 
 // Hildibrand
-
-$hildibrand_query = $db->query("SELECT count(*) FROM tblplayers WHERE hildibrand = (1);");
-$hildibrand = $hildibrand_query->fetch_array()[0];
+$hildibrand = isset($results[74]) ? $results[74] : 0;
 $fmt_hildibrand = number_format($hildibrand);
 
 // ARR Sightseeing Log
-
-$sightseeing_query = $db->query("SELECT count(*) FROM tblplayers WHERE sightseeing = (1);");
-$sightseeing = $sightseeing_query->fetch_array()[0];
+$sightseeing = isset($results[75]) ? $results[75] : 0;
 $fmt_sightseeing = number_format($sightseeing);
 
 // Beast Tribes
 
-$beast_tribes = array();
-
-$kobold_query = $db->query("SELECT count(*) FROM tblplayers WHERE kobold = (1);");
-$beast_tribes["Kobold"] = $kobold_query->fetch_array()[0];
-
-$sahagin_query = $db->query("SELECT count(*) FROM tblplayers WHERE sahagin = (1);");
-$beast_tribes["Sahagin"] = $sahagin_query->fetch_array()[0];
-
-$amaljaa_query = $db->query("SELECT count(*) FROM tblplayers WHERE amaljaa = (1);");
-$beast_tribes["Amaljaa"] = $amaljaa_query->fetch_array()[0];
-
-$sylph_query = $db->query("SELECT count(*) FROM tblplayers WHERE sylph = (1);");
-$beast_tribes["Sylph"] = $sylph_query->fetch_array()[0];
+$beast_tribes["Kobold"] = isset($results[76]) ? $results[76] : 0;
+$beast_tribes["Sahagin"] = isset($results[77]) ? $results[77] : 0;
+$beast_tribes["Amaljaa"] = isset($results[78]) ? $results[78] : 0;
+$beast_tribes["Sylph"] = isset($results[79]) ? $results[79] : 0;
 
 // Close DB Connection
 $db->close();
@@ -564,13 +419,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_player_count; ?></div>
+                              <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_active_player_count; ?></div>
+                              <div><?php echo number_format($active_player_count) ?></div>
                           </div>
                       </div>
                       <!-- America -->
@@ -581,13 +436,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_america_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_america_active_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
                       <!--Japan-->
@@ -598,13 +453,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_japan_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_japan_active_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
                       <!--Europe-->
@@ -615,13 +470,13 @@ $db->close();
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_europe_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
                       <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
-                              <div><?php echo $fmt_europe_active_player_count; ?></div>
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
                   </div>
@@ -1012,7 +867,7 @@ $db->close();
                   name: '# of Characters',
                   data: [
                       <?php
-                              foreach ($gc_distribution as $key => $value) {
+                              foreach ($gc_count as $key => $value) {
                                       echo "['$key', $value,],\n";
                               }
                       ?>
@@ -1046,8 +901,8 @@ $db->close();
                   name: '# of Characters',
                   data: [
                       <?php
-                              foreach ($gc_active_distribution as $key => $value) {
-                                      echo "['$key', $value,],\n";
+                              foreach ($active_gc_count as $key => $value) {
+                                      if($key != "none") echo "['$key', $value,],\n";
                               }
                       ?>
                   ]
@@ -1068,7 +923,7 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($race_gender_male as $key => $value) {
+                              foreach ($race_gender_count as $key => $value) {
                                       echo "\"$key\",\n";
                               }
                       ?>
@@ -1090,8 +945,8 @@ $db->close();
                   name: 'Female',
                   data: [
                       <?php
-                              foreach ($race_gender_female as $value) {
-                                      echo "$value,";
+                              foreach ($race_gender_count as $value) {
+                                      echo $value["female"] . ",";
                               }
                       ?>
                   ],
@@ -1099,8 +954,8 @@ $db->close();
                   name: 'Male',
                   data: [
                       <?php
-                              foreach ($race_gender_male as $value) {
-                                      echo "$value,";
+                              foreach ($race_gender_count as $value) {
+                                      echo $value["male"] . ",";
                               }
                       ?>
                   ],
@@ -1121,7 +976,7 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($active_race_gender_male as $key => $value) {
+                              foreach ($active_race_gender_count as $key => $value) {
                                       echo "\"$key\",\n";
                               }
                       ?>
@@ -1143,8 +998,8 @@ $db->close();
                   name: 'Female',
                   data: [
                       <?php
-                              foreach ($active_race_gender_female as $value) {
-                                      echo "$value,";
+                              foreach ($active_race_gender_count as $value) {
+                                      echo $value["female"] . ",";
                               }
                       ?>
                   ],
@@ -1152,8 +1007,8 @@ $db->close();
                   name: 'Male',
                   data: [
                       <?php
-                              foreach ($active_race_gender_male as $value) {
-                                      echo "$value,";
+                              foreach ($active_race_gender_count as $value) {
+                                      echo $value["male"] . ",";
                               }
                       ?>
                   ],
@@ -1262,8 +1117,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($america_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($american_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1285,8 +1140,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($america_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($american_realm_array as $value) {
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1307,8 +1162,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_america_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($american_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1330,8 +1185,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_america_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($american_realm_array as $value) {
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1352,8 +1207,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($japan_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($japanese_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1375,8 +1230,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($japan_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($japanese_realm_array as $value) {
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1397,8 +1252,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_japan_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($japanese_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1420,8 +1275,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_japan_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($japanese_realm_array as $value) {
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1442,8 +1297,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($europe_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($european_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1465,8 +1320,8 @@ $(function () {
             name: 'All',
             data: [
                 <?php
-                        foreach ($europe_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($european_realm_array as $value) {
+                                echo getValueOrZero($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1487,8 +1342,8 @@ $(function () {
         xAxis: {
             categories: [
                 <?php
-                        foreach ($active_europe_realm_pop as $key => $value) {
-                                echo "'$key',";
+                        foreach ($european_realm_array as $key => $value) {
+                                echo "'$value',";
                         }
                 ?>
              ],
@@ -1510,8 +1365,8 @@ $(function () {
             name: 'Active',
             data: [
                 <?php
-                        foreach ($active_europe_realm_pop as $value) {
-                                echo "$value,";
+                        foreach ($european_realm_array as $value) {
+                                echo getValueOrZero($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
