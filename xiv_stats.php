@@ -327,7 +327,6 @@ $beast_tribes["Sylph"] = isset($results[79]) ? $results[79] : 0;
 $db->close();
 
 ?>
-
 <html>
 
   <head>
@@ -402,7 +401,11 @@ $db->close();
                       <br/>Statistics for <?php echo $date; ?>
                       <p><b>* (Any reference to "Active" players, refers to players who have had their profile image update in the last 4 weeks)</b></p>
                       <p><b>NOTE: The metric for "Active" players changed between February and March 2017</b></p>
-                  </div>
+                      <hr>
+                      <!--Anchor Links-->
+                      <p><a href="#population">Population</a> (<a href="#popna">NA</a> &#124; <a href="#popjp">JP</a> &#124; <a href="#popeu">EU</a>) &#124; <a href="#racegender">Race &amp; Gender</a> &#124; <a href="#class">Class Distribution</a> &#124; <a href="#realmall">Realm Distribution (All-Time)</a> (<a href="#rat-na">NA</a> &#124; <a href="#rat-jp">JP</a> &#124; <a href="#rat-eu">EU</a>) &#124; <a href="#realmactive">Realm Distribution (Active)</a> (<a href="#ra-na">NA</a> &#124; <a href="#ra-jp">JP</a> &#124; <a href="#ra-eu">EU</a>) &#124; <a href="#grandcompany">Grand Company Distribution</a></p>
+                      <p><a href="#subscribed">Subscribed Time</a> &#124; <a href="#beast">Beast Tribes</a> &#124; <a href="#preorders">Pre-Orders</a> &#124; <a href="#collectors">Collectors</a> &#124; <a href="#physical">Physical Items</a> &#124; <a href="#other">Other</a></p>
+                    </div>
               </div>
           </div>
       </div>
@@ -410,7 +413,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">HOW MANY PLAYERS ARE THERE?</span>
+                      <a id="population"><span class="card-title black-text light">HOW MANY PLAYERS ARE THERE?</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -432,7 +435,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-title">AMERICA</div>
+                      <a id="popna"><div class="black-text light region-title">AMERICA</div></a>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
@@ -449,7 +452,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-title">JAPAN</div>
+                      <a id="popjp"><div class="black-text light region-title">JAPAN</div></a>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
@@ -466,7 +469,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-title">EUROPE</div>
+                      <a id="popeu"><div class="black-text light region-title">EUROPE</div></a>
                       <div class="black-text light region-subtitle">ALL PLAYERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
@@ -487,7 +490,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">RACE AND GENDER DISTRIBUTION</span>
+                      <a id="racegender"><span class="card-title black-text light">RACE AND GENDER DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -512,7 +515,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">CLASS DISTRIBUTION</span>
+                      <a id="class"><span class="card-title black-text light">CLASS DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -537,11 +540,11 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">REALM DISTRIBUTION (ALL)</span>
+                      <a id="realmall"><span class="card-title black-text light">REALM DISTRIBUTION (ALL)</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">AMERICAN REALMS</div>
+                      <a id="rat-na"><div class="black-text light region-subtitle">AMERICAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -549,7 +552,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">JAPANESE REALMS</div>
+                      <a id="rat-jp"><div class="black-text light region-subtitle">JAPANESE REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -557,7 +560,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">EUROPEAN REALMS</div>
+                      <a id="rat-eu"><div class="black-text light region-subtitle">EUROPEAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -571,11 +574,11 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">REALM DISTRIBUTION (ACTIVE)</span>
+                      <a id="realmactive"><span class="card-title black-text light">REALM DISTRIBUTION (ACTIVE)</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">AMERICAN REALMS</div>
+                          <a id="ra-na"><div class="black-text light region-subtitle">AMERICAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -583,7 +586,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">JAPANESE REALMS</div>
+                          <a id="ra-jp"><div class="black-text light region-subtitle">JAPANESE REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -591,7 +594,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">EUROPEAN REALMS</div>
+                          <a id="ra-eu"><div class="black-text light region-subtitle">EUROPEAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -605,7 +608,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">GRAND COMPANY DISTRIBUTION</span>
+                      <a id="grandcompany"><span class="card-title black-text light">GRAND COMPANY DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -630,7 +633,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">SUBSCRIBED TIME</span>
+                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -649,7 +652,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">BEAST TRIBES (RANK 4 OR HIGHER)</span>
+                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (RANK 4 OR HIGHER)</span></a>
 
                       <br/>
                       <hr/>
@@ -669,7 +672,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">PRE-ORDERS</span>
+                      <a id="preorders"><span class="card-title black-text light">PRE-ORDERS</span></a>
 
                       <div class="black-text light region-subtitle">PRE-ORDERED ARR</div>
                       <div class="row">
@@ -702,7 +705,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">COLLECTORS EDITION</span>
+                      <a id="collectors"><span class="card-title black-text light">COLLECTORS EDITION</span></a>
 
                       <div class="black-text light region-subtitle">PS4 ARR COLLECTORS EDITION</div>
                       <div class="row">
@@ -727,7 +730,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">PHYSICAL ITEMS</span>
+                      <a id="physical"><span class="card-title black-text light">PHYSICAL ITEMS</span></a>
 
                       <div class="black-text light region-subtitle">ARR SOUNDTRACK</div>
                       <div class="row">
@@ -773,7 +776,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text light">OTHER</span>
+                      <a id="other"><span class="card-title black-text light">OTHER</span></a>
 
                       <div class="black-text light region-subtitle">GUEST AT AN ETERNAL BOND</div>
                       <div class="row">
