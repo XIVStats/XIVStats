@@ -331,12 +331,12 @@ $db->close();
 
   <head>
     <title>XIVCensus - Player statistics for FFXIV</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
       <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
       <!-- Google Analytics -->
       <script>
@@ -398,16 +398,55 @@ $db->close();
               <div class="card white">
                   <div class="card-content black-text">
                       <span class="card-title black-text" style="font-size:28pt;">XIVCensus - Player statistics for FFXIV</span>
-                      <br/>Statistics for <?php echo $date; ?>
-                      <p><b>* (Any reference to "Active" players, refers to players who have had their profile image update in the last 4 weeks)</b></p>
-                      <p><b>NOTE: The metric for "Active" players changed between February and March 2017</b></p>
-                      <hr>
-                      <!--Anchor Links-->
-                      <p><a href="#population">Population</a> (<a href="#popna">NA</a> &#124; <a href="#popjp">JP</a> &#124; <a href="#popeu">EU</a>) &#124; <a href="#racegender">Race &amp; Gender</a> &#124; <a href="#class">Class Distribution</a> &#124; <a href="#realmall">Realm Distribution (All-Time)</a> (<a href="#rat-na">NA</a> &#124; <a href="#rat-jp">JP</a> &#124; <a href="#rat-eu">EU</a>) &#124; <a href="#realmactive">Realm Distribution (Active)</a> (<a href="#ra-na">NA</a> &#124; <a href="#ra-jp">JP</a> &#124; <a href="#ra-eu">EU</a>) &#124; <a href="#grandcompany">Grand Company Distribution</a></p>
-                      <p><a href="#subscribed">Subscribed Time</a> &#124; <a href="#beast">Beast Tribes</a> &#124; <a href="#preorders">Pre-Orders</a> &#124; <a href="#collectors">Collectors</a> &#124; <a href="#physical">Physical Items</a> &#124; <a href="#other">Other</a></p>
+                      <p>Statistics for <?php echo $date; ?></p>
+                      <p><b>* (Any reference to "Active" players, refers to players that have claimed the 3.3 story minion)</b></p>
                     </div>
               </div>
           </div>
+      </div>
+      <div class="col s12 m6 center-align">
+                      <!-- Dropdown Trigger -->
+                      <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
+                      <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
+                      <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
+                      <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
+                      <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
+                      <a class='dropdown-button btn' href='#' data-activates='other-dropdown'>Other Stats</a>
+
+                      <!-- Population Stats Dropdown -->
+                      <ul id='pop-dropdown' class='dropdown-content'>
+                          <li><a href="#population">World</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#popna">North America</a></li>
+                          <li><a href="popjp">Japan</a></li>
+                          <li><a href="popeu">Europe</a></li>
+                      </ul>
+                      
+                      <!-- Realm Stats Dropdown -->
+                      <ul id='realm-dropdown' class='dropdown-content'>
+                          <li><a href="#realmall">Realm Stats (All-Time)</a></li>
+                          <li class="divider"></li>
+                          <li><a href="rat-na">North America</a></li>
+                          <li><a href="rat-jp">Japan</a></li>
+                          <li><a href="rat-eu">Europe</a></li>
+                          <li class="divider"></li>
+                          <li class="divider"></li>
+                          <li><a href="realmactive">Realm Stats (Active)</a></li>
+                          <li class="divider"></li>
+                          <li><a href="ra-na">North America</a></li>
+                          <li><a href="ra-jp">Japan</a></li>
+                          <li><a href="ra-eu">Europe</a></li>
+                      </ul>
+                      
+                      <!-- Other Stats Dropdown -->
+                      <ul id='other-dropdown' class='dropdown-content'>
+                          <li><a href="#subscribed">Subscribed Time</a></li>
+                          <li><a href="#beast">Beast Tribes</a></li>
+                          <li><a href="#preorders">Pre-Orders</a></li>
+                          <li><a href="#collectors">Collectors Edition</a></li>
+                          <li><a href="#physical">Physical Items</a></li>
+                          <li><a href="#other">Misc Stats</a></li>
+                        </ul>            
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
