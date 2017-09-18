@@ -405,7 +405,7 @@ $db->close();
           </div>
       </div>
       <div class="col s12 m6 center-align">
-                      <!-- Dropdown Trigger -->
+                      <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
                       <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
                       <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
                       <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
@@ -418,24 +418,24 @@ $db->close();
                           <li><a href="#population">World</a></li>
                           <li class="divider"></li>
                           <li><a href="#popna">North America</a></li>
-                          <li><a href="popjp">Japan</a></li>
-                          <li><a href="popeu">Europe</a></li>
+                          <li><a href="#popjp">Japan</a></li>
+                          <li><a href="#popeu">Europe</a></li>
                       </ul>
                       
                       <!-- Realm Stats Dropdown -->
                       <ul id='realm-dropdown' class='dropdown-content'>
                           <li><a href="#realmall">Realm Stats (All-Time)</a></li>
                           <li class="divider"></li>
-                          <li><a href="rat-na">North America</a></li>
-                          <li><a href="rat-jp">Japan</a></li>
-                          <li><a href="rat-eu">Europe</a></li>
+                          <li><a href="#rat-na">North America</a></li>
+                          <li><a href="#rat-jp">Japan</a></li>
+                          <li><a href="#rat-eu">Europe</a></li>
                           <li class="divider"></li>
                           <li class="divider"></li>
-                          <li><a href="realmactive">Realm Stats (Active)</a></li>
+                          <li><a href="#realmactive">Realm Stats (Active)</a></li>
                           <li class="divider"></li>
-                          <li><a href="ra-na">North America</a></li>
-                          <li><a href="ra-jp">Japan</a></li>
-                          <li><a href="ra-eu">Europe</a></li>
+                          <li><a href="#ra-na">North America</a></li>
+                          <li><a href="#ra-jp">Japan</a></li>
+                          <li><a href="#ra-eu">Europe</a></li>
                       </ul>
                       
                       <!-- Other Stats Dropdown -->
