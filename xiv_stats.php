@@ -384,6 +384,18 @@ $db->close();
               font-size: large;
           }
 
+          .dropdown-button, .waves-light, .btn{
+            background-color: #7CB5EC;
+          }
+
+          .dropdown-button:hover, .waves-light:hover{
+            background-color: #8fc0ef;
+          }
+
+          #realm-dropdown a, #pop-dropdown a, #misc-stats a{
+              color: black;
+          }
+
           footer.page-footer {
               margin-top: 0px;
               padding-top: 0px;
@@ -404,14 +416,14 @@ $db->close();
               </div>
           </div>
       </div>
-      <div class="col s12 m6 center-align">
+      <div class="col s12 m6 center-align navbar-fixed">
                       <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
                       <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
                       <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
                       <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
                       <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
-                      <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-                      <a class='dropdown-button btn' href='#' data-activates='other-dropdown'>Other Stats</a>
+                      <a class="waves-effect waves-light btn" href='9090grandcompany'>Grand Company Stats</a>
+                      <a class='dropdown-button btn' href='#' data-activates='misc-stats'>Other Stats</a>
 
                       <!-- Population Stats Dropdown -->
                       <ul id='pop-dropdown' class='dropdown-content'>
@@ -439,13 +451,13 @@ $db->close();
                       </ul>
                       
                       <!-- Other Stats Dropdown -->
-                      <ul id='other-dropdown' class='dropdown-content'>
+                      <ul id='misc-stats' class='dropdown-content'>
                           <li><a href="#subscribed">Subscribed Time</a></li>
                           <li><a href="#beast">Beast Tribes</a></li>
                           <li><a href="#preorders">Pre-Orders</a></li>
                           <li><a href="#collectors">Collectors Edition</a></li>
                           <li><a href="#physical">Physical Items</a></li>
-                          <li><a href="#other">Misc Stats</a></li>
+                          <li><a href="#misc-stats">Misc Stats</a></li>
                         </ul>            
       </div>
       <div class="row">
@@ -815,7 +827,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="other"><span class="card-title black-text light">OTHER</span></a>
+                      <a id="misc-stats"><span class="card-title black-text light">OTHER</span></a>
 
                       <div class="black-text light region-subtitle">GUEST AT AN ETERNAL BOND</div>
                       <div class="row">
