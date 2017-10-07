@@ -333,6 +333,8 @@ $db->close();
     <title>XIVCensus - Player statistics for FFXIV</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+      <!-- Font Awesome-->
+    <script src="https://use.fontawesome.com/42d19261ec.js"></script>
       <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
       <!-- Compiled and minified JavaScript -->
@@ -349,6 +351,7 @@ $db->close();
         ga('send', 'pageview');
       </script>
       <style>
+          
           .box-element {
               width: 100%;
           }
@@ -384,7 +387,7 @@ $db->close();
               font-size: large;
           }
 
-          .dropdown-button, .waves-light, .btn{
+          .dropdown-button, .waves-light, .btn, .btn:visited{
             background-color: #7CB5EC;
           }
 
@@ -394,6 +397,20 @@ $db->close();
 
           #realm-dropdown a, #pop-dropdown a, #misc-stats a{
               color: black;
+          }
+          
+          .navbar {
+              left: 0;
+              right: 0;
+              margin-left: auto;
+              margin-right: auto;
+          }
+          
+          .main-nav-scrolled {
+              z-index: 1;
+              position: fixed;
+              width: 100%;
+              top: 0;
           }
 
           footer.page-footer {
@@ -409,21 +426,22 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <span class="card-title black-text" style="font-size:28pt;">XIVCensus - Player statistics for FFXIV</span>
+                      <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Player statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
                       <p><b>* (Any reference to "Active" players, refers to players that have claimed the 3.3 story minion)</b></p>
                     </div>
               </div>
           </div>
       </div>
-      <div class="col s12 m6 center-align navbar-fixed">
+            <div class="col s12 m6 navbar center">
                       <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
                       <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
                       <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
                       <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
                       <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
-                      <a class="waves-effect waves-light btn" href='9090grandcompany'>Grand Company Stats</a>
+                      <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
                       <a class='dropdown-button btn' href='#' data-activates='misc-stats'>Other Stats</a>
+                      <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
                       <!-- Population Stats Dropdown -->
                       <ul id='pop-dropdown' class='dropdown-content'>
@@ -896,6 +914,20 @@ $db->close();
           </div>
       </div>
   </footer>
+      
+  <script>
+          var mn = $(".navbar");
+          mns = "main-nav-scrolled";
+          hdr = $('header').height();
+          
+          $(window).scroll(function() {
+              if( $(this).scrollTop() > 105 ) {
+                  mn.addClass(mns);
+              } else {
+                  mn.removeClass(mns);
+              }
+          });
+  </script>
 
   <script>
       $(function () {
