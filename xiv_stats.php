@@ -1,5 +1,34 @@
 <?php
 
+const KEY = "KEY";
+const TITLE = "TITLE";
+const CLASS_GLA = array(KEY => "level_gladiator", TITLE => "Gladiator");
+const CLASS_PUG = array(KEY => "level_pugilist", TITLE => "Pugilist");
+const CLASS_MRD = array(KEY => "level_marauder", TITLE => "Marauder");
+const CLASS_LNC = array(KEY => "level_lancer", TITLE => "Lancer");
+const CLASS_ARC = array(KEY => "level_archer", TITLE => "Archer");
+const CLASS_ROG = array(KEY => "level_rogue", TITLE => "Rogue");
+const CLASS_CNJ = array(KEY => "level_conjurer", TITLE => "Conjurer");
+const CLASS_THM = array(KEY => "level_thaumaturge", TITLE => "Thaumaturge");
+const CLASS_ACN = array(KEY => "level_arcanist", TITLE => "Arcanist");
+const CLASS_SCH = array(KEY => "level_scholar", TITLE => "Scholar");
+const CLASS_DRK = array(KEY => "level_darkknight", TITLE => "Dark Knight");
+const CLASS_MCH = array(KEY => "level_machinist", TITLE => "Machinist");
+const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian");
+const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai");
+const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage");
+const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter");
+const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith");
+const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer");
+const CLASS_GSM = array(KEY => "level_goldsmith", TITLE => "Goldsmith");
+const CLASS_LWR = array(KEY => "level_leatherworker", TITLE => "Leatherworker");
+const CLASS_WVR = array(KEY => "level_weaver", TITLE => "Weaver");
+const CLASS_ALC = array(KEY => "level_alchemist", TITLE => "Alchemist");
+const CLASS_CUL = array(KEY => "level_culinarian", TITLE => "Culinarian");
+const CLASS_MIN = array(KEY => "level_miner", TITLE => "Miner");
+const CLASS_BTN = array(KEY => "level_botanist", TITLE => "Botanist");
+const CLASS_FSH = array(KEY => "level_fisher", TITLE => "Fisher");
+
 // Helper function to fetch the sum of all values in the array, where the array key matches one of the specified realm names
 function sumInRegion($data, $regional_realms) {
         return array_sum(array_intersect_key($data, array_flip($regional_realms)));
@@ -8,6 +37,18 @@ function sumInRegion($data, $regional_realms) {
 // Helper function to return the value of the requested key, or zero if one isn't available
 function getValueOrZero($data, $key) {
         return isset($data[$key]) ? $data[$key] : 0;
+}
+
+// Helper function to increment class count into the supplied total array
+function handleClass($row, $classDef, &$totalArray) {
+    if(!isset($totalArray[$classDef[TITLE]])) {
+        $totalArray[$classDef[TITLE]] = 0;
+    }
+    $level = isset($row[$classDef[KEY]]) ? $row[$classDef[KEY]] : 0;
+    if($level > 0) {
+        $totalArray[$classDef[TITLE]]++;
+    }
+    return 0;
 }
 
 $conn_info = parse_ini_file("templateconfig.ini");
@@ -53,60 +94,8 @@ $race_gender_count = array();
 $active_race_gender_count = array();
 
 $classes = array();
-$classes["Gladiator"] = 0;
-$classes["Pugilist"] = 0;
-$classes["Marauder"] = 0;
-$classes["Lancer"] = 0;
-$classes["Archer"] = 0;
-$classes["Rogue"] = 0;
-$classes["Conjurer"] = 0;
-$classes["Thaumaturge"] = 0;
-$classes["Arcanist"] = 0;
-$classes["Scholar"] = 0;
-$classes["Dark Knight"] = 0;
-$classes["Machinist"] = 0;
-$classes["Astrologian"] = 0;
-$classes["Samurai"] = 0;
-$classes["Red Mage"] = 0;
-$classes["Carpenter"] = 0;
-$classes["Blacksmith"] = 0;
-$classes["Armorer"] = 0;
-$classes["Goldsmith"] = 0;
-$classes["Leatherworker"] = 0;
-$classes["Weaver"] = 0;
-$classes["Alchemist"] = 0;
-$classes["Culinarian"] = 0;
-$classes["Miner"] = 0;
-$classes["Botanist"] = 0;
-$classes["Fisher"] = 0;
 
 $active_classes = array();
-$active_classes["Gladiator"] = 0;
-$active_classes["Pugilist"] = 0;
-$active_classes["Marauder"] = 0;
-$active_classes["Lancer"] = 0;
-$active_classes["Archer"] = 0;
-$active_classes["Rogue"] = 0;
-$active_classes["Conjurer"] = 0;
-$active_classes["Thaumaturge"] = 0;
-$active_classes["Arcanist"] = 0;
-$active_classes["Scholar"] = 0;
-$active_classes["Dark Knight"] = 0;
-$active_classes["Machinist"] = 0;
-$active_classes["Astrologian"] = 0;
-$active_classes["Samurai"] = 0;
-$active_classes["Red Mage"] = 0;
-$active_classes["Carpenter"] = 0;
-$active_classes["Blacksmith"] = 0;
-$active_classes["Armorer"] = 0;
-$active_classes["Goldsmith"] = 0;
-$active_classes["Leatherworker"] = 0;
-$active_classes["Weaver"] = 0;
-$active_classes["Alchemist"] = 0;
-$active_classes["Culinarian"] = 0;
-$active_classes["Miner"] = 0;
-$active_classes["Botanist"] = 0;
-$active_classes["Fisher"] = 0;
 
 $sub_time = array();
 $sub_time["30 Days"] = 0;
@@ -169,32 +158,32 @@ while($row = $player_overview_query->fetch_assoc()) {
         }
         $race_gender_count[$race][$gender]++;
 
-        if(isset($row["level_gladiator"]) && $row["level_gladiator"] > 0) $classes["Gladiator"]++;
-        if(isset($row["level_pugilist"]) && $row["level_pugilist"] > 0) $classes["Pugilist"]++;
-        if(isset($row["level_marauder"]) && $row["level_marauder"] > 0) $classes["Marauder"]++;
-        if(isset($row["level_lancer"]) && $row["level_lancer"] > 0) $classes["Lancer"]++;
-        if(isset($row["level_archer"]) && $row["level_archer"] > 0) $classes["Archer"]++;
-        if(isset($row["level_rogue"]) && $row["level_rogue"] > 0) $classes["Rogue"]++;
-        if(isset($row["level_conjurer"]) && $row["level_conjurer"] > 0) $classes["Conjurer"]++;
-        if(isset($row["level_thaumaturge"]) && $row["level_thaumaturge"] > 0) $classes["Thaumaturge"]++;
-        if(isset($row["level_arcanist"]) && $row["level_arcanist"] > 0) $classes["Arcanist"]++;
-        if(isset($row["level_scholar"]) && $row["level_scholar"] > 0) $classes["Scholar"]++;
-        if(isset($row["level_darkknight"]) && $row["level_darkknight"] > 0) $classes["Dark Knight"]++;
-        if(isset($row["level_machinist"]) && $row["level_machinist"] > 0) $classes["Machinist"]++;
-        if(isset($row["level_astrologian"]) && $row["level_astrologian"] > 0) $classes["Astrologian"]++;
-        if(isset($row["level_samurai"]) && $row["level_samurai"] > 0) $classes["Samurai"]++;
-        if(isset($row["level_redmage"]) && $row["level_redmage"] > 0) $classes["Red Mage"]++;
-        if(isset($row["level_carpenter"]) && $row["level_carpenter"] > 0) $classes["Carpenter"]++;
-        if(isset($row["level_blacksmith"]) && $row["level_blacksmith"] > 0) $classes["Blacksmith"]++;
-        if(isset($row["level_armorer"]) && $row["level_armorer"] > 0) $classes["Armorer"]++;
-        if(isset($row["level_goldsmith"]) && $row["level_goldsmith"] > 0) $classes["Goldsmith"]++;
-        if(isset($row["level_leatherworker"]) && $row["level_leatherworker"] > 0) $classes["Leatherworker"]++;
-        if(isset($row["level_weaver"]) && $row["level_weaver"] > 0) $classes["Weaver"]++;
-        if(isset($row["level_alchemist"]) && $row["level_alchemist"] > 0) $classes["Alchemist"]++;
-        if(isset($row["level_culinarian"]) && $row["level_culinarian"] > 0) $classes["Culinarian"]++;
-        if(isset($row["level_miner"]) && $row["level_miner"] > 0) $classes["Miner"]++;
-        if(isset($row["level_botanist"]) && $row["level_botanist"] > 0) $classes["Botanist"]++;
-        if(isset($row["level_fisher"]) && $row["level_fisher"] > 0) $classes["Fisher"]++;
+        handleClass($row, CLASS_GLA, $classes);
+        handleClass($row, CLASS_PUG, $classes);
+        handleClass($row, CLASS_MRD, $classes);
+        handleClass($row, CLASS_LNC, $classes);
+        handleClass($row, CLASS_ARC, $classes);
+        handleClass($row, CLASS_ROG, $classes);
+        handleClass($row, CLASS_CNJ, $classes);
+        handleClass($row, CLASS_THM, $classes);
+        handleClass($row, CLASS_ACN, $classes);
+        handleClass($row, CLASS_SCH, $classes);
+        handleClass($row, CLASS_DRK, $classes);
+        handleClass($row, CLASS_MCH, $classes);
+        handleClass($row, CLASS_AST, $classes);
+        handleClass($row, CLASS_SAM, $classes);
+        handleClass($row, CLASS_RDM, $classes);
+        handleClass($row, CLASS_CRP, $classes);
+        handleClass($row, CLASS_BSM, $classes);
+        handleClass($row, CLASS_ARM, $classes);
+        handleClass($row, CLASS_GSM, $classes);
+        handleClass($row, CLASS_LWR, $classes);
+        handleClass($row, CLASS_WVR, $classes);
+        handleClass($row, CLASS_ALC, $classes);
+        handleClass($row, CLASS_CUL, $classes);
+        handleClass($row, CLASS_MIN, $classes);
+        handleClass($row, CLASS_BTN, $classes);
+        handleClass($row, CLASS_FSH, $classes);
 
         // Subscription figures
         if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
@@ -279,32 +268,32 @@ while($row = $player_overview_query->fetch_assoc()) {
             }
             $active_race_gender_count[$race][$gender]++;
 
-            if(isset($row["level_gladiator"]) && $row["level_gladiator"] > 0) $active_classes["Gladiator"]++;
-            if(isset($row["level_pugilist"]) && $row["level_pugilist"] > 0) $active_classes["Pugilist"]++;
-            if(isset($row["level_marauder"]) && $row["level_marauder"] > 0) $active_classes["Marauder"]++;
-            if(isset($row["level_lancer"]) && $row["level_lancer"] > 0) $active_classes["Lancer"]++;
-            if(isset($row["level_archer"]) && $row["level_archer"] > 0) $active_classes["Archer"]++;
-            if(isset($row["level_rogue"]) && $row["level_rogue"] > 0) $active_classes["Rogue"]++;
-            if(isset($row["level_conjurer"]) && $row["level_conjurer"] > 0) $active_classes["Conjurer"]++;
-            if(isset($row["level_thaumaturge"]) && $row["level_thaumaturge"] > 0) $active_classes["Thaumaturge"]++;
-            if(isset($row["level_arcanist"]) && $row["level_arcanist"] > 0) $active_classes["Arcanist"]++;
-            if(isset($row["level_scholar"]) && $row["level_scholar"] > 0) $active_classes["Scholar"]++;
-            if(isset($row["level_darkknight"]) && $row["level_darkknight"] > 0) $active_classes["Dark Knight"]++;
-            if(isset($row["level_machinist"]) && $row["level_machinist"] > 0) $active_classes["Machinist"]++;
-            if(isset($row["level_astrologian"]) && $row["level_astrologian"] > 0) $active_classes["Astrologian"]++;
-            if(isset($row["level_samurai"]) && $row["level_samurai"] > 0) $active_classes["Samurai"]++;
-            if(isset($row["level_redmage"]) && $row["level_redmage"] > 0) $active_classes["Red Mage"]++;
-            if(isset($row["level_carpenter"]) && $row["level_carpenter"] > 0) $active_classes["Carpenter"]++;
-            if(isset($row["level_blacksmith"]) && $row["level_blacksmith"] > 0) $active_classes["Blacksmith"]++;
-            if(isset($row["level_armorer"]) && $row["level_armorer"] > 0) $active_classes["Armorer"]++;
-            if(isset($row["level_goldsmith"]) && $row["level_goldsmith"] > 0) $active_classes["Goldsmith"]++;
-            if(isset($row["level_leatherworker"]) && $row["level_leatherworker"] > 0) $active_classes["Leatherworker"]++;
-            if(isset($row["level_weaver"]) && $row["level_weaver"] > 0) $active_classes["Weaver"]++;
-            if(isset($row["level_alchemist"]) && $row["level_alchemist"] > 0) $active_classes["Alchemist"]++;
-            if(isset($row["level_culinarian"]) && $row["level_culinarian"] > 0) $active_classes["Culinarian"]++;
-            if(isset($row["level_miner"]) && $row["level_miner"] > 0) $active_classes["Miner"]++;
-            if(isset($row["level_botanist"]) && $row["level_botanist"] > 0) $active_classes["Botanist"]++;
-            if(isset($row["level_fisher"]) && $row["level_fisher"] > 0) $active_classes["Fisher"]++;
+            handleClass($row, CLASS_GLA, $active_classes);
+            handleClass($row, CLASS_PUG, $active_classes);
+            handleClass($row, CLASS_MRD, $active_classes);
+            handleClass($row, CLASS_LNC, $active_classes);
+            handleClass($row, CLASS_ARC, $active_classes);
+            handleClass($row, CLASS_ROG, $active_classes);
+            handleClass($row, CLASS_CNJ, $active_classes);
+            handleClass($row, CLASS_THM, $active_classes);
+            handleClass($row, CLASS_ACN, $active_classes);
+            handleClass($row, CLASS_SCH, $active_classes);
+            handleClass($row, CLASS_DRK, $active_classes);
+            handleClass($row, CLASS_MCH, $active_classes);
+            handleClass($row, CLASS_AST, $active_classes);
+            handleClass($row, CLASS_SAM, $active_classes);
+            handleClass($row, CLASS_RDM, $active_classes);
+            handleClass($row, CLASS_CRP, $active_classes);
+            handleClass($row, CLASS_BSM, $active_classes);
+            handleClass($row, CLASS_ARM, $active_classes);
+            handleClass($row, CLASS_GSM, $active_classes);
+            handleClass($row, CLASS_LWR, $active_classes);
+            handleClass($row, CLASS_WVR, $active_classes);
+            handleClass($row, CLASS_ALC, $active_classes);
+            handleClass($row, CLASS_CUL, $active_classes);
+            handleClass($row, CLASS_MIN, $active_classes);
+            handleClass($row, CLASS_BTN, $active_classes);
+            handleClass($row, CLASS_FSH, $active_classes);
         }
 }
 
