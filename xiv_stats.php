@@ -419,7 +419,7 @@ $db->close();
                       <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
                       <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
                       <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-                      <a class='dropdown-button btn' href='#' data-activates='misc-stats'>Other Stats</a>
+                      <a class='dropdown-button btn' href='#' data-activates='misc-stats-dropdown'>Other Stats</a>
                       <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
                       <!-- Population Stats Dropdown -->
@@ -448,7 +448,7 @@ $db->close();
                       </ul>
                       
                       <!-- Other Stats Dropdown -->
-                      <ul id='misc-stats' class='dropdown-content'>
+                      <ul id='misc-stats-dropdown' class='dropdown-content'>
                           <li><a href="#subscribed">Subscribed Time</a></li>
                           <li><a href="#beast">Beast Tribes</a></li>
                           <li><a href="#preorders">Pre-Orders</a></li>
