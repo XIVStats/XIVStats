@@ -407,9 +407,9 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Player statistics for FFXIV</span></a>
+                      <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>* (Any reference to "Active" players, refers to players that have claimed the 3.3 story minion)</b></p>
+                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Yol" mount from the 4.0 story)</b></p>
                     </div>
               </div>
           </div>
@@ -463,19 +463,19 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="population"><span class="card-title black-text light">HOW MANY PLAYERS ARE THERE?</span></a>
+                      <a id="population"><span class="card-title black-text light">HOW MANY CHARACTERS ARE THERE?</span></a>
                       <br/>
                       <hr/>
                       <br/>
                       <!--World-->
                       <div class="black-text light region-title">WORLD</div>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTESR*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($active_player_count) ?></div>
@@ -486,13 +486,13 @@ $db->close();
                       <hr/>
                       <br/>
                       <a id="popna"><div class="black-text light region-title">AMERICA</div></a>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
@@ -503,13 +503,13 @@ $db->close();
                       <hr/>
                       <br/>
                       <a id="popjp"><div class="black-text light region-title">JAPAN</div></a>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
@@ -520,13 +520,13 @@ $db->close();
                       <hr/>
                       <br/>
                       <a id="popeu"><div class="black-text light region-title">EUROPE</div></a>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
@@ -544,7 +544,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -552,7 +552,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -569,7 +569,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -577,7 +577,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -662,7 +662,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
@@ -670,7 +670,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE PLAYERS*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
@@ -687,7 +687,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="subscribed_time" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -707,7 +707,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL PLAYERS</div>
+                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
