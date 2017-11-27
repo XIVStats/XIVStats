@@ -246,9 +246,11 @@ while($row = $player_overview_query->fetch_assoc()) {
         $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
         $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
 
-        // Fetch total number of active players in database
-        if(isset($row["hw_33_complete"]) && $row["hw_33_complete"] == 1) {
-            $active_player_count++;
+        // Expand the mounts to an array
+        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+
+        // Fetch total number of active players in database by checking for the Yol amount received during MSQ
+        if(in_array("Yol", $mounts)) {  $active_player_count++;
             // Fetch realm active player count
             if(!array_key_exists($realm, $active_realm_count)) {
                     $active_realm_count[$realm] = 0;
