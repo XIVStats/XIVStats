@@ -34,9 +34,14 @@ function sumInRegion($data, $regional_realms) {
         return array_sum(array_intersect_key($data, array_flip($regional_realms)));
 }
 
+// Helper function that returns zero if the value supplied isn't set
+function getValue($value) {
+    return isset($value) ? $value : 0;
+}
+
 // Helper function to return the value of the requested key, or zero if one isn't available
-function getValueOrZero($data, $key) {
-        return isset($data[$key]) ? $data[$key] : 0;
+function getValueFromArray($data, $key) {
+        return getValue($data[$key]);
 }
 
 // Helper function to increment class count into the supplied total array
@@ -948,7 +953,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($gc_count as $key => $value) {
-                                      echo "['$key', $value,],\n";
+                                      echo "['" . $key . "', " . getValue($value) . "],\n";
                               }
                       ?>
                   ]
@@ -982,7 +987,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($active_gc_count as $key => $value) {
-                                      if($key != "none") echo "['$key', $value,],\n";
+                                      echo "['" . $key . "', " . getValue($value) . "],\n";
                               }
                       ?>
                   ]
@@ -1026,7 +1031,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($race_gender_count as $value) {
-                                      echo $value["female"] . ",";
+                                      echo getValueFromArray($value, "female") . ",";
                               }
                       ?>
                   ],
@@ -1035,7 +1040,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($race_gender_count as $value) {
-                                      echo $value["male"] . ",";
+                                      echo getValueFromArray($value,"male") . ",";
                               }
                       ?>
                   ],
@@ -1079,7 +1084,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($active_race_gender_count as $value) {
-                                      echo $value["female"] . ",";
+                                      echo getValueFromArray($value, "female") . ",";
                               }
                       ?>
                   ],
@@ -1088,7 +1093,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($active_race_gender_count as $value) {
-                                      echo $value["male"] . ",";
+                                      echo getValueFromArray($value,"male") . ",";
                               }
                       ?>
                   ],
@@ -1132,7 +1137,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($classes as $key => $value) {
-                                      echo "$value,";
+                                      echo getValue($value) . ",";
                               }
                       ?>
                   ],
@@ -1176,7 +1181,7 @@ $db->close();
                   data: [
                       <?php
                               foreach ($active_classes as $key => $value) {
-                                      echo "$value,";
+                                      echo getValue($value) . ",";
                               }
                       ?>
                   ],
@@ -1221,7 +1226,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($american_realm_array as $value) {
-                                echo getValueOrZero($realm_count, $value) . ",";
+                                echo getValueFromArray($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1266,7 +1271,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($american_realm_array as $value) {
-                                echo getValueOrZero($active_realm_count, $value) . ",";
+                                echo getValueFromArray($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1311,7 +1316,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($japanese_realm_array as $value) {
-                                echo getValueOrZero($realm_count, $value) . ",";
+                                echo getValueFromArray($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1356,7 +1361,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($japanese_realm_array as $value) {
-                                echo getValueOrZero($active_realm_count, $value) . ",";
+                                echo getValueFromArray($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1401,7 +1406,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($european_realm_array as $value) {
-                                echo getValueOrZero($realm_count, $value) . ",";
+                                echo getValueFromArray($realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1446,7 +1451,7 @@ $(function () {
             data: [
                 <?php
                         foreach ($european_realm_array as $value) {
-                                echo getValueOrZero($active_realm_count, $value) . ",";
+                                echo getValueFromArray($active_realm_count, $value) . ",";
                         }
                 ?>
             ],
@@ -1490,7 +1495,7 @@ $(function () {
                   data: [
                       <?php
                               foreach ($sub_time as $key => $value) {
-                                      echo "$value,";
+                                      echo getValue($value) . ",";
                               }
                       ?>
                   ],
@@ -1534,7 +1539,7 @@ $(function () {
                   data: [
                       <?php
                               foreach ($beast_tribes as $key => $value) {
-                                      echo "$value,";
+                                      echo getValue($value) . ",";
                               }
                       ?>
                   ],
