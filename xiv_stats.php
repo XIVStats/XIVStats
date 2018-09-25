@@ -91,6 +91,7 @@ sort($european_realm_array);
 // Variables
 $player_count = 0;
 $active_player_count = 0;
+$deleted_player_count = 0;
 $realm_count = array();
 $active_realm_count = array();
 $gc_count = array();
@@ -137,6 +138,11 @@ $beast_tribes["Sylph"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
+        // Skip deleted characters
+        if(isset($row["character_status"]) && $row["character_status"] == "DELETED") {
+            $deleted_player_count++;
+            continue;
+        }
         $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
         $grand_company = isset($row["grand_company"]) ?$row["grand_company"] : 'Unknown';
         $race = isset($row["race"]) ? $row["race"] : 'Unknown';
@@ -865,6 +871,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sightseeing; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">DELETED CHARACTERS</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $deleted_player_count; ?></div>
                         </div>
                       </div>
 
