@@ -486,7 +486,7 @@ $db->close();
                               <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTESR*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($active_player_count) ?></div>
