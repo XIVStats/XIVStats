@@ -905,6 +905,38 @@ $db->close();
               </div>
           </div>
       </div>
+	  
+    <div class="row">
+      <div class="col s12 m6" style="width:100%;">
+
+        <div class="card white">
+          <div class="card-content black-text">
+            <a id="population"><span class="card-title black-text light">CONTRIBUTORS</span></a>
+
+
+            <div class="card-content black-text">
+              <span class="card-title black-text light"></span>
+              <ul>
+                <li>
+                  <div class="black-text light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/">Jonathan Price</a> | <a href="http://na.finalfantasyxiv.com/lodestone/character/8308898/">John Prycewood @ Ceberus</a></div>
+                </li>
+                <li>
+                  <div class="black-text light ">> <a href="https://twitter.com/ReidWeb">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/">P'tajha Rihll @ Ceberus</a></div>
+                </li>
+                <li>
+                  <div class="black-text light ">> <a href="https://github.com/matthewhillier">Matt Hillier</a></div>
+                </li>
+                <li>
+                  <div class="black-text light ">> <a href="https://pf.ie/">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
 
       <!-- End Container -->
   </div>
