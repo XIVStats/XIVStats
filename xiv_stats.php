@@ -250,6 +250,9 @@ while($row = $player_overview_query->fetch_assoc()) {
         // ARR Sightseeing Log
         $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
         $fmt_sightseeing = number_format($sightseeing);
+	
+	// Deleted count
+	$fmt_deleted = number_format($deleted_player_count);
 
         // Beast Tribes
         $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
@@ -877,7 +880,7 @@ $db->close();
                       <div class="black-text light region-subtitle">DELETED CHARACTERS</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $deleted_player_count; ?></div>
+                          <div><?php echo $fmt_deleted; ?></div>
                         </div>
                       </div>
 
