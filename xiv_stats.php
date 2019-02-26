@@ -281,11 +281,12 @@ while($row = $player_overview_query->fetch_assoc()) {
         $beast_tribes["Ananta"] += isset($row["ananta"]) && $row["ananta"] == 1 ? 1 : 0;
         $beast_tribes["Namazu"] += isset($row["namazu"]) && $row["namazu"] == 1 ? 1 : 0;
 
-        // Expand the mounts to an array
+        // Expand the mounts & minions to an array
         $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+        $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
 
         // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
-        if(in_array("Dress-up Raubahn", $minion)) {  $active_player_count++;
+        if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
             // Fetch realm active player count
             if(!array_key_exists($realm, $active_realm_count)) {
                     $active_realm_count[$realm] = 0;
