@@ -265,25 +265,27 @@ while($row = $player_overview_query->fetch_assoc()) {
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
 
-        // Beast Tribes
+        // Expand the mounts & minions to an array
+        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+        $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
+
+        // Beast Tribes with dedicated columns in DB
         // A Realm Reborn
         $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
         $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
         $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
         $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
-        $beast_tribes["Ixal"] += isset($row["ixal"]) && $row["ixal"] == 1 ? 1 : 0;
         // Heavensward
         $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
         $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
         $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
         // Stormblood
-        $beast_tribes["Kojin"] += isset($row["kojin"]) && $row["kojin"] == 1 ? 1 : 0;
-        $beast_tribes["Ananta"] += isset($row["ananta"]) && $row["ananta"] == 1 ? 1 : 0;
-        $beast_tribes["Namazu"] += isset($row["namazu"]) && $row["namazu"] == 1 ? 1 : 0;
 
-        // Expand the mounts & minions to an array
-        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
-        $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
+	// Bast tribes from minions
+        $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
+	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
+	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
 
         // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
         if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
