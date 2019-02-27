@@ -726,7 +726,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME</span></a>
+                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME (VETERAN REWARD MINIONS)</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -745,7 +745,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (RANK 4 OR HIGHER)</span></a>
+                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (REDEEMED MINION)</span></a>
 
                       <br/>
                       <hr/>
