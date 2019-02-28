@@ -17,6 +17,7 @@ const CLASS_MCH = array(KEY => "level_machinist", TITLE => "Machinist");
 const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian");
 const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai");
 const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage");
+const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage");
 const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter");
 const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith");
 const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer");
@@ -135,6 +136,15 @@ $beast_tribes["Kobold"] = 0;
 $beast_tribes["Sahagin"] = 0;
 $beast_tribes["Amaljaa"] = 0;
 $beast_tribes["Sylph"] = 0;
+$beast_tribes["Ixal"] = 0;
+// Heavensward
+$beast_tribes["Vanu Vanu"] = 0;
+$beast_tribes["Vath"] = 0;
+$beast_tribes["Moogle"] = 0;
+// Stormblood
+$beast_tribes["Kojin"] = 0;
+$beast_tribes["Ananta"] = 0;
+$beast_tribes["Namazu"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -184,6 +194,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_AST, $classes);
         handleClass($row, CLASS_SAM, $classes);
         handleClass($row, CLASS_RDM, $classes);
+        handleClass($row, CLASS_BLU, $classes);
         handleClass($row, CLASS_CRP, $classes);
         handleClass($row, CLASS_BSM, $classes);
         handleClass($row, CLASS_ARM, $classes);
@@ -205,7 +216,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
         if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
         if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
-        if(isset($row["p960days"]) && $row["p960days"] == 1)  $sub_time["960 Days"]++;
+        if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
 
         // Pre-orders
         $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
@@ -254,17 +265,30 @@ while($row = $player_overview_query->fetch_assoc()) {
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
 
-        // Beast Tribes
+        // Expand the mounts & minions to an array
+        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+        $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
+
+        // Beast Tribes with dedicated columns in DB
+        // A Realm Reborn
         $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
         $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
         $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
         $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
+        // Heavensward
+        $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
+        $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
+        $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
+        // Stormblood
 
-        // Expand the mounts to an array
-        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+	// Bast tribes from minions
+        $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
+	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
+	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
 
-        // Fetch total number of active players in database by checking for the Yol amount received during MSQ
-        if(in_array("Yol", $mounts)) {  $active_player_count++;
+        // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
+        if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
             // Fetch realm active player count
             if(!array_key_exists($realm, $active_realm_count)) {
                     $active_realm_count[$realm] = 0;
@@ -299,6 +323,7 @@ while($row = $player_overview_query->fetch_assoc()) {
             handleClass($row, CLASS_AST, $active_classes);
             handleClass($row, CLASS_SAM, $active_classes);
             handleClass($row, CLASS_RDM, $active_classes);
+            handleClass($row, CLASS_BLU, $active_classes);
             handleClass($row, CLASS_CRP, $active_classes);
             handleClass($row, CLASS_BSM, $active_classes);
             handleClass($row, CLASS_ARM, $active_classes);
@@ -326,8 +351,12 @@ $db->close();
 
   <head>
     <title>XIVCensus - Player statistics for FFXIV</title>
+    <!-- JQuery Script--> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!-- Highcharts--> 
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- Final Fantasy XIV Tooltip-->
+    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
       <!-- Font Awesome-->
     <script src="https://use.fontawesome.com/42d19261ec.js"></script>
       <!-- Compiled and minified CSS -->
@@ -423,7 +452,7 @@ $db->close();
                   <div class="card-content black-text">
                       <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Yol" mount from the 4.0 story)</b></p>
+                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Dress-up Raubahn" mount from the 4.1 story)</b></p>
                     </div>
               </div>
           </div>
@@ -489,7 +518,7 @@ $db->close();
                               <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTESR*</div>
+                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($active_player_count) ?></div>
@@ -697,7 +726,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME</span></a>
+                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME (VETERAN REWARD MINIONS)</span></a>
                       <br/>
                       <hr/>
                       <br/>
@@ -716,7 +745,7 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (RANK 4 OR HIGHER)</span></a>
+                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (REDEEMED MINION)</span></a>
 
                       <br/>
                       <hr/>
