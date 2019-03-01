@@ -118,6 +118,7 @@ $sub_time["960 Days"] = 0;
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
+$preshb = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
 $arrartbook = 0;
@@ -219,12 +220,18 @@ while($row = $player_overview_query->fetch_assoc()) {
         if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
 
         // Pre-orders
+        // A Realm Reborn
         $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
         $fmt_prearr = number_format($prearr);
+        // Heavensward
         $prehw += isset($row["prehw"]) && $row["prehw"] == 1 ? 1 : 0;
         $fmt_prehw = number_format($prehw);
+        // Stormblood
         $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
         $fmt_presb = number_format($presb);
+        // Shadowbringers
+        $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
+        $fmt_preshb = number_format($preshb);
 
         // Collectors Edition
         $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
@@ -262,8 +269,8 @@ while($row = $player_overview_query->fetch_assoc()) {
         $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
         $fmt_sightseeing = number_format($sightseeing);
 	
-	// Deleted count
-	$fmt_deleted = number_format($deleted_player_count);
+	    // Deleted count
+	    $fmt_deleted = number_format($deleted_player_count);
 
         // Expand the mounts & minions to an array
         $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
@@ -281,11 +288,11 @@ while($row = $player_overview_query->fetch_assoc()) {
         $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
         // Stormblood
 
-	// Bast tribes from minions
+	    // Bast tribes from minions
         $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
-	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
-	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
-	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
+	    $beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
+	    $beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
+	    $beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
 
         // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
         if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
@@ -785,6 +792,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_presb; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_preshb; ?></div>
                         </div>
                       </div>
 
