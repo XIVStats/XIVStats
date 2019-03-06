@@ -265,9 +265,6 @@ while($row = $player_overview_query->fetch_assoc()) {
         $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
         $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
         // Stormblood
-
-	    // Bast tribes from minions
-        $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 	    $beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
 	    $beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
 	    $beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
