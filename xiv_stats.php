@@ -104,17 +104,6 @@ $classes = array();
 
 $active_classes = array();
 
-$sub_time = array();
-$sub_time["30 Days"] = 0;
-$sub_time["60 Days"] = 0;
-$sub_time["90 Days"] = 0;
-$sub_time["180 Days"] = 0;
-$sub_time["270 Days"] = 0;
-$sub_time["360 Days"] = 0;
-$sub_time["450 Days"] = 0;
-$sub_time["630 Days"] = 0;
-$sub_time["960 Days"] = 0;
-
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
@@ -207,17 +196,6 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_MIN, $classes);
         handleClass($row, CLASS_BTN, $classes);
         handleClass($row, CLASS_FSH, $classes);
-
-        // Subscription figures
-        if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
-        if(isset($row["p60days"]) && $row["p60days"] == 1) $sub_time["60 Days"]++;
-        if(isset($row["p90days"]) && $row["p90days"] == 1) $sub_time["90 Days"]++;
-        if(isset($row["p180days"]) && $row["p180days"] == 1) $sub_time["180 Days"]++;
-        if(isset($row["p270days"]) && $row["p270days"] == 1) $sub_time["270 Days"]++;
-        if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
-        if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
-        if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
-        if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
 
         // Pre-orders
         // A Realm Reborn
@@ -501,7 +479,6 @@ $db->close();
                       
                       <!-- Other Stats Dropdown -->
                       <ul id='misc-stats-dropdown' class='dropdown-content'>
-                          <li><a href="#subscribed">Subscribed Time</a></li>
                           <li><a href="#beast">Beast Tribes</a></li>
                           <li><a href="#preorders">Pre-Orders</a></li>
                           <li><a href="#collectors">Collectors Edition</a></li>
@@ -729,25 +706,6 @@ $db->close();
               </div>
           </div>
       </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME (VETERAN REWARD MINIONS)</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="subscribed_time" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-
-                  </div>
-              </div>
-          </div>
-      </div>
-
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
@@ -1538,49 +1496,6 @@ $(function () {
 });
 </script>
 
-  <script>
-      $(function () {
-          $('#subscribed_time').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
-                      <?php
-                              foreach ($sub_time as $key => $value) {
-                                      echo "'$key',";
-                              }
-                      ?>
-                  ],
-
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Subscription Time',
-                  data: [
-                      <?php
-                              foreach ($sub_time as $key => $value) {
-                                      echo getValue($value) . ",";
-                              }
-                      ?>
-                  ],
-              }]
-          });
-      });
-  </script>
 
   <script>
       $(function () {
