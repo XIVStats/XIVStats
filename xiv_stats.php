@@ -111,6 +111,7 @@ $preshb = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
 $arrartbook = 0;
+$sbartbook = 0;
 $beforemeteor = 0;
 $beforethefall = 0;
 $soundtrack = 0;
@@ -228,6 +229,8 @@ while($row = $player_overview_query->fetch_assoc()) {
         $fmt_soundtrack = number_format($soundtrack);
         $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
         $fmt_moogleplush = number_format($moogleplush);
+        $sbartbook += isset($row["sbartbook"]) && $row["sbartbook"] == 1 ? 1 : 0;
+        $fmt_sbartbook = number_format($sbartbook);
 
         // Eternal Bond
         $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
@@ -815,10 +818,17 @@ $db->close();
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">ARTBOOK</div>
+                      <div class="black-text light region-subtitle">ARR ARTBOOK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_arrartbook; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">SB ARTBOOK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_sbartbook; ?></div>
                         </div>
                       </div>
 
