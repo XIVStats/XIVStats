@@ -18,6 +18,8 @@ const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian");
 const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai");
 const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage");
 const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage");
+const CLASS_GNB = array(KEY => "level_gunbreaker", TITLE => "Gunbreaker");
+const CLASS_DNC = array(KEY => "level_dancer", TITLE => "Dancer");
 const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter");
 const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith");
 const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer");
@@ -148,194 +150,198 @@ $beast_tribes["Namazu"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
-        // Skip deleted characters
-        if(isset($row["character_status"]) && $row["character_status"] == "DELETED") {
-            $deleted_player_count++;
-            continue;
-        }
-        $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
-        $grand_company = isset($row["grand_company"]) ?$row["grand_company"] : 'Unknown';
-        $race = isset($row["race"]) ? $row["race"] : 'Unknown';
-        $gender = isset($row["gender"]) ? $row["gender"] : 'Unknown';
-        
-        // Fetch total number of players in database
-        $player_count++;
-        // Fetch realm player counts
-        if(!array_key_exists($realm, $realm_count)) {
-                $realm_count[$realm] = 0;
-        }
-        $realm_count[$realm]++;
-        // Fetch grand company player count
-        if(!array_key_exists($grand_company, $gc_count)) {
-                $gc_count[$grand_company] = 0;
-        }
-        $gc_count[$grand_company]++;
-        // Fetch race and gender player count
-        if(!array_key_exists($race, $race_gender_count)) {
-                $race_gender_count[$race] = array();
-        }
-        if(!array_key_exists($gender, $race_gender_count[$race])) {
-                $race_gender_count[$race][$gender] = 0;
-        }
-        $race_gender_count[$race][$gender]++;
+    // Skip deleted characters
+    if(isset($row["character_status"]) && $row["character_status"] == "DELETED") {
+        $deleted_player_count++;
+        continue;
+    }
+    $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
+    $grand_company = isset($row["grand_company"]) ?$row["grand_company"] : 'Unknown';
+    $race = isset($row["race"]) ? $row["race"] : 'Unknown';
+    $gender = isset($row["gender"]) ? $row["gender"] : 'Unknown';
+    
+    // Fetch total number of players in database
+    $player_count++;
+    // Fetch realm player counts
+    if(!array_key_exists($realm, $realm_count)) {
+            $realm_count[$realm] = 0;
+    }
+    $realm_count[$realm]++;
+    // Fetch grand company player count
+    if(!array_key_exists($grand_company, $gc_count)) {
+            $gc_count[$grand_company] = 0;
+    }
+    $gc_count[$grand_company]++;
+    // Fetch race and gender player count
+    if(!array_key_exists($race, $race_gender_count)) {
+            $race_gender_count[$race] = array();
+    }
+    if(!array_key_exists($gender, $race_gender_count[$race])) {
+            $race_gender_count[$race][$gender] = 0;
+    }
+    $race_gender_count[$race][$gender]++;
 
-        handleClass($row, CLASS_GLA, $classes);
-        handleClass($row, CLASS_PUG, $classes);
-        handleClass($row, CLASS_MRD, $classes);
-        handleClass($row, CLASS_LNC, $classes);
-        handleClass($row, CLASS_ARC, $classes);
-        handleClass($row, CLASS_ROG, $classes);
-        handleClass($row, CLASS_CNJ, $classes);
-        handleClass($row, CLASS_THM, $classes);
-        handleClass($row, CLASS_ACN, $classes);
-        handleClass($row, CLASS_SCH, $classes);
-        handleClass($row, CLASS_DRK, $classes);
-        handleClass($row, CLASS_MCH, $classes);
-        handleClass($row, CLASS_AST, $classes);
-        handleClass($row, CLASS_SAM, $classes);
-        handleClass($row, CLASS_RDM, $classes);
-        handleClass($row, CLASS_BLU, $classes);
-        handleClass($row, CLASS_CRP, $classes);
-        handleClass($row, CLASS_BSM, $classes);
-        handleClass($row, CLASS_ARM, $classes);
-        handleClass($row, CLASS_GSM, $classes);
-        handleClass($row, CLASS_LWR, $classes);
-        handleClass($row, CLASS_WVR, $classes);
-        handleClass($row, CLASS_ALC, $classes);
-        handleClass($row, CLASS_CUL, $classes);
-        handleClass($row, CLASS_MIN, $classes);
-        handleClass($row, CLASS_BTN, $classes);
-        handleClass($row, CLASS_FSH, $classes);
+    handleClass($row, CLASS_GLA, $classes);
+    handleClass($row, CLASS_PUG, $classes);
+    handleClass($row, CLASS_MRD, $classes);
+    handleClass($row, CLASS_LNC, $classes);
+    handleClass($row, CLASS_ARC, $classes);
+    handleClass($row, CLASS_ROG, $classes);
+    handleClass($row, CLASS_CNJ, $classes);
+    handleClass($row, CLASS_THM, $classes);
+    handleClass($row, CLASS_ACN, $classes);
+    handleClass($row, CLASS_SCH, $classes);
+    handleClass($row, CLASS_DRK, $classes);
+    handleClass($row, CLASS_MCH, $classes);
+    handleClass($row, CLASS_AST, $classes);
+    handleClass($row, CLASS_SAM, $classes);
+    handleClass($row, CLASS_RDM, $classes);
+    handleClass($row, CLASS_BLU, $classes);
+    handleClass($row, CLASS_GNB, $classes);
+    handleClass($row, CLASS_DNC, $classes);
+    handleClass($row, CLASS_CRP, $classes);
+    handleClass($row, CLASS_BSM, $classes);
+    handleClass($row, CLASS_ARM, $classes);
+    handleClass($row, CLASS_GSM, $classes);
+    handleClass($row, CLASS_LWR, $classes);
+    handleClass($row, CLASS_WVR, $classes);
+    handleClass($row, CLASS_ALC, $classes);
+    handleClass($row, CLASS_CUL, $classes);
+    handleClass($row, CLASS_MIN, $classes);
+    handleClass($row, CLASS_BTN, $classes);
+    handleClass($row, CLASS_FSH, $classes);
 
-        // Subscription figures
-        if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
-        if(isset($row["p60days"]) && $row["p60days"] == 1) $sub_time["60 Days"]++;
-        if(isset($row["p90days"]) && $row["p90days"] == 1) $sub_time["90 Days"]++;
-        if(isset($row["p180days"]) && $row["p180days"] == 1) $sub_time["180 Days"]++;
-        if(isset($row["p270days"]) && $row["p270days"] == 1) $sub_time["270 Days"]++;
-        if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
-        if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
-        if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
-        if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
+    // Subscription figures
+    if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
+    if(isset($row["p60days"]) && $row["p60days"] == 1) $sub_time["60 Days"]++;
+    if(isset($row["p90days"]) && $row["p90days"] == 1) $sub_time["90 Days"]++;
+    if(isset($row["p180days"]) && $row["p180days"] == 1) $sub_time["180 Days"]++;
+    if(isset($row["p270days"]) && $row["p270days"] == 1) $sub_time["270 Days"]++;
+    if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
+    if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
+    if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
+    if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
 
-        // Pre-orders
-        $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
-        $fmt_prearr = number_format($prearr);
-        $prehw += isset($row["prehw"]) && $row["prehw"] == 1 ? 1 : 0;
-        $fmt_prehw = number_format($prehw);
-        $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
-        $fmt_presb = number_format($presb);
+    // Pre-orders
+    $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
+    $fmt_prearr = number_format($prearr);
+    $prehw += isset($row["prehw"]) && $row["prehw"] == 1 ? 1 : 0;
+    $fmt_prehw = number_format($prehw);
+    $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
+    $fmt_presb = number_format($presb);
 
-        // Collectors Edition
-        $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
-        $fmt_ps4_collectors = number_format($ps4_collectors);
-        $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
-        $fmt_pc_collectors = number_format($pc_collectors);
+    // Collectors Edition
+    $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
+    $fmt_ps4_collectors = number_format($ps4_collectors);
+    $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
+    $fmt_pc_collectors = number_format($pc_collectors);
 
-        // Physical Items
-        $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
-        $fmt_arrartbook = number_format($arrartbook);
-        $beforemeteor += isset($row["beforemeteor"]) && $row["beforemeteor"] == 1 ? 1 : 0;
-        $fmt_beforemeteor = number_format($beforemeteor);
-        $beforethefall += isset($row["beforethefall"]) && $row["beforethefall"] == 1 ? 1 : 0;
-        $fmt_beforethefall = number_format($beforethefall);
-        $soundtrack += isset($row["soundtrack"]) && $row["soundtrack"] == 1 ? 1 : 0;
-        $fmt_soundtrack = number_format($soundtrack);
-        $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
-        $fmt_moogleplush = number_format($moogleplush);
+    // Physical Items
+    $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
+    $fmt_arrartbook = number_format($arrartbook);
+    $beforemeteor += isset($row["beforemeteor"]) && $row["beforemeteor"] == 1 ? 1 : 0;
+    $fmt_beforemeteor = number_format($beforemeteor);
+    $beforethefall += isset($row["beforethefall"]) && $row["beforethefall"] == 1 ? 1 : 0;
+    $fmt_beforethefall = number_format($beforethefall);
+    $soundtrack += isset($row["soundtrack"]) && $row["soundtrack"] == 1 ? 1 : 0;
+    $fmt_soundtrack = number_format($soundtrack);
+    $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
+    $fmt_moogleplush = number_format($moogleplush);
 
-        // Eternal Bond
-        $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
-        $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-        $did_eternal_bond += isset($row["dideternalbond"]) && $row["dideternalbond"] == 1 ? 1 : 0;
-        $fmt_did_eternal_bond = number_format($did_eternal_bond);
+    // Eternal Bond
+    $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
+    $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
+    $did_eternal_bond += isset($row["dideternalbond"]) && $row["dideternalbond"] == 1 ? 1 : 0;
+    $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
-        // Player Commendations
-        $comm50 += isset($row["comm50"]) && $row["comm50"] == 1 ? 1 : 0;
-        $fmt_comm50 = number_format($comm50);
+    // Player Commendations
+    $comm50 += isset($row["comm50"]) && $row["comm50"] == 1 ? 1 : 0;
+    $fmt_comm50 = number_format($comm50);
 
-        // Hildibrand
-        $hildibrand += isset($row["hildibrand"]) && $row["hildibrand"] == 1 ? 1 : 0;
-        $fmt_hildibrand = number_format($hildibrand);
+    // Hildibrand
+    $hildibrand += isset($row["hildibrand"]) && $row["hildibrand"] == 1 ? 1 : 0;
+    $fmt_hildibrand = number_format($hildibrand);
 
-        // ARR Sightseeing Log
-        $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
-        $fmt_sightseeing = number_format($sightseeing);
-	
+    // ARR Sightseeing Log
+    $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
+    $fmt_sightseeing = number_format($sightseeing);
+
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
 
-        // Expand the mounts & minions to an array
-        $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
-        $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
+    // Expand the mounts & minions to an array
+    $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+    $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
 
-        // Beast Tribes with dedicated columns in DB
-        // A Realm Reborn
-        $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
-        $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
-        $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
-        $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
-        // Heavensward
-        $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
-        $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
-        $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
-        // Stormblood
+    // Beast Tribes with dedicated columns in DB
+    // A Realm Reborn
+    $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
+    $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
+    $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
+    $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
+    // Heavensward
+    $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
+    $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
+    $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
+    // Stormblood
 
-	// Bast tribes from minions
-        $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
+    // Bast tribes from minions
+    $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
 	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
 	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
 
-        // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
-        if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
-            // Fetch realm active player count
-            if(!array_key_exists($realm, $active_realm_count)) {
-                    $active_realm_count[$realm] = 0;
-            }
-            $active_realm_count[$realm]++;
-            // Fetch granc company active player count
-            if(!array_key_exists($grand_company, $active_gc_count)) {
-                    $active_gc_count[$grand_company] = 0;
-            }
-            $active_gc_count[$grand_company]++;
-        // Fetch race and gender active player count
-            if(!array_key_exists($race, $active_race_gender_count)) {
-                    $active_race_gender_count[$race] = array();
-            }
-            if(!array_key_exists($gender, $active_race_gender_count[$race])) {
-                    $active_race_gender_count[$race][$gender] = 0;
-            }
-            $active_race_gender_count[$race][$gender]++;
-
-            handleClass($row, CLASS_GLA, $active_classes);
-            handleClass($row, CLASS_PUG, $active_classes);
-            handleClass($row, CLASS_MRD, $active_classes);
-            handleClass($row, CLASS_LNC, $active_classes);
-            handleClass($row, CLASS_ARC, $active_classes);
-            handleClass($row, CLASS_ROG, $active_classes);
-            handleClass($row, CLASS_CNJ, $active_classes);
-            handleClass($row, CLASS_THM, $active_classes);
-            handleClass($row, CLASS_ACN, $active_classes);
-            handleClass($row, CLASS_SCH, $active_classes);
-            handleClass($row, CLASS_DRK, $active_classes);
-            handleClass($row, CLASS_MCH, $active_classes);
-            handleClass($row, CLASS_AST, $active_classes);
-            handleClass($row, CLASS_SAM, $active_classes);
-            handleClass($row, CLASS_RDM, $active_classes);
-            handleClass($row, CLASS_BLU, $active_classes);
-            handleClass($row, CLASS_CRP, $active_classes);
-            handleClass($row, CLASS_BSM, $active_classes);
-            handleClass($row, CLASS_ARM, $active_classes);
-            handleClass($row, CLASS_GSM, $active_classes);
-            handleClass($row, CLASS_LWR, $active_classes);
-            handleClass($row, CLASS_WVR, $active_classes);
-            handleClass($row, CLASS_ALC, $active_classes);
-            handleClass($row, CLASS_CUL, $active_classes);
-            handleClass($row, CLASS_MIN, $active_classes);
-            handleClass($row, CLASS_BTN, $active_classes);
-            handleClass($row, CLASS_FSH, $active_classes);
+    // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
+    if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
+        // Fetch realm active player count
+        if(!array_key_exists($realm, $active_realm_count)) {
+                $active_realm_count[$realm] = 0;
         }
+        $active_realm_count[$realm]++;
+        // Fetch granc company active player count
+        if(!array_key_exists($grand_company, $active_gc_count)) {
+                $active_gc_count[$grand_company] = 0;
+        }
+        $active_gc_count[$grand_company]++;
+        // Fetch race and gender active player count
+        if(!array_key_exists($race, $active_race_gender_count)) {
+                $active_race_gender_count[$race] = array();
+        }
+        if(!array_key_exists($gender, $active_race_gender_count[$race])) {
+                $active_race_gender_count[$race][$gender] = 0;
+        }
+        $active_race_gender_count[$race][$gender]++;
+
+        handleClass($row, CLASS_GLA, $active_classes);
+        handleClass($row, CLASS_PUG, $active_classes);
+        handleClass($row, CLASS_MRD, $active_classes);
+        handleClass($row, CLASS_LNC, $active_classes);
+        handleClass($row, CLASS_ARC, $active_classes);
+        handleClass($row, CLASS_ROG, $active_classes);
+        handleClass($row, CLASS_CNJ, $active_classes);
+        handleClass($row, CLASS_THM, $active_classes);
+        handleClass($row, CLASS_ACN, $active_classes);
+        handleClass($row, CLASS_SCH, $active_classes);
+        handleClass($row, CLASS_DRK, $active_classes);
+        handleClass($row, CLASS_MCH, $active_classes);
+        handleClass($row, CLASS_AST, $active_classes);
+        handleClass($row, CLASS_SAM, $active_classes);
+        handleClass($row, CLASS_RDM, $active_classes);
+        handleClass($row, CLASS_BLU, $active_classes);
+        handleClass($row, CLASS_GNB, $active_classes);
+        handleClass($row, CLASS_DNC, $active_classes);
+        handleClass($row, CLASS_CRP, $active_classes);
+        handleClass($row, CLASS_BSM, $active_classes);
+        handleClass($row, CLASS_ARM, $active_classes);
+        handleClass($row, CLASS_GSM, $active_classes);
+        handleClass($row, CLASS_LWR, $active_classes);
+        handleClass($row, CLASS_WVR, $active_classes);
+        handleClass($row, CLASS_ALC, $active_classes);
+        handleClass($row, CLASS_CUL, $active_classes);
+        handleClass($row, CLASS_MIN, $active_classes);
+        handleClass($row, CLASS_BTN, $active_classes);
+        handleClass($row, CLASS_FSH, $active_classes);
+    }
 }
 
 ksort($gc_count);
