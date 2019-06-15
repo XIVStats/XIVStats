@@ -88,7 +88,8 @@ $japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit",
                               "Atomos","Carbuncle","Garuda","Gungnir","Kujata","Ramuh","Tonberry","Typhon","Unicorn");
 sort($japanese_realm_array);
 
-$european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega");
+$european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega",
+                              "Spriggan","Twintania");
 sort($european_realm_array);
 
 // Variables
