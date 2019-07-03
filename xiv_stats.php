@@ -203,17 +203,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_BTN, $classes);
     handleClass($row, CLASS_FSH, $classes);
 
-    // Subscription figures
-    if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
-    if(isset($row["p60days"]) && $row["p60days"] == 1) $sub_time["60 Days"]++;
-    if(isset($row["p90days"]) && $row["p90days"] == 1) $sub_time["90 Days"]++;
-    if(isset($row["p180days"]) && $row["p180days"] == 1) $sub_time["180 Days"]++;
-    if(isset($row["p270days"]) && $row["p270days"] == 1) $sub_time["270 Days"]++;
-    if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
-    if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
-    if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
-    if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
-
     // Pre-orders
     $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
     $fmt_prearr = number_format($prearr);
