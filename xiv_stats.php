@@ -338,6 +338,8 @@ $db->close();
 
   <head>
     <title>XIVCensus - Player statistics for FFXIV</title>
+    <!-- FFXIV Official Tooltips-->
+    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- JQuery Script--> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts--> 
@@ -439,7 +441,7 @@ $db->close();
                   <div class="card-content black-text">
                       <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Dress-up Raubahn" mount from the 4.1 story)</b></p>
+                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/">"Dress-up Raubahn"</a> mount from the 4.1 story)</b></p>
                     </div>
               </div>
           </div>
