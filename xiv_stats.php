@@ -107,23 +107,14 @@ $classes = array();
 
 $active_classes = array();
 
-$sub_time = array();
-$sub_time["30 Days"] = 0;
-$sub_time["60 Days"] = 0;
-$sub_time["90 Days"] = 0;
-$sub_time["180 Days"] = 0;
-$sub_time["270 Days"] = 0;
-$sub_time["360 Days"] = 0;
-$sub_time["450 Days"] = 0;
-$sub_time["630 Days"] = 0;
-$sub_time["960 Days"] = 0;
-
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
+$preshb = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
 $arrartbook = 0;
+$sbartbook = 0;
 $beforemeteor = 0;
 $beforethefall = 0;
 $soundtrack = 0;
@@ -291,7 +282,7 @@ while($row = $player_overview_query->fetch_assoc()) {
 	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
 	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
 	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
-
+  
     // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
     if(in_array("Dress-up Raubahn", $minions)) {  $active_player_count++;
         // Fetch realm active player count
@@ -501,7 +492,6 @@ $db->close();
                       
                       <!-- Other Stats Dropdown -->
                       <ul id='misc-stats-dropdown' class='dropdown-content'>
-                          <li><a href="#subscribed">Subscribed Time</a></li>
                           <li><a href="#beast">Beast Tribes</a></li>
                           <li><a href="#preorders">Pre-Orders</a></li>
                           <li><a href="#collectors">Collectors Edition</a></li>
@@ -733,25 +723,6 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card white">
                   <div class="card-content black-text">
-                      <a id="subscribed"><span class="card-title black-text light">SUBSCRIBED TIME (VETERAN REWARD MINIONS)</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="subscribed_time" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
                       <a id="beast"><span class="card-title black-text light">BEAST TRIBES (REDEEMED MINION)</span></a>
 
                       <br/>
@@ -792,6 +763,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_presb; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_preshb; ?></div>
                         </div>
                       </div>
 
@@ -853,10 +831,17 @@ $db->close();
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">ARTBOOK</div>
+                      <div class="black-text light region-subtitle">ARR ARTBOOK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_arrartbook; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="black-text light region-subtitle">SB ARTBOOK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_sbartbook; ?></div>
                         </div>
                       </div>
 
@@ -1531,49 +1516,6 @@ $(function () {
 });
 </script>
 
-  <script>
-      $(function () {
-          $('#subscribed_time').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
-                      <?php
-                              foreach ($sub_time as $key => $value) {
-                                      echo "'$key',";
-                              }
-                      ?>
-                  ],
-
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Subscription Time',
-                  data: [
-                      <?php
-                              foreach ($sub_time as $key => $value) {
-                                      echo getValue($value) . ",";
-                              }
-                      ?>
-                  ],
-              }]
-          });
-      });
-  </script>
 
   <script>
       $(function () {
