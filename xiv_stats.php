@@ -939,7 +939,7 @@ $db->close();
                   <div class="black-text light ">> <a href="https://github.com/matthewhillier">Matt Hillier</a></div>
                 </li>
                 <li>
-                  <div class="black-text light ">> <a href="https://pf.ie/">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
+                  <div class="black-text light ">> <a href="https://crakila.moe">Crakila (Padraig)</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
                 </li>
               </ul>
             </div>
