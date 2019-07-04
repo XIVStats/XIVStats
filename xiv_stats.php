@@ -374,7 +374,7 @@ $db->close();
       </script>
       <style>
           /*
-            Core colour palette:
+            Core colour palette (https://coolors.co/303440-c3ac5c-702670-9e0000-039be5):
                 - #212121 - Grey Darken-4 - Background
                 - #c3ac5c - Gunmetel - Card background
                 - #c3ac5c - Vega Gold - Titles and highlights
