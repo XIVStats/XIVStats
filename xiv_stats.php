@@ -373,6 +373,34 @@ $db->close();
         ga('send', 'pageview');
       </script>
       <style>
+          /*
+            Core colour palette:
+                - #212121 - Grey Darken-4 - Background
+                - #c3ac5c - Gunmetel - Card background
+                - #c3ac5c - Vega Gold - Titles and highlights
+                - #702670 - Midnight - Main theme colour (Purple, Shadowbringers)
+                - #9E0000 - USC Cardinal - Secondary theme color (Crimson, Stormblood)
+                - #039BE5 - Vivid Ceruleum - Secondary theme color (Azure, Heavensward)
+          */
+
+          .card {
+            background-color: #303440;
+          }
+
+          .card-title {
+            color: #c3ac5c;
+          }
+
+          .card-content {
+            color: white;
+          }
+
+          hr {
+            color: #c3ac5c; 
+            background-color: #c3ac5c;
+            height: 3px;
+            border: 0;
+          }
           
           .box-element {
               width: 100%;
@@ -385,13 +413,13 @@ $db->close();
 
           .region-title {
               text-align: center;
-              color: black;
+              color: #c3ac5c;
               font-size: 28pt;
           }
 
           .region-subtitle {
               text-align: center;
-              color: #9e9e9e;
+              color: white;
               font-size: large;
           }
 
@@ -410,15 +438,20 @@ $db->close();
           }
 
           .dropdown-button, .waves-light, .btn, .btn:visited{
-            background-color: #7CB5EC;
+            background-color: #702670;
           }
 
-          .dropdown-button:hover, .waves-light:hover{
-            background-color: #8fc0ef;
+          .dropdown-button:hover, .waves-light:hover, .btn:hover {
+            background-color: plum;
           }
 
-          #realm-dropdown a, #pop-dropdown a, #misc-stats a{
+          #realm-dropdown a, #pop-dropdown a, #misc-stats-dropdown a{
               color: black;
+          }
+
+          #realm-dropdown a:hover, #pop-dropdown a:hover, #misc-stats-dropdown a:hover {
+              background-color: #c3ac5c;
+              color: white;
           }
           
           .navbar {
@@ -438,17 +471,18 @@ $db->close();
           footer.page-footer {
               margin-top: 0px;
               padding-top: 0px;
+              background-color: #c3ac5c;
           }
       </style>
   </head>
 
-  <body>
+  <body class="grey darken-4">
   <div class="container box-element">
       <div class="row" id="pageTitleBox">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="population"><span class="card-title black-text" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="population"><span class="card-title" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
                       <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Dress-up Raubahn" mount from the 4.1 story)</b></p>
                     </div>
@@ -501,21 +535,21 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="population"><span class="card-title black-text light">HOW MANY CHARACTERS ARE THERE?</span></a>
+              <div class="card">
+                  <div class="card-content white-text">
+                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
                       <br/>
                       <hr/>
                       <br/>
                       <!--World-->
-                      <div class="black-text light region-title">WORLD</div>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <div class="light region-title">WORLD</div>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($player_count) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format($active_player_count) ?></div>
@@ -525,14 +559,14 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="popna"><div class="black-text light region-title">AMERICA</div></a>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <a id="popna"><div class="light region-title">AMERICA</div></a>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
@@ -542,14 +576,14 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="popjp"><div class="black-text light region-title">JAPAN</div></a>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <a id="popjp"><div class="light region-title">JAPAN</div></a>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
@@ -559,14 +593,14 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="popeu"><div class="black-text light region-title">EUROPE</div></a>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <a id="popeu"><div class="light region-title">EUROPE</div></a>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <div class="row">
                           <div class="s12 m6 l6   region-stat">
                               <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
@@ -578,13 +612,13 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="racegender"><span class="card-title black-text light">RACE AND GENDER DISTRIBUTION</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="racegender"><span class="card-title light">RACE AND GENDER DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -592,7 +626,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -603,13 +637,13 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="class"><span class="card-title black-text light">CLASS DISTRIBUTION</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="class"><span class="card-title light">CLASS DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -617,7 +651,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -628,13 +662,13 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="realmall"><span class="card-title black-text light">REALM DISTRIBUTION (ALL)</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="realmall"><span class="card-title light">REALM DISTRIBUTION (ALL)</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="rat-na"><div class="black-text light region-subtitle">AMERICAN REALMS</div></a>
+                      <a id="rat-na"><div class="light region-subtitle">AMERICAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -642,7 +676,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="rat-jp"><div class="black-text light region-subtitle">JAPANESE REALMS</div></a>
+                      <a id="rat-jp"><div class="light region-subtitle">JAPANESE REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -650,7 +684,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="rat-eu"><div class="black-text light region-subtitle">EUROPEAN REALMS</div></a>
+                      <a id="rat-eu"><div class="light region-subtitle">EUROPEAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -662,13 +696,13 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="realmactive"><span class="card-title black-text light">REALM DISTRIBUTION (ACTIVE)</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                          <a id="ra-na"><div class="black-text light region-subtitle">AMERICAN REALMS</div></a>
+                          <a id="ra-na"><div class="light region-subtitle">AMERICAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -676,7 +710,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                          <a id="ra-jp"><div class="black-text light region-subtitle">JAPANESE REALMS</div></a>
+                          <a id="ra-jp"><div class="light region-subtitle">JAPANESE REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -684,7 +718,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                          <a id="ra-eu"><div class="black-text light region-subtitle">EUROPEAN REALMS</div></a>
+                          <a id="ra-eu"><div class="light region-subtitle">EUROPEAN REALMS</div></a>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -696,13 +730,13 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="grandcompany"><span class="card-title black-text light">GRAND COMPANY DISTRIBUTION</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="grandcompany"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span></a>
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
@@ -710,7 +744,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
@@ -721,14 +755,14 @@ $db->close();
       </div>
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="beast"><span class="card-title black-text light">BEAST TRIBES (REDEEMED MINION)</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
 
                       <br/>
                       <hr/>
                       <br/>
-                      <div class="black-text light region-subtitle">ALL CHARACTERS</div>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
                       <br/>
                       <!-- Begin Chart -->
                       <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -741,32 +775,32 @@ $db->close();
 
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="preorders"><span class="card-title black-text light">PRE-ORDERS</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="preorders"><span class="card-title light">PRE-ORDERS</span></a>
 
-                      <div class="black-text light region-subtitle">PRE-ORDERED ARR</div>
+                      <div class="light region-subtitle">PRE-ORDERED ARR</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_prearr; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">PRE-ORDERED HW</div>
+                      <div class="light region-subtitle">PRE-ORDERED HW</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_prehw; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">PRE-ORDERED STORMBLOOD</div>
+                      <div class="light region-subtitle">PRE-ORDERED STORMBLOOD</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_presb; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
+                      <div class="light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_preshb; ?></div>
@@ -781,18 +815,18 @@ $db->close();
 
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="collectors"><span class="card-title black-text light">COLLECTORS EDITION</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="collectors"><span class="card-title light">COLLECTORS EDITION</span></a>
 
-                      <div class="black-text light region-subtitle">PS4 ARR COLLECTORS EDITION</div>
+                      <div class="light region-subtitle">PS4 ARR COLLECTORS EDITION</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_ps4_collectors; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">PC ARR COLLECTORS EDITION</div>
+                      <div class="light region-subtitle">PC ARR COLLECTORS EDITION</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_pc_collectors; ?></div>
@@ -806,46 +840,46 @@ $db->close();
 
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="physical"><span class="card-title black-text light">PHYSICAL ITEMS</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="physical"><span class="card-title light">PHYSICAL ITEMS</span></a>
 
-                      <div class="black-text light region-subtitle">ARR SOUNDTRACK</div>
+                      <div class="light region-subtitle">ARR SOUNDTRACK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_soundtrack; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
+                      <div class="light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_beforemeteor; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">BEFORE THE FALL SOUNDTRACK</div>
+                      <div class="light region-subtitle">BEFORE THE FALL SOUNDTRACK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_beforethefall; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">ARR ARTBOOK</div>
+                      <div class="light region-subtitle">ARR ARTBOOK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_arrartbook; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">SB ARTBOOK</div>
+                      <div class="light region-subtitle">SB ARTBOOK</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sbartbook; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">MOOGLE PLUSH</div>
+                      <div class="light region-subtitle">MOOGLE PLUSH</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_moogleplush; ?></div>
@@ -859,46 +893,46 @@ $db->close();
 
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
-                  <div class="card-content black-text">
-                      <a id="misc-stats"><span class="card-title black-text light">OTHER</span></a>
+              <div class="card">
+                  <div class="card-content">
+                      <a id="misc-stats"><span class="card-title light">OTHER</span></a>
 
-                      <div class="black-text light region-subtitle">GUEST AT AN ETERNAL BOND</div>
+                      <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_saw_eternal_bond; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
+                      <div class="light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_did_eternal_bond; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">EARNED 50 COMMENDATIONS</div>
+                      <div class="light region-subtitle">EARNED 50 COMMENDATIONS</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_comm50; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">COMPLETED ARR HILDIBRAND QUESTLINE</div>
+                      <div class="light region-subtitle">COMPLETED ARR HILDIBRAND QUESTLINE</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_hildibrand; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">COMPLETED ARR SIGHTSEEING LOG</div>
+                      <div class="light region-subtitle">COMPLETED ARR SIGHTSEEING LOG</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sightseeing; ?></div>
                         </div>
                       </div>
 
-                      <div class="black-text light region-subtitle">DELETED CHARACTERS</div>
+                      <div class="light region-subtitle">DELETED CHARACTERS</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_deleted; ?></div>
@@ -912,16 +946,16 @@ $db->close();
 
     <div class="row">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card white">
+              <div class="card">
 
-                  <div class="card-content black-text">
-                      <span class="card-title black-text light"></span>
-                      <div class="black-text light region-title"><a href="<?php echo "https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" . date("Y-m") . ".zip";?>">Download database (MySQL)</a></div>
+                  <div class="card-content">
+                      <span class="card-title light"></span>
+                      <div class="light region-title"><a href="<?php echo "https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" . date("Y-m") . ".zip";?>">Download database (MySQL)</a></div>
                   </div>
 
-                  <div class="card-content black-text">
-                      <span class="card-title black-text light"></span>
-                      <div class="black-text light region-title"><a href="/list">View Previous Censuses</a></div>
+                  <div class="card-content">
+                      <span class="card-title light"></span>
+                      <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
                   </div>
               </div>
           </div>
@@ -930,25 +964,25 @@ $db->close();
     <div class="row">
       <div class="col s12 m6" style="width:100%;">
 
-        <div class="card white">
-          <div class="card-content black-text">
-            <a id="population"><span class="card-title black-text light">CONTRIBUTORS</span></a>
+        <div class="card">
+          <div class="card-content">
+            <a id="population"><span class="card-title light">CONTRIBUTORS</span></a>
 
 
-            <div class="card-content black-text">
-              <span class="card-title black-text light"></span>
+            <div class="card-content">
+              <span class="card-title light"></span>
               <ul>
                 <li>
-                  <div class="black-text light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/">Jonathan Price</a> | <a href="http://na.finalfantasyxiv.com/lodestone/character/8308898/">John Prycewood @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="http://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
                 </li>
                 <li>
-                  <div class="black-text light ">> <a href="https://twitter.com/ReidWeb">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/">P'tajha Rihll @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Ceberus</a></div>
                 </li>
                 <li>
-                  <div class="black-text light ">> <a href="https://github.com/matthewhillier">Matt Hillier</a></div>
+                  <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/" target="_blank">Russell Tyler @ Omega</a></div>
                 </li>
                 <li>
-                  <div class="black-text light ">> <a href="https://pf.ie/">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://pf.ie/" target="_blank">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/" target="_blank">Crakila Fors'ee @ Ceberus</a></div>
                 </li>
               </ul>
             </div>
@@ -961,7 +995,7 @@ $db->close();
 
       <!-- End Container -->
   </div>
-  <footer class="page-footer light-blue lighten-2">
+  <footer class="page-footer">
       <div class="footer-copyright">
           <div class="container">
               Statistics generated on <?php echo date("Y-m-d");  ?>
@@ -985,17 +1019,67 @@ $db->close();
   </script>
 
   <script>
+      $(function() {
+        Highcharts.theme = {
+            chart: {
+                backgroundColor: '#303440'
+            },
+
+            colors: ['#702670','#9E0000','#0038A8'],
+
+            legend: {
+                itemStyle: {
+                    color: '#ffffff'
+                }
+
+            },
+
+            xAxis: {
+                title: {
+                    style: {
+                        color: '#c3ac5c'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#ffffff'
+                    }
+                }
+            },
+
+            yAxis: {
+                title: {
+                    style: {
+                        color: '#c3ac5c'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#ffffff'
+                    }
+                }
+            },
+
+            plotOptions: {
+              column: {
+                  borderWidth: 0
+              },
+              pie: {
+                  borderWidth: 0,
+                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e']
+              }
+            },
+        };
+
+        Highcharts.setOptions(Highcharts.theme);
+      });
+  </script>
+
+  <script>
       $(function () {
           $('#gc_distribution').highcharts({
-              chart: {
-              },
               title: {
                   text: ''
-              },
-              plotOptions: {
-                  pie: {
-                      colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e']
-                  }
               },
               tooltip: {
                   pointFormat: '{point.y}'
@@ -1021,15 +1105,8 @@ $db->close();
   <script>
       $(function () {
           $('#gc_active_distribution').highcharts({
-              chart: {
-              },
               title: {
                   text: ''
-              },
-              plotOptions: {
-                  pie: {
-                      colors: ['#212121', '#b71c1c',  '#ffc107']
-                  }
               },
               tooltip: {
                   pointFormat: '{point.y}'
@@ -1058,6 +1135,7 @@ $db->close();
               chart: {
                   type: 'column'
               },
+              colors: ['#9E0000','#039BE5'],
               title: {
                   text: ''
               },
@@ -1111,6 +1189,7 @@ $db->close();
               chart: {
                   type: 'column'
               },
+              colors: ['#9E0000','#039BE5'],
               title: {
                   text: ''
               },
