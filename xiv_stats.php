@@ -345,7 +345,7 @@ $db->close();
 <html>
 
   <head>
-    <title>XIVCensus - Player statistics for FFXIV</title>
+    <title>XIVCensus - Character statistics for FFXIV</title>
     <!-- FFXIV Official Tooltips-->
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- JQuery Script--> 
