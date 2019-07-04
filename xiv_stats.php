@@ -148,7 +148,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         continue;
     }
     $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
-    $grand_company = isset($row["grand_company"]) ?$row["grand_company"] : 'Unknown';
+    $grand_company = isset($row["grand_company"]) ? $row["grand_company"] : 'Unknown';
     $race = isset($row["race"]) ? $row["race"] : 'Unknown';
     $gender = isset($row["gender"]) ? $row["gender"] : 'Unknown';
     
@@ -210,12 +210,16 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_prehw = number_format($prehw);
     $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
     $fmt_presb = number_format($presb);
+    $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
+    $fmt_preshb = number_format($preshb);
 
     // Collectors Edition
     $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
     $fmt_ps4_collectors = number_format($ps4_collectors);
     $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
     $fmt_pc_collectors = number_format($pc_collectors);
+    $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
+    $fmt_shb_collectors = number_format($shb_collectors);
 
     // Physical Items
     $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
@@ -228,6 +232,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_soundtrack = number_format($soundtrack);
     $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
     $fmt_moogleplush = number_format($moogleplush);
+    $sbartbook += isset($row["sbartbook"]) && $row["sbartbook"] == 1 ? 1 : 0;
+    $fmt_sbartbook = number_format($sbartbook);
+    $sbartbooktwo += isset($row["sbartbooktwo"]) && $row["sbartbooktwo"] == 1 ? 1 : 0;
+    $fmt_sbartbooktwo = number_format($sbartbooktwo);
 
     // Eternal Bond
     $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
@@ -770,14 +778,14 @@ $db->close();
                   <div class="card-content">
                       <a id="preorders"><span class="card-title light">PRE-ORDERS</span></a>
 
-                      <div class="light region-subtitle">PRE-ORDERED ARR</div>
+                      <div class="light region-subtitle">PRE-ORDERED A REALM REBORN</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_prearr; ?></div>
                         </div>
                       </div>
 
-                      <div class="light region-subtitle">PRE-ORDERED HW</div>
+                      <div class="light region-subtitle">PRE-ORDERED HEAVENSWARD</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_prehw; ?></div>
@@ -824,6 +832,13 @@ $db->close();
                         </div>
                       </div>
 
+                      <div class="light region-subtitle">SHADOWBRINGERS COLLECTORS EDITION</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_shb_collectors; ?></div>
+                        </div>
+                      </div>
+
                  </div>
               </div>
           </div>
@@ -863,10 +878,17 @@ $db->close();
                         </div>
                       </div>
 
-                      <div class="light region-subtitle">SB ARTBOOK</div>
+                      <div class="light region-subtitle">SB ARTBOOK - EASTERN MEMORIES</div>
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_sbartbook; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="light region-subtitle">SB ARTBOOK - WESTERN MEMORIES</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_sbartbooktwo; ?></div>
                         </div>
                       </div>
 
@@ -1057,7 +1079,10 @@ $db->close();
               },
               pie: {
                   borderWidth: 0,
-                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e']
+                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e'],
+                  dataLabels: {
+                    color: '#ffffff'
+                  }
               }
             },
         };
