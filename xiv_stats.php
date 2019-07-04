@@ -148,7 +148,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         continue;
     }
     $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
-    $grand_company = isset($row["grand_company"]) ?$row["grand_company"] : 'Unknown';
+    $grand_company = isset($row["grand_company"]) ? $row["grand_company"] : 'Unknown';
     $race = isset($row["race"]) ? $row["race"] : 'Unknown';
     $gender = isset($row["gender"]) ? $row["gender"] : 'Unknown';
     
@@ -1066,7 +1066,10 @@ $db->close();
               },
               pie: {
                   borderWidth: 0,
-                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e']
+                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e'],
+                  dataLabels: {
+                    color: '#ffffff'
+                  }
               }
             },
         };
