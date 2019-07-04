@@ -203,17 +203,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_BTN, $classes);
     handleClass($row, CLASS_FSH, $classes);
 
-    // Subscription figures
-    if(isset($row["p30days"]) && $row["p30days"] == 1) $sub_time["30 Days"]++;
-    if(isset($row["p60days"]) && $row["p60days"] == 1) $sub_time["60 Days"]++;
-    if(isset($row["p90days"]) && $row["p90days"] == 1) $sub_time["90 Days"]++;
-    if(isset($row["p180days"]) && $row["p180days"] == 1) $sub_time["180 Days"]++;
-    if(isset($row["p270days"]) && $row["p270days"] == 1) $sub_time["270 Days"]++;
-    if(isset($row["p360days"]) && $row["p360days"] == 1) $sub_time["360 Days"]++;
-    if(isset($row["p450days"]) && $row["p450days"] == 1) $sub_time["450 Days"]++;
-    if(isset($row["p630days"]) && $row["p630days"] == 1) $sub_time["630 Days"]++;
-    if(isset($row["p960days"]) && $row["p960days"] == 1) $sub_time["960 Days"]++;
-
     // Pre-orders
     $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
     $fmt_prearr = number_format($prearr);
@@ -349,6 +338,8 @@ $db->close();
 
   <head>
     <title>XIVCensus - Player statistics for FFXIV</title>
+    <!-- FFXIV Official Tooltips-->
+    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- JQuery Script--> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts--> 
@@ -484,7 +475,7 @@ $db->close();
                   <div class="card-content">
                       <a id="population"><span class="card-title" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
                       <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the "Dress-up Raubahn" mount from the 4.1 story)</b></p>
+                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/">"Dress-up Raubahn"</a> mount from the 4.1 story)</b></p>
                     </div>
               </div>
           </div>
@@ -982,7 +973,7 @@ $db->close();
                   <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/" target="_blank">Russell Tyler @ Omega</a></div>
                 </li>
                 <li>
-                  <div class="light ">> <a href="https://pf.ie/" target="_blank">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/" target="_blank">Crakila Fors'ee @ Ceberus</a></div>
+                  <div class="black-text light ">> <a href="https://crakila.moe">Crakila (Padraig)</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
                 </li>
               </ul>
             </div>
