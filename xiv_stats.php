@@ -345,7 +345,7 @@ $db->close();
 <html>
 
   <head>
-    <title>XIVCensus - Player statistics for FFXIV</title>
+    <title>XIVCensus - Character statistics for FFXIV</title>
     <!-- FFXIV Official Tooltips-->
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- JQuery Script--> 
@@ -381,6 +381,11 @@ $db->close();
                 - #9E0000 - USC Cardinal - Secondary theme color (Crimson, Stormblood)
                 - #039BE5 - Vivid Ceruleum - Secondary theme color (Azure, Heavensward)
           */
+
+          .logo {
+              float: left !important;
+              width: 300px;
+          }
 
           .card {
             background-color: #303440;
@@ -481,9 +486,11 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card">
                   <div class="card-content">
-                      <a id="population"><span class="card-title" style="font-size:28pt;">XIVCensus - Character statistics for FFXIV</span></a>
+                      <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
+                      <img src="img/logo.png" />
                       <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>* (Any reference to "Active" characters, refers to characters that have claimed the <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/">"Dress-up Raubahn"</a> mount from the 4.1 story)</b></p>
+                      p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
+                      <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/" class="eorzeadb_link">Dress-up Raubahn</a> minion from the 4.1 story</b></p>
                     </div>
               </div>
           </div>
