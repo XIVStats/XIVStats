@@ -147,6 +147,12 @@ while($row = $player_overview_query->fetch_assoc()) {
         $deleted_player_count++;
         continue;
     }
+
+    // Expand the mounts & minions to an array
+    $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
+    $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
+
+    // Basic data
     $realm = isset($row["realm"]) ? $row["realm"] : 'Unknown';
     $grand_company = isset($row["grand_company"]) ? $row["grand_company"] : 'Unknown';
     $race = isset($row["race"]) ? $row["race"] : 'Unknown';
@@ -257,10 +263,6 @@ while($row = $player_overview_query->fetch_assoc()) {
 
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
-
-    // Expand the mounts & minions to an array
-    $mounts = isset($row["mounts"]) ? str_getcsv($row["mounts"]) : array();
-    $minions = isset($row["minions"]) ? str_getcsv($row["minions"]) : array();
 
     // Beast Tribes with dedicated columns in DB
     // A Realm Reborn
@@ -487,9 +489,8 @@ $db->close();
               <div class="card">
                   <div class="card-content">
                       <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
-                      <img src="img/logo.png" />
                       <p>Statistics for <?php echo $date; ?></p>
-                      p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
+                      <b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
                       <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/" class="eorzeadb_link">Dress-up Raubahn</a> minion from the 4.1 story</b></p>
                     </div>
               </div>
