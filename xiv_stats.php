@@ -1003,7 +1003,7 @@ $db->close();
                   <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/" target="_blank">Russell Tyler @ Omega</a></div>
                 </li>
                 <li>
-                  <div class="black-text light ">> <a href="https://crakila.moe">Crakila (Padraig)</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://crakila.moe">Crakila (Padraig)</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
                 </li>
               </ul>
             </div>
