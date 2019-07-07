@@ -489,7 +489,7 @@ $db->close();
               <div class="card">
                   <div class="card-content">
                       <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
-                      <p>Statistics for <?php echo $date; ?></p>
+                      <p>Statistics for <?php echo $date; ?>
                       <b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
                       <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/" class="eorzeadb_link">Dress-up Raubahn</a> minion from the 4.1 story</b></p>
                     </div>
