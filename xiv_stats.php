@@ -401,7 +401,7 @@ $db->close();
             color: white;
           }
 
-          hr {
+          hr, .divider {
             color: #c3ac5c; 
             background-color: #c3ac5c;
             height: 3px;
@@ -510,9 +510,7 @@ $db->close();
                       <ul id='pop-dropdown' class='dropdown-content'>
                           <li><a href="#population">World</a></li>
                           <li class="divider"></li>
-                          <li><a href="#popna">North America</a></li>
-                          <li><a href="#popjp">Japan</a></li>
-                          <li><a href="#popeu">Europe</a></li>
+                          <li><a href="#population-region">Regional</a></li>
                       </ul>
                       
                       <!-- Realm Stats Dropdown -->
@@ -545,72 +543,83 @@ $db->close();
               <div class="card">
                   <div class="card-content white-text">
                       <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
-                      <br/>
                       <hr/>
-                      <br/>
                       <!--World-->
-                      <div class="light region-title">WORLD</div>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format($player_count) ?></div>
+                      <div class="section">
+                          <div class="light region-title">WORLD</div>
+                          <div class="light region-subtitle">ALL CHARACTERS</div>
+                          <div class="row">
+                              <div class="s12 m6 l6   region-stat">
+                                  <div><?php echo number_format($player_count) ?></div>
+                              </div>
+                          </div>
+                          <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                          <div class="row">
+                              <div class="s12 m6 l6   region-stat">
+                                  <div><?php echo number_format($active_player_count) ?></div>
+                              </div>
                           </div>
                       </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format($active_player_count) ?></div>
+                      <div class="divider"></div>
+                      <!-- By Region -->
+                      <div class="section">
+                          <a id="population-region"></a>
+                          <div class="row">
+                            <div class="col m4 light region-title">AMERICA</div>
+                            <div class="col m4 light region-title">JAPAN</div>
+                            <div class="col m4 light region-title">EUROPE</div>
                           </div>
-                      </div>
-                      <!-- America -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popna"><div class="light region-title">AMERICA</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
+                          <div class="row">
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ALL CHARACTERS</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
+                                  </div>
+                              </div>     
+                            </div>
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ALL CHARACTERS</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ALL CHARACTERS</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
+                                  </div>
+                              </div>
                           </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
                           </div>
-                      </div>
-                      <!--Japan-->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popjp"><div class="light region-title">JAPAN</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <!--Europe-->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popeu"><div class="light region-title">EUROPE</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
+                          <div class="row">
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="col m4 light region-stat">
+                              <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                              <div class="row">
+                                  <div class="s12 m6 l6   region-stat">
+                                      <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
+                                  </div>
+                              </div>
+                            </div>
                           </div>
                       </div>
                   </div>
