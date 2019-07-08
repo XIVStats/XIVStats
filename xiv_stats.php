@@ -32,6 +32,21 @@ const CLASS_MIN = array(KEY => "level_miner", TITLE => "Miner");
 const CLASS_BTN = array(KEY => "level_botanist", TITLE => "Botanist");
 const CLASS_FSH = array(KEY => "level_fisher", TITLE => "Fisher");
 
+const GEAR_MAIN_HAND = array(KEY => 'main_hand', TITLE => "Main Hand");
+const GEAR_OFF_HAND = array(KEY => 'off_hand', TITLE => "Off Hand");
+const GEAR_HEAD = array(KEY => 'head', TITLE => 'Head');
+const GEAR_BODY = array(KEY => 'body', TITLE => 'Body Piece');
+const GEAR_HANDS = array(KEY => 'hands', TITLE => 'Hands');
+const GEAR_WAIST = array(KEY => 'waist', TITLE => 'Waist');
+const GEAR_LEGS = array(KEY => 'legs', TITLE => 'Legs');
+const GEAR_FEET = array(KEY => 'feet', TITLE => 'Feet');
+const GEAR_EARS = array(KEY => 'ears', TITLE => 'Ears');
+const GEAR_NECK = array(KEY => 'neck', TITLE => "Neck");
+const GEAR_WRISTS = array(KEY => 'wrists', TITLE => "Wrists");
+const GEAR_LEFT_HAND = array(KEY => 'left_hand', TITLE => "Rings");
+const GEAR_RIGHT_HAND = array(KEY => 'right_hand', TITLE => "Rings");
+const GEAR_JOB_CRYSTAL = array(KEY => 'job_crystal', TITLE => "Job Crystal");
+
 // Helper function to fetch the sum of all values in the array, where the array key matches one of the specified realm names
 function sumInRegion($data, $regional_realms) {
         return array_sum(array_intersect_key($data, array_flip($regional_realms)));
@@ -57,6 +72,24 @@ function handleClass($row, $classDef, &$totalArray) {
         $totalArray[$classDef[TITLE]]++;
     }
     return 0;
+}
+
+function handleGear($row, $gearSlot, &$totalArray) {
+    // If counters not initialised, then do so
+    if(!isset($totalArray[$gearSlot[TITLE]])) {
+        $totalArray[$gearSlot[TITLE]] = array();
+    }
+
+    // Check if there's even an item in the slot
+    if(isset($row[$gearSlot[KEY]])) {
+        $itemId = $row[$gearSlot[KEY]];
+
+        if(!isset($totalArray[$gearSlot[TITLE]][$itemId])) {
+            $totalArray[$gearSlot[TITLE]][$itemId] = 0;
+        }
+        
+        $totalArray[$gearSlot[TITLE]][$itemId]++;
+    }
 }
 
 $conn_info = parse_ini_file("templateconfig.ini");
@@ -92,6 +125,13 @@ $european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragna
                               "Spriggan","Twintania");
 sort($european_realm_array);
 
+$gear_cache = array();
+
+$gear_query = $db->query("SELECT * FROM gear_items;", MYSQLI_USE_RESULT);
+while($row = $gear_query->fetch_assoc()) {
+    $gear_cache[$row['item_id']] = array("name" => $row['name'], "category" => $row['category']);
+}
+
 // Variables
 $player_count = 0;
 $active_player_count = 0;
@@ -104,8 +144,10 @@ $race_gender_count = array();
 $active_race_gender_count = array();
 
 $classes = array();
-
 $active_classes = array();
+
+$gear = array();
+$active_gear = array();
 
 $prearr = 0;
 $prehw = 0;
@@ -140,7 +182,7 @@ $beast_tribes["Kojin"] = 0;
 $beast_tribes["Ananta"] = 0;
 $beast_tribes["Namazu"] = 0;
 
-$player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
+$player_overview_query = $db->query("SELECT * FROM tblplayers p JOIN character_gear_sets s ON p.id = s.player_id;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
     if(isset($row["character_status"]) && $row["character_status"] == "DELETED") {
@@ -208,6 +250,21 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_MIN, $classes);
     handleClass($row, CLASS_BTN, $classes);
     handleClass($row, CLASS_FSH, $classes);
+
+    handleGear($row, GEAR_MAIN_HAND, $gear);
+    handleGear($row, GEAR_OFF_HAND, $gear);
+    handleGear($row, GEAR_HEAD, $gear);
+    handleGear($row, GEAR_BODY, $gear);
+    handleGear($row, GEAR_HANDS, $gear);
+    handleGear($row, GEAR_LEGS, $gear);
+    handleGear($row, GEAR_FEET, $gear);
+    handleGear($row, GEAR_EARS, $gear);
+    handleGear($row, GEAR_NECK, $gear);
+    handleGear($row, GEAR_WRISTS, $gear);
+    handleGear($row, GEAR_LEFT_HAND, $gear);
+    handleGear($row, GEAR_RIGHT_HAND, $gear);
+    handleGear($row, GEAR_JOB_CRYSTAL, $gear);
+
 
     // Pre-orders
     $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
@@ -332,6 +389,20 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_MIN, $active_classes);
         handleClass($row, CLASS_BTN, $active_classes);
         handleClass($row, CLASS_FSH, $active_classes);
+
+        handleGear($row, GEAR_MAIN_HAND, $active_gear);
+        handleGear($row, GEAR_OFF_HAND, $active_gear);
+        handleGear($row, GEAR_HEAD, $active_gear);
+        handleGear($row, GEAR_BODY, $active_gear);
+        handleGear($row, GEAR_HANDS, $active_gear);
+        handleGear($row, GEAR_LEGS, $active_gear);
+        handleGear($row, GEAR_FEET, $active_gear);
+        handleGear($row, GEAR_EARS, $active_gear);
+        handleGear($row, GEAR_NECK, $active_gear);
+        handleGear($row, GEAR_WRISTS, $active_gear);
+        handleGear($row, GEAR_LEFT_HAND, $active_gear);
+        handleGear($row, GEAR_RIGHT_HAND, $active_gear);
+        handleGear($row, GEAR_JOB_CRYSTAL, $active_gear);
     }
 }
 
@@ -972,6 +1043,36 @@ $db->close();
                  </div>
               </div>
           </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+            <div class="section">
+                <a id="physical"><span class="card-title light">GEAR - ACTIVE CHARACTERS</span></a>
+                <hr/>
+                <div class="row">
+                    <?php foreach($active_gear as $slot => $gearTotals) { ?>
+                    <div class="col s4 m4">
+                        <div class="light region-title"><?php echo $slot ?></div>
+                        <div class="light region-subtitle">
+                    <?php
+                            arsort($gearTotals);
+                            $i = 0;
+                            foreach($gearTotals as $itemId => $count) {
+                                if($i < 10) {
+                                    echo '<p>' . $count . ' - <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . $gear_cache[$itemId]['name'] . '</a></p>';
+                                    $i++;
+                                } else {
+                                    break;
+                                }
+                            }
+                    ?>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
       </div>
 
     <div class="row">
