@@ -35,7 +35,7 @@ const CLASS_FSH = array(KEY => "level_fisher", TITLE => "Fisher");
 const GEAR_MAIN_HAND = array(KEY => 'main_hand', TITLE => "Main Hand");
 const GEAR_OFF_HAND = array(KEY => 'off_hand', TITLE => "Off Hand");
 const GEAR_HEAD = array(KEY => 'head', TITLE => 'Head');
-const GEAR_BODY = array(KEY => 'body', TITLE => 'Body Piece');
+const GEAR_BODY = array(KEY => 'body', TITLE => 'Body');
 const GEAR_HANDS = array(KEY => 'hands', TITLE => 'Hands');
 const GEAR_WAIST = array(KEY => 'waist', TITLE => 'Waist');
 const GEAR_LEGS = array(KEY => 'legs', TITLE => 'Legs');
@@ -392,16 +392,21 @@ while($row = $player_overview_query->fetch_assoc()) {
 
         handleGear($row, GEAR_MAIN_HAND, $active_gear);
         handleGear($row, GEAR_OFF_HAND, $active_gear);
+
         handleGear($row, GEAR_HEAD, $active_gear);
-        handleGear($row, GEAR_BODY, $active_gear);
-        handleGear($row, GEAR_HANDS, $active_gear);
-        handleGear($row, GEAR_LEGS, $active_gear);
-        handleGear($row, GEAR_FEET, $active_gear);
         handleGear($row, GEAR_EARS, $active_gear);
+
+        handleGear($row, GEAR_BODY, $active_gear);
         handleGear($row, GEAR_NECK, $active_gear);
+
+        handleGear($row, GEAR_HANDS, $active_gear);
         handleGear($row, GEAR_WRISTS, $active_gear);
+
+        handleGear($row, GEAR_LEGS, $active_gear);
         handleGear($row, GEAR_LEFT_HAND, $active_gear);
         handleGear($row, GEAR_RIGHT_HAND, $active_gear);
+
+        handleGear($row, GEAR_FEET, $active_gear);
         handleGear($row, GEAR_JOB_CRYSTAL, $active_gear);
     }
 }
@@ -425,6 +430,7 @@ $db->close();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts--> 
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/sunburst.js"></script>
     <!-- Final Fantasy XIV Tooltip-->
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
       <!-- Font Awesome-->
@@ -1048,11 +1054,14 @@ $db->close();
       <div class="card">
         <div class="card-content">
             <div class="section">
-                <a id="physical"><span class="card-title light">GEAR - ACTIVE CHARACTERS</span></a>
+                <a id="physical"><span class="card-title light">EQUIPPED GEAR - ACTIVE CHARACTERS</span></a>
                 <hr/>
+                <!-- Begin Chart -->
+                <div id="gear_distribution" style="min-width: 300px; height: 800px; margin: 0 auto"></div>
+                <!-- End Chart -->
                 <div class="row">
                     <?php foreach($active_gear as $slot => $gearTotals) { ?>
-                    <div class="col s4 m4">
+                    <div class="col s12 m6 l6 xl6">
                         <div class="light region-title"><?php echo $slot ?></div>
                         <div class="light region-subtitle">
                     <?php
@@ -1060,7 +1069,7 @@ $db->close();
                             $i = 0;
                             foreach($gearTotals as $itemId => $count) {
                                 if($i < 10) {
-                                    echo '<p>' . $count . ' - <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . $gear_cache[$itemId]['name'] . '</a></p>';
+                                    echo '<p>' . $count . ' - <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . $gear_cache[$itemId]['name'] . '</a> (' . $gear_cache[$itemId]['category'] . ')</p>';
                                     $i++;
                                 } else {
                                     break;
@@ -1201,6 +1210,9 @@ $db->close();
                   dataLabels: {
                     color: '#ffffff'
                   }
+              },
+              sunburst: {
+                borderWidth: 0
               }
             },
         };
@@ -1769,6 +1781,60 @@ $(function () {
                               }
                       ?>
                   ],
+              }]
+          });
+      });
+  </script>
+
+  <script>
+      $(function () {
+          $('#gear_distribution').highcharts({
+              title: {
+                  text: ''
+              },
+              tooltip: {
+                  pointFormat: 'There are {point.value} slots equipped with {point.name}'
+              },
+              credits: {
+                  enabled: false
+              },
+              series: [{
+                  type: 'sunburst',
+                  allowDrillToNode: true,
+                  cursor: 'pointer',
+                  name: '# of Characters',
+                  data: [
+                        {id: '0',
+                         parent: '',
+                         name: 'Top 10 Gear'},
+                        <?php foreach($active_gear as $slot => $gearTotals) { ?>
+                        {id: <?php echo '"' . $slot . '"' ?>, 
+                         parent: <?php echo '"0"' ?>,
+                         name: <?php echo '"' . $slot . '"'?>},
+                        
+                         <?php $i = 0; arsort($gearTotals); foreach($gearTotals as $itemId => $count) { $i++; ?>
+                        {id: <?php echo '"' . $itemId . '"' ?>,
+                         parent: <?php echo '"' . $slot . '"' ?>,
+                         name: <?php echo '"' . $gear_cache[$itemId]['name'] . '"' ?>,
+                         value: <?php echo $count ?> },
+                         <?php if($i >= 10) {break;} } ?>
+                        
+                        <?php } ?>
+                  ],
+                    levels: [{
+                        level: 1,
+                    }, {
+                        level: 2,
+                        colorByPoint: true
+                    },
+                    {
+                        level: 3,
+                        colorVariation: {
+                            key: 'brightness',
+                            to: -0.5
+                        }
+                    }]
+
               }]
           });
       });
