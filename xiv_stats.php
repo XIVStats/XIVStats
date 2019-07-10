@@ -872,7 +872,7 @@ $db->close();
             <a id="gear"></a>
             <span class="card-title light">EQUIPPED GEAR</span>
             <hr/>
-            <div class="light region-subtitle">TOP 10 EQUIPPED GEAR ITEMS FOR EACH GEAR SLOT</div>
+            <div class="light region-subtitle">ACTIVE CHARACTERS* TOP 10 EQUIPPED GEAR ITEMS FOR EACH GEAR SLOT</div>
             <div class="row">
                 <?php
                     foreach($active_gear as $slot => $gearTotals) {
