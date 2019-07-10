@@ -129,7 +129,7 @@ $gear_cache = array();
 
 $gear_query = $db->query("SELECT * FROM gear_items;", MYSQLI_USE_RESULT);
 while($row = $gear_query->fetch_assoc()) {
-    $gear_cache[$row['item_id']] = array("name" => $row['name'], "category" => $row['category']);
+    $gear_cache[$row['item_id']] = array("name" => $row['name'], "category" => $row['category'], "ilevel" => $row['ilevel']);
 }
 
 // Variables
@@ -148,6 +148,9 @@ $active_classes = array();
 
 $gear = array();
 $active_gear = array();
+
+$gear_ilevel = 0;
+$active_gear_ilevel = 0;
 
 $prearr = 0;
 $prehw = 0;
@@ -1054,28 +1057,88 @@ $db->close();
       <div class="card">
         <div class="card-content">
             <div class="section">
-                <a id="physical"><span class="card-title light">EQUIPPED GEAR - ACTIVE CHARACTERS</span></a>
+                <span class="card-title light">EQUIPPED GEAR</span>
                 <hr/>
+                <div class="light region-subtitle">ACTIVE PLAYER'S EQUIPPED GEAR BY SLOT</div>
                 <!-- Begin Chart -->
                 <div id="gear_distribution" style="min-width: 300px; height: 800px; margin: 0 auto"></div>
                 <!-- End Chart -->
+                <hr/>
                 <div class="row">
-                    <?php foreach($active_gear as $slot => $gearTotals) { ?>
+                    <div class="light region-subtitle">TOP 25 EQUIPMENT ACROSS ALL SLOTS</div>
+                    <div class="col s12 m6 l6 xl6">
+                        <div class="light region-title">ALL CHARACTERS</div>
+                        <ol>
+                        <?php
+                            $all_gear = array();
+                            foreach($gear as $slot => $gearTotals) {
+                                $all_gear = array_merge($all_gear, $gearTotals);
+                            }
+                            arsort($all_gear);
+                            $i = 0;
+                            foreach($all_gear as $itemId => $count) {
+                                if($i < 25) {
+                                    echo '<li>' . '<a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . strtoupper($gear_cache[$itemId]['name']) . '</a> - ' . strtoupper($gear_cache[$itemId]['category']) . ' - iLVL ' . $gear_cache[$itemId]['ilevel'] . '</li>';
+                                    $i++;
+                                }
+                            }
+                        ?>
+                        </ol>
+                    </div>
+                    <div class="col s12 m6 l6 xl6">
+                        <div class="light region-title">ACTIVE CHARACTERS*</div>
+                        <ol>
+                        <?php
+                            $all_active_gear = array();
+                            foreach($active_gear as $slot => $gearTotals) {
+                                $all_active_gear = array_merge($all_active_gear, $gearTotals);
+                            }
+                            arsort($all_active_gear);
+                            $i = 0;
+                            foreach($all_active_gear as $itemId => $count) {
+                                if($i < 25) {
+                                    echo '<li>' . '<a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . strtoupper($gear_cache[$itemId]['name']) . '</a> - ' . strtoupper($gear_cache[$itemId]['category']) . ' - iLVL ' . $gear_cache[$itemId]['ilevel'] . '</li>';
+                                    $i++;
+                                }
+                            }
+                        ?>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <span class="card-title light">ITEM LEVELS</span>
+                <div class="row">
+                    <?php
+                        foreach($active_gear as $slot => $gearTotals) {
+                    ?>
                     <div class="col s12 m6 l6 xl6">
                         <div class="light region-title"><?php echo $slot ?></div>
                         <div class="light region-subtitle">
                     <?php
                             arsort($gearTotals);
                             $i = 0;
+                            $ilevelAll = 0;
+                            $ilevelTop10 = 0;
+                            $itemCountAll = 0;
+                            $itemCountTop10 = 0;
                             foreach($gearTotals as $itemId => $count) {
                                 if($i < 10) {
-                                    echo '<p>' . $count . ' - <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/' . $itemId . '/" class="eorzeadb_link" target="_blank">' . $gear_cache[$itemId]['name'] . '</a> (' . $gear_cache[$itemId]['category'] . ')</p>';
                                     $i++;
-                                } else {
-                                    break;
+                                    $ilevelTop10 = $ilevelTop10 + ($gear_cache[$itemId]['ilevel'] * $count);
+                                    $itemCountTop10 = $itemCountTop10 + $count;
                                 }
+                                $ilevelAll = $ilevelAll + ($gear_cache[$itemId]['ilevel'] * $count);
+                                $itemCountAll = $itemCountAll + $count;
                             }
                     ?>
+                        </div>
+                        <div class="light region-subtitle">
+                            <p>Top 10 Equipment</p>
+                            <p class="region-stat"><?php echo round($ilevelTop10 / $itemCountTop10)?></p>
+                            <p>All Equipment</p>
+                            <p class="region-stat"><?php echo round($ilevelAll / $itemCountAll)?></p>
                         </div>
                     </div>
                     <?php } ?>
@@ -1790,10 +1853,10 @@ $(function () {
       $(function () {
           $('#gear_distribution').highcharts({
               title: {
-                  text: ''
+                  text: 'Top 10 Gear Items by Equipment Slot'
               },
               tooltip: {
-                  pointFormat: 'There are {point.value} slots equipped with {point.name}'
+                  pointFormat: 'There are <strong>{point.value}</strong> slots equipped with <strong>{point.name}</strong>'
               },
               credits: {
                   enabled: false
@@ -1806,7 +1869,7 @@ $(function () {
                   data: [
                         {id: '0',
                          parent: '',
-                         name: 'Top 10 Gear'},
+                         name: 'Top 10'},
                         <?php foreach($active_gear as $slot => $gearTotals) { ?>
                         {id: <?php echo '"' . $slot . '"' ?>, 
                          parent: <?php echo '"0"' ?>,
@@ -1815,7 +1878,8 @@ $(function () {
                          <?php $i = 0; arsort($gearTotals); foreach($gearTotals as $itemId => $count) { $i++; ?>
                         {id: <?php echo '"' . $itemId . '"' ?>,
                          parent: <?php echo '"' . $slot . '"' ?>,
-                         name: <?php echo '"' . $gear_cache[$itemId]['name'] . '"' ?>,
+                         itemId: <?php echo '"' . $itemId . '"' ?>,
+                         name: <?php echo '"' . $gear_cache[$itemId]['name'] . ' (iLvl ' . $gear_cache[$itemId]['ilevel'] . ')"' ?>,
                          value: <?php echo $count ?> },
                          <?php if($i >= 10) {break;} } ?>
                         
