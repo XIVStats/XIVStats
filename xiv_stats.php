@@ -215,6 +215,8 @@ $did_eternal_bond = 0;
 $comm50 = 0;
 $hildibrand = 0;
 $sightseeing = 0;
+$oceanfishing_5k = 0;
+$oceanfishing_10k = 0;
 
 $beast_tribes = array();
 $beast_tribes["Kobold"] = 0;
@@ -230,6 +232,9 @@ $beast_tribes["Moogle"] = 0;
 $beast_tribes["Kojin"] = 0;
 $beast_tribes["Ananta"] = 0;
 $beast_tribes["Namazu"] = 0;
+// Shadowbringers
+$beast_tribes["Pixies"] = 0;
+$beast_tribes["Qitari"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers p LEFT JOIN character_gear_sets s ON p.id = s.player_id;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -373,6 +378,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
     $fmt_sightseeing = number_format($sightseeing);
 
+    // Ocean Fishing
+    $oceanfishing_5k += in_array("The Major-General", $minions) == 1 ? 1 : 0;
+    $oceanfishing_10k += in_array("Hybodus", $mounts) == 1 ? 1 : 0;
+
     // Beast Tribes with dedicated columns in DB
     // A Realm Reborn
     $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
@@ -388,8 +397,11 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Bast tribes from minions
     $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
-	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
-	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
+	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;
+    $beast_tribes["Pixies"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent Of Ronka", $minions) ? 1 : 0;
+
   
     // Fetch total number of active players in database by checking for the Wind-up G'raha Tia minion received during 4.1 MSQ
     if(in_array("Wind-up G'raha Tia", $minions)) {  $active_player_count++;
@@ -943,17 +955,14 @@ $db->close();
           <div class="card-content">
               <a id="misc-stats"><span class="card-title light">OTHER</span></a>
               <hr/>
-              <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
               <div class="row">
-                <div class=" s12 m6 l6   region-stat">
-                  <div><?php echo $fmt_saw_eternal_bond; ?></div>
+                <div class="col s6">
+                    <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
+                    <div class="region-stat"><?php echo $fmt_saw_eternal_bond;; ?></div>
                 </div>
-              </div>
-
-              <div class="light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
-              <div class="row">
-                <div class=" s12 m6 l6   region-stat">
-                  <div><?php echo $fmt_did_eternal_bond; ?></div>
+                <div class="col s6">
+                    <div class="light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
+                    <div class="region-stat"><?php echo $fmt_did_eternal_bond; ?></div>
                 </div>
               </div>
 
@@ -975,6 +984,16 @@ $db->close();
               <div class="row">
                 <div class=" s12 m6 l6   region-stat">
                   <div><?php echo $fmt_sightseeing; ?></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+                    <div class="light region-subtitle">OCEAN FISHING 5K</div>
+                    <div class="region-stat"><?php echo number_format($oceanfishing_5k); ?></div>
+                </div>
+                <div class="col s6">
+                    <div class="light region-subtitle">OCEAN FISHING 10K</div>
+                    <div class="region-stat"><?php echo number_format($oceanfishing_10k); ?></div>
                 </div>
               </div>
          </div>
