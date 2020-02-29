@@ -202,6 +202,8 @@ $presb = 0;
 $preshb = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
+$hw_collectors = 0;
+$sb_collectors = 0;
 $arrartbook = 0;
 $sbartbook = 0;
 $beforemeteor = 0;
@@ -330,6 +332,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ps4_collectors = number_format($ps4_collectors);
     $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
     $fmt_pc_collectors = number_format($pc_collectors);
+    $hw_collectors += in_array("Wind-up Kain", $minions) ? 1 : 0;
+    $fmt_hw_collectors = number_format($hw_collectors);
+    $sb_collectors += in_array("Wind-up Bartz", $minions) ? 1 : 0;
+    $fmt_sb_collectors = number_format($sb_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
 
@@ -1003,12 +1009,20 @@ $db->close();
                     <div class="region-stat"><?php echo $fmt_prehw; ?></div>
                 </div>
                 <div class="col s6">
+                    <div class="light region-subtitle">HEAVENSWARD</div>
+                    <div class="region-stat"><?php echo $fmt_hw_collectors; ?></div>
+                </div>
+                <div class="col s6">
                 </div>
               </div>
               <div class="row">
                 <div class="col s6">
                     <div class="light region-subtitle">STORMBLOOD</div>
                     <div class="region-stat"><?php echo $fmt_presb; ?></div>
+                </div>
+                <div class="col s6">
+                    <div class="light region-subtitle">STORMBLOOD</div>
+                    <div class="region-stat"><?php echo $fmt_sb_collectors; ?></div>
                 </div>
                 <div class="col s6">
                 </div>
