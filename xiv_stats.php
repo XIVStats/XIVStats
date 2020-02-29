@@ -385,10 +385,8 @@ while($row = $player_overview_query->fetch_assoc()) {
 	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
 	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
   
-    // Fetch total number of active players in database by checking for the Dress-up Raubahn minion received during 4.1 MSQ
-    if(in_array("Dress-up Raubahn", $minions)) {
-        $active_player_count++;
-        
+    // Fetch total number of active players in database by checking for the Wind-up G'raha Tia minion received during 4.1 MSQ
+    if(in_array("Wind-up G'raha Tia", $minions)) {  $active_player_count++;
         // Fetch realm active player count
         if(!array_key_exists($realm, $active_realm_count)) {
                 $active_realm_count[$realm] = 0;
@@ -634,7 +632,7 @@ $db->close();
                       <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
                       <p>Statistics for <?php echo $date; ?></p>
                       <p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
-                      <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3a1c40b5f2e/" class="eorzeadb_link">Dress-up Raubahn</a> minion from the 4.1 story</b></p>
+                      The minion for completing the Shadowbringers Main Scenario Quest from the Patch 5.0 story</b></p>
                     </div>
               </div>
           </div>
