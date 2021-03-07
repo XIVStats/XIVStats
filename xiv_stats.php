@@ -498,7 +498,7 @@ $db->close();
                       <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
                       <p>Statistics for <?php echo $date; ?></p>
                       <p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
-                      The minion for completing the Shadowbringers Main Scenario Quest from the Patch 5.0 story</b></p>
+                      The minion for completing the Shadowbringers Main Scenario Quest from the Patch 5.3 story</b></p>
                     </div>
               </div>
           </div>
