@@ -139,6 +139,10 @@ $beast_tribes["Moogle"] = 0;
 $beast_tribes["Kojin"] = 0;
 $beast_tribes["Ananta"] = 0;
 $beast_tribes["Namazu"] = 0;
+// Shadowbringers
+$beast_tribes["Pixie"] = 0;
+$beast_tribes["Qitari"] = 0;
+$beast_tribes["Dwarf"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -280,10 +284,13 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
 	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
-	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;         
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;
+    $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
   
-    // Fetch total number of active players in database by checking for the Wind-up G'raha Tia minion received during 4.1 MSQ
-    if(in_array("Wind-up G'raha Tia", $minions)) {  $active_player_count++;
+    // Fetch total number of active players in database by checking for the Wind-up Mystel minion received during 5.3 MSQ
+    if(in_array("Wind-up Mystel", $minions)) {  $active_player_count++;
         // Fetch realm active player count
         if(!array_key_exists($realm, $active_realm_count)) {
                 $active_realm_count[$realm] = 0;
