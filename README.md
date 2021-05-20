@@ -10,7 +10,7 @@ XIVStats is actually two things. One part is an application which trawls the lod
 
 You can view a live demo of this web page here: [ffxivcensus.com](http://ffxivcensus.com/).
 
-This project is inspired by **XIV Soul**.
+This project is inspired by [xivsoul.com](https://xivsoul.com).
 
 # I want to make my own copy of the Lodestone database, which repository should I use? #
 
