@@ -111,6 +111,7 @@ $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
+$preew = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
 $arrartbook = 0;
@@ -222,6 +223,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_presb = number_format($presb);
     $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
     $fmt_preshb = number_format($preshb);
+    $preshb += isset($row["preew"]) && $row["preew"] == 1 ? 1 : 0;
+    $fmt_preew = number_format($preew);
 
     // Collectors Edition
     $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
@@ -230,6 +233,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_pc_collectors = number_format($pc_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
+    $ew_collectors += in_array("Arion", $mounts || "Wind-up Porom", $minions) ? 1 : 0;
+    $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
     $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
@@ -821,6 +826,13 @@ $db->close();
                         </div>
                       </div>
 
+                      <div class="light region-subtitle">PRE-ORDERED ENDWALKER</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_preew; ?></div>
+                        </div>
+                      </div>
+
                  </div>
               </div>
           </div>
@@ -854,6 +866,12 @@ $db->close();
                         </div>
                       </div>
 
+                      <div class="light region-subtitle">ENDWALKER COLLECTORS EDITION</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_ew_collectors; ?></div>
+                        </div>
+                      </div>
                  </div>
               </div>
           </div>
