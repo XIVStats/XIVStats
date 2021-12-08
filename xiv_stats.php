@@ -223,7 +223,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_presb = number_format($presb);
     $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
     $fmt_preshb = number_format($preshb);
-    $preshb += isset($row["preew"]) && $row["preew"] == 1 ? 1 : 0;
     $fmt_preew = number_format($preew);
 
     // Collectors Edition
@@ -233,7 +232,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_pc_collectors = number_format($pc_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
-    $ew_collectors += in_array("Arion", $mounts || "Wind-up Porom", $minions) ? 1 : 0;
     $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
@@ -936,7 +934,6 @@ $db->close();
               </div>
           </div>
       </div>
-
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
               <div class="card">
