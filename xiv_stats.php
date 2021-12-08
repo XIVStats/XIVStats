@@ -255,7 +255,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
     $fmt_preshb = number_format($preshb);
     $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
-
     $fmt_preew = number_format($preew);
 
     // Collectors Edition
