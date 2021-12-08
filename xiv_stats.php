@@ -20,6 +20,8 @@ const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage");
 const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage");
 const CLASS_GNB = array(KEY => "level_gunbreaker", TITLE => "Gunbreaker");
 const CLASS_DNC = array(KEY => "level_dancer", TITLE => "Dancer");
+const CLASS_RPR = array(KEY => "level_reaper", TITLE => "Reaper");
+const CLASS_SGE = array(KEY => "level_sage", TITLE => "Sage");
 const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter");
 const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith");
 const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer");
@@ -44,7 +46,7 @@ function getValue($value) {
 
 // Helper function to return the value of the requested key, or zero if one isn't available
 function getValueFromArray($data, $key) {
-        return getValue($data[$key]);
+    return !array_key_exists($key, $data) ? 0 : getValue($data[$key]);
 }
 
 // Helper function to increment class count into the supplied total array
@@ -111,9 +113,13 @@ $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
+$preew = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
+$shb_collectors = 0;
+$ew_collectors = 0;
 $arrartbook = 0;
+$sbartbooktwo = 0;
 $sbartbook = 0;
 $beforemeteor = 0;
 $beforethefall = 0;
@@ -201,6 +207,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_BLU, $classes);
     handleClass($row, CLASS_GNB, $classes);
     handleClass($row, CLASS_DNC, $classes);
+    handleClass($row, CLASS_RPR, $classes);
+    handleClass($row, CLASS_SGE, $classes);
     handleClass($row, CLASS_CRP, $classes);
     handleClass($row, CLASS_BSM, $classes);
     handleClass($row, CLASS_ARM, $classes);
@@ -222,6 +230,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_presb = number_format($presb);
     $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
     $fmt_preshb = number_format($preshb);
+    $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
+    $fmt_preew = number_format($preew);
 
     // Collectors Edition
     $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
@@ -230,6 +240,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_pc_collectors = number_format($pc_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
+    $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
+    $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
     $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
@@ -328,6 +340,8 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_BLU, $active_classes);
         handleClass($row, CLASS_GNB, $active_classes);
         handleClass($row, CLASS_DNC, $active_classes);
+        handleClass($row, CLASS_RPR, $active_classes);
+        handleClass($row, CLASS_SGE, $active_classes);
         handleClass($row, CLASS_CRP, $active_classes);
         handleClass($row, CLASS_BSM, $active_classes);
         handleClass($row, CLASS_ARM, $active_classes);
@@ -821,6 +835,13 @@ $db->close();
                         </div>
                       </div>
 
+                      <div class="light region-subtitle">PRE-ORDERED ENDWALKER</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_preew; ?></div>
+                        </div>
+                      </div>
+
                  </div>
               </div>
           </div>
@@ -851,6 +872,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_shb_collectors; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="light region-subtitle">ENDWALKER COLLECTORS EDITION</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_ew_collectors; ?></div>
                         </div>
                       </div>
 
@@ -1001,7 +1029,7 @@ $db->close();
               <span class="card-title light"></span>
               <ul>
                 <li>
-                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="http://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="https://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
                 </li>
                 <li>
                   <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Ceberus</a></div>
