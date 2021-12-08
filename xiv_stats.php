@@ -1,36 +1,47 @@
 <?php
 
+const COLOR_TANK = "#3d51b1";
+const COLOR_HEAL = "#3d6830";
+const COLOR_DPS = "#783536";
+const COLOR_HAND = "#674ea0";
+const COLOR_LAND = "#a88d3b";
+
 const KEY = "KEY";
 const TITLE = "TITLE";
-const CLASS_GLA = array(KEY => "level_gladiator", TITLE => "Gladiator");
-const CLASS_PUG = array(KEY => "level_pugilist", TITLE => "Pugilist");
-const CLASS_MRD = array(KEY => "level_marauder", TITLE => "Marauder");
-const CLASS_LNC = array(KEY => "level_lancer", TITLE => "Lancer");
-const CLASS_ARC = array(KEY => "level_archer", TITLE => "Archer");
-const CLASS_ROG = array(KEY => "level_rogue", TITLE => "Rogue");
-const CLASS_CNJ = array(KEY => "level_conjurer", TITLE => "Conjurer");
-const CLASS_THM = array(KEY => "level_thaumaturge", TITLE => "Thaumaturge");
-const CLASS_ACN = array(KEY => "level_arcanist", TITLE => "Arcanist");
-const CLASS_SCH = array(KEY => "level_scholar", TITLE => "Scholar");
-const CLASS_DRK = array(KEY => "level_darkknight", TITLE => "Dark Knight");
-const CLASS_MCH = array(KEY => "level_machinist", TITLE => "Machinist");
-const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian");
-const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai");
-const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage");
-const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage");
-const CLASS_GNB = array(KEY => "level_gunbreaker", TITLE => "Gunbreaker");
-const CLASS_DNC = array(KEY => "level_dancer", TITLE => "Dancer");
-const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter");
-const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith");
-const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer");
-const CLASS_GSM = array(KEY => "level_goldsmith", TITLE => "Goldsmith");
-const CLASS_LWR = array(KEY => "level_leatherworker", TITLE => "Leatherworker");
-const CLASS_WVR = array(KEY => "level_weaver", TITLE => "Weaver");
-const CLASS_ALC = array(KEY => "level_alchemist", TITLE => "Alchemist");
-const CLASS_CUL = array(KEY => "level_culinarian", TITLE => "Culinarian");
-const CLASS_MIN = array(KEY => "level_miner", TITLE => "Miner");
-const CLASS_BTN = array(KEY => "level_botanist", TITLE => "Botanist");
-const CLASS_FSH = array(KEY => "level_fisher", TITLE => "Fisher");
+const COLOR = "COLOR";
+const COUNT = "COUNT";
+const TYPE = "TYPE";
+const CLASS_GLA = array(KEY => "level_gladiator", TITLE => "Gladiator", COLOR => COLOR_TANK);
+const CLASS_PUG = array(KEY => "level_pugilist", TITLE => "Pugilist", COLOR => COLOR_DPS);
+const CLASS_MRD = array(KEY => "level_marauder", TITLE => "Marauder", COLOR => COLOR_TANK);
+const CLASS_LNC = array(KEY => "level_lancer", TITLE => "Lancer", COLOR => COLOR_DPS);
+const CLASS_ARC = array(KEY => "level_archer", TITLE => "Archer", COLOR => COLOR_DPS);
+const CLASS_ROG = array(KEY => "level_rogue", TITLE => "Rogue", COLOR => COLOR_DPS);
+const CLASS_CNJ = array(KEY => "level_conjurer", TITLE => "Conjurer", COLOR => COLOR_HEAL);
+const CLASS_THM = array(KEY => "level_thaumaturge", TITLE => "Thaumaturge", COLOR => COLOR_DPS);
+const CLASS_ACN = array(KEY => "level_arcanist", TITLE => "Arcanist", COLOR => COLOR_DPS);
+const CLASS_SCH = array(KEY => "level_scholar", TITLE => "Scholar", COLOR => COLOR_HEAL);
+const CLASS_DRK = array(KEY => "level_darkknight", TITLE => "Dark Knight", COLOR => COLOR_TANK);
+const CLASS_MCH = array(KEY => "level_machinist", TITLE => "Machinist", COLOR => COLOR_DPS);
+const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian", COLOR => COLOR_HEAL);
+const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai", COLOR => COLOR_DPS);
+const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage", COLOR => COLOR_DPS);
+const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage", COLOR => COLOR_DPS);
+const CLASS_GNB = array(KEY => "level_gunbreaker", TITLE => "Gunbreaker", COLOR => COLOR_TANK);
+const CLASS_DNC = array(KEY => "level_dancer", TITLE => "Dancer", COLOR => COLOR_DPS);
+const CLASS_RPR = array(KEY => "level_reaper", TITLE => "Reaper", COLOR => COLOR_DPS);
+const CLASS_SGE = array(KEY => "level_sage", TITLE => "Sage", COLOR => COLOR_HEAL);
+const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter", COLOR => COLOR_HAND);
+const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith", COLOR => COLOR_HAND);
+const CLASS_ARM = array(KEY => "level_armorer", TITLE => "Armorer", COLOR => COLOR_HAND);
+const CLASS_GSM = array(KEY => "level_goldsmith", TITLE => "Goldsmith", COLOR => COLOR_HAND);
+const CLASS_LWR = array(KEY => "level_leatherworker", TITLE => "Leatherworker", COLOR => COLOR_HAND);
+const CLASS_WVR = array(KEY => "level_weaver", TITLE => "Weaver", COLOR => COLOR_HAND);
+const CLASS_ALC = array(KEY => "level_alchemist", TITLE => "Alchemist", COLOR => COLOR_HAND);
+const CLASS_CUL = array(KEY => "level_culinarian", TITLE => "Culinarian", COLOR => COLOR_HAND);
+const CLASS_MIN = array(KEY => "level_miner", TITLE => "Miner", COLOR => COLOR_LAND);
+const CLASS_BTN = array(KEY => "level_botanist", TITLE => "Botanist", COLOR => COLOR_LAND);
+const CLASS_FSH = array(KEY => "level_fisher", TITLE => "Fisher", COLOR => COLOR_LAND);
 
 // Helper function to fetch the sum of all values in the array, where the array key matches one of the specified realm names
 function sumInRegion($data, $regional_realms) {
@@ -44,17 +55,19 @@ function getValue($value) {
 
 // Helper function to return the value of the requested key, or zero if one isn't available
 function getValueFromArray($data, $key) {
-        return getValue($data[$key]);
+    return !array_key_exists($key, $data) ? 0 : getValue($data[$key]);
 }
 
 // Helper function to increment class count into the supplied total array
 function handleClass($row, $classDef, &$totalArray) {
-    if(!isset($totalArray[$classDef[TITLE]])) {
-        $totalArray[$classDef[TITLE]] = 0;
+    if(!isset($totalArray[$classDef[KEY]])) {
+        $totalArray[$classDef[KEY]] = array();
+        $totalArray[$classDef[KEY]][COUNT] = 0;
+        $totalArray[$classDef[KEY]][TYPE] = $classDef;
     }
     $level = isset($row[$classDef[KEY]]) ? $row[$classDef[KEY]] : 0;
     if($level > 0) {
-        $totalArray[$classDef[TITLE]]++;
+        $totalArray[$classDef[KEY]][COUNT]++;
     }
     return 0;
 }
@@ -111,9 +124,13 @@ $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
+$preew = 0;
 $ps4_collectors = 0;
 $pc_collectors = 0;
+$shb_collectors = 0;
+$ew_collectors = 0;
 $arrartbook = 0;
+$sbartbooktwo = 0;
 $sbartbook = 0;
 $beforemeteor = 0;
 $beforethefall = 0;
@@ -183,24 +200,37 @@ while($row = $player_overview_query->fetch_assoc()) {
     }
     $race_gender_count[$race][$gender]++;
 
+    // Tanks
     handleClass($row, CLASS_GLA, $classes);
-    handleClass($row, CLASS_PUG, $classes);
     handleClass($row, CLASS_MRD, $classes);
-    handleClass($row, CLASS_LNC, $classes);
-    handleClass($row, CLASS_ARC, $classes);
-    handleClass($row, CLASS_ROG, $classes);
+    handleClass($row, CLASS_DRK, $classes);
+    handleClass($row, CLASS_GNB, $classes);
+
+    // Healers
     handleClass($row, CLASS_CNJ, $classes);
+    handleClass($row, CLASS_SCH, $classes);
+    handleClass($row, CLASS_AST, $classes);
+    handleClass($row, CLASS_SGE, $classes);
+
+    // Melee DPS
+    handleClass($row, CLASS_PUG, $classes);
+    handleClass($row, CLASS_LNC, $classes);
+    handleClass($row, CLASS_ROG, $classes);
+    handleClass($row, CLASS_SAM, $classes);
+    handleClass($row, CLASS_RPR, $classes);
+
+    // Physical Ranged DPS
+    handleClass($row, CLASS_ARC, $classes);
+    handleClass($row, CLASS_MCH, $classes);
+    handleClass($row, CLASS_DNC, $classes);
+
+    // Magical Ranged DPS
     handleClass($row, CLASS_THM, $classes);
     handleClass($row, CLASS_ACN, $classes);
-    handleClass($row, CLASS_SCH, $classes);
-    handleClass($row, CLASS_DRK, $classes);
-    handleClass($row, CLASS_MCH, $classes);
-    handleClass($row, CLASS_AST, $classes);
-    handleClass($row, CLASS_SAM, $classes);
     handleClass($row, CLASS_RDM, $classes);
     handleClass($row, CLASS_BLU, $classes);
-    handleClass($row, CLASS_GNB, $classes);
-    handleClass($row, CLASS_DNC, $classes);
+
+    // Disciples of Hand
     handleClass($row, CLASS_CRP, $classes);
     handleClass($row, CLASS_BSM, $classes);
     handleClass($row, CLASS_ARM, $classes);
@@ -209,6 +239,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_WVR, $classes);
     handleClass($row, CLASS_ALC, $classes);
     handleClass($row, CLASS_CUL, $classes);
+
+    // Disciples of Land
     handleClass($row, CLASS_MIN, $classes);
     handleClass($row, CLASS_BTN, $classes);
     handleClass($row, CLASS_FSH, $classes);
@@ -222,6 +254,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_presb = number_format($presb);
     $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
     $fmt_preshb = number_format($preshb);
+    $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
+    $fmt_preew = number_format($preew);
 
     // Collectors Edition
     $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
@@ -230,6 +264,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_pc_collectors = number_format($pc_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
+    $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
+    $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
     $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
@@ -310,24 +346,37 @@ while($row = $player_overview_query->fetch_assoc()) {
         }
         $active_race_gender_count[$race][$gender]++;
 
+        // Tanks
         handleClass($row, CLASS_GLA, $active_classes);
-        handleClass($row, CLASS_PUG, $active_classes);
         handleClass($row, CLASS_MRD, $active_classes);
-        handleClass($row, CLASS_LNC, $active_classes);
-        handleClass($row, CLASS_ARC, $active_classes);
-        handleClass($row, CLASS_ROG, $active_classes);
+        handleClass($row, CLASS_DRK, $active_classes);
+        handleClass($row, CLASS_GNB, $active_classes);
+
+        // Healers
         handleClass($row, CLASS_CNJ, $active_classes);
+        handleClass($row, CLASS_SCH, $active_classes);
+        handleClass($row, CLASS_AST, $active_classes);
+        handleClass($row, CLASS_SGE, $active_classes);
+
+        // Melee DPS
+        handleClass($row, CLASS_PUG, $active_classes);
+        handleClass($row, CLASS_LNC, $active_classes);
+        handleClass($row, CLASS_ROG, $active_classes);
+        handleClass($row, CLASS_SAM, $active_classes);
+        handleClass($row, CLASS_RPR, $active_classes);
+
+        // Physical Ranged DPS
+        handleClass($row, CLASS_ARC, $active_classes);
+        handleClass($row, CLASS_MCH, $active_classes);
+        handleClass($row, CLASS_DNC, $active_classes);
+
+        // Magical Ranged DPS
         handleClass($row, CLASS_THM, $active_classes);
         handleClass($row, CLASS_ACN, $active_classes);
-        handleClass($row, CLASS_SCH, $active_classes);
-        handleClass($row, CLASS_DRK, $active_classes);
-        handleClass($row, CLASS_MCH, $active_classes);
-        handleClass($row, CLASS_AST, $active_classes);
-        handleClass($row, CLASS_SAM, $active_classes);
         handleClass($row, CLASS_RDM, $active_classes);
         handleClass($row, CLASS_BLU, $active_classes);
-        handleClass($row, CLASS_GNB, $active_classes);
-        handleClass($row, CLASS_DNC, $active_classes);
+
+        // Disciples of Hand
         handleClass($row, CLASS_CRP, $active_classes);
         handleClass($row, CLASS_BSM, $active_classes);
         handleClass($row, CLASS_ARM, $active_classes);
@@ -336,6 +385,8 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_WVR, $active_classes);
         handleClass($row, CLASS_ALC, $active_classes);
         handleClass($row, CLASS_CUL, $active_classes);
+
+        // Disciples of Land
         handleClass($row, CLASS_MIN, $active_classes);
         handleClass($row, CLASS_BTN, $active_classes);
         handleClass($row, CLASS_FSH, $active_classes);
@@ -382,13 +433,21 @@ $db->close();
       </script>
       <style>
           /*
-            Core colour palette (https://coolors.co/303440-c3ac5c-702670-9e0000-039be5):
+            Core colour palette (https://coolors.co/303440-c3ac5c-44aadf-702670-9e0000-039be5):
                 - #212121 - Grey Darken-4 - Background
-                - #c3ac5c - Gunmetel - Card background
+                - #303440 - Gunmetel - Card background
                 - #c3ac5c - Vega Gold - Titles and highlights
-                - #702670 - Midnight - Main theme colour (Purple, Shadowbringers)
+                - #44aadf - Royal Blue - Main theme color (Blue, Endwalker)
+                - #702670 - Midnight - Secondary theme colour (Purple, Shadowbringers)
                 - #9E0000 - USC Cardinal - Secondary theme color (Crimson, Stormblood)
                 - #039BE5 - Vivid Ceruleum - Secondary theme color (Azure, Heavensward)
+
+            Role colour palette:
+                - #3d51b1 - Tank
+                - #3d6830 - Healer
+                - #783536 - DPS
+                - #674ea0 - DoH
+                - #a88d3b - DoL
           */
 
           .logo {
@@ -451,11 +510,11 @@ $db->close();
           }
 
           .dropdown-button, .waves-light, .btn, .btn:visited{
-            background-color: #702670;
+            background: linear-gradient(to right, #3d4d99 0%,#3689b3 50%,#cc7a29 100%);
           }
 
           .dropdown-button:hover, .waves-light:hover, .btn:hover {
-            background-color: plum;
+            background: linear-gradient(to right, #4c5fbf 0%,#44aadf 50%,#ff9933 100%);
           }
 
           #realm-dropdown a, #pop-dropdown a, #misc-stats-dropdown a{
@@ -463,8 +522,8 @@ $db->close();
           }
 
           #realm-dropdown a:hover, #pop-dropdown a:hover, #misc-stats-dropdown a:hover {
-              background-color: #c3ac5c;
-              color: white;
+              background-color: #44aadf;
+              color: #ffffff;
           }
           
           .navbar {
@@ -821,6 +880,13 @@ $db->close();
                         </div>
                       </div>
 
+                      <div class="light region-subtitle">PRE-ORDERED ENDWALKER</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_preew; ?></div>
+                        </div>
+                      </div>
+
                  </div>
               </div>
           </div>
@@ -851,6 +917,13 @@ $db->close();
                       <div class="row">
                         <div class=" s12 m6 l6   region-stat">
                           <div><?php echo $fmt_shb_collectors; ?></div>
+                        </div>
+                      </div>
+
+                      <div class="light region-subtitle">ENDWALKER COLLECTORS EDITION</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_ew_collectors; ?></div>
                         </div>
                       </div>
 
@@ -1001,7 +1074,7 @@ $db->close();
               <span class="card-title light"></span>
               <ul>
                 <li>
-                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="http://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="https://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
                 </li>
                 <li>
                   <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Ceberus</a></div>
@@ -1053,7 +1126,7 @@ $db->close();
                 backgroundColor: '#303440'
             },
 
-            colors: ['#702670','#9E0000','#0038A8'],
+            colors: ['#44aadf','#702670','#9E0000','#0038A8'],
 
             legend: {
                 itemStyle: {
@@ -1166,7 +1239,7 @@ $db->close();
               chart: {
                   type: 'column'
               },
-              colors: ['#9E0000','#039BE5'],
+              colors: ['#ff9933','#4c5fbf'],
               title: {
                   text: ''
               },
@@ -1220,7 +1293,7 @@ $db->close();
               chart: {
                   type: 'column'
               },
-              colors: ['#9E0000','#039BE5'],
+              colors: ['#ff9933','#4c5fbf'],
               title: {
                   text: ''
               },
@@ -1280,9 +1353,9 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($classes as $key => $value) {
-                                      echo "'$key',";
-                              }
+                          foreach ($classes as $key => $value) {
+                              echo json_encode($value[TYPE][TITLE]) . ',';
+                          }
                       ?>
                   ],
 
@@ -1299,13 +1372,11 @@ $db->close();
                   enabled: false
               },
               series: [{
-                  name: 'Classes',
+                  name: 'Characters',
                   data: [
-                      <?php
-                              foreach ($classes as $key => $value) {
-                                      echo getValue($value) . ",";
-                              }
-                      ?>
+                      <?php foreach ($classes as $key => $value) { ?>
+                            {name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                      <?php } ?>
                   ],
               }]
           });
@@ -1324,9 +1395,9 @@ $db->close();
               xAxis: {
                   categories: [
                       <?php
-                              foreach ($active_classes as $key => $value) {
-                                      echo "'$key',";
-                              }
+                          foreach ($active_classes as $key => $value) {
+                              echo json_encode($value[TYPE][TITLE]) . ',';
+                          }
                       ?>
                   ],
 
@@ -1343,14 +1414,12 @@ $db->close();
                   enabled: false
               },
               series: [{
-                  name: 'Active Classes',
+                  name: 'Active Characters',
                   data: [
-                      <?php
-                              foreach ($active_classes as $key => $value) {
-                                      echo getValue($value) . ",";
-                              }
-                      ?>
-                  ],
+                      <?php foreach ($active_classes as $key => $value) { ?>
+                            {name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                      <?php } ?>
+                  ]
               }]
           });
       });
