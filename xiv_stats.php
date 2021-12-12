@@ -325,8 +325,9 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
   
-    // Fetch total number of active players in database by checking for the Wind-up Mystel minion received during 5.3 MSQ
-    if(in_array("Wind-up Mystel", $minions)) {  $active_player_count++;
+    // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
+    // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
+    if(in_array("Wind-up Herois", $minions)) {  $active_player_count++;
         // Fetch realm active player count
         if(!array_key_exists($realm, $active_realm_count)) {
                 $active_realm_count[$realm] = 0;
@@ -557,7 +558,7 @@ $db->close();
                       <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
                       <p>Statistics for <?php echo $date; ?></p>
                       <p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
-                      The minion for completing the Shadowbringers Main Scenario Quest from the Patch 5.3 story</b></p>
+                      The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch 6.0 story</b></p>
                     </div>
               </div>
           </div>
