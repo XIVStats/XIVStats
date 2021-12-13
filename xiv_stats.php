@@ -1093,6 +1093,11 @@ $db->close();
               </ul>
             </div>
 
+            <a id="population"><span class="card-title light">LEGAL</span></a>
+            <p>FFXIV Census is not affiliated with Square Enix.<br />
+                FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
+                FINAL FANTASY XIV © 2010-2021 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
+            </p>
           </div>
         </div>
 
