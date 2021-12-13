@@ -451,9 +451,16 @@ $db->close();
                 - #a88d3b - DoL
           */
 
-          .logo {
-              float: left !important;
-              width: 300px;
+        .logo {
+            display: block;
+            position: relative;
+          }
+
+          .card-header {
+            background-image: url(img/logo_ew.png);
+            background-repeat: no-repeat;
+            margin-bottom: 10px;
+            height: 220px;
           }
 
           .card {
@@ -553,11 +560,10 @@ $db->close();
   <div class="container box-element">
       <div class="row" id="pageTitleBox">
           <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="population"><span class="card-title" style="font-size:28pt;"><img src="img/logo.png" class="logo" title="XIVCensus - Character statistics for FFXIV"/></span></a>                 
-                      <p>Statistics for <?php echo $date; ?></p>
-                      <p><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
+              <div class="card-header">
+                  <div class="card-content" style="padding-top: 100px">
+                      <p style="margin-left: 24px;">Statistics for <?php echo $date; ?></p>
+                      <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
                       The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch 6.0 story</b></p>
                     </div>
               </div>
