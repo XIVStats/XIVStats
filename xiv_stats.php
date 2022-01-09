@@ -417,10 +417,10 @@ $db->close();
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
       <!-- Font Awesome-->
     <script src="https://use.fontawesome.com/42d19261ec.js"></script>
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
       <!-- Google Analytics -->
       <script>
@@ -621,7 +621,21 @@ $db->close();
           <div class="col s12 m6" style="width:100%;">
               <div class="card">
                   <div class="card-content white-text">
-                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
+                    <span class="card-title light">A NOTE REGARDING THE NUMBERS.</span>
+                    While we were gathering the data for December 2021, we noticed an absurdly high number of characters that were 'Deleted'.<br />
+                    <br />
+                    It wasn't until January of 2022 that we discovered a bug. We found out that characters that had no minions and/or no mounts were being returned to us as if the character was deleted.<br />
+                    If you want the techy details, check out our <a href="https://github.com/XIVStats/XIVStats-Gatherer-Java/issues/63">GitHub</a><br />
+                    We believe that this bug originated from an update back in 2019 but was not discovered until December 2021 due to the project being dormant.<br />
+                    <br />
+                    While this does affect the "All Characters" and "Active Characters" numbers, other numbers shouldn't see much of a significant change.<br />
+                    <br />
+                    We are currently running the census and an update will be available soon&trade;.<br />
+                      <br/>
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>a>
                       <br/>
                       <hr/>
                       <br/>
@@ -1083,16 +1097,16 @@ $db->close();
               <span class="card-title light"></span>
               <ul>
                 <li>
-                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="https://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="https://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Cerberus</a></div>
                 </li>
                 <li>
-                  <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Cerberus</a></div>
                 </li>
                 <li>
                   <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/" target="_blank">Russell Tyler @ Omega</a></div>
                 </li>
                 <li>
-                  <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Ceberus</a></div>
+                  <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Cerberus</a></div>
                 </li>
               </ul>
             </div>
@@ -1100,7 +1114,7 @@ $db->close();
             <a id="population"><span class="card-title light">LEGAL</span></a>
             <p>FFXIV Census is not affiliated with Square Enix.<br />
                 FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
-                FINAL FANTASY XIV © 2010-2021 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
+                FINAL FANTASY XIV &copy; 2010-2022 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
             </p>
           </div>
         </div>
