@@ -629,7 +629,7 @@ $db->close();
 		    <br />
                     We believe that this bug originated from an update back in 2019 but was not discovered until December 2021 due to the project being dormant.<br />
                     <br />
-                    While this does affect the "All Characters" and "Active Characters" numbers, other numbers shouldn't see much of a significant change.<br />
+                    While this does affect the "All Characters" numbers,"Active Characters" and other numbers shouldn't see much of a significant change.<br />
                     <br />
                     We are currently running the census and an update will be available soon&trade;.<br /><br />
                       <hr/>
