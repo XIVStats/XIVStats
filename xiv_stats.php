@@ -635,7 +635,7 @@ $db->close();
                       <br/>
                       <hr/>
                       <br/>
-                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>a>
+                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
                       <br/>
                       <hr/>
                       <br/>
