@@ -559,16 +559,19 @@ $db->close();
   <body class="grey darken-4">
   <div class="container box-element">
       <div class="row" id="pageTitleBox">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card-header">
-                  <div class="card-content" style="padding-top: 100px">
-                      <p style="margin-left: 24px;">Statistics for <?php echo $date; ?></p>
-                      <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
-                      The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch 6.0 story</b></p>
-                      <div class="col s12 m6" style="width:100%;">
-                    <div class="card"><div class="light region-title"><h4 style="color: red;">ALERT: We are currently aware of a bug which is falsely reporting characters as deleted and thus missing from the census. We are working to fix this bug.</h4></div></div></div>
-              </div>
-          </div>
+        <div class="col s12 m6" style="width:100%;">
+            <div class="card-header">
+                <div class="card-content" style="padding-top: 100px">
+                    <p style="margin-left: 24px;">Statistics for <?php echo $date; ?></p>
+                    <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
+                    The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch 6.0 story</b></p>
+                    <!-- Un/comment next 3 lines to enable site notice (For bugs/outages, etc)-->
+                    <!-- <div class="col s12 m6" style="width:100%;">
+                    <div class="card light region-title"><h4 style="color: red;">ALERT: We are currently aware of a bug which is falsely reporting characters as deleted and thus missing from the census. We are working to fix this bug.</h4></div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
       </div>
             <div class="col s12 m6 navbar center">
                       <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
