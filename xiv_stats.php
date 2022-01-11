@@ -1025,6 +1025,15 @@ $db->close();
                             </div>
                         </div>
 
+                        <div class="light region-subtitle">HEAVENSWARD COLLECTORS EDITION</div>
+                        <div class="row">
+                            <div class=" s12 m6 l6   region-stat">
+                                <div>
+                                    <?php echo $fmt_hw_collectors; ?>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="light region-subtitle">SHADOWBRINGERS COLLECTORS EDITION</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
