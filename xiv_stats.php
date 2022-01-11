@@ -262,6 +262,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ps4_collectors = number_format($ps4_collectors);
     $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
     $fmt_pc_collectors = number_format($pc_collectors);
+    $hw_collectors += in_array("Wind-up Kain", $minions) ? 1 : 0;
+    $fmt_hw_collectors = number_format($hw_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
