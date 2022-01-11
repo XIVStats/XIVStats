@@ -282,6 +282,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_sbartbook = number_format($sbartbook);
     $sbartbooktwo += isset($row["sbartbooktwo"]) && $row["sbartbooktwo"] == 1 ? 1 : 0;
     $fmt_sbartbooktwo = number_format($sbartbooktwo);
+    $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
+    $fmt_ew_soundtrack = number_format($ew_soundtrack);
 
     // Eternal Bond
     $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
@@ -1009,7 +1011,12 @@ $db->close();
                           <div><?php echo $fmt_moogleplush; ?></div>
                         </div>
                       </div>
-
+                      <div class="light region-subtitle">ENDWALKER SOUNDTRACK</div>
+                      <div class="row">
+                        <div class=" s12 m6 l6   region-stat">
+                          <div><?php echo $fmt_ew_soundtrack; ?></div>
+                        </div>
+                      </div>                    
                  </div>
               </div>
           </div>
