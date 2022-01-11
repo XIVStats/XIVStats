@@ -318,7 +318,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
     $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
     $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
-    $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts)
+    $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) ? 1 : 0;
     // Stormblood
 
     // Beast tribes from minions
