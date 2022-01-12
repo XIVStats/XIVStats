@@ -280,7 +280,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_beforethefall = number_format($beforethefall);
     $soundtrack += isset($row["soundtrack"]) && $row["soundtrack"] == 1 ? 1 : 0;
     $fmt_soundtrack = number_format($soundtrack);
-    $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
+    $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
     $fmt_moogleplush = number_format($moogleplush);
     $sbartbook += isset($row["sbartbook"]) && $row["sbartbook"] == 1 ? 1 : 0;
     $fmt_sbartbook = number_format($sbartbook);
@@ -310,28 +310,28 @@ while($row = $player_overview_query->fetch_assoc()) {
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
 
-    // Beast Tribes with dedicated columns in DB
+    // Beast Tribes - Any mount or minions that can be obtained from a high beast tribe or purchasing with Gil (after reaching a high rank) 
     // A Realm Reborn
-    $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
-    $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
-    $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
-    $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
-    // Heavensward
-    $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
-    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions) || in_array("Wind-up Vath", $minions) || in_array("Kongamato", $mounts) ? 1 : 0;
-    $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) ? 1 : 0;
-    // Stormblood
-
-    // Beast tribes from minions
+    $beast_tribes["Kobold"] += in_array("Wind-up Kobold", $minions) || in_array("Bomb Palanquin", $mounts) ? 1 : 0;
+    $beast_tribes["Sahagin"] += in_array("Cavalry Elbst", $mounts) || in_array("Wind-up Sahagin", $minions) ? 1 : 0;
+    $beast_tribes["Amaljaa"] += in_array("Wind-up Amalj'aa", $minions) || in_array("Cavalry Drake Mount", $mounts) ? 1 : 0;
+    $beast_tribes["Sylph"] += in_array("Wind-up Sylph", $minions) || in_array("Laurel Goobbue", $mounts) ? 1 : 0;
     $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
-	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
-	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
-	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;
+
+    // Heavensward
+    $beast_tribes["Vanu Vanu"] += in_array("Sanuwa", $mounts) || in_array("Wind-up Zundu Warrior", $minions) || in_array("Wind-up Gundu Warrior")  ? 1 : 0;
+    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions) || in_array("Wind-up Vath", $minions) || in_array("Kongamato", $mounts) ? 1 : 0;
+    $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) || in_array("Wind-up Dragonet", $minions) || in_array("Wind-up Ohl Deeh", $minions) ? 1 : 0;
+    
+    // Stormblood
+	$beast_tribes["Kojin"] += in_array("Striped Ray", $mounts) || in_array("Wind-up Kojin", $minions) || in_array("Zephyrous Zabuton", $minions) || in_array("Wind-up Redback", $minions) ? 1 : 0;
+	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) || in_array("Wind-up Qalyana", $minions) || in_array("True Griffin", $mounts) || in_array("Marid", $mounts) ? 1 : 0;        
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) || in_array("Mikoshi", $mounts) ? 1 : 0;
     
     // Shadowbringers
-    $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
+    $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) || in_array("Portly Porxie", $mounts) ? 1 : 0;
     $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
-    $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
+    $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -1067,9 +1067,10 @@ $db->close();
                 </div>
                 <div class="row">
                     <!-- TEMPLATE FOR EACH ENTRY
-                        <div class="col s12 m4 l4 light region-subtitle">
-                        <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/xxxxxxxxxx" class="eorzeadb_link">ITEM</a>
-                        <span class="region-stat"><?php echo $VARIABLE; ?>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_soundtrack; ?>
                         </span>
                     </div>
                     -->
@@ -1079,14 +1080,14 @@ $db->close();
                             <?php echo $fmt_soundtrack; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-subtitle">BEFORE METEOR SOUNDTRACK
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/" class="eorzeadb_link">Wind-up Dalamud</a>)</p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/" class="eorzeadb_link">BEFORE METEOR SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_beforemeteor; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-subtitle">BEFORE THE FALL SOUNDTRACK
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/" class="eorzeadb_link">The Primogs</a>)</p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/" class="eorzeadb_link">BEFORE THE FALL SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_beforethefall; ?>
                         </span>
@@ -1094,20 +1095,20 @@ $db->close();
                 </div>
 
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">A REALM REBORN ARTBOOK
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">Model Enterprise</a>)</p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>                        
                         <span class="region-stat">
                             <?php echo $fmt_arrartbook; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">STORMBLOOD ARTBOOK - EASTERN MEMORIES
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">Dress-up Tataru</a>)</p>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">STORMBLOOD ARTBOOK - EASTERN MEMORIES</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbook; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">STORMBLOOD ARTBOOK - WESTERN MEMORIES
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">Wind-up Yotsuyu</a>)</p>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">STORMBLOOD ARTBOOK - WESTERN MEMORIES</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbooktwo; ?>
                         </span>
@@ -1115,10 +1116,10 @@ $db->close();
                 </div>
 
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">MOOGLE PLUSH
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">Wind-up Delivery Moogle</a>)</p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">MOOGLE PLUSH</a></p>
                         <span class="region-stat">
-                            <?php echo $fmt_arrartbook; ?>
+                            <?php echo $fmt_moogleplush; ?>
                         </span>
                     </div>
                 </div>
