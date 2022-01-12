@@ -316,8 +316,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
     // Heavensward
     $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
-    $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
-    $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
+    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions || "Wind-up Vath", $minions || "Kongamato", $mounts) ? 1 : 0;
     $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) ? 1 : 0;
     // Stormblood
 
@@ -329,7 +328,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     
     // Shadowbringers
     $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
-    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka" OR "The Behatted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions || "The Behatted Serpent of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
