@@ -617,12 +617,12 @@ $db->close();
         </div>
         <div class="col s12 m6 navbar center">
             <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
-            <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
+            <a class='dropdown-button btn' href='#' data-target='pop-dropdown'>Population</a>
             <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
             <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
-            <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
+            <a class='dropdown-button btn' href='#' data-target='realm-dropdown'>Realm Stats</a>
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-            <a class='dropdown-button btn' href='#' data-activates='misc-stats-dropdown'>Other Stats</a>
+            <a class='dropdown-button btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
@@ -1136,77 +1136,17 @@ $db->close();
                         </span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="physical"><span class="card-title light">PHYSICAL ITEMS</span></a>
-
-                        <div class="light region-subtitle">ARR SOUNDTRACK</div>
-                        <div class=" s6 m6 l6   region-stat">
-                            <div>
-                                <?php echo $fmt_soundtrack; ?>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
-                        <div class=" s6 m6 l6   region-stat">
-                            <div>
-                                <?php echo $fmt_beforemeteor; ?>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">BEFORE THE FALL SOUNDTRACK</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_beforethefall; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">ARR ARTBOOK</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_arrartbook; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">SB ARTBOOK - EASTERN MEMORIES</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_sbartbook; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">SB ARTBOOK - WESTERN MEMORIES</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_sbartbooktwo; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">MOOGLE PLUSH</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_moogleplush; ?>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_soundtrack; ?>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
