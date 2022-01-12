@@ -141,6 +141,8 @@ $did_eternal_bond = 0;
 $comm50 = 0;
 $hildibrand = 0;
 $sightseeing = 0;
+$hw_collectors = 0;
+$ew_soundtrack = 0;
 
 $beast_tribes = array();
 $beast_tribes["Kobold"] = 0;
@@ -316,7 +318,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
     // Heavensward
     $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
-    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions || "Wind-up Vath", $minions || "Kongamato", $mounts) ? 1 : 0;
+    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions) || in_array("Wind-up Vath", $minions) || in_array("Kongamato", $mounts) ? 1 : 0;
     $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) ? 1 : 0;
     // Stormblood
 
@@ -328,12 +330,12 @@ while($row = $player_overview_query->fetch_assoc()) {
     
     // Shadowbringers
     $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
-    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions || "The Behatted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
-    if(in_array("Wind-up Herois", $minions)) {  $active_player_count++;
+    if(in_array("Wind-up Herois", $minions) || in_array("Argos", $mounts)) {  $active_player_count++;
         // Fetch realm active player count
         if(!array_key_exists($realm, $active_realm_count)) {
                 $active_realm_count[$realm] = 0;
@@ -458,6 +460,15 @@ $db->close();
                 - #674ea0 - DoH
                 - #a88d3b - DoL
           */
+
+        a {
+            color: white;
+            /* text-decoration-line: dotted; */
+        }
+
+        a:hover {
+            color: #039be5;
+        }
 
         .logo {
             display: block;
@@ -1026,15 +1037,6 @@ $db->close();
                             </div>
                         </div>
 
-                        <div class="light region-subtitle">HEAVENSWARD COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_hw_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="light region-subtitle">SHADOWBRINGERS COLLECTORS EDITION</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
@@ -1064,8 +1066,15 @@ $db->close();
                     <hr>
                 </div>
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">A REALM REBORN SOUNDTRACK
-                        <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">Wind-up Bahamut</a>)</p>
+                    <!-- TEMPLATE FOR EACH ENTRY
+                        <div class="col s12 m4 l4 light region-subtitle">
+                        <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/xxxxxxxxxx" class="eorzeadb_link">ITEM</a>
+                        <span class="region-stat"><?php echo $VARIABLE; ?>
+                        </span>
+                    </div>
+                    -->
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a>
                         <span class="region-stat">123,456
                             <?php echo $fmt_soundtrack; ?>
                         </span>
@@ -1171,28 +1180,7 @@ $db->close();
                                 </div>
                             </div>
                         </div>
-                      </div>
-                      <div class="light region-subtitle">ENDWALKER SOUNDTRACK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_ew_soundtrack; ?></div>
-                        </div>
-                      </div>                    
-                 </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="misc-stats"><span class="card-title light">OTHER</span></a>
 
-                      <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_saw_eternal_bond; ?></div>
-                          
                         <div class="light region-subtitle">MOOGLE PLUSH</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
@@ -1201,7 +1189,6 @@ $db->close();
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
