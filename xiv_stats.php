@@ -120,15 +120,20 @@ $classes = array();
 
 $active_classes = array();
 
+// Pre-Orders
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
 $preew = 0;
+// Collectors Editions
 $ps4_collectors = 0;
 $pc_collectors = 0;
+$hw_collectors = 0;
+$sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
+
 $arrartbook = 0;
 $sbartbooktwo = 0;
 $sbartbook = 0;
@@ -141,10 +146,10 @@ $did_eternal_bond = 0;
 $comm50 = 0;
 $hildibrand = 0;
 $sightseeing = 0;
-$hw_collectors = 0;
 $ew_soundtrack = 0;
 
 $beast_tribes = array();
+// A Realm Reborn
 $beast_tribes["Kobold"] = 0;
 $beast_tribes["Sahagin"] = 0;
 $beast_tribes["Amaljaa"] = 0;
@@ -266,6 +271,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_pc_collectors = number_format($pc_collectors);
     $hw_collectors += in_array("Wind-up Kain", $minions) ? 1 : 0;
     $fmt_hw_collectors = number_format($hw_collectors);
+    $sb_collectors += in_array("Syldra", $mounts)  ? 1 : 0;
+    $fmt_sb_collectors = number_format($sb_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
@@ -1033,6 +1040,24 @@ $db->close();
                             <div class=" s12 m6 l6   region-stat">
                                 <div>
                                     <?php echo $fmt_pc_collectors; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="light region-subtitle">HEAVENSWARD COLLECTORS EDITION</div>
+                        <div class="row">
+                            <div class=" s12 m6 l6   region-stat">
+                                <div>
+                                    <?php echo $fmt_hw_collectors; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="light region-subtitle">STORMBLOOD COLLECTORS EDITION</div>
+                        <div class="row">
+                            <div class=" s12 m6 l6   region-stat">
+                                <div>
+                                    <?php echo $fmt_sb_collectors; ?>
                                 </div>
                             </div>
                         </div>
