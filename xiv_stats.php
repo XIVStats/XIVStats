@@ -1075,19 +1075,19 @@ $db->close();
                     -->
                     <div class="col s12 m4 l4 light region-subtitle">
                         <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a>
-                        <span class="region-stat">123,456
+                        <span class="region-stat">
                             <?php echo $fmt_soundtrack; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">BEFORE METEOR SOUNDTRACK
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/" class="eorzeadb_link">Wind-up Dalamud</a>)</p>
-                        <span class="region-stat">456,789
+                        <span class="region-stat">
                             <?php echo $fmt_beforemeteor; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">BEFORE THE FALL SOUNDTRACK
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/" class="eorzeadb_link">The Primogs</a>)</p>
-                        <span class="region-stat">1,789,412
+                        <span class="region-stat">
                             <?php echo $fmt_beforethefall; ?>
                         </span>
                     </div>
@@ -1096,19 +1096,19 @@ $db->close();
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">A REALM REBORN ARTBOOK
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">Model Enterprise</a>)</p>
-                        <span class="region-stat">123,456
+                        <span class="region-stat">
                             <?php echo $fmt_arrartbook; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-medsubtitle">STORMBLOOD ARTBOOK - EASTERN MEMORIES
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">Dress-up Tataru</a>)</p>
-                        <span class="region-stat">456,789
+                        <span class="region-stat">
                             <?php echo $fmt_sbartbook; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-medsubtitle">STORMBLOOD ARTBOOK - WESTERN MEMORIES
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">Wind-up Yotsuyu</a>)</p>
-                        <span class="region-stat">1,789,412
+                        <span class="region-stat">
                             <?php echo $fmt_sbartbooktwo; ?>
                         </span>
                     </div>
@@ -1117,7 +1117,7 @@ $db->close();
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">MOOGLE PLUSH
                         <p>(Redeemed <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">Wind-up Delivery Moogle</a>)</p>
-                        <span class="region-stat">123,456
+                        <span class="region-stat">
                             <?php echo $fmt_arrartbook; ?>
                         </span>
                     </div>
@@ -1133,14 +1133,14 @@ $db->close();
 
                         <div class="light region-subtitle">ARR SOUNDTRACK</div>
                         <div class=" s6 m6 l6   region-stat">
-                            <div>123,456
+                            <div>
                                 <?php echo $fmt_soundtrack; ?>
                             </div>
                         </div>
 
                         <div class="light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
                         <div class=" s6 m6 l6   region-stat">
-                            <div>123,456
+                            <div>
                                 <?php echo $fmt_beforemeteor; ?>
                             </div>
                         </div>
@@ -1148,7 +1148,7 @@ $db->close();
                         <div class="light region-subtitle">BEFORE THE FALL SOUNDTRACK</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
-                                <div>123,456
+                                <div>
                                     <?php echo $fmt_beforethefall; ?>
                                 </div>
                             </div>
@@ -1157,7 +1157,7 @@ $db->close();
                         <div class="light region-subtitle">ARR ARTBOOK</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
-                                <div>123,456
+                                <div>
                                     <?php echo $fmt_arrartbook; ?>
                                 </div>
                             </div>
@@ -1166,7 +1166,7 @@ $db->close();
                         <div class="light region-subtitle">SB ARTBOOK - EASTERN MEMORIES</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
-                                <div>123,456
+                                <div>
                                     <?php echo $fmt_sbartbook; ?>
                                 </div>
                             </div>
@@ -1175,7 +1175,7 @@ $db->close();
                         <div class="light region-subtitle">SB ARTBOOK - WESTERN MEMORIES</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
-                                <div>123,456
+                                <div>
                                     <?php echo $fmt_sbartbooktwo; ?>
                                 </div>
                             </div>
@@ -1184,7 +1184,7 @@ $db->close();
                         <div class="light region-subtitle">MOOGLE PLUSH</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
-                                <div>123,456
+                                <div>
                                     <?php echo $fmt_moogleplush; ?>
                                 </div>
                             </div>
