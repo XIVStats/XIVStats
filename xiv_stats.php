@@ -1428,7 +1428,7 @@ $db->close();
                     type: 'pie',
                     name: '# of Characters',
                     data: [
-                      <? php
+                      <?php
                               foreach($gc_count as $key => $value) {
                             echo "['" .$key. "', " .getValue($value). "],\n";
                         }
@@ -1455,7 +1455,7 @@ $db->close();
                     type: 'pie',
                     name: '# of Characters',
                     data: [
-                      <? php
+                      <?php
                               foreach($active_gc_count as $key => $value) {
                             echo "['" .$key. "', " .getValue($value). "],\n";
                         }
@@ -1478,7 +1478,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                      <? php
+                      <?php
                               foreach($race_gender_count as $key => $value) {
                             echo "\"$key\",\n";
                         }
@@ -1500,7 +1500,7 @@ $db->close();
                 series: [{
                     name: 'Female',
                     data: [
-                      <? php
+                      <?php
                               foreach($race_gender_count as $value) {
                             echo getValueFromArray($value, "female") . ",";
                         }
@@ -1509,7 +1509,7 @@ $db->close();
                 }, {
                     name: 'Male',
                     data: [
-                      <? php
+                      <?php
                               foreach($race_gender_count as $value) {
                             echo getValueFromArray($value,"male") . ",";
                         }
@@ -1532,7 +1532,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                      <? php
+                      <?php
                               foreach($active_race_gender_count as $key => $value) {
                             echo "\"$key\",\n";
                         }
@@ -1554,7 +1554,7 @@ $db->close();
                 series: [{
                     name: 'Female',
                     data: [
-                      <? php
+                      <?php
                               foreach($active_race_gender_count as $value) {
                             echo getValueFromArray($value, "female") . ",";
                         }
@@ -1563,7 +1563,7 @@ $db->close();
                 }, {
                     name: 'Male',
                     data: [
-                      <? php
+                      <?php
                               foreach($active_race_gender_count as $value) {
                             echo getValueFromArray($value,"male") . ",";
                         }
@@ -1585,7 +1585,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                      <? php
+                      <?php
                           foreach($classes as $key => $value) {
                             echo json_encode($value[TYPE][TITLE]) . ',';
                         }
@@ -1607,9 +1607,9 @@ $db->close();
                 series: [{
                     name: 'Characters',
                     data: [
-                      <? php foreach($classes as $key => $value) { ?>
-                        { name: <? php echo json_encode($value[TYPE][TITLE]); ?>, y: <? php echo getValue($value[COUNT]); ?>, color: <? php echo json_encode($value[TYPE][COLOR]) ?> },
-                      <? php } ?>
+                      <?php foreach($classes as $key => $value) { ?>
+                        { name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                      <?php } ?>
                   ],
               }]
           });
@@ -1627,7 +1627,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                      <? php
+                      <?php
                           foreach($active_classes as $key => $value) {
                             echo json_encode($value[TYPE][TITLE]) . ',';
                         }
@@ -1649,9 +1649,9 @@ $db->close();
                 series: [{
                     name: 'Active Characters',
                     data: [
-                      <? php foreach($active_classes as $key => $value) { ?>
-                        { name: <? php echo json_encode($value[TYPE][TITLE]); ?>, y: <? php echo getValue($value[COUNT]); ?>, color: <? php echo json_encode($value[TYPE][COLOR]) ?> },
-                      <? php } ?>
+                      <?php foreach($active_classes as $key => $value) { ?>
+                        { name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                      <?php } ?>
                   ]
               }]
           });
@@ -1669,7 +1669,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($american_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1692,7 +1692,7 @@ $db->close();
                 series: [{
                     name: 'All',
                     data: [
-                <? php
+                <?php
                         foreach($american_realm_array as $value) {
                             echo getValueFromArray($realm_count, $value) . ",";
                         }
@@ -1714,7 +1714,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($american_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1737,7 +1737,7 @@ $db->close();
                 series: [{
                     name: 'Active',
                     data: [
-                <? php
+                <?php
                         foreach($american_realm_array as $value) {
                             echo getValueFromArray($active_realm_count, $value) . ",";
                         }
@@ -1759,7 +1759,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($japanese_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1782,7 +1782,7 @@ $db->close();
                 series: [{
                     name: 'All',
                     data: [
-                <? php
+                <?php
                         foreach($japanese_realm_array as $value) {
                             echo getValueFromArray($realm_count, $value) . ",";
                         }
@@ -1804,7 +1804,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($japanese_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1827,7 +1827,7 @@ $db->close();
                 series: [{
                     name: 'Active',
                     data: [
-                <? php
+                <?php
                         foreach($japanese_realm_array as $value) {
                             echo getValueFromArray($active_realm_count, $value) . ",";
                         }
@@ -1849,7 +1849,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($european_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1872,7 +1872,7 @@ $db->close();
                 series: [{
                     name: 'All',
                     data: [
-                <? php
+                <?php
                         foreach($european_realm_array as $value) {
                             echo getValueFromArray($realm_count, $value) . ",";
                         }
@@ -1894,7 +1894,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                <? php
+                <?php
                         foreach($european_realm_array as $key => $value) {
                             echo "'$value',";
                         }
@@ -1917,7 +1917,7 @@ $db->close();
                 series: [{
                     name: 'Active',
                     data: [
-                <? php
+                <?php
                         foreach($european_realm_array as $value) {
                             echo getValueFromArray($active_realm_count, $value) . ",";
                         }
@@ -1940,7 +1940,7 @@ $db->close();
                 },
                 xAxis: {
                     categories: [
-                      <? php
+                      <?php
                               foreach($beast_tribes as $key => $value) {
                             echo "'$key',";
                         }
@@ -1962,7 +1962,7 @@ $db->close();
                 series: [{
                     name: 'Tribe',
                     data: [
-                      <? php
+                      <?php
                               foreach($beast_tribes as $key => $value) {
                             echo getValue($value) . ",";
                         }
