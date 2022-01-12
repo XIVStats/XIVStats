@@ -1136,14 +1136,12 @@ $db->close();
                         </span>
                     </div>
                 </div>
-                <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_ew_soundtrack; ?>
                         </span>
                     </div>
-                </div>
             </div>
         </div>
 
