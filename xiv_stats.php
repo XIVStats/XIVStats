@@ -319,7 +319,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 
     // Heavensward
-    $beast_tribes["Vanu Vanu"] += in_array("Sanuwa", $mounts) || in_array("Wind-up Zundu Warrior", $minions) || in_array("Wind-up Gundu Warrior")  ? 1 : 0;
+    $beast_tribes["Vanu Vanu"] += in_array("Sanuwa", $mounts) || in_array("Wind-up Zundu Warrior", $minions) || in_array("Wind-up Gundu Warrior", $minions) ? 1 : 0;
     $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions) || in_array("Wind-up Vath", $minions) || in_array("Kongamato", $mounts) ? 1 : 0;
     $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) || in_array("Wind-up Dragonet", $minions) || in_array("Wind-up Ohl Deeh", $minions) ? 1 : 0;
     
