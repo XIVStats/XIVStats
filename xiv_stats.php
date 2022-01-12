@@ -127,8 +127,7 @@ $presb = 0;
 $preshb = 0;
 $preew = 0;
 // Collectors Editions
-$ps4_collectors = 0;
-$pc_collectors = 0;
+$arr_collectors = 0;
 $hw_collectors = 0;
 $sb_collectors = 0;
 $shb_collectors = 0;
@@ -265,13 +264,11 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_preew = number_format($preew);
 
     // Collectors Edition
-    $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
-    $fmt_ps4_collectors = number_format($ps4_collectors);
-    $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
-    $fmt_pc_collectors = number_format($pc_collectors);
-    $hw_collectors += in_array("Wind-up Kain", $minions) ? 1 : 0;
+    $arr_collectors += in_array("Fat Chocobo", $mounts) || in_array("Coeurl", $mounts) || in_array("Wind-Up Moogle", $minions) || in_array("Baby Behemoth", $minions) ? 1 : 0;
+    $fmt_arr_collectors = number_format($arr_collectors);
+    $hw_collectors += in_array("Wind-up Kain", $minions) || in_array("Griffin", $mounts)? 1 : 0;
     $fmt_hw_collectors = number_format($hw_collectors);
-    $sb_collectors += in_array("Syldra", $mounts)  ? 1 : 0;
+    $sb_collectors += in_array("Syldra", $mounts) || in_array("Wind-up Bartz", $minions)? 1 : 0;
     $fmt_sb_collectors = number_format($sb_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
@@ -1026,20 +1023,11 @@ $db->close();
                     <div class="card-content">
                         <a id="collectors"><span class="card-title light">COLLECTORS EDITION</span></a>
 
-                        <div class="light region-subtitle">PS4 ARR COLLECTORS EDITION</div>
+                        <div class="light region-subtitle">ARR COLLECTORS EDITION</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
                                 <div>
-                                    <?php echo $fmt_ps4_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">PC ARR COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_pc_collectors; ?>
+                                    <?php echo $fmt_arr_collectors; ?>
                                 </div>
                             </div>
                         </div>
