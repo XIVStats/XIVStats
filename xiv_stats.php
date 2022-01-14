@@ -313,6 +313,12 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_hw_soundtrack = number_format($hw_soundtrack);
     $faredgeoffate += in_array("Wind-up Nidhogg", $minions) ? 1 : 0;
     $fmt_faredgeoffate = number_format($faredgeoffate);
+    $sb_soundtrack += in_array("Wind-up Tsukuyomi", $minions) ? 1 : 0;
+    $fmt_sb_soundtrack = number_format($sb_soundtrack);
+    $sbh_soundtrack += in_array("Wind-up Suzaku", $minions) ? 1 : 0;
+    $fmt_shb_soundtrack = number_format($shb_soundtrack);
+    $deathuntodawn += in_array("Wind-up Lyna", $minions) ? 1 : 0;
+    $fmt_deathuntodawn = number_format($deathuntodawn);
     $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
 
