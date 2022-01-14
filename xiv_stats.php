@@ -146,9 +146,12 @@ $soundtrack = 0;
 $moogleplush = 0;
 $saw_eternal_bond = 0;
 $did_eternal_bond = 0;
-$hildibrand = 0;
 $sightseeing = 0;
 $ew_soundtrack = 0;
+
+// Hildibrand Questline
+$arr_hildibrand = 0;
+$hw_hildibrand = 0;
 
 // Commendations
 $comm50 = 0;
@@ -316,11 +319,13 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_comm3000 = number_format($comm3000);
 
     // Hildibrand
-    $hildibrand += isset($row["hildibrand"]) && $row["hildibrand"] == 1 ? 1 : 0;
-    $fmt_hildibrand = number_format($hildibrand);
+    $arr_hildibrand += in_array("Wind-up Gentleman", $minions) ? 1 : 0;
+    $fmt_arr_hildibrand = number_format($arr_hildibrand);
+    $hw_hildibrand += in_array("Gigi", $minions) ? 1 : 0;
+    $fmt_hw_hildibrand = number_format($hw_hildibrand);
 
     // ARR Sightseeing Log
-    $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
+    $sightseeing += in_array("Fledgling Apkallu", $minions) ? 1 : 0;
     $fmt_sightseeing = number_format($sightseeing);
 
 	// Deleted count
@@ -1167,6 +1172,7 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">COMMENDATIONS</span>
+                <hr>
                 <div class="col s12 m4 l4 light region-medsubtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/" class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
                         <span class="region-stat">
@@ -1191,6 +1197,7 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">OTHER</span>
+                <hr>
                 <div class="row">
                     <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/" class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>                        
@@ -1206,14 +1213,20 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>                        
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/" class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>                        
                         <span class="region-stat">
-                            <?php echo $fmt_hildibrand; ?>
+                            <?php echo $fmt_arr_hildibrand; ?>
                         </span>
                     </div>
-                    <div class="col s12 m6 l6 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/" class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>                        
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_hildibrand; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/" class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sightseeing; ?>
                         </span>
@@ -1233,70 +1246,6 @@ $db->close();
                         </span>
                     </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="misc-stats"><span class="card-title light">OTHER</span></a>
-
-                        <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_saw_eternal_bond; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_did_eternal_bond; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">EARNED 50 COMMENDATIONS</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_comm50; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">COMPLETED ARR HILDIBRAND QUESTLINE</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_hildibrand; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">COMPLETED ARR SIGHTSEEING LOG</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_sightseeing; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">DELETED CHARACTERS</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_deleted; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
