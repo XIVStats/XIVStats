@@ -89,6 +89,7 @@ if (! $db->select_db($conn_info["database"])) {
         die("Couldn't find DB");
 }
 
+// Servers by region
 $american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
                               "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
                               "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
@@ -998,6 +999,20 @@ $db->close();
             </div>
         </div>
 
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">TEST TEST TEST</a></p>
+                        <span class="region-stat">123
+                        <?php echo $fmt_soundtrack; ?>
+                        </span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
