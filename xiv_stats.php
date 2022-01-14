@@ -146,10 +146,14 @@ $soundtrack = 0;
 $moogleplush = 0;
 $saw_eternal_bond = 0;
 $did_eternal_bond = 0;
-$comm50 = 0;
 $hildibrand = 0;
 $sightseeing = 0;
 $ew_soundtrack = 0;
+
+// Commendations
+$comm50 = 0;
+$comm500 = 0;
+$comm3000 = 0;
 
 $beast_tribes = array();
 // A Realm Reborn
@@ -298,14 +302,18 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
 
     // Eternal Bond
-    $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
+    $saw_eternal_bond += in_array("Demon Box", $minions) ? 1 : 0;
     $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-    $did_eternal_bond += isset($row["dideternalbond"]) && $row["dideternalbond"] == 1 ? 1 : 0;
+    $did_eternal_bond += in_array("Ceremony Chocobo", $mounts) ? 1 : 0;
     $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
     // Player Commendations
-    $comm50 += isset($row["comm50"]) && $row["comm50"] == 1 ? 1 : 0;
+    $comm50 += in_array("Princely Hatchling", $minions) ? 1 : 0;
     $fmt_comm50 = number_format($comm50);
+    $comm500 +- in_array("Gilded Magitek Armor", $mounts) ? 1 : 0;
+    $fmt_comm500 = number_format($comm500);
+    $comm3000 +- in_array("Parade Chocobo", $mounts) ? 1 : 0;
+    $fmt_comm3000 = number_format($comm3000);
 
     // Hildibrand
     $hildibrand += isset($row["hildibrand"]) && $row["hildibrand"] == 1 ? 1 : 0;
@@ -1156,54 +1164,78 @@ $db->close();
                     </div>
             </div>
         </div>
-
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">COMMENDATIONS</span>
+                <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/" class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm50; ?>
+                        </span>
+                </div>
+                <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e25cb89825b/" class="eorzeadb_link">EARNED 500 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm500; ?>
+                        </span>
+                </div>    
+                <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/556d57aa8ca/" class="eorzeadb_link">EARNED 3000 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm3000; ?>
+                        </span>
+                </div>                    
+                </div>
+            </div>
+        </div>
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">OTHER</span>
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>                        
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/" class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>                        
                         <span class="region-stat">
                             <?php echo $fmt_saw_eternal_bond; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
+                    <div class="col s12 m6 l6 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0e108974cc8/" class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_did_eternal_bond; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
-                        <span class="region-stat">
-                            <?php echo $fmt_comm50; ?>
-                        </span>
-                    </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">
+                    <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>                        
                         <span class="region-stat">
                             <?php echo $fmt_hildibrand; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
+                    <div class="col s12 m6 l6 light region-medsubtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sightseeing; ?>
-                        </span>
-                    </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p>DELETED CHARACTERS</p>
-                        <span class="region-stat">
-                            <?php echo $fmt_deleted; ?>
                         </span>
                     </div>
                 </div>
                 </div>
             </div>
         </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">DELETED CHARACTERS</span>
+                <hr>
+                <div class="col s12 m12 l12 light region-medsubtitle">
+                        <p>DELETED CHARACTERS</p>
+                        <span class="region-stat">
+                            <?php echo $fmt_deleted; ?>
+                        </span>
+                    </div>
 
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
