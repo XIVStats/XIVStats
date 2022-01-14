@@ -551,6 +551,7 @@ $db->close();
         .dropdown-button,
         .waves-light,
         .btn,
+        .btn-large,
         .btn:visited {
             background: linear-gradient(to right, #3d4d99 0%, #3689b3 50%, #cc7a29 100%);
         }
@@ -668,22 +669,10 @@ $db->close();
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
                     <div class="card-content white-text">
-                        <span class="card-title light">A NOTE REGARDING THE NUMBERS.</span>
-                        <b>January 10th 2022:</b> While we were gathering the data for December 2021, we noticed an
-                        absurdly high number of characters that were 'Deleted'.<br />
-                        <br />
-                        It wasn't until January of 2022 that we discovered a bug. We found out that characters that had
-                        no minions and/or no mounts were being returned to us as if the character was deleted.<br />
-                        If you want the techy details, check out our <a
-                            href="https://github.com/XIVStats/XIVStats-Gatherer-Java/issues/63">GitHub</a>.<br />
-                        <br />
-                        We believe that this bug originated from an update back in 2019 but was not discovered until
-                        December 2021 due to the project being dormant.<br />
-                        <br />
-                        While this does affect the "All Characters" numbers,"Active Characters" and other numbers
-                        shouldn't see much of a significant change.<br />
-                        <br />
-                        We are currently running the census and an update will be available soon&trade;.<br /><br />
+                    <span class="card-title light">IMPORTANT ANNOUNCEMENT</span>
+                    <div style="text-align: center;">
+                        <a class="btn-large" href="https://github.com/XIVStats/XIVStats/issues/57">Statement regarding January 2022 Census and the future of the Census</a>
+                    </div>
                         <hr />
                         <br />
                         <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
