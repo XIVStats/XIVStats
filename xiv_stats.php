@@ -1157,6 +1157,53 @@ $db->close();
             </div>
         </div>
 
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">OTHER</span>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>                        
+                        <span class="region-stat">
+                            <?php echo $fmt_saw_eternal_bond; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_did_eternal_bond; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm50; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>                        
+                        <span class="region-stat">
+                            <?php echo $fmt_hildibrand; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_sightseeing; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p>DELETED CHARACTERS</p>
+                        <span class="region-stat">
+                            <?php echo $fmt_deleted; ?>
+                        </span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
