@@ -1039,62 +1039,6 @@ $db->close();
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="preorders"><span class="card-title light">PRE-ORDERS</span></a>
-
-                        <div class="light region-subtitle">PRE-ORDERED A REALM REBORN</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_prearr; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">PRE-ORDERED HEAVENSWARD</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_prehw; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">PRE-ORDERED STORMBLOOD</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_presb; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_preshb; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">PRE-ORDERED ENDWALKER</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_preew; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
