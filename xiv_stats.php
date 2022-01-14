@@ -1005,19 +1005,19 @@ $db->close();
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/" class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
-                        <span class="region-stat">123
+                        <span class="region-stat">
                         <?php echo $fmt_prearr; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/924cd368577" class="eorzeadb_link">PRE-ORDERED HEAVENSWARD</a></p>
-                        <span class="region-stat">123
+                        <span class="region-stat">
                         <?php echo $fmt_prehw; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/fc6c2f880af/" class="eorzeadb_link">PRE-ORDERED STORMBLOOD</a></p>
-                        <span class="region-stat">123
+                        <span class="region-stat">
                         <?php echo $fmt_presb; ?>
                         </span>
                     </div>
@@ -1025,13 +1025,13 @@ $db->close();
                 <div class="row">
                     <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/" class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
-                        <span class="region-stat">123
+                        <span class="region-stat">
                         <?php echo $fmt_preshb; ?>
                         </span>
                     </div>
                     <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/" class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
-                        <span class="region-stat">123
+                        <span class="region-stat">
                         <?php echo $fmt_preew; ?>
                         </span>
                     </div>
