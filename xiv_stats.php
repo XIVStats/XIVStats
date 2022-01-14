@@ -1040,6 +1040,48 @@ $db->close();
             </div>
         </div>
 
+
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">COLLECTORS EDITION</span>
+                <div class="row">
+                <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/" class="eorzeadb_link">ARR COLLECTORS EDITION</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_arr_collectors; ?>
+                        </span>
+                </div>
+                <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/df6e606a7e5/" class="eorzeadb_link">HEAVENSWARD COLLECTORS EDITION</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_hw_collectors; ?>
+                        </span>
+                </div>
+                <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/bd66e9aee09/" class="eorzeadb_link">STORMBLOOD COLLECTORS EDITION</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_sb_collectors; ?>
+                        </span>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/" class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_shb_collectors; ?>
+                        </span>
+                </div>
+                <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/" class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_ew_collectors; ?>
+                        </span>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col s12 m6" style="width:100%;">
                 <div class="card">
@@ -1152,13 +1194,13 @@ $db->close();
                 </div>
 
                 <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">
+                    <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">MOOGLE PLUSH</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_moogleplush; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-subtitle">
+                    <div class="col s12 m6 l6 light region-subtitle">
                         <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_ew_soundtrack; ?>
