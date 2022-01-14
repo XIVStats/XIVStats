@@ -256,13 +256,13 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_FSH, $classes);
 
     // Pre-orders
-    $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
+    $prearr += in_array("Cait Sith Doll", $minions) ? 1 : 0;
     $fmt_prearr = number_format($prearr);
-    $prehw += isset($row["prehw"]) && $row["prehw"] == 1 ? 1 : 0;
+    $prehw += in_array("Chocobo Chick Courier", $minions) ? 1 : 0;
     $fmt_prehw = number_format($prehw);
-    $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
+    $presb += in_array("Wind-up Red Mage", $minions) ? 1 : 0;
     $fmt_presb = number_format($presb);
-    $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
+    $preshb += in_array("Baby Gremlin", $minions) ? 1 : 0;
     $fmt_preshb = number_format($preshb);
     $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
     $fmt_preew = number_format($preew);
@@ -1004,9 +1004,35 @@ $db->close();
                 <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">TEST TEST TEST</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/" class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
                         <span class="region-stat">123
-                        <?php echo $fmt_soundtrack; ?>
+                        <?php echo $fmt_prearr; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/924cd368577" class="eorzeadb_link">PRE-ORDERED HEAVENSWARD</a></p>
+                        <span class="region-stat">123
+                        <?php echo $fmt_prehw; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/fc6c2f880af/" class="eorzeadb_link">PRE-ORDERED STORMBLOOD</a></p>
+                        <span class="region-stat">123
+                        <?php echo $fmt_presb; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/" class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
+                        <span class="region-stat">123
+                        <?php echo $fmt_preshb; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/" class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
+                        <span class="region-stat">123
+                        <?php echo $fmt_preew; ?>
                         </span>
                     </div>
                 </div>
