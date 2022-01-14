@@ -622,12 +622,12 @@ $db->close();
         </div>
         <div class="col s12 m6 navbar center">
             <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
-            <a class='dropdown-button btn' href='#' data-target='pop-dropdown'>Population</a>
+            <a class='dropdown-trigger btn' href='#' data-target='pop-dropdown'>Population</a>
             <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
             <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
-            <a class='dropdown-button btn' href='#' data-target='realm-dropdown'>Realm Stats</a>
+            <a class='dropdown-trigger btn' href='#' data-target='realm-dropdown'>Realm Stats</a>
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-            <a class='dropdown-button btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
+            <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
@@ -1048,7 +1048,7 @@ $db->close();
                 <hr>
                 <div class="row">
                 <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/" class="eorzeadb_link">ARR COLLECTORS EDITION</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/" class="eorzeadb_link">A REALM REBORN COLLECTORS EDITION</a></p>
                         <span class="region-stat">
                         <?php echo $fmt_arr_collectors; ?>
                         </span>
