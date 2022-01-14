@@ -1002,6 +1002,7 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
+                <hr>
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/" class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
@@ -1044,6 +1045,7 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">COLLECTORS EDITION</span>
+                <hr>
                 <div class="row">
                 <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/" class="eorzeadb_link">ARR COLLECTORS EDITION</a></p>
@@ -1087,7 +1089,7 @@ $db->close();
                 <div class="card">
                     <div class="card-content">
                         <a id="collectors"><span class="card-title light">COLLECTORS EDITION</span></a>
-
+                        
                         <div class="light region-subtitle">ARR COLLECTORS EDITION</div>
                         <div class="row">
                             <div class=" s12 m6 l6   region-stat">
