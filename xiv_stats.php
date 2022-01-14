@@ -124,12 +124,15 @@ $classes = array();
 
 $active_classes = array();
 
+// VARIABLES
+
 // Pre-Orders
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
 $preew = 0;
+
 // Collectors Editions
 $arr_collectors = 0;
 $hw_collectors = 0;
@@ -137,17 +140,29 @@ $sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
 
+// Physical Items
 $arrartbook = 0;
 $sbartbooktwo = 0;
 $sbartbook = 0;
-$beforemeteor = 0;
-$beforethefall = 0;
-$soundtrack = 0;
 $moogleplush = 0;
+
+// Soundtracks
+$beforemeteor = 0;
+$arr_soundtrack = 0;
+$beforethefall = 0;
+$hw_soundtrack = 0;
+$faredgeoffate = 0;
+$sb_soundtrack = 0;
+$shb_soundtrack = 0;
+$deathuntodawn = 0;
+$ew_soundtrack = 0;
+
+// Eternal Bond
 $saw_eternal_bond = 0;
 $did_eternal_bond = 0;
+
+// Sightseeing 
 $sightseeing = 0;
-$ew_soundtrack = 0;
 
 // Hildibrand Questline
 $arr_hildibrand = 0;
@@ -287,22 +302,32 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
-    $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
-    $fmt_arrartbook = number_format($arrartbook);
-    $beforemeteor += isset($row["beforemeteor"]) && $row["beforemeteor"] == 1 ? 1 : 0;
+    // Soundtracks
+    $beforemeteor += in_array("Wind-up Dalamud", $minions) ? 1 : 0;
     $fmt_beforemeteor = number_format($beforemeteor);
-    $beforethefall += isset($row["beforethefall"]) && $row["beforethefall"] == 1 ? 1 : 0;
+    $arr_soundtrack += in_array("Wind-up Bahamut", $minions) ? 1 : 0;
+    $fmt_arr_soundtrack = number_format($arr_soundtrack);
+    $beforethefall += in_array("The Primogs", $minions) ? 1 : 0;
     $fmt_beforethefall = number_format($beforethefall);
-    $soundtrack += isset($row["soundtrack"]) && $row["soundtrack"] == 1 ? 1 : 0;
-    $fmt_soundtrack = number_format($soundtrack);
-    $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
-    $fmt_moogleplush = number_format($moogleplush);
-    $sbartbook += isset($row["sbartbook"]) && $row["sbartbook"] == 1 ? 1 : 0;
-    $fmt_sbartbook = number_format($sbartbook);
-    $sbartbooktwo += isset($row["sbartbooktwo"]) && $row["sbartbooktwo"] == 1 ? 1 : 0;
-    $fmt_sbartbooktwo = number_format($sbartbooktwo);
+    $hw_soundtrack += in_array("Spoony Bard", $minions) ? 1 : 0;
+    $fmt_hw_soundtrack = number_format($hw_soundtrack);
+    $faredgeoffate += in_array("Wind-up Nidhogg", $minions) ? 1 : 0;
+    $fmt_faredgeoffate = number_format($faredgeoffate);
     $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
+
+    // Art Books
+    $arrartbook += in_array("Model Enterprise", $minions) ? 1 : 0;
+    $fmt_arrartbook = number_format($arrartbook);
+    $sbartbook += in_array("Dress-up Tataru", $minions) ? 1 : 0;
+    $fmt_sbartbook = number_format($sbartbook);
+    $sbartbooktwo += in_array("Wind-up Yotsuyu", $minions) ? 1 : 0;
+    $fmt_sbartbooktwo = number_format($sbartbooktwo);
+
+    // Plushes & Other Items
+    $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
+    $fmt_moogleplush = number_format($moogleplush);
+
 
     // Eternal Bond
     $saw_eternal_bond += in_array("Demon Box", $minions) ? 1 : 0;
@@ -1115,7 +1140,7 @@ $db->close();
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
                         <span class="region-stat">
-                            <?php echo $fmt_soundtrack; ?>
+                            <?php echo $fmt_arr_soundtrack; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
@@ -1240,7 +1265,6 @@ $db->close();
                 <div class="col s12"><span class="card-title light">DELETED CHARACTERS</span>
                 <hr>
                 <div class="col s12 m12 l12 light region-medsubtitle">
-                        <p>DELETED CHARACTERS</p>
                         <span class="region-stat">
                             <?php echo $fmt_deleted; ?>
                         </span>
