@@ -622,12 +622,12 @@ $db->close();
         </div>
         <div class="col s12 m6 navbar center">
             <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
-            <a class='dropdown-trigger btn' href='#' data-target='pop-dropdown'>Population</a>
+            <a class='dropdown-trigger btn' href='#population' data-target='pop-dropdown'>Population</a>
             <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
             <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
-            <a class='dropdown-trigger btn' href='#' data-target='realm-dropdown'>Realm Stats</a>
+            <a class='dropdown-trigger btn' href='#realmall' data-target='realm-dropdown'>Realm Stats</a>
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-            <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
+            <a class='dropdown-trigger btn' href='#beast' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
@@ -1080,61 +1080,6 @@ $db->close();
                         </span>
                 </div>
                 </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="collectors"><span class="card-title light">COLLECTORS EDITION</span></a>
-                        
-                        <div class="light region-subtitle">ARR COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_arr_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">HEAVENSWARD COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_hw_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">STORMBLOOD COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_sb_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">SHADOWBRINGERS COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_shb_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="light region-subtitle">ENDWALKER COLLECTORS EDITION</div>
-                        <div class="row">
-                            <div class=" s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo $fmt_ew_collectors; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
