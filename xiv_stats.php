@@ -634,7 +634,7 @@ $db->close();
                 <li><a href="#popna">North America</a></li>
                 <li><a href="#popjp">Japan</a></li>
                 <li><a href="#popeu">Europe</a></li>
-                <li><a href="#popeu">Oceania</a></li>
+                <li><a href="#popoc">Oceania</a></li>
             </ul>
 
             <!-- Realm Stats Dropdown -->
@@ -644,7 +644,7 @@ $db->close();
                 <li><a href="#rat-na">North America</a></li>
                 <li><a href="#rat-jp">Japan</a></li>
                 <li><a href="#rat-eu">Europe</a></li>
-                <li><a href="#rat-eu">Oceania</a></li>
+                <li><a href="#rat-oc">Oceania</a></li>
                 <li class="divider"></li>
                 <li class="divider"></li>
                 <li><a href="#realmactive">Realm Stats (Active)</a></li>
@@ -652,7 +652,7 @@ $db->close();
                 <li><a href="#ra-na">North America</a></li>
                 <li><a href="#ra-jp">Japan</a></li>
                 <li><a href="#ra-eu">Europe</a></li>
-                <li><a href="#ra-eu">Oceania</a></li>
+                <li><a href="#ra-oc">Oceania</a></li>
             </ul>
 
             <!-- Other Stats Dropdown -->
@@ -898,7 +898,7 @@ $db->close();
                         <br />
                         <hr />
                         <br />
-                        <a id="rat-jp">
+                        <a id="rat-oc">
                             <div class="light region-subtitle">OCEANIAN REALMS</div>
                         </a>
                         <br />
@@ -1920,7 +1920,7 @@ $db->close();
 
 <script>
         $(function () {
-            $('#oceania_realm_distribution').highcharts({
+            $('#oceanian_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
@@ -1965,7 +1965,7 @@ $db->close();
 
     <script>
         $(function () {
-            $('#oceania_active_realm_distribution').highcharts({
+            $('#oceanian_active_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
