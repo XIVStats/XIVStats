@@ -104,6 +104,8 @@ sort($japanese_realm_array);
 $european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega",
                               "Spriggan","Twintania");
 sort($european_realm_array);
+$oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
+sort($oceanian_realm_array);
 
 // Variables
 $player_count = 0;
@@ -592,6 +594,7 @@ $db->close();
                           <li><a href="#popna">North America</a></li>
                           <li><a href="#popjp">Japan</a></li>
                           <li><a href="#popeu">Europe</a></li>
+                          <li><a href="#popoc">Oceania</a></li>
                       </ul>
                       
                       <!-- Realm Stats Dropdown -->
@@ -608,6 +611,7 @@ $db->close();
                           <li><a href="#ra-na">North America</a></li>
                           <li><a href="#ra-jp">Japan</a></li>
                           <li><a href="#ra-eu">Europe</a></li>
+                          <li><a href="#ra-oc">Europe</a></li>
                       </ul>
                       
                       <!-- Other Stats Dropdown -->
@@ -705,6 +709,23 @@ $db->close();
                               <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
                           </div>
                       </div>
+                      <!--Oceania-->
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <a id="popoc"><div class="light region-title">OCEANIA</div></a>
+                      <div class="light region-subtitle">ALL CHARACTERS</div>
+                      <div class="row">
+                          <div class="s12 m6 l6   region-stat">
+                              <div><?php echo number_format(sumInRegion($realm_count, $oceanian_realm_array)) ?></div>
+                          </div>
+                      </div>
+                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                      <div class="row">
+                          <div class="s12 m6 l6   region-stat">
+                              <div><?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?></div>
+                          </div>
+                      </div>
                   </div>
               </div>
           </div>
@@ -788,7 +809,14 @@ $db->close();
                       <!-- Begin Chart -->
                       <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                       <!-- End Chart -->
-
+                      <br/>
+                      <hr/>
+                      <br/>
+                      <a id="rat-oc"><div class="light region-subtitle">OCEANIA REALMS</div></a>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="oceanian_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
                   </div>
               </div>
           </div>
@@ -822,7 +850,14 @@ $db->close();
                       <!-- Begin Chart -->
                       <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                       <!-- End Chart -->
-
+                      <br/>
+                      <hr/>
+                      <br/>
+                          <a id="ra-oc"><div class="light region-subtitle">OCEANIA REALMS</div></a>
+                      <br/>
+                      <!-- Begin Chart -->
+                      <div id="oceanian_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                      <!-- End Chart -->
                   </div>
               </div>
           </div>
@@ -1729,6 +1764,95 @@ $(function () {
 });
 </script>
 
+<script>
+        $(function () {
+            $('#oceanian_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                <?php
+                        foreach($oceanian_realm_array as $key => $value) {
+                            echo "'$value',";
+                        }
+                            ?>
+             ],
+
+                },
+
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'All',
+                    data: [
+                <?php
+                        foreach($oceanian_realm_array as $value) {
+                            echo getValueFromArray($realm_count, $value) . ",";
+                        }
+                            ?>
+            ],
+                }]
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#oceanian_active_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                <?php
+                        foreach($oceanian_realm_array as $key => $value) {
+                            echo "'$value',";
+                        }
+                            ?>
+             ],
+
+                },
+
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Active',
+                    data: [
+                <?php
+                        foreach($oceanian_realm_array as $value) {
+                            echo getValueFromArray($active_realm_count, $value) . ",";
+                        }
+                            ?>
+            ],
+                }]
+            });
+        });
+    </script>
 
   <script>
       $(function () {
