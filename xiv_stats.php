@@ -1133,7 +1133,7 @@ $db->close();
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
                         <span class="region-stat">
-                        <?php echo $fmt_soundtrack; ?>
+                        <?php echo $fmt_arr_soundtrack; ?>
                         </span>
                     </div>
                     -->
