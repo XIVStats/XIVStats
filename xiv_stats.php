@@ -948,7 +948,17 @@ $db->close();
                         <div id="europe_active_realm_distribution"
                             style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                         <!-- End Chart -->
-
+                        <br />
+                        <hr />
+                        <br />
+                        <a id="ra-eu">
+                            <div class="light region-subtitle">OCEANIAN REALMS</div>
+                        </a>
+                        <br />
+                        <!-- Begin Chart -->
+                        <div id="oceanian_active_realm_distribution"
+                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                        <!-- End Chart -->
                     </div>
                 </div>
             </div>
