@@ -307,7 +307,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_beforemeteor = number_format($beforemeteor);
     $arr_soundtrack += in_array("Wind-up Bahamut", $minions) ? 1 : 0;
     $fmt_arr_soundtrack = number_format($arr_soundtrack);
-    $beforethefall += in_array("The Primogs", $minions) ? 1 : 0;
+    $beforethefall += in_array("Set Of Primogs", $minions) ? 1 : 0;
     $fmt_beforethefall = number_format($beforethefall);
     $hw_soundtrack += in_array("Spoony Bard", $minions) ? 1 : 0;
     $fmt_hw_soundtrack = number_format($hw_soundtrack);
@@ -344,9 +344,9 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Player Commendations
     $comm50 += in_array("Princely Hatchling", $minions) ? 1 : 0;
     $fmt_comm50 = number_format($comm50);
-    $comm500 +- in_array("Gilded Magitek Armor", $mounts) ? 1 : 0;
+    $comm500 += in_array("Gilded Magitek Armor", $mounts) ? 1 : 0;
     $fmt_comm500 = number_format($comm500);
-    $comm3000 +- in_array("Parade Chocobo", $mounts) ? 1 : 0;
+    $comm3000 += in_array("Parade Chocobo", $mounts) ? 1 : 0;
     $fmt_comm3000 = number_format($comm3000);
 
     // Hildibrand
