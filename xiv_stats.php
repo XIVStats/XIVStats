@@ -140,11 +140,19 @@ $sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
 
-// Physical Items
+// Artbook
 $arrartbook = 0;
+$hw_artbook = 0;
+$hw_artbooktwo = 0;
 $sbartbooktwo = 0;
 $sbartbook = 0;
+$shb_artbook = 0;
+$shb_artbooktwo = 0;
+
+// Plushes
 $moogleplush = 0;
+$topazcarbuncle_plush = 0;
+$emeraldcarbuncle_plush = 0;
 
 // Soundtracks
 $beforemeteor = 0;
@@ -325,14 +333,26 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Art Books
     $arrartbook += in_array("Model Enterprise", $minions) ? 1 : 0;
     $fmt_arrartbook = number_format($arrartbook);
+    $hw_artbook += in_array("Wind-up Relm", $minions) ? 1 : 0;
+    $fmt_hw_artbook = number_format($hw_artbook);
+    $hw_artbooktwo += in_array("Wind-up Hraesvelgr", $minions) ? 1 : 0;
+    $fmt_hw_artbooktwo = number_format($hw_artbooktwo);
     $sbartbook += in_array("Dress-up Tataru", $minions) ? 1 : 0;
     $fmt_sbartbook = number_format($sbartbook);
     $sbartbooktwo += in_array("Wind-up Yotsuyu", $minions) ? 1 : 0;
     $fmt_sbartbooktwo = number_format($sbartbooktwo);
+    $shb_artbook += in_array("Wind-up Runar", $minions) ? 1 : 0;
+    $fmt_shb_artbook = number_format($shb_artbook);
+    $shb_artbooktwo += in_array("Wind-up Dulia-Chai", $minions) ? 1 : 0;
+    $fmt_shb_artbooktwo = number_format($shb_artbooktwo);
 
     // Plushes & Other Items
     $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
     $fmt_moogleplush = number_format($moogleplush);
+    $topazcarbuncle_plush += in_array("Heliodor Carbuncle", $minions) ? 1 : 0;
+    $fmt_topazcarbuncle_plush = number_format($topazcarbuncle_plush);
+    $emeraldcarbuncle_plush += in_array("Peridot Carbuncle", $minions) ? 1 : 0;
+    $fmt_emeraldcarbuncle_plush = number_format($emeraldcarbuncle_plush);
 
 
     // Eternal Bond
@@ -1134,7 +1154,6 @@ $db->close();
                     <!-- <p>How many people redeemed the minion?</p> -->
                     <hr>
                 </div>
-                <div class="row">
                     <!-- TEMPLATE FOR EACH ENTRY
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
@@ -1143,6 +1162,8 @@ $db->close();
                         </span>
                     </div>
                     -->
+                    <div class="col s12"><span class="card-title light">Soundtracks</span></div>
+                    <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
                         <span class="region-stat">
@@ -1161,43 +1182,119 @@ $db->close();
                             <?php echo $fmt_beforethefall; ?>
                         </span>
                     </div>
-                </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c690d60dd73/" class="eorzeadb_link">HEAVENSWARD SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_hw_soundtrack; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/049cc50f4d7/" class="eorzeadb_link">FAR EDGE OF FATE SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_faredgeoffate; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/45756aecdd5/" class="eorzeadb_link">STORMBLOOD SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_sb_soundtrack; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1e1308a12e2/" class="eorzeadb_link">SHADOWBRINGERS SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_shb_soundtrack; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eadaf97de6e/" class="eorzeadb_link">DEATH UNTO DAWN SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_deathuntodawn; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ew_soundtrack; ?>
+                            </span>
+                        </div>
+                    </div>
                 <div class="row">
+                    <div class="col s12"><span class="card-title light">Art Books</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>                        
                         <span class="region-stat">
                             <?php echo $fmt_arrartbook; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">STORMBLOOD ARTBOOK - EASTERN MEMORIES</a></p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/7f0506ab250/" class="eorzeadb_link">HW STONE &amp; STEEL ARTBOOK</a></p>                        
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_artbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cdc080f90af/" class="eorzeadb_link">HW SCARS OF WAR ARTBOOK</a></p>                        
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_artbooktwo; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">SB EASTERN MEMORIES ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbook; ?>
                         </span>
                     </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">STORMBLOOD ARTBOOK - WESTERN MEMORIES</a></p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">SB WESTERN MEMORIES ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbooktwo; ?>
                         </span>
                     </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d3dd79b498c/" class="eorzeadb_link">SHB HISTORIES UNWRITTEN ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_artbook; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/" class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_artbooktwo; ?>
+                        </span>
+                    </div>
                 </div>
 
+                
                 <div class="row">
-                    <div class="col s12 m6 l6 light region-subtitle">
+                    <div class="col s12"><span class="card-title light">Plushes</span></div>
+                    <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">MOOGLE PLUSH</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_moogleplush; ?>
                         </span>
                     </div>
-                    <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/982e7c79afd/" class="eorzeadb_link">TOPAZ CARBUNCLE PLUSH</a></p>
                         <span class="region-stat">
-                            <?php echo $fmt_ew_soundtrack; ?>
+                            <?php echo $fmt_topazcarbuncle_plush; ?>
                         </span>
                     </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/8fddd620567/" class="eorzeadb_link">EMERALD CARBUNCLE PLUSH</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_emeraldcarbuncle_plush; ?>
+                        </span>
                     </div>
+                </div>
             </div>
         </div>
         <div class="row card">
