@@ -666,21 +666,19 @@ $db->close();
 <body class="grey darken-4">
     <div class="container box-element">
         <div class="row" id="pageTitleBox">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card-header">
-                    <div class="card-content" style="padding-top: 100px">
-                        <p style="margin-left: 24px;">Statistics for
-                            <?php echo $date; ?>
-                        </p>
-                        <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that
-                                have claimed the following item: <br />
-                                The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch
-                                6.0 story</b></p>
-                        <!-- Un/comment next 3 lines to enable site notice (For bugs/outages, etc)-->
-                        <!-- <div class="col s12 m6" style="width:100%;">
+            <div class="card-header">
+                <div class="card-content" style="padding-top: 100px">
+                    <p style="margin-left: 24px;">Statistics for
+                        <?php echo $date; ?>
+                    </p>
+                    <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that
+                            have claimed the following item: <br />
+                            The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch
+                            6.0 story</b></p>
+                    <!-- Un/comment next 3 lines to enable site notice (For bugs/outages, etc)-->
+                    <!-- <div class="col s12 m6" style="width:100%;">
                     <div class="card light region-title"><h4 style="color: red;">ALERT: We are currently aware of a bug which is falsely reporting characters as deleted and thus missing from the census. We are working to fix this bug.</h4></div>
                     </div> -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -732,333 +730,304 @@ $db->close();
             </ul>
         </div>
         <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content white-text">
+            <div class="card">
+                <div class="card-content white-text">
                     <span class="card-title light">IMPORTANT ANNOUNCEMENT</span>
                     <div style="text-align: center;">
-                        <a class="btn-large" href="https://github.com/XIVStats/XIVStats/issues/57">Statement regarding January 2022 Census and the future of the Census</a>
+                        <a class="btn-large" href="https://github.com/XIVStats/XIVStats/issues/57">Statement regarding
+                            January 2022 Census and the future of the Census</a>
                     </div>
-                        <hr />
-                        <br />
-                        <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <!--World-->
-                        <div class="light region-title">WORLD</div>
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format($player_count) ?>
-                                </div>
+                    <hr />
+                    <br />
+                    <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <!--World-->
+                    <div class="light region-title">WORLD</div>
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <div class="row">
+                        <div class="s12 m6 l6   region-stat">
+                            <div>
+                                <?php echo number_format($player_count) ?>
                             </div>
                         </div>
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format($active_player_count) ?>
-                                </div>
+                    </div>
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <div class="row">
+                        <div class="s12 m6 l6   region-stat">
+                            <div>
+                                <?php echo number_format($active_player_count) ?>
                             </div>
                         </div>
-                        <!-- America -->
-                        <br />
-                        <hr />
-                        <br />
+                    </div>
+                    <hr>
+                    <!-- America -->
+                    <div class="row">
                         <a id="popna">
                             <div class="light region-title">AMERICA</div>
                         </a>
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?>
                             </div>
                         </div>
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?>
                             </div>
                         </div>
-                        <!--Japan-->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="popjp">
+                    </div>
+                    <hr />
+                    <!--End America-->
+                    <!--Japan-->
+                    <div class="row">
+                        <a id="popna">
                             <div class="light region-title">JAPAN</div>
                         </a>
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?>
                             </div>
                         </div>
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?>
                             </div>
                         </div>
-                        <!--Europe-->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="popeu">
+                    </div>
+                    <hr />
+                    <!--End Japan-->
+                    <!--Europe-->
+                    <div class="row">
+                        <a id="popna">
                             <div class="light region-title">EUROPE</div>
                         </a>
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?>
                             </div>
                         </div>
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?>
                             </div>
                         </div>
-                        <!--Oceania-->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="popjp">
+                    </div>
+                    <hr />
+                    <!--End Europe-->
+                    <!--Oceania-->
+                    <div class="row">
+                        <a id="popna">
                             <div class="light region-title">OCEANIA</div>
                         </a>
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($realm_count, $oceanian_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $oceanian_realm_array)) ?>
                             </div>
                         </div>
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <div class="row">
-                            <div class="s12 m6 l6   region-stat">
-                                <div>
-                                    <?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?>
-                                </div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?>
                             </div>
                         </div>
                     </div>
+                    <!-- End Oceania-->
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="racegender"><span class="card-title light">RACE AND GENDER DISTRIBUTION</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+            <div class="card">
+                <div class="card-content">
+                    <a id="racegender"><span class="card-title light">RACE AND GENDER DISTRIBUTION</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="class"><span class="card-title light">CLASS DISTRIBUTION</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="realmall"><span class="card-title light">REALM DISTRIBUTION (ALL)</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-na">
+                        <div class="light region-subtitle">AMERICAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-jp">
+                        <div class="light region-subtitle">JAPANESE REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-eu">
+                        <div class="light region-subtitle">EUROPEAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-oc">
+                        <div class="light region-subtitle">OCEANIAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="oceanian_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-na">
+                        <div class="light region-subtitle">AMERICAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-jp">
+                        <div class="light region-subtitle">JAPANESE REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-eu">
+                        <div class="light region-subtitle">EUROPEAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-eu">
+                        <div class="light region-subtitle">OCEANIAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="oceanian_active_realm_distribution"
+                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p>ALL CHARACTERS</p>
+                            <!-- Begin Chart -->
+                            <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                            <!-- End Chart -->
                         </div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="active_race_gender_distribution"
-                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p>ACTIVE CHARACTERS</p>
+                            <!-- Begin Chart -->
+                            <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto">
+                            </div>
+                            <!-- End Chart -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="class"><span class="card-title light">CLASS DISTRIBUTION</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
-                        </div>
-                        <!-- End Chart -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="realmall"><span class="card-title light">REALM DISTRIBUTION (ALL)</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="rat-na">
-                            <div class="light region-subtitle">AMERICAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
-                        </div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="rat-jp">
-                            <div class="light region-subtitle">JAPANESE REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
-                        </div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="rat-eu">
-                            <div class="light region-subtitle">EUROPEAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
-                        </div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="rat-oc">
-                            <div class="light region-subtitle">OCEANIAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="oceanian_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
-                        </div>
-                        <!-- End Chart -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="ra-na">
-                            <div class="light region-subtitle">AMERICAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="america_active_realm_distribution"
-                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="ra-jp">
-                            <div class="light region-subtitle">JAPANESE REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="japan_active_realm_distribution"
-                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="ra-eu">
-                            <div class="light region-subtitle">EUROPEAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="europe_active_realm_distribution"
-                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <a id="ra-eu">
-                            <div class="light region-subtitle">OCEANIAN REALMS</div>
-                        </a>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="oceanian_active_realm_distribution"
-                            style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="grandcompany"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span></a>
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-                    <div class="card-content">
-                        <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
-
-                        <br />
-                        <hr />
-                        <br />
-                        <div class="light region-subtitle">ALL CHARACTERS</div>
-                        <br />
-                        <!-- Begin Chart -->
-                        <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                        <!-- End Chart -->
-
-                    </div>
+            <div class="card">
+                <div class="card-content">
+                    <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
                 </div>
             </div>
         </div>
@@ -1066,41 +1035,46 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
-                <hr>
-                <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/" class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_prearr; ?>
-                        </span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/"
+                                    class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_prearr; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/924cd368577"
+                                    class="eorzeadb_link">PRE-ORDERED HEAVENSWARD</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_prehw; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/fc6c2f880af/"
+                                    class="eorzeadb_link">PRE-ORDERED STORMBLOOD</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_presb; ?>
+                            </span>
+                        </div>
                     </div>
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/924cd368577" class="eorzeadb_link">PRE-ORDERED HEAVENSWARD</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_prehw; ?>
-                        </span>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/"
+                                    class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_preshb; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/"
+                                    class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_preew; ?>
+                            </span>
+                        </div>
                     </div>
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/fc6c2f880af/" class="eorzeadb_link">PRE-ORDERED STORMBLOOD</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_presb; ?>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/" class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_preshb; ?>
-                        </span>
-                    </div>
-                    <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/" class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_preew; ?>
-                        </span>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -1109,41 +1083,46 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">COLLECTORS EDITION</span>
-                <hr>
-                <div class="row">
-                <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/" class="eorzeadb_link">A REALM REBORN COLLECTORS EDITION</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_arr_collectors; ?>
-                        </span>
-                </div>
-                <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/df6e606a7e5/" class="eorzeadb_link">HEAVENSWARD COLLECTORS EDITION</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_hw_collectors; ?>
-                        </span>
-                </div>
-                <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/bd66e9aee09/" class="eorzeadb_link">STORMBLOOD COLLECTORS EDITION</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_sb_collectors; ?>
-                        </span>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/" class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_shb_collectors; ?>
-                        </span>
-                </div>
-                <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/" class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
-                        <span class="region-stat">
-                        <?php echo $fmt_ew_collectors; ?>
-                        </span>
-                </div>
-                </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/"
+                                    class="eorzeadb_link">A REALM REBORN COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_arr_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/df6e606a7e5/"
+                                    class="eorzeadb_link">HEAVENSWARD COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_hw_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/bd66e9aee09/"
+                                    class="eorzeadb_link">STORMBLOOD COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_sb_collectors; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/"
+                                    class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_shb_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/"
+                                    class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ew_collectors; ?>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1154,7 +1133,7 @@ $db->close();
                     <!-- <p>How many people redeemed the minion?</p> -->
                     <hr>
                 </div>
-                    <!-- TEMPLATE FOR EACH ENTRY
+                <!-- TEMPLATE FOR EACH ENTRY
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
                         <span class="region-stat">
@@ -1162,83 +1141,94 @@ $db->close();
                         </span>
                     </div>
                     -->
-                    <div class="col s12"><span class="card-title light">Soundtracks</span></div>
-                    <div class="row">
+                <div class="col s12"><span class="card-title light">Soundtracks</span></div>
+                <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/"
+                                class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_arr_soundtrack; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/" class="eorzeadb_link">BEFORE METEOR SOUNDTRACK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/"
+                                class="eorzeadb_link">BEFORE METEOR SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_beforemeteor; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/" class="eorzeadb_link">BEFORE THE FALL SOUNDTRACK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/"
+                                class="eorzeadb_link">BEFORE THE FALL SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_beforethefall; ?>
                         </span>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c690d60dd73/"
+                                class="eorzeadb_link">HEAVENSWARD SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_soundtrack; ?>
+                        </span>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c690d60dd73/" class="eorzeadb_link">HEAVENSWARD SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_hw_soundtrack; ?>
-                            </span>
-                        </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/049cc50f4d7/" class="eorzeadb_link">FAR EDGE OF FATE SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_faredgeoffate; ?>
-                            </span>
-                        </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/45756aecdd5/" class="eorzeadb_link">STORMBLOOD SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_sb_soundtrack; ?>
-                            </span>
-                        </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/049cc50f4d7/"
+                                class="eorzeadb_link">FAR EDGE OF FATE SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_faredgeoffate; ?>
+                        </span>
                     </div>
-                    <div class="row">
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1e1308a12e2/" class="eorzeadb_link">SHADOWBRINGERS SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_shb_soundtrack; ?>
-                            </span>
-                        </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eadaf97de6e/" class="eorzeadb_link">DEATH UNTO DAWN SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_deathuntodawn; ?>
-                            </span>
-                        </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
-                            <span class="region-stat">
-                                <?php echo $fmt_ew_soundtrack; ?>
-                            </span>
-                        </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/45756aecdd5/"
+                                class="eorzeadb_link">STORMBLOOD SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_sb_soundtrack; ?>
+                        </span>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1e1308a12e2/"
+                                class="eorzeadb_link">SHADOWBRINGERS SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_soundtrack; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eadaf97de6e/"
+                                class="eorzeadb_link">DEATH UNTO DAWN SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_deathuntodawn; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_soundtrack; ?>
+                        </span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col s12"><span class="card-title light">Art Books</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/" class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>                        
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/"
+                                class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_arrartbook; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/7f0506ab250/" class="eorzeadb_link">HW STONE &amp; STEEL ARTBOOK</a></p>                        
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/7f0506ab250/"
+                                class="eorzeadb_link">HW STONE &amp; STEEL ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_hw_artbook; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cdc080f90af/" class="eorzeadb_link">HW SCARS OF WAR ARTBOOK</a></p>                        
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cdc080f90af/"
+                                class="eorzeadb_link">HW SCARS OF WAR ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_hw_artbooktwo; ?>
                         </span>
@@ -1246,19 +1236,22 @@ $db->close();
                 </div>
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/" class="eorzeadb_link">SB EASTERN MEMORIES ARTBOOK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/"
+                                class="eorzeadb_link">SB EASTERN MEMORIES ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbook; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/" class="eorzeadb_link">SB WESTERN MEMORIES ARTBOOK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/"
+                                class="eorzeadb_link">SB WESTERN MEMORIES ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_sbartbooktwo; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d3dd79b498c/" class="eorzeadb_link">SHB HISTORIES UNWRITTEN ARTBOOK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d3dd79b498c/"
+                                class="eorzeadb_link">SHB HISTORIES UNWRITTEN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_shb_artbook; ?>
                         </span>
@@ -1266,30 +1259,34 @@ $db->close();
                 </div>
                 <div class="row">
                     <div class="col s12 m12 l12 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/" class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/"
+                                class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_shb_artbooktwo; ?>
                         </span>
                     </div>
                 </div>
 
-                
+
                 <div class="row">
                     <div class="col s12"><span class="card-title light">Plushes</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/" class="eorzeadb_link">MOOGLE PLUSH</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/"
+                                class="eorzeadb_link">MOOGLE PLUSH</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_moogleplush; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/982e7c79afd/" class="eorzeadb_link">TOPAZ CARBUNCLE PLUSH</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/982e7c79afd/"
+                                class="eorzeadb_link">TOPAZ CARBUNCLE PLUSH</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_topazcarbuncle_plush; ?>
                         </span>
                     </div>
                     <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/8fddd620567/" class="eorzeadb_link">EMERALD CARBUNCLE PLUSH</a></p>
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/8fddd620567/"
+                                class="eorzeadb_link">EMERALD CARBUNCLE PLUSH</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_emeraldcarbuncle_plush; ?>
                         </span>
@@ -1300,74 +1297,82 @@ $db->close();
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">COMMENDATIONS</span>
-                <hr>
-                <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/" class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
+                    <hr>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/"
+                                class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_comm50; ?>
                         </span>
-                </div>
-                <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e25cb89825b/" class="eorzeadb_link">EARNED 500 COMMENDATIONS</a></p>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e25cb89825b/"
+                                class="eorzeadb_link">EARNED 500 COMMENDATIONS</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_comm500; ?>
                         </span>
-                </div>    
-                <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/556d57aa8ca/" class="eorzeadb_link">EARNED 3000 COMMENDATIONS</a></p>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/556d57aa8ca/"
+                                class="eorzeadb_link">EARNED 3000 COMMENDATIONS</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_comm3000; ?>
                         </span>
-                </div>                    
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">OTHER</span>
-                <hr>
-                <div class="row">
-                    <div class="col s12 m6 l6 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/" class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>                        
-                        <span class="region-stat">
-                            <?php echo $fmt_saw_eternal_bond; ?>
-                        </span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/"
+                                    class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_saw_eternal_bond; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-medsubtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0e108974cc8/"
+                                    class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_did_eternal_bond; ?>
+                            </span>
+                        </div>
                     </div>
-                    <div class="col s12 m6 l6 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0e108974cc8/" class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
-                        <span class="region-stat">
-                            <?php echo $fmt_did_eternal_bond; ?>
-                        </span>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                                    class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_arr_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
+                                    class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-medsubtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
+                                    class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_sightseeing; ?>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/" class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>                        
-                        <span class="region-stat">
-                            <?php echo $fmt_arr_hildibrand; ?>
-                        </span>
-                    </div>
-                    <div class="col s12 m4 l4 light region-subtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/" class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>                        
-                        <span class="region-stat">
-                            <?php echo $fmt_hw_hildibrand; ?>
-                        </span>
-                    </div>
-                    <div class="col s12 m4 l4 light region-medsubtitle">
-                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/" class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
-                        <span class="region-stat">
-                            <?php echo $fmt_sightseeing; ?>
-                        </span>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
         <div class="row card">
             <div class="card-content">
                 <div class="col s12"><span class="card-title light">DELETED CHARACTERS</span>
-                <hr>
-                <div class="col s12 m12 l12 light region-medsubtitle">
+                    <hr>
+                    <div class="col s12 m12 l12 light region-medsubtitle">
                         <span class="region-stat">
                             <?php echo $fmt_deleted; ?>
                         </span>
@@ -1377,73 +1382,59 @@ $db->close();
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-                <div class="card">
-
-                    <div class="card-content">
-                        <span class="card-title light"></span>
-                        <div class="light region-title"><a href="<?php echo "
+        <div class="row card">
+            <div class="card-content">
+                <div class="light region-title"><a href="<?php echo "
                                 https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" .
                                 date("Y-m") . ".zip" ;?>">Download database (MySQL)</a></div>
-                    </div>
-
-                    <div class="card-content">
-                        <span class="card-title light"></span>
-                        <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
-                    </div>
-                </div>
+            </div>
+            <div class="card-content">
+                <span class="card-title light"></span>
+                <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s12 m6" style="width:100%;">
-
-                <div class="card">
-                    <div class="card-content">
-                        <a id="population"><span class="card-title light">CONTRIBUTORS</span></a>
-
-
-                        <div class="card-content">
-                            <span class="card-title light"></span>
-                            <ul>
-                                <li>
-                                    <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/"
-                                            target="_blank">Jonathan Price</a> | <a
-                                            href="https://na.finalfantasyxiv.com/lodestone/character/8308898/"
-                                            target="_blank">John Prycewood @ Cerberus</a></div>
-                                </li>
-                                <li>
-                                    <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
-                                            Reid</a> | <a
-                                            href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/"
-                                            target="_blank">P'tajha Rihll @ Cerberus</a></div>
-                                </li>
-                                <li>
-                                    <div class="light ">> <a href="https://github.com/matthewhillier"
-                                            target="_blank">Matt Hillier</a> | <a
-                                            href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/"
-                                            target="_blank">Russell Tyler @ Omega</a></div>
-                                </li>
-                                <li>
-                                    <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a
-                                            href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila
-                                            Fors'ee @ Cerberus</a></div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <a id="population"><span class="card-title light">LEGAL</span></a>
-                        <p>FFXIV Census is not affiliated with Square Enix.<br />
-                            FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
-                            FINAL FANTASY XIV &copy; 2010-2022 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
-                        </p>
-                    </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">CONTRIBUTIONS</span>
+                    <hr>
                 </div>
-
+                <div class="row">
+                    <ul>
+                        <li>
+                            <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/"
+                                    target="_blank">Jonathan Price</a> | <a
+                                    href="https://na.finalfantasyxiv.com/lodestone/character/8308898/"
+                                    target="_blank">John Prycewood @ Cerberus</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
+                                    Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/"
+                                    target="_blank">P'tajha Rihll @ Cerberus</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt
+                                    Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/"
+                                    target="_blank">Russell Tyler @ Omega</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a
+                                    href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila
+                                    Fors'ee @ Cerberus</a></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col s12"><span class="card-title light">LEGAL</span>
+                    <hr>
+                </div>
+                <p>FFXIV Census is not affiliated with Square Enix.<br />
+                    FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
+                    FINAL FANTASY XIV &copy; 2010-2022 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
+                </p>
             </div>
         </div>
-
+    </div>
+    </div>
         <!-- End Container -->
     </div>
     <footer class="page-footer">
