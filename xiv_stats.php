@@ -105,8 +105,6 @@ sort($japanese_realm_array);
 $european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega",
                               "Spriggan","Twintania");
 sort($european_realm_array);
-$oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
-sort($oceanian_realm_array);
 
 $oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
 sort($oceanian_realm_array);
@@ -300,10 +298,12 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_preew = number_format($preew);
 
     // Collectors Edition
-    $ps4_collectors += isset($row["ps4collectors"]) && $row["ps4collectors"] == 1 ? 1 : 0;
-    $fmt_ps4_collectors = number_format($ps4_collectors);
-    $pc_collectors += isset($row["arrcollector"]) && $row["arrcollector"] == 1 ? 1 : 0;
-    $fmt_pc_collectors = number_format($pc_collectors);
+    $arr_collectors += in_array("Fat Chocobo", $mounts) || in_array("Coeurl", $mounts) || in_array("Wind-Up Moogle", $minions) || in_array("Baby Behemoth", $minions) ? 1 : 0;
+    $fmt_arr_collectors = number_format($arr_collectors);
+    $hw_collectors += in_array("Wind-up Kain", $minions) || in_array("Griffin", $mounts)? 1 : 0;
+    $fmt_hw_collectors = number_format($hw_collectors);
+    $sb_collectors += in_array("Syldra", $mounts) || in_array("Wind-up Bartz", $minions)? 1 : 0;
+    $fmt_sb_collectors = number_format($sb_collectors);
     $shb_collectors += in_array("Grani", $mounts) ? 1 : 0;
     $fmt_shb_collectors = number_format($shb_collectors);
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
@@ -391,19 +391,19 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
 
     // Heavensward
-    $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
-    $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
-    $beast_tribes["Moogle"] += isset($row["moogle"]) && $row["moogle"] == 1 ? 1 : 0;
+    $beast_tribes["Vanu Vanu"] += in_array("Sanuwa", $mounts) || in_array("Wind-up Zundu Warrior", $minions) || in_array("Wind-up Gundu Warrior", $minions) ? 1 : 0;
+    $beast_tribes["Vath"] += in_array("Wind-up Gnath", $minions) || in_array("Wind-up Vath", $minions) || in_array("Kongamato", $mounts) ? 1 : 0;
+    $beast_tribes["Moogle"] += in_array("Cloud Mallow", $mounts) || in_array("Wind-up Dragonet", $minions) || in_array("Wind-up Ohl Deeh", $minions) ? 1 : 0;
+    
     // Stormblood
-
-    // Bast tribes from minions
-    $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
-	$beast_tribes["Kojin"] += in_array("Wind-up Kojin", $minions) ? 1 : 0;
-	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) ? 1 : 0;        
-	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) ? 1 : 0;
-    $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) ? 1 : 0;
-    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) ? 1 : 0;
-    $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) ? 1 : 0;
+	$beast_tribes["Kojin"] += in_array("Striped Ray", $mounts) || in_array("Wind-up Kojin", $minions) || in_array("Zephyrous Zabuton", $minions) || in_array("Wind-up Redback", $minions) ? 1 : 0;
+	$beast_tribes["Ananta"] += in_array("Wind-up Ananta", $minions) || in_array("Wind-up Qalyana", $minions) || in_array("True Griffin", $mounts) || in_array("Marid", $mounts) ? 1 : 0;        
+	$beast_tribes["Namazu"] += in_array("Attendee #777", $minions) || in_array("Mikoshi", $mounts) ? 1 : 0;
+    
+    // Shadowbringers
+    $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) || in_array("Portly Porxie", $mounts) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -485,35 +485,37 @@ $db->close();
 ?>
 <html>
 
-  <head>
+<head>
     <title>XIVCensus - Character statistics for FFXIV</title>
     <!-- FFXIV Official Tooltips-->
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
-    <!-- JQuery Script--> 
+    <!-- JQuery Script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <!-- Highcharts--> 
+    <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!-- Final Fantasy XIV Tooltip-->
     <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
-      <!-- Font Awesome-->
+    <!-- Font Awesome-->
     <script src="https://use.fontawesome.com/42d19261ec.js"></script>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-      <!-- Google Analytics -->
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-93918116-1', 'auto');
         ga('send', 'pageview');
-      </script>
-      <style>
-          /*
+    </script>
+    <style>
+        /*
             Core colour palette (https://coolors.co/303440-c3ac5c-44aadf-702670-9e0000-039be5):
                 - #212121 - Grey Darken-4 - Background
                 - #303440 - Gunmetel - Card background
@@ -543,117 +545,136 @@ $db->close();
         .logo {
             display: block;
             position: relative;
-          }
+        }
 
-          .card-header {
+        .card-header {
             background-image: url(img/logo_ew.png);
             background-repeat: no-repeat;
             margin-bottom: 10px;
             height: 220px;
-          }
+        }
 
-          .card {
+        .card {
             background-color: #303440;
-          }
+        }
 
-          .card-title {
+        .card-title {
             color: #c3ac5c;
-          }
+        }
 
-          .card-content {
+        .card-content {
             color: white;
-          }
+        }
 
-          hr {
-            color: #c3ac5c; 
+        hr {
+            color: #c3ac5c;
             background-color: #c3ac5c;
             height: 3px;
             border: 0;
-          }
-          
-          .box-element {
-              width: 100%;
-          }
+        }
 
-          #pageTitleBox {
-              margin-top: 30px;
-              margin-bottom: 0;
-          }
+        .box-element {
+            width: 100%;
+        }
 
-          .region-title {
-              text-align: center;
-              color: #c3ac5c;
-              font-size: 28pt;
-          }
+        #pageTitleBox {
+            margin-top: 30px;
+            margin-bottom: 0;
+        }
 
-          .region-subtitle {
-              text-align: center;
-              color: white;
-              font-size: large;
-          }
+        .region-title {
+            text-align: center;
+            color: #c3ac5c;
+            font-size: 28pt;
+        }
 
-          .region-stat {
-              text-align: center;
-              font-size: 48pt;
-          }
+        .region-subtitle {
+            text-align: center;
+            color: white;
+            font-size: large;
+        }
 
-          .region-stat-diff {
-              font-size: medium;
-          }
+        .region-medsubtitle {
+            text-align: center;
+            color: white;
+            font-size: medium;
+        }
 
-          .region-stat-label {
-              text-align: center;
-              font-size: large;
-          }
+        .region-stat {
+            text-align: center;
+            font-size: 48pt;
+        }
 
-          .dropdown-button, .waves-light, .btn, .btn:visited{
-            background: linear-gradient(to right, #3d4d99 0%,#3689b3 50%,#cc7a29 100%);
-          }
+        .region-stat-diff {
+            font-size: medium;
+        }
 
-          .dropdown-button:hover, .waves-light:hover, .btn:hover {
-            background: linear-gradient(to right, #4c5fbf 0%,#44aadf 50%,#ff9933 100%);
-          }
+        .region-stat-label {
+            text-align: center;
+            font-size: large;
+        }
 
-          #realm-dropdown a, #pop-dropdown a, #misc-stats-dropdown a{
-              color: black;
-          }
+        .dropdown-button,
+        .waves-light,
+        .btn,
+        .btn-large,
+        .btn:visited {
+            background: linear-gradient(to right, #3d4d99 0%, #3689b3 50%, #cc7a29 100%);
+        }
 
-          #realm-dropdown a:hover, #pop-dropdown a:hover, #misc-stats-dropdown a:hover {
-              background-color: #44aadf;
-              color: #ffffff;
-          }
-          
-          .navbar {
-              left: 0;
-              right: 0;
-              margin-left: auto;
-              margin-right: auto;
-          }
-          
-          .main-nav-scrolled {
-              z-index: 1;
-              position: fixed;
-              width: 100%;
-              top: 0;
-          }
+        .dropdown-button:hover,
+        .waves-light:hover,
+        .btn:hover {
+            background: linear-gradient(to right, #4c5fbf 0%, #44aadf 50%, #ff9933 100%);
+        }
 
-          footer.page-footer {
-              margin-top: 0px;
-              padding-top: 0px;
-              background-color: #c3ac5c;
-          }
-      </style>
-  </head>
+        #realm-dropdown a,
+        #pop-dropdown a,
+        #misc-stats-dropdown a {
+            color: black;
+        }
 
-  <body class="grey darken-4">
-  <div class="container box-element">
-      <div class="row" id="pageTitleBox">
-        <div class="col s12 m6" style="width:100%;">
+        #realm-dropdown a:hover,
+        #pop-dropdown a:hover,
+        #misc-stats-dropdown a:hover {
+            background-color: #44aadf;
+            color: #ffffff;
+        }
+
+        .navbar {
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-nav-scrolled {
+            z-index: 1;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        footer.page-footer {
+            margin-top: 0px;
+            padding-top: 0px;
+            background-color: #c3ac5c;
+        }
+    </style>
+</head>
+
+<body class="grey darken-4">
+    <div class="container box-element">
+        <div class="row" id="pageTitleBox">
             <div class="card-header">
                 <div class="card-content" style="padding-top: 100px">
-                    <p style="margin-left: 24px;">Statistics for <?php echo $date; ?></p>
-                    <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that have claimed the following item: <br />
-                    The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch 6.0 story</b></p>
+                    <p style="margin-left: 24px;">Statistics for
+                        <?php echo $date; ?>
+                    </p>
+                    <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that
+                            have claimed the following item: <br />
+                            The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch
+                            6.0 story</b></p>
                     <!-- Un/comment next 3 lines to enable site notice (For bugs/outages, etc)-->
                     <!-- <div class="col s12 m6" style="width:100%;">
                     <div class="card light region-title"><h4 style="color: red;">ALERT: We are currently aware of a bug which is falsely reporting characters as deleted and thus missing from the census. We are working to fix this bug.</h4></div>
@@ -661,1191 +682,1361 @@ $db->close();
                 </div>
             </div>
         </div>
-      </div>
-            <div class="col s12 m6 navbar center">
-                      <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
-                      <a class='dropdown-button btn' href='#' data-activates='pop-dropdown'>Population</a>
-                      <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
-                      <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
-                      <a class='dropdown-button btn' href='#' data-activates='realm-dropdown'>Realm Stats</a>
-                      <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-                      <a class='dropdown-button btn' href='#' data-activates='misc-stats-dropdown'>Other Stats</a>
-                      <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+        <div class="col s12 m6 navbar center">
+            <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
+            <a class='dropdown-trigger btn' href='#population' data-target='pop-dropdown'>Population</a>
+            <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
+            <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
+            <a class='dropdown-trigger btn' href='#realmall' data-target='realm-dropdown'>Realm Stats</a>
+            <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
+            <a class='dropdown-trigger btn' href='#beast' data-target='misc-stats-dropdown'>Other Stats</a>
+            <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
-                      <!-- Population Stats Dropdown -->
-                      <ul id='pop-dropdown' class='dropdown-content'>
-                          <li><a href="#population">World</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#popna">North America</a></li>
-                          <li><a href="#popjp">Japan</a></li>
-                          <li><a href="#popeu">Europe</a></li>
-                          <li><a href="#popoc">Oceania</a></li>
-                      </ul>
-                      
-                      <!-- Realm Stats Dropdown -->
-                      <ul id='realm-dropdown' class='dropdown-content'>
-                          <li><a href="#realmall">Realm Stats (All-Time)</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#rat-na">North America</a></li>
-                          <li><a href="#rat-jp">Japan</a></li>
-                          <li><a href="#rat-eu">Europe</a></li>
-                          <li class="divider"></li>
-                          <li class="divider"></li>
-                          <li><a href="#realmactive">Realm Stats (Active)</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#ra-na">North America</a></li>
-                          <li><a href="#ra-jp">Japan</a></li>
-                          <li><a href="#ra-eu">Europe</a></li>
-                          <li><a href="#ra-oc">Europe</a></li>
-                      </ul>
-                      
-                      <!-- Other Stats Dropdown -->
-                      <ul id='misc-stats-dropdown' class='dropdown-content'>
-                          <li><a href="#beast">Beast Tribes</a></li>
-                          <li><a href="#preorders">Pre-Orders</a></li>
-                          <li><a href="#collectors">Collectors Edition</a></li>
-                          <li><a href="#physical">Physical Items</a></li>
-                          <li><a href="#misc-stats">Misc Stats</a></li>
-                        </ul>            
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content white-text">
-                    <span class="card-title light">A NOTE REGARDING THE NUMBERS.</span>
-                    <b>January 10th 2022:</b> While we were gathering the data for December 2021, we noticed an absurdly high number of characters that were 'Deleted'.<br />
+            <!-- Population Stats Dropdown -->
+            <ul id='pop-dropdown' class='dropdown-content'>
+                <li><a href="#population">World</a></li>
+                <li class="divider"></li>
+                <li><a href="#popna">North America</a></li>
+                <li><a href="#popjp">Japan</a></li>
+                <li><a href="#popeu">Europe</a></li>
+                <li><a href="#popoc">Oceania</a></li>
+            </ul>
+
+            <!-- Realm Stats Dropdown -->
+            <ul id='realm-dropdown' class='dropdown-content'>
+                <li><a href="#realmall">Realm Stats (All-Time)</a></li>
+                <li class="divider"></li>
+                <li><a href="#rat-na">North America</a></li>
+                <li><a href="#rat-jp">Japan</a></li>
+                <li><a href="#rat-eu">Europe</a></li>
+                <li><a href="#rat-oc">Oceania</a></li>
+                <li class="divider"></li>
+                <li class="divider"></li>
+                <li><a href="#realmactive">Realm Stats (Active)</a></li>
+                <li class="divider"></li>
+                <li><a href="#ra-na">North America</a></li>
+                <li><a href="#ra-jp">Japan</a></li>
+                <li><a href="#ra-eu">Europe</a></li>
+                <li><a href="#ra-oc">Oceania</a></li>
+            </ul>
+
+            <!-- Other Stats Dropdown -->
+            <ul id='misc-stats-dropdown' class='dropdown-content'>
+                <li><a href="#beast">Beast Tribes</a></li>
+                <li><a href="#preorders">Pre-Orders</a></li>
+                <li><a href="#collectors">Collectors Edition</a></li>
+                <li><a href="#physical">Physical Items</a></li>
+                <li><a href="#misc-stats">Misc Stats</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content white-text">
+                    <span class="card-title light">IMPORTANT ANNOUNCEMENT</span>
+                    <div style="text-align: center;">
+                        <a class="btn-large" href="https://github.com/XIVStats/XIVStats/issues/57">Statement regarding
+                            January 2022 Census and the future of the Census</a>
+                    </div>
+                    <hr />
                     <br />
-                    It wasn't until January of 2022 that we discovered a bug. We found out that characters that had no minions and/or no mounts were being returned to us as if the character was deleted.<br />
-                    If you want the techy details, check out our <a href="https://github.com/XIVStats/XIVStats-Gatherer-Java/issues/63">GitHub</a>.<br />
-		    <br />
-                    We believe that this bug originated from an update back in 2019 but was not discovered until December 2021 due to the project being dormant.<br />
+                    <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
                     <br />
-                    While this does affect the "All Characters" numbers,"Active Characters" and other numbers shouldn't see much of a significant change.<br />
+                    <hr />
                     <br />
-                    We are currently running the census and an update will be available soon&trade;.<br /><br />
-                      <hr/>
-                      <br/>
-                      <a id="population"><span class="card-title light">HOW MANY CHARACTERS ARE THERE?</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <!--World-->
-                      <div class="light region-title">WORLD</div>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format($player_count) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format($active_player_count) ?></div>
-                          </div>
-                      </div>
-                      <!-- America -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popna"><div class="light region-title">AMERICA</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <!--Japan-->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popjp"><div class="light region-title">JAPAN</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <!--Europe-->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popeu"><div class="light region-title">EUROPE</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <!--Oceania-->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="popoc"><div class="light region-title">OCEANIA</div></a>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($realm_count, $oceanian_realm_array)) ?></div>
-                          </div>
-                      </div>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <div class="row">
-                          <div class="s12 m6 l6   region-stat">
-                              <div><?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?></div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="racegender"><span class="card-title light">RACE AND GENDER DISTRIBUTION</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="class"><span class="card-title light">CLASS DISTRIBUTION</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="realmall"><span class="card-title light">REALM DISTRIBUTION (ALL)</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="rat-na"><div class="light region-subtitle">AMERICAN REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="rat-jp"><div class="light region-subtitle">JAPANESE REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="rat-eu"><div class="light region-subtitle">EUROPEAN REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <a id="rat-oc"><div class="light region-subtitle">OCEANIA REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="oceanian_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                          <a id="ra-na"><div class="light region-subtitle">AMERICAN REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                          <a id="ra-jp"><div class="light region-subtitle">JAPANESE REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                          <a id="ra-eu"><div class="light region-subtitle">EUROPEAN REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                          <a id="ra-oc"><div class="light region-subtitle">OCEANIA REALMS</div></a>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="oceanian_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="grandcompany"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span></a>
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
-
-                      <br/>
-                      <hr/>
-                      <br/>
-                      <div class="light region-subtitle">ALL CHARACTERS</div>
-                      <br/>
-                      <!-- Begin Chart -->
-                      <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-                      <!-- End Chart -->
-
-                 </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="preorders"><span class="card-title light">PRE-ORDERS</span></a>
-
-                      <div class="light region-subtitle">PRE-ORDERED A REALM REBORN</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_prearr; ?></div>
+                    <!--World-->
+                    <div class="light region-title">WORLD</div>
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <div class="row">
+                        <div class="s12 m6 l6   region-stat">
+                            <div>
+                                <?php echo number_format($player_count) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">PRE-ORDERED HEAVENSWARD</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_prehw; ?></div>
+                    </div>
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <div class="row">
+                        <div class="s12 m6 l6   region-stat">
+                            <div>
+                                <?php echo number_format($active_player_count) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">PRE-ORDERED STORMBLOOD</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_presb; ?></div>
+                    </div>
+                    <hr>
+                    <!-- America -->
+                    <div class="row">
+                        <a id="popna">
+                            <div class="light region-title">AMERICA</div>
+                        </a>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $american_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">PRE-ORDERED SHADOWBRINGERS</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_preshb; ?></div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">PRE-ORDERED ENDWALKER</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_preew; ?></div>
+                    </div>
+                    <hr />
+                    <!--End America-->
+                    <!--Japan-->
+                    <div class="row">
+                        <a id="popna">
+                            <div class="light region-title">JAPAN</div>
+                        </a>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $japanese_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                 </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="collectors"><span class="card-title light">COLLECTORS EDITION</span></a>
-
-                      <div class="light region-subtitle">PS4 ARR COLLECTORS EDITION</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_ps4_collectors; ?></div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">PC ARR COLLECTORS EDITION</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_pc_collectors; ?></div>
+                    </div>
+                    <hr />
+                    <!--End Japan-->
+                    <!--Europe-->
+                    <div class="row">
+                        <a id="popna">
+                            <div class="light region-title">EUROPE</div>
+                        </a>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $european_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">SHADOWBRINGERS COLLECTORS EDITION</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_shb_collectors; ?></div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">ENDWALKER COLLECTORS EDITION</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_ew_collectors; ?></div>
+                    </div>
+                    <hr />
+                    <!--End Europe-->
+                    <!--Oceania-->
+                    <div class="row">
+                        <a id="popna">
+                            <div class="light region-title">OCEANIA</div>
+                        </a>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ALL CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($realm_count, $oceanian_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-                 </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="physical"><span class="card-title light">PHYSICAL ITEMS</span></a>
-
-                      <div class="light region-subtitle">ARR SOUNDTRACK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_soundtrack; ?></div>
+                        <div class="col s12 m6 l6 light region-stat">
+                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div>
+                                <?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?>
+                            </div>
                         </div>
-                      </div>
-
-                      <div class="light region-subtitle">BEFORE METEOR SOUNDTRACK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_beforemeteor; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">BEFORE THE FALL SOUNDTRACK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_beforethefall; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">ARR ARTBOOK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_arrartbook; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">SB ARTBOOK - EASTERN MEMORIES</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_sbartbook; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">SB ARTBOOK - WESTERN MEMORIES</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_sbartbooktwo; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">MOOGLE PLUSH</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_moogleplush; ?></div>
-                        </div>
-                      </div>
-                      <div class="light region-subtitle">ENDWALKER SOUNDTRACK</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_ew_soundtrack; ?></div>
-                        </div>
-                      </div>                    
-                 </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-                  <div class="card-content">
-                      <a id="misc-stats"><span class="card-title light">OTHER</span></a>
-
-                      <div class="light region-subtitle">GUEST AT AN ETERNAL BOND</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_saw_eternal_bond; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">MARRIED AT AN ETERNAL BOND</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_did_eternal_bond; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">EARNED 50 COMMENDATIONS</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_comm50; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">COMPLETED ARR HILDIBRAND QUESTLINE</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_hildibrand; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">COMPLETED ARR SIGHTSEEING LOG</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_sightseeing; ?></div>
-                        </div>
-                      </div>
-
-                      <div class="light region-subtitle">DELETED CHARACTERS</div>
-                      <div class="row">
-                        <div class=" s12 m6 l6   region-stat">
-                          <div><?php echo $fmt_deleted; ?></div>
-                        </div>
-                      </div>
-
-                 </div>
-              </div>
-          </div>
-      </div>
-
-    <div class="row">
-          <div class="col s12 m6" style="width:100%;">
-              <div class="card">
-
-                  <div class="card-content">
-                      <span class="card-title light"></span>
-                      <div class="light region-title"><a href="<?php echo "https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" . date("Y-m") . ".zip";?>">Download database (MySQL)</a></div>
-                  </div>
-
-                  <div class="card-content">
-                      <span class="card-title light"></span>
-                      <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-	  
-    <div class="row">
-      <div class="col s12 m6" style="width:100%;">
-
-        <div class="card">
-          <div class="card-content">
-            <a id="population"><span class="card-title light">CONTRIBUTORS</span></a>
-
-
-            <div class="card-content">
-              <span class="card-title light"></span>
-              <ul>
-                <li>
-                  <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/" target="_blank">Jonathan Price</a> | <a href="https://na.finalfantasyxiv.com/lodestone/character/8308898/" target="_blank">John Prycewood @ Cerberus</a></div>
-                </li>
-                <li>
-                  <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/" target="_blank">P'tajha Rihll @ Cerberus</a></div>
-                </li>
-                <li>
-                  <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/" target="_blank">Russell Tyler @ Omega</a></div>
-                </li>
-                <li>
-                  <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila Fors'ee @ Cerberus</a></div>
-                </li>
-              </ul>
+                    </div>
+                    <!-- End Oceania-->
+                </div>
             </div>
-
-            <a id="population"><span class="card-title light">LEGAL</span></a>
-            <p>FFXIV Census is not affiliated with Square Enix.<br />
-                FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
-                FINAL FANTASY XIV &copy; 2010-2022 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
-            </p>
-          </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="racegender"><span class="card-title light">RACE AND GENDER DISTRIBUTION</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="class"><span class="card-title light">CLASS DISTRIBUTION</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="realmall"><span class="card-title light">REALM DISTRIBUTION (ALL)</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-na">
+                        <div class="light region-subtitle">AMERICAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="america_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-jp">
+                        <div class="light region-subtitle">JAPANESE REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="japan_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-eu">
+                        <div class="light region-subtitle">EUROPEAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="europe_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="rat-oc">
+                        <div class="light region-subtitle">OCEANIAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="oceanian_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-na">
+                        <div class="light region-subtitle">AMERICAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-jp">
+                        <div class="light region-subtitle">JAPANESE REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-eu">
+                        <div class="light region-subtitle">EUROPEAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    </div>
+                    <!-- End Chart -->
+                    <br />
+                    <hr />
+                    <br />
+                    <a id="ra-eu">
+                        <div class="light region-subtitle">OCEANIAN REALMS</div>
+                    </a>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="oceanian_active_realm_distribution"
+                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
+                </div>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p>ALL CHARACTERS</p>
+                            <!-- Begin Chart -->
+                            <div id="gc_distribution" style="min-width: 300px; height: 300px; margin: 0 auto"></div>
+                            <!-- End Chart -->
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p>ACTIVE CHARACTERS</p>
+                            <!-- Begin Chart -->
+                            <div id="gc_active_distribution" style="min-width: 300px; height: 300px; margin: 0 auto">
+                            </div>
+                            <!-- End Chart -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
+                    <hr />
+                    <br />
+                    <div class="light region-subtitle">ALL CHARACTERS</div>
+                    <br />
+                    <!-- Begin Chart -->
+                    <div id="beast_tribes" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <!-- End Chart -->
+                </div>
+            </div>
         </div>
 
-      </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/66241a2923d/"
+                                    class="eorzeadb_link">PRE-ORDERED A REALM REBORN</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_prearr; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/924cd368577"
+                                    class="eorzeadb_link">PRE-ORDERED HEAVENSWARD</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_prehw; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/fc6c2f880af/"
+                                    class="eorzeadb_link">PRE-ORDERED STORMBLOOD</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_presb; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/"
+                                    class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_preshb; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/"
+                                    class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_preew; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">COLLECTORS EDITION</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d2b5911259b/"
+                                    class="eorzeadb_link">A REALM REBORN COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_arr_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/df6e606a7e5/"
+                                    class="eorzeadb_link">HEAVENSWARD COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_hw_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/bd66e9aee09/"
+                                    class="eorzeadb_link">STORMBLOOD COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_sb_collectors; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/"
+                                    class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_shb_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/"
+                                    class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ew_collectors; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">PHYSICAL ITEMS</span>
+                    <!-- <p>How many people redeemed the minion?</p> -->
+                    <hr>
+                </div>
+                <!-- TEMPLATE FOR EACH ENTRY
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/" class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                        <?php echo $fmt_arr_soundtrack; ?>
+                        </span>
+                    </div>
+                    -->
+                <div class="col s12"><span class="card-title light">Soundtracks</span></div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/"
+                                class="eorzeadb_link">A REALM REBORN SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_arr_soundtrack; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b1a5517c8d/"
+                                class="eorzeadb_link">BEFORE METEOR SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_beforemeteor; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9dadf106d04/"
+                                class="eorzeadb_link">BEFORE THE FALL SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_beforethefall; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c690d60dd73/"
+                                class="eorzeadb_link">HEAVENSWARD SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_soundtrack; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/049cc50f4d7/"
+                                class="eorzeadb_link">FAR EDGE OF FATE SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_faredgeoffate; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/45756aecdd5/"
+                                class="eorzeadb_link">STORMBLOOD SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_sb_soundtrack; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1e1308a12e2/"
+                                class="eorzeadb_link">SHADOWBRINGERS SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_soundtrack; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eadaf97de6e/"
+                                class="eorzeadb_link">DEATH UNTO DAWN SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_deathuntodawn; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="#" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_soundtrack; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12"><span class="card-title light">Art Books</span></div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/"
+                                class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_arrartbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/7f0506ab250/"
+                                class="eorzeadb_link">HW STONE &amp; STEEL ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_artbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cdc080f90af/"
+                                class="eorzeadb_link">HW SCARS OF WAR ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_hw_artbooktwo; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5b97443cede/"
+                                class="eorzeadb_link">SB EASTERN MEMORIES ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_sbartbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f9207126370/"
+                                class="eorzeadb_link">SB WESTERN MEMORIES ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_sbartbooktwo; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d3dd79b498c/"
+                                class="eorzeadb_link">SHB HISTORIES UNWRITTEN ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_artbook; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/"
+                                class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_shb_artbooktwo; ?>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col s12"><span class="card-title light">Plushes</span></div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/"
+                                class="eorzeadb_link">MOOGLE PLUSH</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_moogleplush; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/982e7c79afd/"
+                                class="eorzeadb_link">TOPAZ CARBUNCLE PLUSH</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_topazcarbuncle_plush; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/8fddd620567/"
+                                class="eorzeadb_link">EMERALD CARBUNCLE PLUSH</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_emeraldcarbuncle_plush; ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">COMMENDATIONS</span>
+                    <hr>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/"
+                                class="eorzeadb_link">EARNED 50 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm50; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e25cb89825b/"
+                                class="eorzeadb_link">EARNED 500 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm500; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-medsubtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/556d57aa8ca/"
+                                class="eorzeadb_link">EARNED 3000 COMMENDATIONS</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_comm3000; ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">OTHER</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/"
+                                    class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_saw_eternal_bond; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-medsubtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0e108974cc8/"
+                                    class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_did_eternal_bond; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                                    class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_arr_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
+                                    class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-medsubtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
+                                    class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_sightseeing; ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">DELETED CHARACTERS</span>
+                    <hr>
+                    <div class="col s12 m12 l12 light region-medsubtitle">
+                        <span class="region-stat">
+                            <?php echo $fmt_deleted; ?>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row card">
+            <div class="card-content">
+                <div class="light region-title"><a href="<?php echo "
+                                https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" .
+                                date("Y-m") . ".zip" ;?>">Download database (MySQL)</a></div>
+            </div>
+            <div class="card-content">
+                <span class="card-title light"></span>
+                <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
+            </div>
+        </div>
+
+        <div class="row card">
+            <div class="card-content">
+                <div class="col s12"><span class="card-title light">CONTRIBUTIONS</span>
+                    <hr>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li>
+                            <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/"
+                                    target="_blank">Jonathan Price</a> | <a
+                                    href="https://na.finalfantasyxiv.com/lodestone/character/8308898/"
+                                    target="_blank">John Prycewood @ Cerberus</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
+                                    Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/"
+                                    target="_blank">P'tajha Rihll @ Cerberus</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt
+                                    Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/"
+                                    target="_blank">Russell Tyler @ Omega</a></div>
+                        </li>
+                        <li>
+                            <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a
+                                    href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila
+                                    Fors'ee @ Cerberus</a></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col s12"><span class="card-title light">LEGAL</span>
+                    <hr>
+                </div>
+                <p>FFXIV Census is not affiliated with Square Enix.<br />
+                    FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<br />
+                    FINAL FANTASY XIV &copy; 2010-2022 SQUARE ENIX CO., LTD. All Rights Reserved.<br />
+                </p>
+            </div>
+        </div>
     </div>
+    </div>
+        <!-- End Container -->
+    </div>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                Statistics generated on
+                <?php echo date("Y-m-d");  ?>
+                <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/XIVStats">Source Code
+                        available on GitHub</a> - Feel free to submit any ideas you may have!</div>
+            </div>
+        </div>
+    </footer>
 
-      <!-- End Container -->
-  </div>
-  <footer class="page-footer">
-      <div class="footer-copyright">
-          <div class="container">
-              Statistics generated on <?php echo date("Y-m-d");  ?>
-              <div class="right"><a class="grey-text text-lighten-4" href="https://github.com/XIVStats">Source Code available on GitHub</a> - Feel free to submit any ideas you may have!</div>
-          </div>
-      </div>
-  </footer>
-      
-  <script>
-          var mn = $(".navbar");
-          mns = "main-nav-scrolled";
-          hdr = $('header').height();
-          
-          $(window).scroll(function() {
-              if( $(this).scrollTop() > 105 ) {
-                  mn.addClass(mns);
-              } else {
-                  mn.removeClass(mns);
-              }
-          });
-  </script>
+    <script>
+        var mn = $(".navbar");
+        mns = "main-nav-scrolled";
+        hdr = $('header').height();
 
-  <script>
-      $(function() {
-        Highcharts.theme = {
-            chart: {
-                backgroundColor: '#303440'
-            },
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 105) {
+                mn.addClass(mns);
+            } else {
+                mn.removeClass(mns);
+            }
+        });
+    </script>
 
-            colors: ['#44aadf','#702670','#9E0000','#0038A8'],
-
-            legend: {
-                itemStyle: {
-                    color: '#ffffff'
-                }
-
-            },
-
-            xAxis: {
-                title: {
-                    style: {
-                        color: '#c3ac5c'
-                    }
+    <script>
+        $(function () {
+            Highcharts.theme = {
+                chart: {
+                    backgroundColor: '#303440'
                 },
-                labels: {
-                    style: {
+
+                colors: ['#44aadf', '#702670', '#9E0000', '#0038A8'],
+
+                legend: {
+                    itemStyle: {
                         color: '#ffffff'
                     }
-                }
-            },
 
-            yAxis: {
-                title: {
-                    style: {
-                        color: '#c3ac5c'
+                },
+
+                xAxis: {
+                    title: {
+                        style: {
+                            color: '#c3ac5c'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
                     }
                 },
-                labels: {
-                    style: {
-                        color: '#ffffff'
+
+                yAxis: {
+                    title: {
+                        style: {
+                            color: '#c3ac5c'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
                     }
-                }
-            },
+                },
 
-            plotOptions: {
-              column: {
-                  borderWidth: 0
-              },
-              pie: {
-                  borderWidth: 0,
-                  colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e'],
-                  dataLabels: {
-                    color: '#ffffff'
-                  }
-              }
-            },
-        };
+                plotOptions: {
+                    column: {
+                        borderWidth: 0
+                    },
+                    pie: {
+                        borderWidth: 0,
+                        colors: ['#212121', '#b71c1c', '#ffc107', '#9e9e9e'],
+                        dataLabels: {
+                            color: '#ffffff'
+                        }
+                    }
+                },
+            };
 
-        Highcharts.setOptions(Highcharts.theme);
-      });
-  </script>
+            Highcharts.setOptions(Highcharts.theme);
+        });
+    </script>
 
-  <script>
-      $(function () {
-          $('#gc_distribution').highcharts({
-              title: {
-                  text: ''
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  type: 'pie',
-                  name: '# of Characters',
-                  data: [
+    <script>
+        $(function () {
+            $('#gc_distribution').highcharts({
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '# of Characters',
+                    data: [
                       <?php
-                              foreach ($gc_count as $key => $value) {
-                                      echo "['" . $key . "', " . getValue($value) . "],\n";
-                              }
-                      ?>
+                              foreach($gc_count as $key => $value) {
+                            echo "['" .$key. "', " .getValue($value). "],\n";
+                        }
+                            ?>
                   ]
-              }]
-          });
-      });
-  </script>
+                }]
+            });
+        });
+    </script>
 
-  <script>
-      $(function () {
-          $('#gc_active_distribution').highcharts({
-              title: {
-                  text: ''
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  type: 'pie',
-                  name: '# of Characters',
-                  data: [
+    <script>
+        $(function () {
+            $('#gc_active_distribution').highcharts({
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '# of Characters',
+                    data: [
                       <?php
-                              foreach ($active_gc_count as $key => $value) {
-                                      echo "['" . $key . "', " . getValue($value) . "],\n";
-                              }
-                      ?>
+                              foreach($active_gc_count as $key => $value) {
+                            echo "['" .$key. "', " .getValue($value). "],\n";
+                        }
+                            ?>
                   ]
-              }]
-          });
-      });
-  </script>
+                }]
+            });
+        });
+    </script>
 
-  <script>
-      $(function () {
-          $('#race_gender_distribution').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              colors: ['#ff9933','#4c5fbf'],
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
+    <script>
+        $(function () {
+            $('#race_gender_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                colors: ['#ff9933', '#4c5fbf'],
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                       <?php
-                              foreach ($race_gender_count as $key => $value) {
-                                      echo "\"$key\",\n";
-                              }
-                      ?>
-                  ],
-
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Female',
-                  data: [
-                      <?php
-                              foreach ($race_gender_count as $value) {
-                                      echo getValueFromArray($value, "female") . ",";
-                              }
-                      ?>
-                  ],
-              }, {
-                  name: 'Male',
-                  data: [
-                      <?php
-                              foreach ($race_gender_count as $value) {
-                                      echo getValueFromArray($value,"male") . ",";
-                              }
-                      ?>
-                  ],
-              }]
-          });
-      });
-  </script>
-
-  <script>
-      $(function () {
-          $('#active_race_gender_distribution').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              colors: ['#ff9933','#4c5fbf'],
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
-                      <?php
-                              foreach ($active_race_gender_count as $key => $value) {
-                                      echo "\"$key\",\n";
-                              }
-                      ?>
+                              foreach($race_gender_count as $key => $value) {
+                            echo "\"$key\",\n";
+                        }
+                            ?>
                   ],
 
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Female',
-                  data: [
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Female',
+                    data: [
                       <?php
-                              foreach ($active_race_gender_count as $value) {
-                                      echo getValueFromArray($value, "female") . ",";
-                              }
-                      ?>
+                              foreach($race_gender_count as $value) {
+                            echo getValueFromArray($value, "female") . ",";
+                        }
+                            ?>
                   ],
-              }, {
-                  name: 'Male',
-                  data: [
+                }, {
+                    name: 'Male',
+                    data: [
                       <?php
-                              foreach ($active_race_gender_count as $value) {
-                                      echo getValueFromArray($value,"male") . ",";
-                              }
-                      ?>
+                              foreach($race_gender_count as $value) {
+                            echo getValueFromArray($value,"male") . ",";
+                        }
+                            ?>
                   ],
-              }]
-          });
-      });
-  </script>
+                }]
+            });
+        });
+    </script>
 
-  <script>
-      $(function () {
-          $('#class_distribution').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
+    <script>
+        $(function () {
+            $('#active_race_gender_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                colors: ['#ff9933', '#4c5fbf'],
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                       <?php
-                          foreach ($classes as $key => $value) {
-                              echo json_encode($value[TYPE][TITLE]) . ',';
-                          }
-                      ?>
+                              foreach($active_race_gender_count as $key => $value) {
+                            echo "\"$key\",\n";
+                        }
+                            ?>
                   ],
 
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Characters',
-                  data: [
-                      <?php foreach ($classes as $key => $value) { ?>
-                            {name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Female',
+                    data: [
+                      <?php
+                              foreach($active_race_gender_count as $value) {
+                            echo getValueFromArray($value, "female") . ",";
+                        }
+                            ?>
+                  ],
+                }, {
+                    name: 'Male',
+                    data: [
+                      <?php
+                              foreach($active_race_gender_count as $value) {
+                            echo getValueFromArray($value,"male") . ",";
+                        }
+                            ?>
+                  ],
+                }]
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#class_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                      <?php
+                          foreach($classes as $key => $value) {
+                            echo json_encode($value[TYPE][TITLE]) . ',';
+                        }
+                            ?>
+                  ],
+
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Characters',
+                    data: [
+                      <?php foreach($classes as $key => $value) { ?>
+                        { name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
                       <?php } ?>
                   ],
               }]
           });
       });
-  </script>
+    </script>
 
-  <script>
-      $(function () {
-          $('#active_class_distribution').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
+    <script>
+        $(function () {
+            $('#active_class_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                       <?php
-                          foreach ($active_classes as $key => $value) {
-                              echo json_encode($value[TYPE][TITLE]) . ',';
-                          }
-                      ?>
+                          foreach($active_classes as $key => $value) {
+                            echo json_encode($value[TYPE][TITLE]) . ',';
+                        }
+                            ?>
                   ],
 
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Active Characters',
-                  data: [
-                      <?php foreach ($active_classes as $key => $value) { ?>
-                            {name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Active Characters',
+                    data: [
+                      <?php foreach($active_classes as $key => $value) { ?>
+                        { name: <?php echo json_encode($value[TYPE][TITLE]); ?>, y: <?php echo getValue($value[COUNT]); ?>, color: <?php echo json_encode($value[TYPE][COLOR]) ?> },
                       <?php } ?>
                   ]
               }]
           });
       });
-  </script>
+    </script>
 
-<script>
-$(function () {
-    $('#america_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#america_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($american_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($american_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'All',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'All',
+                    data: [
                 <?php
-                        foreach ($american_realm_array as $value) {
-                                echo getValueFromArray($realm_count, $value) . ",";
+                        foreach($american_realm_array as $value) {
+                            echo getValueFromArray($realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#america_active_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#america_active_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($american_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($american_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Active',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Active',
+                    data: [
                 <?php
-                        foreach ($american_realm_array as $value) {
-                                echo getValueFromArray($active_realm_count, $value) . ",";
+                        foreach($american_realm_array as $value) {
+                            echo getValueFromArray($active_realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#japan_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#japan_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($japanese_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($japanese_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'All',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'All',
+                    data: [
                 <?php
-                        foreach ($japanese_realm_array as $value) {
-                                echo getValueFromArray($realm_count, $value) . ",";
+                        foreach($japanese_realm_array as $value) {
+                            echo getValueFromArray($realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#japan_active_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#japan_active_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($japanese_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($japanese_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Active',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Active',
+                    data: [
                 <?php
-                        foreach ($japanese_realm_array as $value) {
-                                echo getValueFromArray($active_realm_count, $value) . ",";
+                        foreach($japanese_realm_array as $value) {
+                            echo getValueFromArray($active_realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#europe_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#europe_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($european_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($european_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'All',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'All',
+                    data: [
                 <?php
-                        foreach ($european_realm_array as $value) {
-                                echo getValueFromArray($realm_count, $value) . ",";
+                        foreach($european_realm_array as $value) {
+                            echo getValueFromArray($realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
-<script>
-$(function () {
-    $('#europe_active_realm_distribution').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
+    <script>
+        $(function () {
+            $('#europe_active_realm_distribution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                 <?php
-                        foreach ($european_realm_array as $key => $value) {
-                                echo "'$value',";
+                        foreach($european_realm_array as $key => $value) {
+                            echo "'$value',";
                         }
-                ?>
+                            ?>
              ],
 
-        },
+                },
 
-        yAxis: {
-            title: {
-                text: '# of Characters'
-            }
-        },
-        tooltip: {
-            pointFormat: '{point.y}'
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Active',
-            data: [
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Active',
+                    data: [
                 <?php
-                        foreach ($european_realm_array as $value) {
-                                echo getValueFromArray($active_realm_count, $value) . ",";
+                        foreach($european_realm_array as $value) {
+                            echo getValueFromArray($active_realm_count, $value) . ",";
                         }
-                ?>
+                            ?>
             ],
-        }]
-    });
-});
-</script>
+                }]
+            });
+        });
+    </script>
 
 <script>
         $(function () {
@@ -1936,51 +2127,52 @@ $(function () {
             });
         });
     </script>
-  <script>
-      $(function () {
-          $('#beast_tribes').highcharts({
-              chart: {
-                  type: 'column'
-              },
-              title: {
-                  text: ''
-              },
-              xAxis: {
-                  categories: [
+
+    <script>
+        $(function () {
+            $('#beast_tribes').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
                       <?php
-                              foreach ($beast_tribes as $key => $value) {
-                                      echo "'$key',";
-                              }
-                      ?>
+                              foreach($beast_tribes as $key => $value) {
+                            echo "'$key',";
+                        }
+                            ?>
                   ],
 
-              },
-              yAxis: {
-                  title: {
-                      text: '# of Characters'
-                  }
-              },
-              tooltip: {
-                  pointFormat: '{point.y}'
-              },
-              credits: {
-                  enabled: false
-              },
-              series: [{
-                  name: 'Tribe',
-                  data: [
+                },
+                yAxis: {
+                    title: {
+                        text: '# of Characters'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{point.y}'
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Tribe',
+                    data: [
                       <?php
-                              foreach ($beast_tribes as $key => $value) {
-                                      echo getValue($value) . ",";
-                              }
-                      ?>
+                              foreach($beast_tribes as $key => $value) {
+                            echo getValue($value) . ",";
+                        }
+                            ?>
                   ],
-              }]
-          });
-      });
-  </script>
+                }]
+            });
+        });
+    </script>
 
 
-  </body>
+</body>
 
 </html>
