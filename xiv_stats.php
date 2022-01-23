@@ -89,6 +89,7 @@ if (! $db->select_db($conn_info["database"])) {
         die("Couldn't find DB");
 }
 
+// Servers by region
 $american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
                               "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
                               "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
@@ -107,6 +108,9 @@ sort($european_realm_array);
 $oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
 sort($oceanian_realm_array);
 
+$oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
+sort($oceanian_realm_array);
+
 // Variables
 $player_count = 0;
 $active_player_count = 0;
@@ -122,29 +126,65 @@ $classes = array();
 
 $active_classes = array();
 
+// VARIABLES
+
+// Pre-Orders
 $prearr = 0;
 $prehw = 0;
 $presb = 0;
 $preshb = 0;
 $preew = 0;
-$ps4_collectors = 0;
-$pc_collectors = 0;
+
+// Collectors Editions
+$arr_collectors = 0;
+$hw_collectors = 0;
+$sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
+
+// Artbook
 $arrartbook = 0;
+$hw_artbook = 0;
+$hw_artbooktwo = 0;
 $sbartbooktwo = 0;
 $sbartbook = 0;
-$beforemeteor = 0;
-$beforethefall = 0;
-$soundtrack = 0;
+$shb_artbook = 0;
+$shb_artbooktwo = 0;
+
+// Plushes
 $moogleplush = 0;
+$topazcarbuncle_plush = 0;
+$emeraldcarbuncle_plush = 0;
+
+// Soundtracks
+$beforemeteor = 0;
+$arr_soundtrack = 0;
+$beforethefall = 0;
+$hw_soundtrack = 0;
+$faredgeoffate = 0;
+$sb_soundtrack = 0;
+$shb_soundtrack = 0;
+$deathuntodawn = 0;
+$ew_soundtrack = 0;
+
+// Eternal Bond
 $saw_eternal_bond = 0;
 $did_eternal_bond = 0;
-$comm50 = 0;
-$hildibrand = 0;
+
+// Sightseeing 
 $sightseeing = 0;
 
+// Hildibrand Questline
+$arr_hildibrand = 0;
+$hw_hildibrand = 0;
+
+// Commendations
+$comm50 = 0;
+$comm500 = 0;
+$comm3000 = 0;
+
 $beast_tribes = array();
+// A Realm Reborn
 $beast_tribes["Kobold"] = 0;
 $beast_tribes["Sahagin"] = 0;
 $beast_tribes["Amaljaa"] = 0;
@@ -248,13 +288,13 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_FSH, $classes);
 
     // Pre-orders
-    $prearr += isset($row["prearr"]) && $row["prearr"] == 1 ? 1 : 0;
+    $prearr += in_array("Cait Sith Doll", $minions) ? 1 : 0;
     $fmt_prearr = number_format($prearr);
-    $prehw += isset($row["prehw"]) && $row["prehw"] == 1 ? 1 : 0;
+    $prehw += in_array("Chocobo Chick Courier", $minions) ? 1 : 0;
     $fmt_prehw = number_format($prehw);
-    $presb += isset($row["presb"]) && $row["presb"] == 1 ? 1 : 0;
+    $presb += in_array("Wind-up Red Mage", $minions) ? 1 : 0;
     $fmt_presb = number_format($presb);
-    $preshb += isset($row["preshb"]) && $row["preshb"] == 1 ? 1 : 0;
+    $preshb += in_array("Baby Gremlin", $minions) ? 1 : 0;
     $fmt_preshb = number_format($preshb);
     $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
     $fmt_preew = number_format($preew);
@@ -270,50 +310,86 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ew_collectors = number_format($ew_collectors);
 
     // Physical Items
-    $arrartbook += isset($row["arrartbook"]) && $row["arrartbook"] == 1 ? 1 : 0;
-    $fmt_arrartbook = number_format($arrartbook);
-    $beforemeteor += isset($row["beforemeteor"]) && $row["beforemeteor"] == 1 ? 1 : 0;
+    // Soundtracks
+    $beforemeteor += in_array("Wind-up Dalamud", $minions) ? 1 : 0;
     $fmt_beforemeteor = number_format($beforemeteor);
-    $beforethefall += isset($row["beforethefall"]) && $row["beforethefall"] == 1 ? 1 : 0;
+    $arr_soundtrack += in_array("Wind-up Bahamut", $minions) ? 1 : 0;
+    $fmt_arr_soundtrack = number_format($arr_soundtrack);
+    $beforethefall += in_array("Set Of Primogs", $minions) ? 1 : 0;
     $fmt_beforethefall = number_format($beforethefall);
-    $soundtrack += isset($row["soundtrack"]) && $row["soundtrack"] == 1 ? 1 : 0;
-    $fmt_soundtrack = number_format($soundtrack);
-    $moogleplush += isset($row["moogleplush"]) && $row["moogleplush"] == 1 ? 1 : 0;
-    $fmt_moogleplush = number_format($moogleplush);
-    $sbartbook += isset($row["sbartbook"]) && $row["sbartbook"] == 1 ? 1 : 0;
-    $fmt_sbartbook = number_format($sbartbook);
-    $sbartbooktwo += isset($row["sbartbooktwo"]) && $row["sbartbooktwo"] == 1 ? 1 : 0;
-    $fmt_sbartbooktwo = number_format($sbartbooktwo);
+    $hw_soundtrack += in_array("Spoony Bard", $minions) ? 1 : 0;
+    $fmt_hw_soundtrack = number_format($hw_soundtrack);
+    $faredgeoffate += in_array("Wind-up Nidhogg", $minions) ? 1 : 0;
+    $fmt_faredgeoffate = number_format($faredgeoffate);
+    $sb_soundtrack += in_array("Wind-up Tsukuyomi", $minions) ? 1 : 0;
+    $fmt_sb_soundtrack = number_format($sb_soundtrack);
+    $shb_soundtrack += in_array("Wind-up Suzaku", $minions) ? 1 : 0;
+    $fmt_shb_soundtrack = number_format($shb_soundtrack);
+    $deathuntodawn += in_array("Wind-up Lyna", $minions) ? 1 : 0;
+    $fmt_deathuntodawn = number_format($deathuntodawn);
     $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
 
+    // Art Books
+    $arrartbook += in_array("Model Enterprise", $minions) ? 1 : 0;
+    $fmt_arrartbook = number_format($arrartbook);
+    $hw_artbook += in_array("Wind-up Relm", $minions) ? 1 : 0;
+    $fmt_hw_artbook = number_format($hw_artbook);
+    $hw_artbooktwo += in_array("Wind-up Hraesvelgr", $minions) ? 1 : 0;
+    $fmt_hw_artbooktwo = number_format($hw_artbooktwo);
+    $sbartbook += in_array("Dress-up Tataru", $minions) ? 1 : 0;
+    $fmt_sbartbook = number_format($sbartbook);
+    $sbartbooktwo += in_array("Wind-up Yotsuyu", $minions) ? 1 : 0;
+    $fmt_sbartbooktwo = number_format($sbartbooktwo);
+    $shb_artbook += in_array("Wind-up Runar", $minions) ? 1 : 0;
+    $fmt_shb_artbook = number_format($shb_artbook);
+    $shb_artbooktwo += in_array("Wind-up Dulia-Chai", $minions) ? 1 : 0;
+    $fmt_shb_artbooktwo = number_format($shb_artbooktwo);
+
+    // Plushes & Other Items
+    $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
+    $fmt_moogleplush = number_format($moogleplush);
+    $topazcarbuncle_plush += in_array("Heliodor Carbuncle", $minions) ? 1 : 0;
+    $fmt_topazcarbuncle_plush = number_format($topazcarbuncle_plush);
+    $emeraldcarbuncle_plush += in_array("Peridot Carbuncle", $minions) ? 1 : 0;
+    $fmt_emeraldcarbuncle_plush = number_format($emeraldcarbuncle_plush);
+
+
     // Eternal Bond
-    $saw_eternal_bond += isset($row["saweternalbond"]) && $row["saweternalbond"] == 1 ? 1 : 0;
+    $saw_eternal_bond += in_array("Demon Box", $minions) ? 1 : 0;
     $fmt_saw_eternal_bond = number_format($saw_eternal_bond);
-    $did_eternal_bond += isset($row["dideternalbond"]) && $row["dideternalbond"] == 1 ? 1 : 0;
+    $did_eternal_bond += in_array("Ceremony Chocobo", $mounts) ? 1 : 0;
     $fmt_did_eternal_bond = number_format($did_eternal_bond);
 
     // Player Commendations
-    $comm50 += isset($row["comm50"]) && $row["comm50"] == 1 ? 1 : 0;
+    $comm50 += in_array("Princely Hatchling", $minions) ? 1 : 0;
     $fmt_comm50 = number_format($comm50);
+    $comm500 += in_array("Gilded Magitek Armor", $mounts) ? 1 : 0;
+    $fmt_comm500 = number_format($comm500);
+    $comm3000 += in_array("Parade Chocobo", $mounts) ? 1 : 0;
+    $fmt_comm3000 = number_format($comm3000);
 
     // Hildibrand
-    $hildibrand += isset($row["hildibrand"]) && $row["hildibrand"] == 1 ? 1 : 0;
-    $fmt_hildibrand = number_format($hildibrand);
+    $arr_hildibrand += in_array("Wind-up Gentleman", $minions) ? 1 : 0;
+    $fmt_arr_hildibrand = number_format($arr_hildibrand);
+    $hw_hildibrand += in_array("Gigi", $minions) ? 1 : 0;
+    $fmt_hw_hildibrand = number_format($hw_hildibrand);
 
     // ARR Sightseeing Log
-    $sightseeing += isset($row["sightseeing"]) && $row["sightseeing"] == 1 ? 1 : 0;
+    $sightseeing += in_array("Fledgling Apkallu", $minions) ? 1 : 0;
     $fmt_sightseeing = number_format($sightseeing);
 
 	// Deleted count
 	$fmt_deleted = number_format($deleted_player_count);
 
-    // Beast Tribes with dedicated columns in DB
+    // Beast Tribes - Any mount or minions that can be obtained from a high beast tribe or purchasing with Gil (after reaching a high rank) 
     // A Realm Reborn
-    $beast_tribes["Kobold"] += isset($row["kobold"]) && $row["kobold"] == 1 ? 1 : 0;
-    $beast_tribes["Sahagin"] += isset($row["sahagin"]) && $row["sahagin"] == 1 ? 1 : 0;
-    $beast_tribes["Amaljaa"] += isset($row["amaljaa"]) && $row["amaljaa"] == 1 ? 1 : 0;
-    $beast_tribes["Sylph"] += isset($row["sylph"]) && $row["sylph"] == 1 ? 1 : 0;
+    $beast_tribes["Kobold"] += in_array("Wind-up Kobold", $minions) || in_array("Bomb Palanquin", $mounts) ? 1 : 0;
+    $beast_tribes["Sahagin"] += in_array("Cavalry Elbst", $mounts) || in_array("Wind-up Sahagin", $minions) ? 1 : 0;
+    $beast_tribes["Amaljaa"] += in_array("Wind-up Amalj'aa", $minions) || in_array("Cavalry Drake Mount", $mounts) ? 1 : 0;
+    $beast_tribes["Sylph"] += in_array("Wind-up Sylph", $minions) || in_array("Laurel Goobbue", $mounts) ? 1 : 0;
+    $beast_tribes["Ixal"] += in_array("Wind-up Ixal", $minions) ? 1 : 0;
+
     // Heavensward
     $beast_tribes["Vanu Vanu"] += isset($row["vanuvanu"]) && $row["vanuvanu"] == 1 ? 1 : 0;
     $beast_tribes["Vath"] += isset($row["vath"]) && $row["vath"] == 1 ? 1 : 0;
@@ -331,7 +407,7 @@ while($row = $player_overview_query->fetch_assoc()) {
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
-    if(in_array("Wind-up Herois", $minions)) {  $active_player_count++;
+    if(in_array("Wind-up Herois", $minions) || in_array("Argos", $mounts)) {  $active_player_count++;
         // Fetch realm active player count
         if(!array_key_exists($realm, $active_realm_count)) {
                 $active_realm_count[$realm] = 0;
@@ -454,6 +530,15 @@ $db->close();
                 - #674ea0 - DoH
                 - #a88d3b - DoL
           */
+
+        a {
+            color: white;
+            /* text-decoration-line: dotted; */
+        }
+
+        a:hover {
+            color: #039be5;
+        }
 
         .logo {
             display: block;
@@ -952,8 +1037,6 @@ $db->close();
               </div>
           </div>
       </div>
-
-
       <div class="row">
           <div class="col s12 m6" style="width:100%;">
               <div class="card">
@@ -1853,7 +1936,6 @@ $(function () {
             });
         });
     </script>
-
   <script>
       $(function () {
           $('#beast_tribes').highcharts({
