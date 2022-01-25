@@ -545,10 +545,6 @@ $db->close();
             /* text-decoration-line: dotted; */
         }
 
-        a:hover {
-            color: #039be5;
-        }
-
         .logo {
             display: block;
             position: relative;
@@ -571,6 +567,10 @@ $db->close();
 
         .card-content {
             color: white;
+        }
+
+        p a:hover {
+            color: #44aadf;
         }
 
         hr {
@@ -631,7 +631,8 @@ $db->close();
 
         .dropdown-button:hover,
         .waves-light:hover,
-        .btn:hover {
+        .btn:hover,
+        .btn-large:hover{
             background: linear-gradient(to right, #4c5fbf 0%, #44aadf 50%, #ff9933 100%);
         }
 
@@ -644,15 +645,16 @@ $db->close();
         #realm-dropdown a:hover,
         #pop-dropdown a:hover,
         #misc-stats-dropdown a:hover {
-            background-color: #44aadf;
+            background: linear-gradient(to right, #4c5fbf 0%, #44aadf 50%, #ff9933 100%);
             color: #ffffff;
         }
 
-        .navbar {
+        .navbar{
             left: 0;
             right: 0;
             margin-left: auto;
             margin-right: auto;
+            color: white;
         }
 
         .main-nav-scrolled {
@@ -1397,13 +1399,13 @@ $db->close();
 
         <div class="row card">
             <div class="card-content">
-                <div class="light region-title"><a href="<?php echo "
+                <div class="light region-title"><p><a href="<?php echo "
                                 https://s3.eu-west-2.amazonaws.com/ffxivcensus.com/" . date("Y-m") . "/ffxivcensus-" .
-                                date("Y-m") . ".zip" ;?>">Download database (MySQL)</a></div>
+                                date("Y-m") . ".zip" ;?>">Download database (MySQL)</a></p></div>
             </div>
             <div class="card-content">
                 <span class="card-title light"></span>
-                <div class="light region-title"><a href="/list">View Previous Censuses</a></div>
+                <div class="light region-title"><p><a href="/list">View Previous Censuses</a></p></div>
             </div>
         </div>
 
@@ -1415,25 +1417,25 @@ $db->close();
                 <div class="row">
                     <ul>
                         <li>
-                            <div class="light ">> <a href="https://www.linkedin.com/in/jonathanpriceuk/"
+                            <div class="light "><p>> <a href="https://www.linkedin.com/in/jonathanpriceuk/"
                                     target="_blank">Jonathan Price</a> | <a
                                     href="https://na.finalfantasyxiv.com/lodestone/character/8308898/"
-                                    target="_blank">John Prycewood @ Cerberus</a></div>
+                                    target="_blank">John Prycewood @ Cerberus</a></p></div>
                         </li>
                         <li>
-                            <div class="light ">> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
+                            <div class="light "><p>> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
                                     Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/"
-                                    target="_blank">P'tajha Rihll @ Cerberus</a></div>
+                                    target="_blank">P'tajha Rihll @ Cerberus</a></p></div>
                         </li>
                         <li>
-                            <div class="light ">> <a href="https://github.com/matthewhillier" target="_blank">Matt
+                            <div class="light "><p>> <a href="https://github.com/matthewhillier" target="_blank">Matt
                                     Hillier</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/2256025/"
-                                    target="_blank">Russell Tyler @ Omega</a></div>
+                                    target="_blank">Russell Tyler @ Omega</a></p></div>
                         </li>
                         <li>
-                            <div class="light ">> <a href="https://pf.ie">Padraig Fahy</a> | <a
+                            <div class="light "><p>> <a href="https://pf.ie">Padraig Fahy</a> | <a
                                     href="https://eu.finalfantasyxiv.com/lodestone/character/1573466/">Crakila
-                                    Fors'ee @ Cerberus</a></div>
+                                    Fors'ee @ Cerberus</a></p></div>
                         </li>
                     </ul>
                 </div>
