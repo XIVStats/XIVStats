@@ -502,6 +502,13 @@ $db->close();
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <script>
+    $(document).ready(function(){
+    $('.modal').modal();
+    $('.dropdown-trigger').dropdown();
+    });
+    </script>
+
     <!-- Google Analytics -->
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -684,18 +691,18 @@ $db->close();
         </div>
         <div class="col s12 m6 navbar center">
             <!-- Navbar - 'Population', 'Realm Stats' & 'Other Stats' are dropdowns-->
-            <a class='dropdown-trigger btn' href='#population' data-target='pop-dropdown'>Population</a>
+            <a class='dropdown-trigger btn' href='#' data-target='pop-dropdown'>Population</a>
             <a class="waves-effect waves-light btn" href='#racegender'>Race &amp; Gender Stats</a>
             <a class="waves-effect waves-light btn" href='#class'>Class Stats</a>
-            <a class='dropdown-trigger btn' href='#realmall' data-target='realm-dropdown'>Realm Stats</a>
+            <a class='dropdown-trigger btn' href='#' data-target='realm-dropdown'>Realm Stats</a>
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
-            <a class='dropdown-trigger btn' href='#beast' data-target='misc-stats-dropdown'>Other Stats</a>
+            <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
             <ul id='pop-dropdown' class='dropdown-content'>
                 <li><a href="#population">World</a></li>
-                <li class="divider"></li>
+                <li class="divider" tabindex="-1"></li>
                 <li><a href="#popna">North America</a></li>
                 <li><a href="#popjp">Japan</a></li>
                 <li><a href="#popeu">Europe</a></li>
@@ -705,15 +712,15 @@ $db->close();
             <!-- Realm Stats Dropdown -->
             <ul id='realm-dropdown' class='dropdown-content'>
                 <li><a href="#realmall">Realm Stats (All-Time)</a></li>
-                <li class="divider"></li>
+                <li class="divider" tabindex="-1"></li>
                 <li><a href="#rat-na">North America</a></li>
                 <li><a href="#rat-jp">Japan</a></li>
                 <li><a href="#rat-eu">Europe</a></li>
                 <li><a href="#rat-oc">Oceania</a></li>
-                <li class="divider"></li>
-                <li class="divider"></li>
+                <li class="divider" tabindex="-1"></li>
+                <li class="divider" tabindex="-1"></li>
                 <li><a href="#realmactive">Realm Stats (Active)</a></li>
-                <li class="divider"></li>
+                <li class="divider" tabindex="-1"></li>
                 <li><a href="#ra-na">North America</a></li>
                 <li><a href="#ra-jp">Japan</a></li>
                 <li><a href="#ra-eu">Europe</a></li>
@@ -725,7 +732,13 @@ $db->close();
                 <li><a href="#beast">Beast Tribes</a></li>
                 <li><a href="#preorders">Pre-Orders</a></li>
                 <li><a href="#collectors">Collectors Edition</a></li>
+                <li class="divider" tabindex="-1"></li>
                 <li><a href="#physical">Physical Items</a></li>
+                <li><a href="#soundtracks">Soundtracks</a></li>
+                <li><a href="#artbooks">Art Books</a></li>
+                <li><a href="#plushes">Plushes</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="#commendations">Comms</a></li>
                 <li><a href="#misc-stats">Misc Stats</a></li>
             </ul>
         </div>
@@ -784,7 +797,7 @@ $db->close();
                     <!--End America-->
                     <!--Japan-->
                     <div class="row">
-                        <a id="popna">
+                        <a id="popjp">
                             <div class="light region-title">JAPAN</div>
                         </a>
                         <div class="col s12 m6 l6 light region-stat">
@@ -804,7 +817,7 @@ $db->close();
                     <!--End Japan-->
                     <!--Europe-->
                     <div class="row">
-                        <a id="popna">
+                        <a id="popeu">
                             <div class="light region-title">EUROPE</div>
                         </a>
                         <div class="col s12 m6 l6 light region-stat">
@@ -824,7 +837,7 @@ $db->close();
                     <!--End Europe-->
                     <!--Oceania-->
                     <div class="row">
-                        <a id="popna">
+                        <a id="popoc">
                             <div class="light region-title">OCEANIA</div>
                         </a>
                         <div class="col s12 m6 l6 light region-stat">
@@ -984,7 +997,7 @@ $db->close();
                     <br />
                     <hr />
                     <br />
-                    <a id="ra-eu">
+                    <a id="ra-oc">
                         <div class="light region-subtitle">OCEANIAN REALMS</div>
                     </a>
                     <br />
@@ -1034,7 +1047,7 @@ $db->close();
 
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">PRE-ORDERS</span>
+                <div class="col s12"><a id="preorders"></a><span class="card-title light">PRE-ORDERS</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
@@ -1082,7 +1095,7 @@ $db->close();
 
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">COLLECTORS EDITION</span>
+                <div class="col s12"><a id="collectors"></a><span class="card-title light">COLLECTORS EDITION</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
@@ -1129,7 +1142,7 @@ $db->close();
 
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">PHYSICAL ITEMS</span>
+                <div class="col s12"><a id="physical"></a><span class="card-title light">PHYSICAL ITEMS</span>
                     <!-- <p>How many people redeemed the minion?</p> -->
                     <hr>
                 </div>
@@ -1141,7 +1154,7 @@ $db->close();
                         </span>
                     </div>
                     -->
-                <div class="col s12"><span class="card-title light">Soundtracks</span></div>
+                <div class="col s12"><a id="soundtracks"></a><span class="card-title light">Soundtracks</span></div>
                 <div class="row">
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/50fcfd8c8f8/"
@@ -1211,7 +1224,7 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12"><span class="card-title light">Art Books</span></div>
+                    <div class="col s12"><a id="artbooks"></a><span class="card-title light">Art Books</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/"
                                 class="eorzeadb_link">A REALM REBORN ARTBOOK</a></p>
@@ -1269,7 +1282,7 @@ $db->close();
 
 
                 <div class="row">
-                    <div class="col s12"><span class="card-title light">Plushes</span></div>
+                    <div class="col s12"><a id="plushes"></a><span class="card-title light">Plushes</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a2256ee7ea1/"
                                 class="eorzeadb_link">MOOGLE PLUSH</a></p>
@@ -1296,7 +1309,7 @@ $db->close();
         </div>
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">COMMENDATIONS</span>
+                <div class="col s12"><a id="commendations"></a><span class="card-title light">COMMENDATIONS</span>
                     <hr>
                     <div class="col s12 m4 l4 light region-medsubtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/86730d8e87e/"
@@ -1324,7 +1337,7 @@ $db->close();
         </div>
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">OTHER</span>
+                <div class="col s12"><a id="misc-stats"></a><span class="card-title light">OTHER</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m6 l6 light region-subtitle">
