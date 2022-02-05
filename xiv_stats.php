@@ -384,7 +384,7 @@ while($row = $player_overview_query->fetch_assoc()) {
 
     // Beast Tribes - Any mount or minions that can be obtained from a high beast tribe or purchasing with Gil (after reaching a high rank) 
     // A Realm Reborn
-    $beast_tribes["Kobold"] += in_array("Wind-up Kobold", $minions) || in_array("Bomb Palanquin", $mounts) ? 1 : 0;
+    $beast_tribes["Kobold"] += in_array("Wind-up Kobold", $minions) || in_array("Wind-up Kobolder", $minions) || in_array("Bomb Palanquin", $mounts) ? 1 : 0;
     $beast_tribes["Sahagin"] += in_array("Cavalry Elbst", $mounts) || in_array("Wind-up Sahagin", $minions) ? 1 : 0;
     $beast_tribes["Amaljaa"] += in_array("Wind-up Amalj'aa", $minions) || in_array("Cavalry Drake Mount", $mounts) ? 1 : 0;
     $beast_tribes["Sylph"] += in_array("Wind-up Sylph", $minions) || in_array("Laurel Goobbue", $mounts) ? 1 : 0;
