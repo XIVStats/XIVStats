@@ -768,7 +768,7 @@ $db->close();
                             </div>
                         </div>
                     </div>
-                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
                     <div class="row">
                         <div class="s12 m6 l6   region-stat">
                             <div>
@@ -875,7 +875,7 @@ $db->close();
                     <br />
                     <hr />
                     <br />
-                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
                     <br />
                     <!-- Begin Chart -->
                     <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
@@ -899,7 +899,7 @@ $db->close();
                     <br />
                     <hr />
                     <br />
-                    <div class="light region-subtitle">ACTIVE CHARACTERS*</div>
+                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
                     <br />
                     <!-- Begin Chart -->
                     <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
