@@ -1344,14 +1344,14 @@ $db->close();
                     <div class="row">
                         <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f430030885a/"
-                                    class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a> <br /> (Silver &amp; Gold only)</p>
+                                    class="eorzeadb_link">GUEST AT AN ETERNAL BOND</a> <br /> (Gold &amp; Platinum only)</p>
                             <span class="region-stat">
                                 <?php echo $fmt_saw_eternal_bond; ?>
                             </span>
                         </div>
                         <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0e108974cc8/"
-                                    class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a> <br /> (Silver &amp; Gold only)</p>
+                                    class="eorzeadb_link">MARRIED AT AN ETERNAL BOND</a> <br /> (Gold &amp; Platinum only)</p>
                             <span class="region-stat">
                                 <?php echo $fmt_did_eternal_bond; ?>
                             </span>
