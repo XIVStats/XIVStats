@@ -680,7 +680,7 @@ $db->close();
                     <p style="margin-left: 24px;">Statistics for
                         <?php echo $date; ?>
                     </p>
-                    <p style="margin-left: 24px;"><b>Any reference to "Active" characters, refers to characters that
+                    <p style="margin-left: 24px;"><b>Any reference to "Endgame" characters, refers to characters that
                             have claimed the following item: <br />
                             The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch
                             6.0 story</b></p>
@@ -721,7 +721,7 @@ $db->close();
                 <li><a href="#rat-oc">Oceania</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li class="divider" tabindex="-1"></li>
-                <li><a href="#realmactive">Realm Stats (Active)</a></li>
+                <li><a href="#realmendgame">Realm Stats (Endgame)</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li><a href="#ra-na">North America</a></li>
                 <li><a href="#ra-jp">Japan</a></li>
@@ -768,7 +768,7 @@ $db->close();
                             </div>
                         </div>
                     </div>
-                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                    <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                     <div class="row">
                         <div class="s12 m6 l6   region-stat">
                             <div>
@@ -789,7 +789,7 @@ $db->close();
                             </div>
                         </div>
                         <div class="col s12 m6 l6 light region-stat">
-                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                             <div>
                                 <?php echo number_format(sumInRegion($active_realm_count, $american_realm_array)) ?>
                             </div>
@@ -809,7 +809,7 @@ $db->close();
                             </div>
                         </div>
                         <div class="col s12 m6 l6 light region-stat">
-                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                             <div>
                                 <?php echo number_format(sumInRegion($active_realm_count, $japanese_realm_array)) ?>
                             </div>
@@ -829,7 +829,7 @@ $db->close();
                             </div>
                         </div>
                         <div class="col s12 m6 l6 light region-stat">
-                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                             <div>
                                 <?php echo number_format(sumInRegion($active_realm_count, $european_realm_array)) ?>
                             </div>
@@ -849,7 +849,7 @@ $db->close();
                             </div>
                         </div>
                         <div class="col s12 m6 l6 light region-stat">
-                            <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                            <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                             <div>
                                 <?php echo number_format(sumInRegion($active_realm_count, $oceanian_realm_array)) ?>
                             </div>
@@ -875,7 +875,7 @@ $db->close();
                     <br />
                     <hr />
                     <br />
-                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                    <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                     <br />
                     <!-- Begin Chart -->
                     <div id="active_race_gender_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
@@ -899,7 +899,7 @@ $db->close();
                     <br />
                     <hr />
                     <br />
-                    <div class="light region-subtitle">ACTIVE CHARACTERS</div>
+                    <div class="light region-subtitle">ENDGAME CHARACTERS</div>
                     <br />
                     <!-- Begin Chart -->
                     <div id="active_class_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
@@ -962,7 +962,7 @@ $db->close();
         <div class="row">
             <div class="card">
                 <div class="card-content">
-                    <a id="realmactive"><span class="card-title light">REALM DISTRIBUTION (ACTIVE)</span></a>
+                    <a id="realmendgame"><span class="card-title light">REALM DISTRIBUTION (ENDGAME)</span></a>
                     <br />
                     <hr />
                     <br />
@@ -971,7 +971,7 @@ $db->close();
                     </a>
                     <br />
                     <!-- Begin Chart -->
-                    <div id="america_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    <div id="america_endgame_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
                     </div>
                     <!-- End Chart -->
                     <br />
@@ -982,7 +982,7 @@ $db->close();
                     </a>
                     <br />
                     <!-- Begin Chart -->
-                    <div id="japan_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    <div id="japan_endgame_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
                     </div>
                     <!-- End Chart -->
                     <br />
@@ -993,7 +993,7 @@ $db->close();
                     </a>
                     <br />
                     <!-- Begin Chart -->
-                    <div id="europe_active_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
+                    <div id="europe_endgame_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto">
                     </div>
                     <!-- End Chart -->
                     <br />
@@ -1004,8 +1004,7 @@ $db->close();
                     </a>
                     <br />
                     <!-- Begin Chart -->
-                    <div id="oceanian_active_realm_distribution"
-                        style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                    <div id="oceanian_endgame_realm_distribution" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
                     <!-- End Chart -->
                 </div>
             </div>
@@ -1920,7 +1919,7 @@ $db->close();
 
     <script>
         $(function () {
-            $('#japan_active_realm_distribution').highcharts({
+            $('#japan_endgame_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
@@ -2010,7 +2009,7 @@ $db->close();
 
     <script>
         $(function () {
-            $('#europe_active_realm_distribution').highcharts({
+            $('#europe_endgame_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
@@ -2100,7 +2099,7 @@ $db->close();
 
     <script>
         $(function () {
-            $('#oceanian_active_realm_distribution').highcharts({
+            $('#oceanian_endgame_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
