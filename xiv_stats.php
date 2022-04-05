@@ -1829,7 +1829,7 @@ $db->close();
 
     <script>
         $(function () {
-            $('#america_active_realm_distribution').highcharts({
+            $('#america_endgame_realm_distribution').highcharts({
                 chart: {
                     type: 'column'
                 },
