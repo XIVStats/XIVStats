@@ -1011,7 +1011,7 @@ $db->close();
         </div>
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span>
+                <div id="grandcompany" class="col s12"><span class="card-title light">GRAND COMPANY DISTRIBUTION</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m6 l6 light region-subtitle">
