@@ -201,6 +201,9 @@ $beast_tribes["Pixie"] = 0;
 $beast_tribes["Qitari"] = 0;
 $beast_tribes["Dwarf"] = 0;
 
+// Other mounts
+$literal_whale = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -405,6 +408,11 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Qitari"] += in_array("Great Vessel of Ronka", $mounts) || in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
   
+    // Other mounts
+    $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
+    $fmt_literal_whale = number_format($literal_whale);
+    $literal_whale_in_usd = $literal_whale*42;
+
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
     if(in_array("Wind-up Herois", $minions) || in_array("Argos", $mounts)) {  $active_player_count++;
@@ -1358,15 +1366,17 @@ $db->close();
                             </span>
                         </div>
                     </div>
+                    <a id="hildibrand"></a><span class="card-title light">HILDIBRAND</span>
+                    <hr>
                     <div class="row">
-                        <div class="col s12 m4 l4 light region-subtitle">
+                        <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_arr_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
+                        <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
@@ -1383,6 +1393,14 @@ $db->close();
                             <span class="region-stat">
                                 <?php echo $fmt_sightseeing; ?>
                             </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b62ad975fb7/"
+                                    class="eorzeadb_link">LITERAL WHALES THAT WILL BUY ANY MOUNT!</a><br /> (This is meant as a joke. Tee hee!)</p>
+                            <span class="region-stat">
+                                <?php echo $fmt_literal_whale; ?><br />
+                                </span>
+                                $<?php echo $literal_whale_in_usd; ?>
                         </div>
                     </div>
                 </div>
