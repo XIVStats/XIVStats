@@ -741,7 +741,9 @@ $db->close();
                 <li><a href="#plushes">Plushes</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li><a href="#commendations">Comms</a></li>
-                <li><a href="#misc-stats">Misc Stats</a></li>
+                <li><a href="#eternal-bond">Eternal Bond</a></li>
+                <li><a href="#hildibrand">Hildibrand</a></li>
+                <li><a href="#misc-stats">Other Stats</a></li>
             </ul>
         </div>
         <div class="row">
@@ -1338,7 +1340,7 @@ $db->close();
         </div>
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><a id="misc-stats"></a><span class="card-title light">OTHER</span>
+                <div class="col s12"><a id="eternal-bond"></a><span class="card-title light">ETERNAL BOND</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m6 l6 light region-subtitle">
@@ -1371,7 +1373,11 @@ $db->close();
                                 <?php echo $fmt_hw_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m4 l4 light region-medsubtitle">
+                    </div>
+                    <a id="misc-stats"></a><span class="card-title light">OTHER STATS</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-medsubtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
                                     class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                             <span class="region-stat">
