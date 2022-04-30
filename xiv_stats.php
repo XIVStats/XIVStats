@@ -413,6 +413,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_literal_whale = number_format($literal_whale);
     $literal_whale_in_usd = $literal_whale*42;
 
+    // PvP
+    $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
+    $fmt_pvp_200_wins = number_format($pvp_200_wins);
+
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
     if(in_array("Wind-up Herois", $minions) || in_array("Argos", $mounts)) {  $active_player_count++;
@@ -751,6 +755,7 @@ $db->close();
                 <li><a href="#commendations">Comms</a></li>
                 <li><a href="#eternal-bond">Eternal Bond</a></li>
                 <li><a href="#hildibrand">Hildibrand</a></li>
+                <li><a href="#pvp-stats">PvP</a></li>
                 <li><a href="#misc-stats">Other Stats</a></li>
             </ul>
         </div>
@@ -1381,6 +1386,17 @@ $db->close();
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <a id="pvp-stats"></a><span class="card-title light">PLAYER VS PLAYER</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                                    class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_pvp_200_wins; ?>
                             </span>
                         </div>
                     </div>
