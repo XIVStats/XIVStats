@@ -402,7 +402,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     
     // Shadowbringers
     $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) || in_array("Portly Porxie", $mounts) ? 1 : 0;
-    $beast_tribes["Qitari"] += in_array("Great Vessel of Ronka", $mounts) || in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("Great Vessel Of Ronka", $mounts) || in_array("The Behelmeted Serpent Of Ronka", $minions) || in_array("The Behatted Serpent Of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
