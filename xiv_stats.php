@@ -200,6 +200,8 @@ $beast_tribes["Namazu"] = 0;
 $beast_tribes["Pixie"] = 0;
 $beast_tribes["Qitari"] = 0;
 $beast_tribes["Dwarf"] = 0;
+// Endwalker
+$beast_tribes["Arkasodara"] = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -404,6 +406,9 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) || in_array("Portly Porxie", $mounts) ? 1 : 0;
     $beast_tribes["Qitari"] += in_array("Great Vessel Of Ronka", $mounts) || in_array("The Behelmeted Serpent Of Ronka", $minions) || in_array("The Behatted Serpent Of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
+
+    // Endwalker
+    $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
   
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
