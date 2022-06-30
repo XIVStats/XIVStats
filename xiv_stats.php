@@ -203,6 +203,9 @@ $beast_tribes["Dwarf"] = 0;
 // Endwalker
 $beast_tribes["Arkasodara"] = 0;
 
+// Other mounts
+$literal_whale = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -410,6 +413,16 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
   
+    // Other mounts
+    $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
+    $fmt_literal_whale = number_format($literal_whale);
+    $literal_whale_in_usd = $literal_whale*42;
+
+    // PvP
+    $pvp_200_wins = 0;
+    $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
+    $fmt_pvp_200_wins = number_format($pvp_200_wins);
+
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
     if(in_array("Wind-up Herois", $minions) || in_array("Argos", $mounts)) {  $active_player_count++;
@@ -746,7 +759,10 @@ $db->close();
                 <li><a href="#plushes">Plushes</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li><a href="#commendations">Comms</a></li>
-                <li><a href="#misc-stats">Misc Stats</a></li>
+                <li><a href="#eternal-bond">Eternal Bond</a></li>
+                <li><a href="#hildibrand">Hildibrand</a></li>
+                <li><a href="#pvp-stats">PvP</a></li>
+                <li><a href="#misc-stats">Other Stats</a></li>
             </ul>
         </div>
         <div class="row">
@@ -1343,7 +1359,7 @@ $db->close();
         </div>
         <div class="row card">
             <div class="card-content">
-                <div class="col s12"><a id="misc-stats"></a><span class="card-title light">OTHER</span>
+                <div class="col s12"><a id="eternal-bond"></a><span class="card-title light">ETERNAL BOND</span>
                     <hr>
                     <div class="row">
                         <div class="col s12 m6 l6 light region-subtitle">
@@ -1361,27 +1377,52 @@ $db->close();
                             </span>
                         </div>
                     </div>
+                    <a id="hildibrand"></a><span class="card-title light">HILDIBRAND</span>
+                    <hr>
                     <div class="row">
-                        <div class="col s12 m4 l4 light region-subtitle">
+                        <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_arr_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m4 l4 light region-subtitle">
+                        <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m4 l4 light region-medsubtitle">
+                    </div>
+                    <a id="pvp-stats"></a><span class="card-title light">PLAYER VS PLAYER</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                                    class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_pvp_200_wins; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <a id="misc-stats"></a><span class="card-title light">OTHER STATS</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m6 l6 light region-medsubtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
                                     class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_sightseeing; ?>
                             </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b62ad975fb7/"
+                                    class="eorzeadb_link">LITERAL WHALES THAT WILL BUY ANY MOUNT!</a><br /> (This is meant as a joke. Tee hee!)</p>
+                            <span class="region-stat">
+                                <?php echo $fmt_literal_whale; ?><br />
+                                </span>
+                                $<?php echo $literal_whale_in_usd; ?>
                         </div>
                     </div>
                 </div>
