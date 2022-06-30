@@ -103,7 +103,7 @@ $japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit",
 sort($japanese_realm_array);
 
 $european_realm_array = array("Cerberus","Lich","Moogle","Odin","Phoenix","Ragnarok","Shiva","Zodiark","Louisoix","Omega",
-                              "Spriggan","Twintania");
+                              "Spriggan","Twintania", "Sagittarius", "Phantom", "Alpha", "Raiden");
 sort($european_realm_array);
 
 $oceanian_realm_array = array("Bismarck", "Ravana", "Sephirot", "Sophia", "Zurvan");
@@ -200,6 +200,8 @@ $beast_tribes["Namazu"] = 0;
 $beast_tribes["Pixie"] = 0;
 $beast_tribes["Qitari"] = 0;
 $beast_tribes["Dwarf"] = 0;
+// Endwalker
+$beast_tribes["Arkasodara"] = 0;
 
 // Other mounts
 $literal_whale = 0;
@@ -405,8 +407,11 @@ while($row = $player_overview_query->fetch_assoc()) {
     
     // Shadowbringers
     $beast_tribes["Pixie"] += in_array("Wind-up Pixie", $minions) || in_array("Portly Porxie", $mounts) ? 1 : 0;
-    $beast_tribes["Qitari"] += in_array("Great Vessel of Ronka", $mounts) || in_array("The Behelmeted Serpent of Ronka", $minions) || in_array("The Behatted Serpent of Ronka", $minions) ? 1 : 0;
+    $beast_tribes["Qitari"] += in_array("Great Vessel Of Ronka", $mounts) || in_array("The Behelmeted Serpent Of Ronka", $minions) || in_array("The Behatted Serpent Of Ronka", $minions) ? 1 : 0;
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
+
+    // Endwalker
+    $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
   
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
