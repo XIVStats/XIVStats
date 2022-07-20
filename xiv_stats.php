@@ -1470,7 +1470,7 @@ $db->close();
                         <li>
                             <div class="light "><p>> <a href="https://twitter.com/ReidWeb" target="_blank">Peter
                                     Reid</a> | <a href="https://eu.finalfantasyxiv.com/lodestone/character/11886902/"
-                                    target="_blank">P'tajha Rihll @ Cerberus</a></p></div>
+                                    target="_blank">P'tajha Rihll @ Omega</a></p></div>
                         </li>
                         <li>
                             <div class="light "><p>> <a href="https://github.com/matthewhillier" target="_blank">Matt
