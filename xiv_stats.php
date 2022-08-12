@@ -206,6 +206,9 @@ $beast_tribes["Arkasodara"] = 0;
 // Other mounts
 $literal_whale = 0;
 
+// PvP
+$pvp_200_wins = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -419,7 +422,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     $literal_whale_in_usd = $literal_whale*42;
 
     // PvP
-    $pvp_200_wins = 0;
     $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
     $fmt_pvp_200_wins = number_format($pvp_200_wins);
 
