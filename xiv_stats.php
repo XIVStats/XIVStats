@@ -419,7 +419,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
     $fmt_literal_whale = number_format($literal_whale);
-    $literal_whale_in_usd = $literal_whale*42;
+    $literal_whale_in_usd = number_format($literal_whale*42,2);
 
     // PvP
     $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
