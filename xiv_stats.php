@@ -209,6 +209,9 @@ $literal_whale = 0;
 // PvP
 $pvp_200_wins = 0;
 
+// Anniversary Events
+$ninth_anniversary = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -424,6 +427,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     // PvP
     $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
     $fmt_pvp_200_wins = number_format($pvp_200_wins);
+
+    // Anniversary Events
+    $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
+    $fmt_ninth_anniversary = number_format($ninth_anniversary);
 
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -1411,14 +1418,20 @@ $db->close();
                     <a id="misc-stats"></a><span class="card-title light">OTHER STATS</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-medsubtitle">
+                        <div class="col s12 m4 l4 light region-medsubtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
                                     class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_sightseeing; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#" class="eorzeadb_link">PARTICIPATED IN 9TH ANNIVERSARY EVENT</p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ninth_anniversary; ?>
+                                </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b62ad975fb7/"
                                     class="eorzeadb_link">LITERAL WHALES THAT WILL BUY ANY MOUNT!</a><br /> (This is meant as a joke. Tee hee!)</p>
                             <span class="region-stat">
