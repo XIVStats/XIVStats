@@ -1426,7 +1426,7 @@ $db->close();
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="#" class="eorzeadb_link">PARTICIPATED IN 9TH ANNIVERSARY EVENT</a></p>
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5df3d220ac1/" class="eorzeadb_link">PARTICIPATED IN 9TH ANNIVERSARY EVENT</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_ninth_anniversary; ?>
                                 </span>
