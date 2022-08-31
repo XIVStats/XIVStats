@@ -209,6 +209,7 @@ $literal_whale = 0;
 // PvP
 $pvp_200_wins = 0;
 $cc_s2l1516_reward = 0;
+$cc_s2l25_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -434,6 +435,9 @@ while($row = $player_overview_query->fetch_assoc()) {
             // Series 2 - Level 15 & 16 Rewards
             $cc_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
             $fmt_cc_s2l1516_reward = number_format($cc_s2l1516_reward);
+            // Series 2 - Level 25 Reward
+            $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
+            $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
@@ -1415,19 +1419,26 @@ $db->close();
                     CC = Crystalline Conflict
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_pvp_200_wins; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b584f30517a/"
                                     class="eorzeadb_link">REACH LV 15</a> OR <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/790cf2a0925"
-                                    class="eorzeadb_link">LV 16 IN S2 OF CC*</a></p>
+                                    class="eorzeadb_link">LV 16 IN S2 OF CC</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_cc_s2l1516_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/54e1efcec9d/"
+                                    class="eorzeadb_link">REACH LV 25 IN S2 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s2l25_reward; ?>
                             </span>
                         </div>
                     </div>
