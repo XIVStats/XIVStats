@@ -531,8 +531,6 @@ $db->close();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- Final Fantasy XIV Tooltip-->
-    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- Font Awesome-->
     <script src="https://use.fontawesome.com/42d19261ec.js"></script>
     <!-- Compiled and minified CSS -->
