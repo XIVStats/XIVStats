@@ -214,6 +214,9 @@ $cc_s2l25_reward = 0;
 // Anniversary Events
 $ninth_anniversary = 0;
 
+// Anniversary Events
+$ninth_anniversary = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -438,6 +441,10 @@ while($row = $player_overview_query->fetch_assoc()) {
             // Series 2 - Level 25 Reward
             $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
             $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+
+    // Anniversary Events
+    $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
+    $fmt_ninth_anniversary = number_format($ninth_anniversary);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
