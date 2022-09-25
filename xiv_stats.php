@@ -208,6 +208,11 @@ $literal_whale = 0;
 
 // PvP
 $pvp_200_wins = 0;
+$cc_s2l1516_reward = 0;
+$cc_s2l25_reward = 0;
+
+// Anniversary Events
+$ninth_anniversary = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -422,8 +427,21 @@ while($row = $player_overview_query->fetch_assoc()) {
     $literal_whale_in_usd = number_format($literal_whale*42);
 
     // PvP
-    $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
-    $fmt_pvp_200_wins = number_format($pvp_200_wins);
+        // PvP 200 Wins
+        $pvp_200_wins += in_array("Gloria-class Airship", $mounts) ? 1 : 0;
+        $fmt_pvp_200_wins = number_format($pvp_200_wins);
+    
+        // Crystalline Conflict
+            // Series 2 - Level 15 & 16 Rewards
+            $cc_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
+            $fmt_cc_s2l1516_reward = number_format($cc_s2l1516_reward);
+            // Series 2 - Level 25 Reward
+            $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
+            $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+
+    // Anniversary Events
+    $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
+    $fmt_ninth_anniversary = number_format($ninth_anniversary);
 
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -513,8 +531,6 @@ $db->close();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- Final Fantasy XIV Tooltip-->
-    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
     <!-- Font Awesome-->
     <script src="https://use.fontawesome.com/42d19261ec.js"></script>
     <!-- Compiled and minified CSS -->
@@ -1398,27 +1414,49 @@ $db->close();
                         </div>
                     </div>
                     <a id="pvp-stats"></a><span class="card-title light">PLAYER VS PLAYER</span>
+                    CC = Crystalline Conflict
                     <hr>
                     <div class="row">
-                        <div class="col s12 m12 l12 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_pvp_200_wins; ?>
                             </span>
                         </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b584f30517a/"
+                                    class="eorzeadb_link">REACH LV 15</a> OR <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/790cf2a0925"
+                                    class="eorzeadb_link">LV 16 IN S2 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s2l1516_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/54e1efcec9d/"
+                                    class="eorzeadb_link">REACH LV 25 IN S2 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s2l25_reward; ?>
+                            </span>
+                        </div>
                     </div>
                     <a id="misc-stats"></a><span class="card-title light">OTHER STATS</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-medsubtitle">
+                        <div class="col s12 m4 l4 light region-medsubtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/48bcda3953e/"
                                     class="eorzeadb_link">COMPLETED ARR SIGHTSEEING LOG</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_sightseeing; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/5df3d220ac1/" class="eorzeadb_link">PARTICIPATED IN 9TH ANNIVERSARY EVENT</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ninth_anniversary; ?>
+                                </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b62ad975fb7/"
                                     class="eorzeadb_link">LITERAL WHALES THAT WILL BUY ANY MOUNT!</a><br /> (This is meant as a joke. Tee hee!)</p>
                             <span class="region-stat">
