@@ -93,7 +93,8 @@ if (! $db->select_db($conn_info["database"])) {
 $american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfrit","Hyperion",
                               "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
                               "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
-                              "Midgardsormr","Sargatanas","Siren","Zalera","Excalibur");
+                              "Midgardsormr","Sargatanas","Siren","Zalera","Excalibur",
+                              "Halicarnassus", "Maduin", "Marilith", "Seraph");
 sort($american_realm_array);
 
 $japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit","Ridill","Tiamat","Ultima",
