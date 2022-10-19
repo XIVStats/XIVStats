@@ -425,6 +425,7 @@ while($row = $player_overview_query->fetch_assoc()) {
 
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
+    $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) || in_array("Hippo Cart", $mounts) ? 1 : 0;
     $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
   
     // Other mounts
