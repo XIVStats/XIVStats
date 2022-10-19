@@ -779,6 +779,7 @@ $db->close();
             <!-- Other Stats Dropdown -->
             <ul id='misc-stats-dropdown' class='dropdown-content'>
                 <li><a href="#beast">Beast Tribes</a></li>
+                <li><a href="#tribal">Tribal Quests</a></li>
                 <li><a href="#preorders">Pre-Orders</a></li>
                 <li><a href="#collectors">Collectors Edition</a></li>
                 <li class="divider" tabindex="-1"></li>
@@ -1085,6 +1086,7 @@ $db->close();
             <div class="card">
                 <div class="card-content">
                     <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
+                    <a id="tribal"><span class="card-title light">TRIBAL QUESTS (REDEEMED MOUNT OR MINION)</span></a>
                     <hr />
                     <br />
                     <div class="light region-subtitle">ALL CHARACTERS</div>
