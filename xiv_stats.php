@@ -203,6 +203,7 @@ $beast_tribes["Qitari"] = 0;
 $beast_tribes["Dwarf"] = 0;
 // Endwalker
 $beast_tribes["Arkasodara"] = 0;
+$beast_tribes["Omnicron"] = 0;
 
 // Other mounts
 $literal_whale = 0;
@@ -424,6 +425,7 @@ while($row = $player_overview_query->fetch_assoc()) {
 
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
+    $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
   
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
