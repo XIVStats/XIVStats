@@ -219,6 +219,9 @@ $ninth_anniversary = 0;
 // Anniversary Events
 $ninth_anniversary = 0;
 
+// Variant & Criterion Dungeons
+$all_survey_sildihn = 0;
+
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
     // Skip deleted characters
@@ -453,6 +456,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
     $fmt_ninth_anniversary = number_format($ninth_anniversary);
+
+    // Variant & Criterion Dungeons
+    $all_survey_sildihn += in_array("Silkie", $mounts) ? 1 : 0;
+    $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
 
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -1423,6 +1430,17 @@ $db->close();
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <a id="vcdungeons"></a><span class="card-title light">VARIANT &amp; CRITERION DUNGEONS</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN SIL'DIHN SUBTERRANE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_sildihn; ?>
                             </span>
                         </div>
                     </div>
