@@ -203,6 +203,7 @@ $beast_tribes["Qitari"] = 0;
 $beast_tribes["Dwarf"] = 0;
 // Endwalker
 $beast_tribes["Arkasodara"] = 0;
+$beast_tribes["Omnicron"] = 0;
 
 // Other mounts
 $literal_whale = 0;
@@ -217,6 +218,9 @@ $ninth_anniversary = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
+
+// Variant & Criterion Dungeons
+$all_survey_sildihn = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -424,6 +428,8 @@ while($row = $player_overview_query->fetch_assoc()) {
 
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
+    $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) || in_array("Hippo Cart", $mounts) ? 1 : 0;
+    $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
   
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
@@ -450,6 +456,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
     $fmt_ninth_anniversary = number_format($ninth_anniversary);
+
+    // Variant & Criterion Dungeons
+    $all_survey_sildihn += in_array("Silkie", $mounts) ? 1 : 0;
+    $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
 
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -776,6 +786,7 @@ $db->close();
             <!-- Other Stats Dropdown -->
             <ul id='misc-stats-dropdown' class='dropdown-content'>
                 <li><a href="#beast">Beast Tribes</a></li>
+                <li><a href="#tribal">Tribal Quests</a></li>
                 <li><a href="#preorders">Pre-Orders</a></li>
                 <li><a href="#collectors">Collectors Edition</a></li>
                 <li class="divider" tabindex="-1"></li>
@@ -1082,6 +1093,7 @@ $db->close();
             <div class="card">
                 <div class="card-content">
                     <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
+                    <a id="tribal"><span class="card-title light">TRIBAL QUESTS (REDEEMED MOUNT OR MINION)</span></a>
                     <hr />
                     <br />
                     <div class="light region-subtitle">ALL CHARACTERS</div>
@@ -1418,6 +1430,17 @@ $db->close();
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <a id="vcdungeons"></a><span class="card-title light">VARIANT &amp; CRITERION DUNGEONS</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN SIL'DIHN SUBTERRANE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_sildihn; ?>
                             </span>
                         </div>
                     </div>
