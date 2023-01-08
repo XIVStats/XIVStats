@@ -756,6 +756,9 @@ $db->close();
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
             <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            Follow us: 
+            <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a>
+            <a href="https://twitter.comffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
             <ul id='pop-dropdown' class='dropdown-content'>
