@@ -447,6 +447,9 @@ while($row = $player_overview_query->fetch_assoc()) {
             // Series 2 - Level 25 Reward
             $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
             $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+            // Series 3 - Level 15 Reward
+            $cc_s3l15_reward += in_array("Logistics Node, $mounts") ? 1 : 0;
+            $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
