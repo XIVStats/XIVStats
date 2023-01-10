@@ -212,6 +212,7 @@ $literal_whale = 0;
 $pvp_200_wins = 0;
 $cc_s2l1516_reward = 0;
 $cc_s2l25_reward = 0;
+$cc_s3l15_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -448,7 +449,7 @@ while($row = $player_overview_query->fetch_assoc()) {
             $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
             $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
             // Series 3 - Level 15 Reward
-            $cc_s3l15_reward += in_array("Logistics Node, $mounts") ? 1 : 0;
+            $cc_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
             $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
 
     // Anniversary Events
