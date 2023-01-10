@@ -212,6 +212,7 @@ $literal_whale = 0;
 $pvp_200_wins = 0;
 $cc_s2l1516_reward = 0;
 $cc_s2l25_reward = 0;
+$cc_s3l15_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -427,7 +428,6 @@ while($row = $player_overview_query->fetch_assoc()) {
     $beast_tribes["Dwarf"] += in_array("Lalinator 5.H0", $minions) || in_array("Rolling Tankard", $mounts) ? 1 : 0;
 
     // Endwalker
-    $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) ? 1 : 0;
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) || in_array("Hippo Cart", $mounts) ? 1 : 0;
     $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
   
@@ -448,6 +448,9 @@ while($row = $player_overview_query->fetch_assoc()) {
             // Series 2 - Level 25 Reward
             $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
             $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+            // Series 3 - Level 15 Reward
+            $cc_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
+            $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
@@ -549,8 +552,11 @@ $db->close();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <!-- Font Awesome-->
-    <script src="https://use.fontawesome.com/42d19261ec.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!-- Fork Awesome-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
@@ -754,6 +760,9 @@ $db->close();
             <a class="waves-effect waves-light btn" href='#grandcompany'>Grand Company Stats</a>
             <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            Follow us: 
+            <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a>
+            <a href="https://twitter.comffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
             <ul id='pop-dropdown' class='dropdown-content'>
@@ -785,7 +794,6 @@ $db->close();
 
             <!-- Other Stats Dropdown -->
             <ul id='misc-stats-dropdown' class='dropdown-content'>
-                <li><a href="#beast">Beast Tribes</a></li>
                 <li><a href="#tribal">Tribal Quests</a></li>
                 <li><a href="#preorders">Pre-Orders</a></li>
                 <li><a href="#collectors">Collectors Edition</a></li>
@@ -1092,7 +1100,6 @@ $db->close();
         <div class="row">
             <div class="card">
                 <div class="card-content">
-                    <a id="beast"><span class="card-title light">BEAST TRIBES (REDEEMED MINION)</span></a>
                     <a id="tribal"><span class="card-title light">TRIBAL QUESTS (REDEEMED MOUNT OR MINION)</span></a>
                     <hr />
                     <br />
