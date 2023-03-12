@@ -816,6 +816,7 @@ $db->close();
                 <li><a href="#eternal-bond">Eternal Bond</a></li>
                 <li><a href="#hildibrand">Hildibrand</a></li>
                 <li><a href="#deepdungeon">Deep Dungeon</a></li>
+                <li><a href="#vcdungeons">Variant &amp; Criterion Dungeons</a></li>
                 <li><a href="#pvp-stats">PvP</a></li>
                 <li><a href="#misc-stats">Other Stats</a></li>
             </ul>
