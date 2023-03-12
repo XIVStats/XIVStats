@@ -204,6 +204,7 @@ $beast_tribes["Dwarf"] = 0;
 // Endwalker
 $beast_tribes["Arkasodara"] = 0;
 $beast_tribes["Omnicron"] = 0;
+$beast_tribes["Loporrit"] = 0;
 
 // Other mounts
 $literal_whale = 0;
@@ -430,6 +431,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) || in_array("Hippo Cart", $mounts) ? 1 : 0;
     $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
+    $beast_tribes["Loporrit"] += in_array("Findingway", $minions) || in_array("Moon-hopper", $mounts) ? 1 : 0;
   
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
@@ -762,7 +764,6 @@ $db->close();
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
             Follow us: 
             <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a>
-            <a href="https://twitter.comffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
             <ul id='pop-dropdown' class='dropdown-content'>
