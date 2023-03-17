@@ -204,6 +204,7 @@ $beast_tribes["Dwarf"] = 0;
 // Endwalker
 $beast_tribes["Arkasodara"] = 0;
 $beast_tribes["Omnicron"] = 0;
+$beast_tribes["Loporrit"] = 0;
 
 // Other mounts
 $literal_whale = 0;
@@ -222,6 +223,9 @@ $ninth_anniversary = 0;
 
 // Variant & Criterion Dungeons
 $all_survey_sildihn = 0;
+
+// Deep Dungeon
+$vintage_vogue_achievement = 0;
 
 $player_overview_query = $db->query("SELECT * FROM tblplayers;", MYSQLI_USE_RESULT);
 while($row = $player_overview_query->fetch_assoc()) {
@@ -430,6 +434,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Endwalker
     $beast_tribes["Arkasodara"] += in_array("Wind-up Arkasodara", $minions) || in_array("Hippo Cart", $mounts) ? 1 : 0;
     $beast_tribes["Omnicron"] += in_array("Lumini", $minions) || in_array("Miw Miisv", $mounts) ? 1 : 0;
+    $beast_tribes["Loporrit"] += in_array("Findingway", $minions) || in_array("Moon-hopper", $mounts) ? 1 : 0;
   
     // Other mounts
     $literal_whale += in_array("Lunar Whale", $mounts) ? 1 : 0;
@@ -463,6 +468,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Variant & Criterion Dungeons
     $all_survey_sildihn += in_array("Silkie", $mounts) ? 1 : 0;
     $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
+
+    // Deep Dungeon
+    $vintage_vogue_achievement += in_array("Aeturna", $mounts) ? 1 : 0;
+    $fmt_vintage_vogue_achievement = number_format($vintage_vogue_achievement);
 
     // Fetch total number of active players in database by checking for the 'Wind-up Herois' minion received during 6.0 MSQ
     // Can also check for 'Argos' mount (Item: Argos Horn) as it was given during 6.0 MSQ from the same quest.
@@ -762,7 +771,7 @@ $db->close();
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
             Follow us: 
             <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a>
-            <a href="https://twitter.comffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/ffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
             <ul id='pop-dropdown' class='dropdown-content'>
@@ -806,6 +815,8 @@ $db->close();
                 <li><a href="#commendations">Comms</a></li>
                 <li><a href="#eternal-bond">Eternal Bond</a></li>
                 <li><a href="#hildibrand">Hildibrand</a></li>
+                <li><a href="#deepdungeon">Deep Dungeon</a></li>
+                <li><a href="#vcdungeons">Variant &amp; Criterion Dungeons</a></li>
                 <li><a href="#pvp-stats">PvP</a></li>
                 <li><a href="#misc-stats">Other Stats</a></li>
             </ul>
@@ -1437,6 +1448,17 @@ $db->close();
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <a id="deepdungeon"></a><span class="card-title light">DEEP DUNGEON</span>
+                    <hr>
+                    <div class="row">
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e36a444b624/"
+                                    class="eorzeadb_link">OBTAINED 'VINTAGE VOGUE' ACHIEVEMENT</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_vintage_vogue_achievement; ?>
                             </span>
                         </div>
                     </div>
