@@ -1508,6 +1508,14 @@ $db->close();
                             </span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cf30ad82b8d/"
+                                    class="eorzeadb_link">REACH LV 15 IN S3 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s3l15_reward; ?>
+                            </span>
+                        </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/424a7a49fbb/"
                                     class="eorzeadb_link">REACH LV 15 IN S4 OF CC</a></p>
