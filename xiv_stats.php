@@ -225,6 +225,7 @@ $ninth_anniversary = 0;
 
 // Variant & Criterion Dungeons
 $all_survey_sildihn = 0;
+$all_survey_rokkon = 0
 
 // Deep Dungeon
 $vintage_vogue_achievement = 0;
@@ -476,6 +477,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Variant & Criterion Dungeons
     $all_survey_sildihn += in_array("Silkie", $mounts) ? 1 : 0;
     $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
+    $all_survey_rokkon += in_array("Burabura Chochin", $mounts) ? 1 : 0;
+    $fmt_all_survey_rokkon = number_format($all_survey_rokkon);
 
     // Deep Dungeon
     $vintage_vogue_achievement += in_array("Aeturna", $mounts) ? 1 : 0;
@@ -1473,11 +1476,18 @@ $db->close();
                     <a id="vcdungeons"></a><span class="card-title light">VARIANT &amp; CRITERION DUNGEONS</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m12 l12 light region-subtitle">
+                        <div class="col s12 m6 l6 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
                                     class="eorzeadb_link">UNLOCK ALL SURVEYS IN SIL'DIHN SUBTERRANE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_all_survey_sildihn; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m6 l6 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN MOUNT ROKKON</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_rokkon; ?>
                             </span>
                         </div>
                     </div>
