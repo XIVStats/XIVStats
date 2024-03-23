@@ -141,6 +141,7 @@ $hw_collectors = 0;
 $sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
+$dt_collectors = 0;
 
 // Artbook
 $arrartbook = 0;
@@ -349,6 +350,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_shb_collectors = number_format($shb_collectors);
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
     $fmt_ew_collectors = number_format($ew_collectors);
+    $dt_collectors += in_array("Ark", $mounts) ? 1 : 0;
+    $fmt_dt_collectors = numbers_format($dt_collectors);
 
     // Physical Items
     // Soundtracks
@@ -1251,18 +1254,25 @@ $db->close();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/"
                                     class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_shb_collectors; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/"
                                     class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_ew_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#"
+                                    class="eorzeadb_link">DAWNTRAIL COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_dt_collectors; ?>
                             </span>
                         </div>
                     </div>
