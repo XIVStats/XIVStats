@@ -225,7 +225,7 @@ $ninth_anniversary = 0;
 
 // Variant & Criterion Dungeons
 $all_survey_sildihn = 0;
-$all_survey_rokkon = 0
+$all_survey_rokkon = 0;
 
 // Deep Dungeon
 $vintage_vogue_achievement = 0;
