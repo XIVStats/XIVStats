@@ -149,6 +149,8 @@ $sbartbooktwo = 0;
 $sbartbook = 0;
 $shb_artbook = 0;
 $shb_artbooktwo = 0;
+$ew_artbook = 0;
+$ew_artbooktwo = 0;
 
 // Plushes
 $moogleplush = 0;
