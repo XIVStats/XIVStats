@@ -152,6 +152,10 @@ $shb_artbooktwo = 0;
 $ew_artbook = 0;
 $ew_artbooktwo = 0;
 
+// Encyclopaedia Eorzea
+$encyclopaediaeorzea_one = 0;
+$encyclopaediaeorzea_three = 0;
+
 // Plushes
 $moogleplush = 0;
 $topazcarbuncle_plush = 0;
@@ -382,6 +386,12 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_ew_artbook = number_format($ew_artbook);
     $ew_artbooktwo += in_array("Zodiark Idol", $minions) ? 1 : 0;
     $fmt_ew_artbooktwo = number_format($ew_artbooktwo);
+
+    // Encyclopaedia Eorzea 
+    $encyclopaediaeorzea_one += in_array("Namingway", $minions) ? 1 : 0;
+    $fmt_encyclopaediaeorzea_one = number_format($encyclopaediaeorzea_one);
+    $encyclopaediaeorzea_three += in_array ("Wind-up Fourchenault", $minions) ? 1 : 0;
+    $fmt_encyclopaediaeorzea_three = number_format($encyclopaediaeorzea_three);
 
     // Plushes & Other Items
     $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
@@ -1400,6 +1410,24 @@ $db->close();
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col s12"><a id="encyclopaediaeorzea"></a><span class="card-title light">Encyclopaedia Eorzea</span></div>
+                    <!-- Encyclopedia 2 is not here since the reward was a headpiece --> 
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d55e4e70d34/"
+                                class="eorzeadb_link">ENCYCLOPEDIA EORZEA 1</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_encyclopaediaeorzea_one; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/4f479516937/"
+                                class="eorzeadb_link">ENCYCLOPEDIA EORZEA 3</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_encyclopaediaeorzea_three; ?>
+                        </span>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col s12"><a id="plushes"></a><span class="card-title light">Plushes</span></div>
