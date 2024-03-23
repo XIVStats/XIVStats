@@ -178,6 +178,7 @@ $sightseeing = 0;
 // Hildibrand Questline
 $arr_hildibrand = 0;
 $hw_hildibrand = 0;
+$ew_hildibrand = 0;
 
 // Commendations
 $comm50 = 0;
@@ -410,6 +411,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_arr_hildibrand = number_format($arr_hildibrand);
     $hw_hildibrand += in_array("Gigi", $minions) ? 1 : 0;
     $fmt_hw_hildibrand = number_format($hw_hildibrand);
+    $ew_hildibrand += in_array("UFO", $mounts) ? 1 : 0;
+    $fmt_ew_hildibrand = number_format($ew_hildibrand);
 
     // ARR Sightseeing Log
     $sightseeing += in_array("Fledgling Apkallu", $minions) ? 1 : 0;
@@ -1475,18 +1478,25 @@ $db->close();
                     <a id="hildibrand"></a><span class="card-title light">HILDIBRAND</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_arr_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0040a15a6fa/"
+                                    class="eorzeadb_link">COMPLETED EW HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ew_hildibrand; ?>
                             </span>
                         </div>
                     </div>
