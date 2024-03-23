@@ -474,7 +474,7 @@ while($row = $player_overview_query->fetch_assoc()) {
             $fmt_pvp_s4l25_reward = number_format($pvp_s4l25_reward);
             // Series 5 - Level 15 Reward
             $pvp_s5l15_reward += in_array("Tourmaline Weapon", $minions) ? 1 : 0;
-            $fmt_pvp_s5l15_reward = number_format($pvp_s5l15_reward)
+            $fmt_pvp_s5l15_reward = number_format($pvp_s5l15_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
