@@ -133,6 +133,7 @@ $prehw = 0;
 $presb = 0;
 $preshb = 0;
 $preew = 0;
+$predt = 0;
 
 // Collectors Editions
 $arr_collectors = 0;
@@ -333,6 +334,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_preshb = number_format($preshb);
     $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
     $fmt_preew = number_format($preew);
+    $predt += in_array("Wind-up Zidane", $minions) ? 1 : 0;
+    $fmt_predt = number_format($predt);
 
     // Collectors Edition
     $arr_collectors += in_array("Fat Chocobo", $mounts) || in_array("Coeurl", $mounts) || in_array("Wind-Up Moogle", $minions) || in_array("Baby Behemoth", $minions) ? 1 : 0;
@@ -1189,18 +1192,25 @@ $db->close();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/"
                                     class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_preshb; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/"
                                     class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_preew; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#"
+                                    class="eorzeadb_link">PRE-ORDERED DAWNTRAIL</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_predt; ?>
                             </span>
                         </div>
                     </div>
