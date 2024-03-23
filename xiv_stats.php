@@ -1496,7 +1496,7 @@ $db->close();
                     <hr>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f1588cffe7b/"
                                     class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_pvp_200_wins; ?>
