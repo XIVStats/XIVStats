@@ -854,6 +854,7 @@ $db->close();
                 <li><a href="#physical">Physical Items</a></li>
                 <li><a href="#soundtracks">Soundtracks</a></li>
                 <li><a href="#artbooks">Art Books</a></li>
+                <li><a href="#encyclopaediaeorzea">Encyclopaedia Eorzea</a></li>
                 <li><a href="#plushes">Plushes</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li><a href="#commendations">Comms</a></li>
