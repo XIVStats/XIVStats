@@ -235,6 +235,7 @@ $ninth_anniversary = 0;
 // Variant & Criterion Dungeons
 $all_survey_sildihn = 0;
 $all_survey_rokkon = 0;
+$all_survey_aloalo = 0;
 
 // Deep Dungeon
 $vintage_vogue_achievement = 0;
@@ -505,6 +506,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
     $all_survey_rokkon += in_array("Burabura Chochin", $mounts) ? 1 : 0;
     $fmt_all_survey_rokkon = number_format($all_survey_rokkon);
+    $all_survey_aloalo += in_array("Spectral Statice", $mounts) ? 1 : 0;
+    $fmt_all_survey_aloalo = number_format($all_survey_aloalo);
 
     // Deep Dungeon
     $vintage_vogue_achievement += in_array("Aeturna", $mounts) ? 1 : 0;
@@ -1552,18 +1555,25 @@ $db->close();
                     <a id="vcdungeons"></a><span class="card-title light">VARIANT &amp; CRITERION DUNGEONS</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
                                     class="eorzeadb_link">UNLOCK ALL SURVEYS IN SIL'DIHN SUBTERRANE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_all_survey_sildihn; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/89826f6775d/"
                                     class="eorzeadb_link">UNLOCK ALL SURVEYS IN MOUNT ROKKON</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_all_survey_rokkon; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://na.finalfantasyxiv.com/lodestone/playguide/db/item/840542a5c6a/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN ALOALO ISLAND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_aloalo; ?>
                             </span>
                         </div>
                     </div>
