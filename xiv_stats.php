@@ -620,6 +620,10 @@ $db->close();
                 - #a88d3b - DoL
           */
 
+        /* .row {
+            display: block;
+        } */
+
         a {
             color: white;
             /* text-decoration-line: dotted; */
