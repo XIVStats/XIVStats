@@ -1488,7 +1488,7 @@ $db->close();
                             </span>
                         </div>
                         <div class="col s12 m6 l6 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/89826f6775d/"
                                     class="eorzeadb_link">UNLOCK ALL SURVEYS IN MOUNT ROKKON</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_all_survey_rokkon; ?>
