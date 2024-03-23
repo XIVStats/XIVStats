@@ -374,6 +374,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_shb_artbook = number_format($shb_artbook);
     $shb_artbooktwo += in_array("Wind-up Dulia-Chai", $minions) ? 1 : 0;
     $fmt_shb_artbooktwo = number_format($shb_artbooktwo);
+    $ew_artbook += in_array("Wind-up Ragnarok", $minions) ? 1 : 0;
+    $fmt_ew_artbook = number_format($ew_artbook);
+    $ew_artbooktwo += in_array("Zodiark Idol", $minions) ? 1 : 0;
+    $fmt_ew_artbooktwo = number_format($ew_artbooktwo);
 
     // Plushes & Other Items
     $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
@@ -1364,11 +1368,25 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m12 l12 light region-subtitle">
+                    <div class="col s12 m14 l14 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/"
                                 class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_shb_artbooktwo; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m14 l14 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce5b2d5f679/"
+                                class="eorzeadb_link">EW AMONG THE STARS ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_artbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m14 l14 light region-subtitle">
+                        <p><a href="#"
+                                class="eorzeadb_link">EW BEYOND THE VEIL ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_artbooktwo; ?>
                         </span>
                     </div>
                 </div>
