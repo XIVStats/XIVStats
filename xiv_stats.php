@@ -214,6 +214,8 @@ $pvp_200_wins = 0;
 $cc_s2l1516_reward = 0;
 $cc_s2l25_reward = 0;
 $cc_s3l15_reward = 0;
+$cc_s4l15_reward = 0;
+$cc_s4l25_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -456,6 +458,12 @@ while($row = $player_overview_query->fetch_assoc()) {
             // Series 3 - Level 15 Reward
             $cc_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
             $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
+            // Series 4 - Level 15 Reward
+            $cc_s4l15_reward += in_array("Rubellite Weapon", $minions) ? 1 : 0;
+            $fmt_cc_s4l15_reward = number_format($cc_s4l15_reward);
+            // Series 4 - Level 25 Reward
+            $cc_s4l25_reward += in_array("Traveling Supporter", $mounts) ? 1 : 0;
+            $fmt_cc_s4l25_reward = number_format($cc_s4l25_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
@@ -1494,6 +1502,29 @@ $db->close();
                                     class="eorzeadb_link">REACH LV 25 IN S2 OF CC</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_cc_s2l25_reward; ?>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cf30ad82b8d/"
+                                    class="eorzeadb_link">REACH LV 15 IN S3 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s3l15_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/424a7a49fbb/"
+                                    class="eorzeadb_link">REACH LV 15 IN S4 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s4l15_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9d590218ad0/"
+                                    class="eorzeadb_link">REACH LV 25 IN S4 OF CC</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_cc_s4l25_reward; ?>
                             </span>
                         </div>
                     </div>
