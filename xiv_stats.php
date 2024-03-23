@@ -213,11 +213,12 @@ $literal_whale = 0;
 
 // PvP
 $pvp_200_wins = 0;
-$cc_s2l1516_reward = 0;
-$cc_s2l25_reward = 0;
-$cc_s3l15_reward = 0;
-$cc_s4l15_reward = 0;
-$cc_s4l25_reward = 0;
+$pvp_s2l1516_reward = 0;
+$pvp_s2l25_reward = 0;
+$pvp_s3l15_reward = 0;
+$pvp_s4l15_reward = 0;
+$pvp_s4l25_reward = 0;
+$pvp_s5l15_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -457,20 +458,23 @@ while($row = $player_overview_query->fetch_assoc()) {
     
         // Crystalline Conflict
             // Series 2 - Level 15 & 16 Rewards
-            $cc_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
-            $fmt_cc_s2l1516_reward = number_format($cc_s2l1516_reward);
+            $pvp_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
+            $fmt_pvp_s2l1516_reward = number_format($pvp_s2l1516_reward);
             // Series 2 - Level 25 Reward
-            $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
-            $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+            $pvp_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
+            $fmt_pvp_s2l25_reward = number_format($pvp_s2l25_reward);
             // Series 3 - Level 15 Reward
-            $cc_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
-            $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
+            $pvp_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
+            $fmt_pvp_s3l15_reward = number_format($pvp_s3l15_reward);
             // Series 4 - Level 15 Reward
-            $cc_s4l15_reward += in_array("Rubellite Weapon", $minions) ? 1 : 0;
-            $fmt_cc_s4l15_reward = number_format($cc_s4l15_reward);
+            $pvp_s4l15_reward += in_array("Rubellite Weapon", $minions) ? 1 : 0;
+            $fmt_pvp_s4l15_reward = number_format($pvp_s4l15_reward);
             // Series 4 - Level 25 Reward
-            $cc_s4l25_reward += in_array("Traveling Supporter", $mounts) ? 1 : 0;
-            $fmt_cc_s4l25_reward = number_format($cc_s4l25_reward);
+            $pvp_s4l25_reward += in_array("Traveling Supporter", $mounts) ? 1 : 0;
+            $fmt_pvp_s4l25_reward = number_format($pvp_s4l25_reward);
+            // Series 5 - Level 15 Reward
+            $pvp_s5l15_reward += in_array("Tourmaline Weapon", $minions) ? 1 : 0;
+            $fmt_pvp_s5l15_reward = number_format($pvp_s5l15_reward)
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
@@ -1370,21 +1374,21 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m14 l14 light region-subtitle">
+                    <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/"
                                 class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_shb_artbooktwo; ?>
                         </span>
                     </div>
-                    <div class="col s12 m14 l14 light region-subtitle">
+                    <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce5b2d5f679/"
                                 class="eorzeadb_link">EW AMONG THE STARS ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_ew_artbook; ?>
                         </span>
                     </div>
-                    <div class="col s12 m14 l14 light region-subtitle">
+                    <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="#"
                                 class="eorzeadb_link">EW BEYOND THE VEIL ARTBOOK</a></p>
                         <span class="region-stat">
@@ -1516,7 +1520,6 @@ $db->close();
                         </div>
                     </div>
                     <a id="pvp-stats"></a><span class="card-title light">PLAYER VS PLAYER</span>
-                    CC = Crystalline Conflict
                     <hr>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
@@ -1529,39 +1532,46 @@ $db->close();
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b584f30517a/"
                                     class="eorzeadb_link">REACH LV 15</a> OR <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/790cf2a0925"
-                                    class="eorzeadb_link">LV 16 IN S2 OF CC</a></p>
+                                    class="eorzeadb_link">LV 16 IN SERIES 2 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s2l1516_reward; ?>
+                                <?php echo $fmt_pvp_s2l1516_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/54e1efcec9d/"
-                                    class="eorzeadb_link">REACH LV 25 IN S2 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 25 IN SERIES 2 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s2l25_reward; ?>
+                                <?php echo $fmt_pvp_s2l25_reward; ?>
                             </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cf30ad82b8d/"
-                                    class="eorzeadb_link">REACH LV 15 IN S3 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 3 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s3l15_reward; ?>
+                                <?php echo $fmt_pvp_s3l15_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/424a7a49fbb/"
-                                    class="eorzeadb_link">REACH LV 15 IN S4 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 4 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s4l15_reward; ?>
+                                <?php echo $fmt_pvp_s4l15_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9d590218ad0/"
-                                    class="eorzeadb_link">REACH LV 25 IN S4 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 25 IN SERIES 4 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s4l25_reward; ?>
+                                <?php echo $fmt_pvp_s4l25_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d1365de3a3f/"
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 5 OF PVP</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_pvp_s5l15_reward; ?>
                             </span>
                         </div>
                     </div>
