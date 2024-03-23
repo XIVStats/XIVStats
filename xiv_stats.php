@@ -173,6 +173,7 @@ $sb_soundtrack = 0;
 $shb_soundtrack = 0;
 $deathuntodawn = 0;
 $ew_soundtrack = 0;
+$growinglight = 0;
 
 // Eternal Bond
 $saw_eternal_bond = 0;
@@ -351,7 +352,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
     $fmt_ew_collectors = number_format($ew_collectors);
     $dt_collectors += in_array("Ark", $mounts) ? 1 : 0;
-    $fmt_dt_collectors = numbers_format($dt_collectors);
+    $fmt_dt_collectors = number_format($dt_collectors);
 
     // Physical Items
     // Soundtracks
@@ -373,6 +374,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_deathuntodawn = number_format($deathuntodawn);
     $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
+    $growinglight += in_array("Hydaelyn Idol", $minions) ? 1 : 0;
+    $fmt_growinglight = number_format($growinglight);
 
     // Art Books
     $arrartbook += in_array("Model Enterprise", $minions) ? 1 : 0;
@@ -1360,6 +1363,15 @@ $db->close();
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/2b855d1b1a1/" class="eorzeadb_link">ENDWALKER SOUNDTRACK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_ew_soundtrack; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12 l12 light region-subtitle">
+                        <p><a href="#"
+                                class="eorzeadb_link">GROWING LIGHT SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_growinglight; ?>
                         </span>
                     </div>
                 </div>
