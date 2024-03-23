@@ -567,9 +567,9 @@ $db->close();
 <head>
     <title>XIVCensus - Character statistics for FFXIV</title>
     <!-- FFXIV Official Tooltips-->
-    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
+    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v3"></script>
     <!-- JQuery Script-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
