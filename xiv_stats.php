@@ -133,6 +133,7 @@ $prehw = 0;
 $presb = 0;
 $preshb = 0;
 $preew = 0;
+$predt = 0;
 
 // Collectors Editions
 $arr_collectors = 0;
@@ -140,6 +141,7 @@ $hw_collectors = 0;
 $sb_collectors = 0;
 $shb_collectors = 0;
 $ew_collectors = 0;
+$dt_collectors = 0;
 
 // Artbook
 $arrartbook = 0;
@@ -149,6 +151,12 @@ $sbartbooktwo = 0;
 $sbartbook = 0;
 $shb_artbook = 0;
 $shb_artbooktwo = 0;
+$ew_artbook = 0;
+$ew_artbooktwo = 0;
+
+// Encyclopaedia Eorzea
+$encyclopaediaeorzea_one = 0;
+$encyclopaediaeorzea_three = 0;
 
 // Plushes
 $moogleplush = 0;
@@ -165,6 +173,7 @@ $sb_soundtrack = 0;
 $shb_soundtrack = 0;
 $deathuntodawn = 0;
 $ew_soundtrack = 0;
+$growinglight = 0;
 
 // Eternal Bond
 $saw_eternal_bond = 0;
@@ -176,6 +185,7 @@ $sightseeing = 0;
 // Hildibrand Questline
 $arr_hildibrand = 0;
 $hw_hildibrand = 0;
+$ew_hildibrand = 0;
 
 // Commendations
 $comm50 = 0;
@@ -211,11 +221,12 @@ $literal_whale = 0;
 
 // PvP
 $pvp_200_wins = 0;
-$cc_s2l1516_reward = 0;
-$cc_s2l25_reward = 0;
-$cc_s3l15_reward = 0;
-$cc_s4l15_reward = 0;
-$cc_s4l25_reward = 0;
+$pvp_s2l1516_reward = 0;
+$pvp_s2l25_reward = 0;
+$pvp_s3l15_reward = 0;
+$pvp_s4l15_reward = 0;
+$pvp_s4l25_reward = 0;
+$pvp_s5l15_reward = 0;
 
 // Anniversary Events
 $ninth_anniversary = 0;
@@ -225,6 +236,8 @@ $ninth_anniversary = 0;
 
 // Variant & Criterion Dungeons
 $all_survey_sildihn = 0;
+$all_survey_rokkon = 0;
+$all_survey_aloalo = 0;
 
 // Deep Dungeon
 $vintage_vogue_achievement = 0;
@@ -324,6 +337,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_preshb = number_format($preshb);
     $preew += in_array("Wind-up Palom", $minions) ? 1 : 0;
     $fmt_preew = number_format($preew);
+    $predt += in_array("Wind-up Zidane", $minions) ? 1 : 0;
+    $fmt_predt = number_format($predt);
 
     // Collectors Edition
     $arr_collectors += in_array("Fat Chocobo", $mounts) || in_array("Coeurl", $mounts) || in_array("Wind-Up Moogle", $minions) || in_array("Baby Behemoth", $minions) ? 1 : 0;
@@ -336,6 +351,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_shb_collectors = number_format($shb_collectors);
     $ew_collectors += in_array("Arion", $mounts) ? 1 : 0;
     $fmt_ew_collectors = number_format($ew_collectors);
+    $dt_collectors += in_array("Ark", $mounts) ? 1 : 0;
+    $fmt_dt_collectors = number_format($dt_collectors);
 
     // Physical Items
     // Soundtracks
@@ -357,6 +374,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_deathuntodawn = number_format($deathuntodawn);
     $ew_soundtrack += in_array("Wind-up Vrtra", $minions) ? 1 : 0;
     $fmt_ew_soundtrack = number_format($ew_soundtrack);
+    $growinglight += in_array("Hydaelyn Idol", $minions) ? 1 : 0;
+    $fmt_growinglight = number_format($growinglight);
 
     // Art Books
     $arrartbook += in_array("Model Enterprise", $minions) ? 1 : 0;
@@ -373,6 +392,16 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_shb_artbook = number_format($shb_artbook);
     $shb_artbooktwo += in_array("Wind-up Dulia-Chai", $minions) ? 1 : 0;
     $fmt_shb_artbooktwo = number_format($shb_artbooktwo);
+    $ew_artbook += in_array("Wind-up Ragnarok", $minions) ? 1 : 0;
+    $fmt_ew_artbook = number_format($ew_artbook);
+    $ew_artbooktwo += in_array("Zodiark Idol", $minions) ? 1 : 0;
+    $fmt_ew_artbooktwo = number_format($ew_artbooktwo);
+
+    // Encyclopaedia Eorzea 
+    $encyclopaediaeorzea_one += in_array("Namingway", $minions) ? 1 : 0;
+    $fmt_encyclopaediaeorzea_one = number_format($encyclopaediaeorzea_one);
+    $encyclopaediaeorzea_three += in_array ("Wind-up Fourchenault", $minions) ? 1 : 0;
+    $fmt_encyclopaediaeorzea_three = number_format($encyclopaediaeorzea_three);
 
     // Plushes & Other Items
     $moogleplush += in_array("Wind-up Delivery Moogle", $minions) ? 1 : 0;
@@ -402,6 +431,8 @@ while($row = $player_overview_query->fetch_assoc()) {
     $fmt_arr_hildibrand = number_format($arr_hildibrand);
     $hw_hildibrand += in_array("Gigi", $minions) ? 1 : 0;
     $fmt_hw_hildibrand = number_format($hw_hildibrand);
+    $ew_hildibrand += in_array("UFO", $mounts) ? 1 : 0;
+    $fmt_ew_hildibrand = number_format($ew_hildibrand);
 
     // ARR Sightseeing Log
     $sightseeing += in_array("Fledgling Apkallu", $minions) ? 1 : 0;
@@ -450,20 +481,23 @@ while($row = $player_overview_query->fetch_assoc()) {
     
         // Crystalline Conflict
             // Series 2 - Level 15 & 16 Rewards
-            $cc_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
-            $fmt_cc_s2l1516_reward = number_format($cc_s2l1516_reward);
+            $pvp_s2l1516_reward += in_array("Clockwork Cerulean Chaser", $minions) || in_array("Clockwork Crimson Chaser", $minions) ? 1 : 0;
+            $fmt_pvp_s2l1516_reward = number_format($pvp_s2l1516_reward);
             // Series 2 - Level 25 Reward
-            $cc_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
-            $fmt_cc_s2l25_reward = number_format($cc_s2l25_reward);
+            $pvp_s2l25_reward += in_array("Fylgja", $mounts) ? 1 : 0;
+            $fmt_pvp_s2l25_reward = number_format($pvp_s2l25_reward);
             // Series 3 - Level 15 Reward
-            $cc_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
-            $fmt_cc_s3l15_reward = number_format($cc_s3l15_reward);
+            $pvp_s3l15_reward += in_array("Logistics Node", $mounts) ? 1 : 0;
+            $fmt_pvp_s3l15_reward = number_format($pvp_s3l15_reward);
             // Series 4 - Level 15 Reward
-            $cc_s4l15_reward += in_array("Rubellite Weapon", $minions) ? 1 : 0;
-            $fmt_cc_s4l15_reward = number_format($cc_s4l15_reward);
+            $pvp_s4l15_reward += in_array("Rubellite Weapon", $minions) ? 1 : 0;
+            $fmt_pvp_s4l15_reward = number_format($pvp_s4l15_reward);
             // Series 4 - Level 25 Reward
-            $cc_s4l25_reward += in_array("Traveling Supporter", $mounts) ? 1 : 0;
-            $fmt_cc_s4l25_reward = number_format($cc_s4l25_reward);
+            $pvp_s4l25_reward += in_array("Traveling Supporter", $mounts) ? 1 : 0;
+            $fmt_pvp_s4l25_reward = number_format($pvp_s4l25_reward);
+            // Series 5 - Level 15 Reward
+            $pvp_s5l15_reward += in_array("Tourmaline Weapon", $minions) ? 1 : 0;
+            $fmt_pvp_s5l15_reward = number_format($pvp_s5l15_reward);
 
     // Anniversary Events
     $ninth_anniversary += in_array("Clockwork Solus", $minions) ? 1 : 0;
@@ -476,6 +510,10 @@ while($row = $player_overview_query->fetch_assoc()) {
     // Variant & Criterion Dungeons
     $all_survey_sildihn += in_array("Silkie", $mounts) ? 1 : 0;
     $fmt_all_survey_sildihn = number_format($all_survey_sildihn);
+    $all_survey_rokkon += in_array("Burabura Chochin", $mounts) ? 1 : 0;
+    $fmt_all_survey_rokkon = number_format($all_survey_rokkon);
+    $all_survey_aloalo += in_array("Spectral Statice", $mounts) ? 1 : 0;
+    $fmt_all_survey_aloalo = number_format($all_survey_aloalo);
 
     // Deep Dungeon
     $vintage_vogue_achievement += in_array("Aeturna", $mounts) ? 1 : 0;
@@ -564,9 +602,9 @@ $db->close();
 <head>
     <title>XIVCensus - Character statistics for FFXIV</title>
     <!-- FFXIV Official Tooltips-->
-    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2"></script>
+    <script src="https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v3"></script>
     <!-- JQuery Script-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Highcharts-->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -613,6 +651,10 @@ $db->close();
                 - #674ea0 - DoH
                 - #a88d3b - DoL
           */
+
+        /* .row {
+            display: block;
+        } */
 
         a {
             color: white;
@@ -815,6 +857,7 @@ $db->close();
                 <li><a href="#physical">Physical Items</a></li>
                 <li><a href="#soundtracks">Soundtracks</a></li>
                 <li><a href="#artbooks">Art Books</a></li>
+                <li><a href="#encyclopaediaeorzea">Encyclopaedia Eorzea</a></li>
                 <li><a href="#plushes">Plushes</a></li>
                 <li class="divider" tabindex="-1"></li>
                 <li><a href="#commendations">Comms</a></li>
@@ -1156,18 +1199,25 @@ $db->close();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/1f8e56071f0/"
                                     class="eorzeadb_link">PRE-ORDERED SHADOWBRINGERS</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_preshb; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b847d7e73de/"
                                     class="eorzeadb_link">PRE-ORDERED ENDWALKER</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_preew; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#"
+                                    class="eorzeadb_link">PRE-ORDERED DAWNTRAIL</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_predt; ?>
                             </span>
                         </div>
                     </div>
@@ -1204,18 +1254,25 @@ $db->close();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/3757fa104c4/"
                                     class="eorzeadb_link">SHADOWBRINGERS COLLECTORS EDITION</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_shb_collectors; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ec641703b2d/"
                                     class="eorzeadb_link">ENDWALKER COLLECTORS EDITION</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_ew_collectors; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="#"
+                                    class="eorzeadb_link">DAWNTRAIL COLLECTORS EDITION</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_dt_collectors; ?>
                             </span>
                         </div>
                     </div>
@@ -1307,6 +1364,15 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col s12 m12 l12 light region-subtitle">
+                        <p><a href="#"
+                                class="eorzeadb_link">GROWING LIGHT SOUNDTRACK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_growinglight; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col s12"><a id="artbooks"></a><span class="card-title light">Art Books</span></div>
                     <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/eda40ba9cc3/"
@@ -1354,15 +1420,47 @@ $db->close();
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m12 l12 light region-subtitle">
+                    <div class="col s12 m4 l4 light region-subtitle">
                         <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/e98b51f6520/"
                                 class="eorzeadb_link">SHB HISTORIES FORSAKEN ARTBOOK</a></p>
                         <span class="region-stat">
                             <?php echo $fmt_shb_artbooktwo; ?>
                         </span>
                     </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce5b2d5f679/"
+                                class="eorzeadb_link">EW AMONG THE STARS ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_artbook; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m4 l4 light region-subtitle">
+                        <p><a href="#"
+                                class="eorzeadb_link">EW BEYOND THE VEIL ARTBOOK</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_ew_artbooktwo; ?>
+                        </span>
+                    </div>
                 </div>
 
+                <div class="row">
+                    <div class="col s12"><a id="encyclopaediaeorzea"></a><span class="card-title light">Encyclopaedia Eorzea</span></div>
+                    <!-- Encyclopedia 2 is not here since the reward was a headpiece --> 
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d55e4e70d34/"
+                                class="eorzeadb_link">ENCYCLOPEDIA EORZEA 1</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_encyclopaediaeorzea_one; ?>
+                        </span>
+                    </div>
+                    <div class="col s12 m6 l6 light region-subtitle">
+                        <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/4f479516937/"
+                                class="eorzeadb_link">ENCYCLOPEDIA EORZEA 3</a></p>
+                        <span class="region-stat">
+                            <?php echo $fmt_encyclopaediaeorzea_three; ?>
+                        </span>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col s12"><a id="plushes"></a><span class="card-title light">Plushes</span></div>
@@ -1441,18 +1539,25 @@ $db->close();
                     <a id="hildibrand"></a><span class="card-title light">HILDIBRAND</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
                                     class="eorzeadb_link">COMPLETED ARR HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_arr_hildibrand; ?>
                             </span>
                         </div>
-                        <div class="col s12 m6 l6 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/c2f9eda2c29/"
                                     class="eorzeadb_link">COMPLETED HW HILDIBRAND QUESTLINE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_hw_hildibrand; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/0040a15a6fa/"
+                                    class="eorzeadb_link">COMPLETED EW HILDIBRAND QUESTLINE</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_ew_hildibrand; ?>
                             </span>
                         </div>
                     </div>
@@ -1470,20 +1575,33 @@ $db->close();
                     <a id="vcdungeons"></a><span class="card-title light">VARIANT &amp; CRITERION DUNGEONS</span>
                     <hr>
                     <div class="row">
-                        <div class="col s12 m12 l12 light region-subtitle">
+                        <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/ce47260bd86/"
                                     class="eorzeadb_link">UNLOCK ALL SURVEYS IN SIL'DIHN SUBTERRANE</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_all_survey_sildihn; ?>
                             </span>
                         </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/89826f6775d/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN MOUNT ROKKON</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_rokkon; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m4 l4 light region-subtitle">
+                            <p><a href="https://na.finalfantasyxiv.com/lodestone/playguide/db/item/840542a5c6a/"
+                                    class="eorzeadb_link">UNLOCK ALL SURVEYS IN ALOALO ISLAND</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_all_survey_aloalo; ?>
+                            </span>
+                        </div>
                     </div>
                     <a id="pvp-stats"></a><span class="card-title light">PLAYER VS PLAYER</span>
-                    CC = Crystalline Conflict
                     <hr>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/a4ed9096de2/"
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/f1588cffe7b/"
                                     class="eorzeadb_link">WIN 200 'FEAST' OR 'CRYSTALLINE CONFLICT' MATCHES</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_pvp_200_wins; ?>
@@ -1492,39 +1610,46 @@ $db->close();
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/b584f30517a/"
                                     class="eorzeadb_link">REACH LV 15</a> OR <a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/790cf2a0925"
-                                    class="eorzeadb_link">LV 16 IN S2 OF CC</a></p>
+                                    class="eorzeadb_link">LV 16 IN SERIES 2 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s2l1516_reward; ?>
+                                <?php echo $fmt_pvp_s2l1516_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/54e1efcec9d/"
-                                    class="eorzeadb_link">REACH LV 25 IN S2 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 25 IN SERIES 2 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s2l25_reward; ?>
+                                <?php echo $fmt_pvp_s2l25_reward; ?>
                             </span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/cf30ad82b8d/"
-                                    class="eorzeadb_link">REACH LV 15 IN S3 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 3 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s3l15_reward; ?>
+                                <?php echo $fmt_pvp_s3l15_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/424a7a49fbb/"
-                                    class="eorzeadb_link">REACH LV 15 IN S4 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 4 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s4l15_reward; ?>
+                                <?php echo $fmt_pvp_s4l15_reward; ?>
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
                             <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/9d590218ad0/"
-                                    class="eorzeadb_link">REACH LV 25 IN S4 OF CC</a></p>
+                                    class="eorzeadb_link">REACH LV 25 IN SERIES 4 OF PVP</a></p>
                             <span class="region-stat">
-                                <?php echo $fmt_cc_s4l25_reward; ?>
+                                <?php echo $fmt_pvp_s4l25_reward; ?>
+                            </span>
+                        </div>
+                        <div class="col s12 m12 l12 light region-subtitle">
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/d1365de3a3f/"
+                                    class="eorzeadb_link">REACH LV 15 IN SERIES 5 OF PVP</a></p>
+                            <span class="region-stat">
+                                <?php echo $fmt_pvp_s5l15_reward; ?>
                             </span>
                         </div>
                     </div>
