@@ -94,7 +94,7 @@ $american_realm_array = array("Behemoth","Brynhildr","Diabolos","Exodus","Famfri
                               "Lamia","Leviathan","Malboro","Ultros","Adamantoise","Balmung",
                               "Cactuar","Coeurl","Faerie","Gilgamesh","Goblin","Jenova","Mateus",
                               "Midgardsormr","Sargatanas","Siren","Zalera","Excalibur",
-                              "Halicarnassus", "Maduin", "Marilith", "Seraph");
+                              "Halicarnassus", "Maduin", "Marilith", "Seraph", "Cuchulainn", "Golem", "Kraken", "Rafflesia");
 sort($american_realm_array);
 
 $japanese_realm_array = array("Alexander","Bahamut","Durandal","Fenrir","Ifrit","Ridill","Tiamat","Ultima",
