@@ -1220,7 +1220,7 @@ $db->close();
                             </span>
                         </div>
                         <div class="col s12 m4 l4 light region-subtitle">
-                            <p><a href="#"
+                            <p><a href="https://eu.finalfantasyxiv.com/lodestone/playguide/db/item/93fa52c67dc/"
                                     class="eorzeadb_link">PRE-ORDERED DAWNTRAIL</a></p>
                             <span class="region-stat">
                                 <?php echo $fmt_predt; ?>
