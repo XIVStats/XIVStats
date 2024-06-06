@@ -27,9 +27,11 @@ const CLASS_AST = array(KEY => "level_astrologian", TITLE => "Astrologian", COLO
 const CLASS_SAM = array(KEY => "level_samurai", TITLE => "Samurai", COLOR => COLOR_DPS);
 const CLASS_RDM = array(KEY => "level_redmage", TITLE => "Red Mage", COLOR => COLOR_DPS);
 const CLASS_BLU = array(KEY => "level_bluemage", TITLE => "Blue Mage", COLOR => COLOR_DPS);
+const CLASS_PCT = array(KEY => "level_pictomancer", TITLE => "Pictomancer", COLOR => COLOR_DPS);
 const CLASS_GNB = array(KEY => "level_gunbreaker", TITLE => "Gunbreaker", COLOR => COLOR_TANK);
 const CLASS_DNC = array(KEY => "level_dancer", TITLE => "Dancer", COLOR => COLOR_DPS);
 const CLASS_RPR = array(KEY => "level_reaper", TITLE => "Reaper", COLOR => COLOR_DPS);
+const CLASS_VPR = array(KEY => "level_viper", TITLE => "Viper", COLOR => COLOR_DPS);
 const CLASS_SGE = array(KEY => "level_sage", TITLE => "Sage", COLOR => COLOR_HEAL);
 const CLASS_CRP = array(KEY => "level_carpenter", TITLE => "Carpenter", COLOR => COLOR_HAND);
 const CLASS_BSM = array(KEY => "level_blacksmith", TITLE => "Blacksmith", COLOR => COLOR_HAND);
@@ -299,6 +301,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_ROG, $classes);
     handleClass($row, CLASS_SAM, $classes);
     handleClass($row, CLASS_RPR, $classes);
+    handleClass($row, CLASS_VPR, $classes);
 
     // Physical Ranged DPS
     handleClass($row, CLASS_ARC, $classes);
@@ -310,6 +313,7 @@ while($row = $player_overview_query->fetch_assoc()) {
     handleClass($row, CLASS_ACN, $classes);
     handleClass($row, CLASS_RDM, $classes);
     handleClass($row, CLASS_BLU, $classes);
+    handleClass($row, CLASS_PCT, $classes);
 
     // Disciples of Hand
     handleClass($row, CLASS_CRP, $classes);
@@ -559,6 +563,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_ROG, $active_classes);
         handleClass($row, CLASS_SAM, $active_classes);
         handleClass($row, CLASS_RPR, $active_classes);
+        handleClass($row, CLASS_VPR, $active_classes);
 
         // Physical Ranged DPS
         handleClass($row, CLASS_ARC, $active_classes);
@@ -570,6 +575,7 @@ while($row = $player_overview_query->fetch_assoc()) {
         handleClass($row, CLASS_ACN, $active_classes);
         handleClass($row, CLASS_RDM, $active_classes);
         handleClass($row, CLASS_BLU, $active_classes);
+        handleClass($row, CLASS_PCT, $active_classes);
 
         // Disciples of Hand
         handleClass($row, CLASS_CRP, $active_classes);
