@@ -804,8 +804,8 @@ $db->close();
                     </p>
                     <p style="margin-left: 24px;"><b>Any reference to "Endgame" characters, refers to characters that
                             have claimed the following item: <br />
-                            The minion &amp; mount for completing the Endwalker Main Scenario Quest from the Patch
-                            6.0 story</b></p>
+                            The minion &amp; mount for completing the Dawntrail Main Scenario Quest from the Patch
+                            7.0 story</b></p>
                     <!-- Un/comment next 3 lines to enable site notice (For bugs/outages, etc)-->
                     <!-- <div class="col s12 m6" style="width:100%;">
                     <div class="card light region-title"><h4 style="color: red;">ALERT: We are currently aware of a bug which is falsely reporting characters as deleted and thus missing from the census. We are working to fix this bug.</h4></div>
