@@ -673,7 +673,7 @@ $db->close();
         }
 
         .card-header {
-            background-image: url(img/logo_ew.png);
+            background-image: url(img/logo_dt.png);
             background-repeat: no-repeat;
             margin-bottom: 10px;
             height: 220px;
