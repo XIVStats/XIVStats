@@ -817,7 +817,7 @@ $db->close();
             <a class='dropdown-trigger btn' href='#' data-target='misc-stats-dropdown'>Other Stats</a>
             <a class="waves-effect waves-light btn" href='#top'><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
             Follow us: 
-            <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a>
+            <!-- <a href="https://etheirys.masto.host/@ffxivcensus"><i class="fa fa-mastodon" aria-hidden="true"></i></a> -->
             <a href="https://twitter.com/ffxivcensus"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 
             <!-- Population Stats Dropdown -->
